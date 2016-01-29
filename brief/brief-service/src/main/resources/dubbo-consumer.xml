@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="imworkbench" owner="sns" organization="yonyou"/>
+	
+    <dubbo:registry address="zookeeper://172.20.13.62:2181" file="D:\dev_tools\dev_libs\cache\.dubbo\consumer.62.cache"/>
+	
+	<!-- 监测协议 -->
+    <dubbo:monitor protocol="registry"/>
+
+    <dubbo:protocol name="dubbo" port="8882" contextpath="services" />
+    
+    <!--  
+    	该行配置将远程的service实例化为etpAccountService实例，并在Controller或者其他service中直接@Resource( name = "etpAccountService")注解方式调用即可。
+    	不用关心是否分布式，可以和使用本地service一样使用
+    -->
+	 <!-- <dubbo:reference id="etpAccountService" interface="com.yonyou.iuap.sns.im.phosvr.service.api.IEtpAccountService" /> -->
+	 <dubbo:reference id="accountHandleService" interface="com.yonyou.iuap.sns.im.phosvr.service.api.IAccountHandleService" />
+	 <dubbo:reference id="payHandleService" interface="com.yonyou.iuap.sns.im.phosvr.service.api.IPayHandleService" />
+</beans>

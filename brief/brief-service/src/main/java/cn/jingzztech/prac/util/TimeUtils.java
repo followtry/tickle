@@ -1,4 +1,4 @@
-package cn.jingzztech.prac.nio.util;
+package cn.jingzztech.prac.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
