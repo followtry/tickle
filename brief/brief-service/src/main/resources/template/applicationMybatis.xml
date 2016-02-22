@@ -14,7 +14,6 @@
             http://www.springframework.org/schema/tx 
             http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
             
-     <!-- 数据源  -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driverClassName}" />
         <property name="jdbcUrl" value="${jdbc.url}" />
@@ -31,23 +30,18 @@
         <!-- 
         <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
          -->
-         <property name="typeAliasesPackage" value="cn.jingzztech.prac.mybatis.bean" />
         <property name="mapperLocations" value="classpath:cn/jingzztech/prac/mybatis/mapper/*.xml" /> 
     </bean>
     
-    <!-- 单个的sqlSessionTemplate -->
 	<bean id="sqlSessionTemplateSimple" class="org.mybatis.spring.SqlSessionTemplate">   
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 		<constructor-arg index="1" value="SIMPLE"/>
 	</bean>
      
-     <!-- 批量的sqlSessionTemplate -->
 	<bean id="sqlSessionTemplateBatch" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">   
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 		<constructor-arg index="1" value="BATCH"/>
 	</bean>
-	
-	<!-- 事务管理部分 -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
@@ -62,13 +56,17 @@
         </tx:attributes>
     </tx:advice>
     
-    <!-- 用来扫描DAO映射接口部分 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="cn.jingzztech.prac.mybatis.bean" />
+    </bean>
+    <!-- 用来扫描 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="cn.jingzztech.prac.mybatis.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
     
-<!--<aop:config>
+<!--     <aop:config>
         <aop:pointcut expression="execution(* us.xuhang.project.service.*.*(..))"
             id="pointCut" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />

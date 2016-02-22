@@ -18,8 +18,8 @@
     
     <aop:aspectj-autoproxy proxy-target-class="true" />
 
+	<!--  定义json解析 -->
 	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	   <property name="messageConverters">
 	      <list>

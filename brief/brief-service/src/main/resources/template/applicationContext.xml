@@ -14,19 +14,19 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 	
 	
-	<!-- 扫描service、dao组件:cn.jingzztech.prac 下及所有子目录下注解bean -->
+	<!-- 扫描service、dao组件 -->
     <context:component-scan base-package="cn.jingzztech.prac..**.*" />
     <!-- 分解配置 jdbc.properites -->
     <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" />
     <!-- 任务注解驱动 -->
     <task:annotation-driven/>
     
-    <!-- 配置文件读入器 -->
     <util:properties id="propertiesReader" location="classpath:conf.properties" />
-    
-	<!-- 引入其他配置文件 -->
+	<!-- 
+	 -->
+	<import resource="applicationBean.xml" />
 	<import resource="applicationMybatis.xml" />
-	<!-- <import resource="applicationMongo.xml" /> -->
+	<import resource="applicationMongo.xml" />
 	<!-- <import resource="dubbo-consumer.xml" /> -->
 
 </beans>
