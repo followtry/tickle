@@ -48,12 +48,12 @@
             <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
         </table> -->
         <!-- 需要自动逆向生成代码的表 -->
-        <table tableName="test_table2"  domainObjectName="TestTableBean" 
-        	enableCountByExample="true"
-            enableUpdateByExample="true" 
-            enableDeleteByExample="true"
-            enableSelectByExample="true" 
-            selectByExampleQueryId="true" >
+        <table tableName="test_table2"  domainObjectName="TestTable" 
+        	enableCountByExample="false"
+            enableUpdateByExample="false" 
+            enableDeleteByExample="false"
+            enableSelectByExample="false" 
+            selectByExampleQueryId="false" >
             
             <!-- 继承的父类 -->
             <property name="rootClass" value="cn.jingzztech.prac.mybatis.bean.BaseBean" />

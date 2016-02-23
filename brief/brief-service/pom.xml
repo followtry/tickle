@@ -37,9 +37,22 @@
 		<validation.version>1.1.0.Final</validation.version>
 		<quartz-jobs.version>2.2.2</quartz-jobs.version>
 		<quartz.version>2.2.2</quartz.version>
+		<jedis.version>2.6.0</jedis.version>
 	</properties>
 
-	<dependencies>   
+	<dependencies>  
+	  <dependency>
+		   <groupId>org.springframework.data</groupId>
+		   <artifactId>spring-data-redis</artifactId>
+		   <version>1.4.0.RELEASE</version>
+	  </dependency>
+	 
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>${jedis.version}</version>
+		</dependency>
+	
 		<!-- mybatis反向生成插件 -->
 		<dependency> 
                 <groupId>org.mybatis.generator</groupId>
