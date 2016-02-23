@@ -22,9 +22,9 @@ public class MyBatisCodeGenerator {
 
 		String path = MyBatisCodeGenerator.class.getResource("").getPath()
 				.substring(1);
-		String confPath = path + "MBG_configuration.xml";
+		String confPath = path + "MBG_config.xml";
 
-		System.out.println(path);
+		System.out.println("MBG_config.xml文件位置:"+confPath);
 		File configFile = new File(confPath);
 
 		List<String> warnings = new ArrayList<String>();
