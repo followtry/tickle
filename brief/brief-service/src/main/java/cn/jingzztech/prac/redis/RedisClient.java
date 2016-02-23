@@ -25,5 +25,7 @@ public class RedisClient {
 		
 		String clientList = client.clientList();
 		System.out.println(clientList);
+		client.close();
+		jedisPool.close();
 	}
 }
