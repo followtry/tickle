@@ -47,9 +47,12 @@
             <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
         </table> -->
         <!-- 需要自动逆向生成代码的表 -->
-        <table tableName="test_table2" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false"
-            enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="test_table2" 
+        	enableCountByExample="true"
+            enableUpdateByExample="true" 
+            enableDeleteByExample="true"
+            enableSelectByExample="true" 
+            selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
             <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
         </table>
