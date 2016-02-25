@@ -19,10 +19,19 @@ import cn.jingzztech.prac.mybatis.bean.UserBean;
 public class MybatisTest {
 	private static ApplicationContext context;
 	static {
-		context = new ClassPathXmlApplicationContext(
-				"applicationContext.xml");
+		context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	}
 	public static void main(String[] args) {
+		selectAllUser();
+		/*UserService service = context.getBean(UserService.class);
+		TestTable record = new TestTable(12, "测试功能", new Date(), null);
+		int insert = service.insert(record );
+		System.out.println("插入成功条数:"+insert);*/
+	}
+	/**
+	 * 
+	 */
+	private static void selectAllUser() {
 		UserService service = context.getBean(UserService.class);
 		List<UserBean> users = service.selectAll();
 		System.out.println(users);

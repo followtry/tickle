@@ -27,6 +27,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<!-- 引入其他配置文件 -->
 	<import resource="mybatis-config.xml" />
 	<import resource="redis-config.xml" />
+	<import resource="quartz-config.xml" />
 	<!-- <import resource="applicationMongo.xml" /> -->
 	<!-- <import resource="dubbo-consumer.xml" /> -->
 

@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * @time 2016年2月24日 下午1:22:52
  * @func 
  * @name AbstractZooKeeper
- */
+ */ 
 public class AbstractZooKeeper implements Watcher {
 
 	private static Logger LOG = LoggerFactory.getLogger(AbstractZooKeeper.class);
@@ -53,6 +53,7 @@ public class AbstractZooKeeper implements Watcher {
 
      public void close() throws InterruptedException{     
         zooKeeper.close();     
+        LOG.info("已经关闭ZooKeeper");
     }    
 
 }
