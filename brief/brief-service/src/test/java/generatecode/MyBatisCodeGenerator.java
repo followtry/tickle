@@ -20,8 +20,7 @@ public class MyBatisCodeGenerator {
 
 		System.out.println("生成代码--开始");
 
-		String path = MyBatisCodeGenerator.class.getResource("").getPath()
-				.substring(1);
+		String path = MyBatisCodeGenerator.class.getResource("").getPath().substring(1);
 		String confPath = path + "MBG_config.xml";
 
 		System.out.println("MBG_config.xml文件位置:"+confPath);
@@ -30,10 +29,15 @@ public class MyBatisCodeGenerator {
 		List<String> warnings = new ArrayList<String>();
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
+		
+		//如果存在同名文件，强制覆盖
 		boolean overwrite = true;
 		DefaultShellCallback callback = new DefaultShellCallback(overwrite);
-		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,
-				callback, warnings);
+		/*
+		 * 如果callback置为null，内部会实例化不强制覆盖的DefaultShellCallback类；
+		 * warnings也可以不用设置，则内部会对其设置默认值
+		 */
+		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,callback, warnings);
 		myBatisGenerator.generate(null);
 		System.out.println("生成代码--完成");
 	}

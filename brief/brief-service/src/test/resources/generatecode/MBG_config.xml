@@ -11,7 +11,7 @@
         </commentGenerator>
         
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-            connectionURL="jdbc:mysql://localhost:3306/mybatis_test" userId="root" password="jing">
+        	 connectionURL="jdbc:mysql://localhost:3306/mybatis_test" userId="root" password="jing">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -40,13 +40,6 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         
-        <!-- 生成表 -->
-       <!--  <table tableName="test_table" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false"
-            enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false" />
-            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
-        </table> -->
         <!-- 需要自动逆向生成代码的表 -->
         <table tableName="test_table2"  domainObjectName="TestTable" 
         	enableCountByExample="false"
@@ -59,7 +52,6 @@
             <property name="rootClass" value="cn.jingzztech.prac.mybatis.bean.BaseBean" />
             <!-- 生成全属性参数构造方法和无参构造方法 -->
             <property name="constructorBased" value="true" />
-            <!-- <property name="rootClass" value="cn.jingzztech.prac.mybatis.bean.BaseBean" /> -->
             <!-- 实现的接口 -->
             <!-- <property name="rootInterface" value="cn.jingzztech.prac.mybatis.bean.BaseBeaninterface" /> -->
             <!-- 是否使用Table字段名作为类的属性名 -->
