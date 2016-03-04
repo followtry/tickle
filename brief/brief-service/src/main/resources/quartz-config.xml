@@ -27,15 +27,13 @@
     <!-- job的配置开始 -->
     <bean id="myJobDetail"
         class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject">
-            <ref bean="myJob" />
+        <property name="targetObject" ref="quartzTest">
         </property>
-        <property name="targetMethod">
-            <value>work</value>
+        <property name="targetMethod" value="work">
         </property>
     </bean>
     <!-- job的配置结束 -->
  
     <!-- 工作的bean -->
-    <bean id="myJob" class="cn.jingzztech.prac.quartz.QuartzTest" />
+    <bean id="quartzTest" class="cn.jingzztech.prac.quartz.QuartzTest" />
 </beans>

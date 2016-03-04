@@ -19,7 +19,7 @@
 		<log4j.version>1.2.16</log4j.version>
 		<junit.version>4.11</junit.version>
 		<jsonlib.version>2.4</jsonlib.version>
-		<shiro.version>1.2.2</shiro.version>
+		<shiro.version>1.2.4</shiro.version>
 		<mybatis.version>3.2.6</mybatis.version>
 		<mysql.version>5.1.29</mysql.version>
 		<mongo.version>1.8.0.RELEASE</mongo.version>
@@ -41,12 +41,30 @@
 	</properties>
 
 	<dependencies>  
+	
+	<!-- shiro -->
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-core</artifactId>
+		<version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-web</artifactId>
+		<version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-spring</artifactId>
+		<version>${shiro.version}</version>
+	</dependency>
+	
 	  <dependency>
 		   <groupId>org.springframework.data</groupId>
 		   <artifactId>spring-data-redis</artifactId>
 		   <version>1.4.0.RELEASE</version>
 	  </dependency>
-	 
+	 <!-- redis依赖 -->
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
@@ -124,7 +142,7 @@
 			<version>${mysql.version}</version>
 		</dependency>
 		
-				<!-- 连接池 -->
+		<!-- 连接池 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
@@ -285,7 +303,7 @@
 			<version>${fastjson.version}</version>
 		</dependency>
 		
-		<dependency>
+		<dependency> 
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <version>${dubbo.version}</version>
