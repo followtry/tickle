@@ -38,9 +38,16 @@
 		<quartz-jobs.version>2.2.2</quartz-jobs.version>
 		<quartz.version>2.2.2</quartz.version>
 		<jedis.version>2.6.0</jedis.version>
+		<httpclient.version>4.3.5</httpclient.version>
 	</properties>
 
 	<dependencies>  
+	
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	    <version>${httpclient.version}</version>
+	</dependency>
 	
 	<!-- shiro -->
 	<dependency>
