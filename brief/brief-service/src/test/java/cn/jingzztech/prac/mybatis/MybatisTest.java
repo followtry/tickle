@@ -32,7 +32,7 @@ public class MybatisTest {
 	 * 
 	 */
 	private static void selectAllUser() {
-		UserService service = context.getBean(UserService.class);
+		UserService service = (UserService)context.getBean("cn.jingzztech.prac.mybatis.UserService");
 		List<UserBean> users = service.selectAll();
 		System.out.println(users);
 	}

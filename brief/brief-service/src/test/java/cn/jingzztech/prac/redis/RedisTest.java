@@ -19,7 +19,7 @@ public class RedisTest {
 				"applicationContext.xml");
 	}
 	public static void main(String[] args) {
-		RedisService service = context.getBean(RedisService.class);
+		RedisService service = (RedisService)context.getBean("cn.jingzztech.prac.redis.RedisService");
 		String key = "name";
 		service.setData(key, "jingzz");
 		String data = (String)service.getData(key);

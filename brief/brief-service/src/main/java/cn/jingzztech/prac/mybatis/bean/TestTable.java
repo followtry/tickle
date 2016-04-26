@@ -3,7 +3,10 @@ package cn.jingzztech.prac.mybatis.bean;
 import java.util.Date;
 
 public class TestTable extends BaseBean {
-    private Integer testId;
+    /**  */
+	private static final long serialVersionUID = 1L;
+
+	private Integer testId;
 
     private String testName;
 
