@@ -14,14 +14,13 @@ import org.quartz.JobExecutionException;
  * @name service-scheduler-impl/com.yonyou.worktime.service.scheduler.impl.JobScheduler
  * @since 2016年4月26日 上午11:11:30
  */
-@DisallowConcurrentExecution
 public class QuartzJobFactory implements Job {
-	
-	@Override
+
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		System.out.println("JobScheduler.execute()");
 		String key ="scheduleJob";
 		context.getMergedJobDataMap().get(key);
 	}
+	
 
 }

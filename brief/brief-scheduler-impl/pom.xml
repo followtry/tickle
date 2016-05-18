@@ -15,6 +15,5 @@
 	    <artifactId>brief-scheduler</artifactId>
 	    <version>${project.version}</version>
   	</dependency>
-  	
   </dependencies>
 </project>

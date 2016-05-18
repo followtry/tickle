@@ -37,17 +37,14 @@ public class ThroughputDataFlowElasticJob extends AbstractBatchThroughputDataFlo
 	
 	 private Logger LOG = LoggerFactory.getLogger(ThroughputDataFlowElasticJob.class);
 	 
-    @Override
     public boolean isStreamingProcess() {
         return true;
     }
 
-    @Override
     public ExecutorService getExecutorService() {
         return Executors.newFixedThreadPool(10);
     }
 
-	@Override
 	public int processData(JobExecutionMultipleShardingContext shardingContext, List<ScheduleJob> data) {
 		printContext.printProcessDataMessage(data);
 		LOG.info("成功被调用");
@@ -55,7 +52,6 @@ public class ThroughputDataFlowElasticJob extends AbstractBatchThroughputDataFlo
         return successCount;
 	}
 
-	@Override
 	public List<ScheduleJob> fetchData(JobExecutionMultipleShardingContext shardingContext) {
 		printContext.printFetchDataMessage(shardingContext.getShardingItems());
         return new ArrayList<ScheduleJob>();

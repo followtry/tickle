@@ -43,7 +43,6 @@ public class SchedulerServiceImpl implements SchedulerService {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SchedulerServiceImpl.class);
 
-	@Override
 	public void work(JobDataMap jobData, Date triggerTime,TriggerKey triggerKey) throws ParseException, SchedulerException {
 		/*String cronExp = CronUtil.parseDate2CronExp(triggerTime);
 		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cronExp);
@@ -59,7 +58,6 @@ public class SchedulerServiceImpl implements SchedulerService {
 
 	}
 
-	@Override
 	public void work(ScheduleJob scheduleJob) throws ParseException {
 		CronExpression.validateExpression(scheduleJob.getCronExpression());
 		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
@@ -104,7 +102,6 @@ public class SchedulerServiceImpl implements SchedulerService {
 	/**
 	 * 调度任务
 	 */
-	@Override
 	public void scheduleJob(ScheduleJob sJob) {
 		if (sJob == null) {
 			return;
