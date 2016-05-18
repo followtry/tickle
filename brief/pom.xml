@@ -6,10 +6,20 @@
   <packaging>pom</packaging>
   <version>0.0.1</version>
   <name>brief Maven Webapp</name>
-  <!-- <url>http://maven.apache.org</url> -->
+  
+  <!-- 模块 -->
+   <modules>
+    <module>brief-comm</module>
+    <module>brief-service</module>
+    <module>brief-layer</module>
+    <module>brief-scheduler</module>
+    <module>service-scheduler</module>
+    <module>service-scheduler-impl</module>
+   </modules>
 
+	<!-- 依赖版本属性 -->
 	<properties>
-		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring.version>4.2.5.RELEASE</spring.version>
 		<mongo.version>1.8.0.RELEASE</mongo.version>
 		<mybatis.version>3.2.6</mybatis.version>
 		<mybatis-spring-version>1.2.0</mybatis-spring-version>
@@ -51,7 +61,6 @@
 		<mina_version>1.1.7</mina_version>
 		<grizzly_version>2.1.4</grizzly_version>
 		<httpclient_version>4.2.1</httpclient_version>
-		<!-- <fastjson_version>1.1.39</fastjson_version> -->
 		<bsf_version>3.1</bsf_version>
 		<sorcerer_version>0.8</sorcerer_version>
 		<zookeeper_version>3.4.6</zookeeper_version>
@@ -627,9 +636,4 @@
 			</resource>
 		</resources>
 	</build>
-  <modules>
-    <module>brief-comm</module>
-    <module>brief-service</module>
-    <module>brief-layer</module>
-  </modules>
 </project>

@@ -8,9 +8,9 @@
     <version>0.0.1</version>
   </parent>
   <groupId>cn.jingzz</groupId>
-  <artifactId>brief-comm</artifactId>
+  <artifactId>brief-scheduler</artifactId>
   <version>0.0.1</version>
-  <name>brief-comm</name>
+  <name>brief-scheduler</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
