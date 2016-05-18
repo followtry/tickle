@@ -8,4 +8,13 @@
     <version>0.0.1</version>
   </parent>
   <artifactId>brief-scheduler-impl</artifactId>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.yonyou.worktime</groupId>
+	    <artifactId>brief-scheduler</artifactId>
+	    <version>${project.version}</version>
+  	</dependency>
+  	
+  </dependencies>
 </project>

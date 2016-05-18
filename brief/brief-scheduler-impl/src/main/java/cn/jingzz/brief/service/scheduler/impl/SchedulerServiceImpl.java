@@ -1,0 +1,164 @@
+/**
+ * 
+ */
+package cn.jingzz.brief.service.scheduler.impl;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+
+import org.quartz.CronExpression;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.JobDataMap;
+import org.quartz.JobDetail;
+import org.quartz.SchedulerException;
+import org.quartz.SimpleScheduleBuilder;
+import org.quartz.Trigger;
+import org.quartz.TriggerKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
+
+import com.alibaba.fastjson.JSON;
+import com.dangdang.ddframe.job.api.JobConfiguration;
+import com.dangdang.ddframe.job.api.JobScheduler;
+import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
+import com.yonyou.worktime.base.security.support.DefaultWorktimeApplicationContext;
+import com.yonyou.worktime.base.support.WorktimeApplicationContext;
+
+import cn.jingzz.brief.service.scheduler.SchedulerService;
+import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
+import cn.jingzz.brief.service.scheduler.base.SchedulerManager;
+import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
+
+/**
+ * @author jingzz
+ * @time 2016年4月26日 上午9:02:16
+ * @name service-scheduler-impl/com.yonyou.worktime.service.scheduler.impl.
+ *       SchedulerServiceImpl
+ * @since 2016年4月26日 上午9:02:16
+ */
+public class SchedulerServiceImpl implements SchedulerService {
+
+	/**  */
+	private static final String WORKTIME_APPLICATIONCONTEXT_KEY = "worktime-application-context";
+	
+	private static final Logger LOG = LoggerFactory.getLogger(SchedulerServiceImpl.class);
+
+	@Override
+	public void work(JobDataMap jobData, Date triggerTime,TriggerKey triggerKey) throws ParseException, SchedulerException {
+		/*String cronExp = CronUtil.parseDate2CronExp(triggerTime);
+		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cronExp);
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(triggerTime);
+		instance.set(Calendar.MINUTE, instance.get(Calendar.MINUTE) + 1);
+		Date triggerEndTime = instance.getTime();
+		startJobSchedule(jobData, cronScheduleBuilder, triggerKey, triggerEndTime);*/
+		
+		SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withRepeatCount(1);
+		Trigger trigger = SchedulerManager.getNewSimpleTrigger(simpleScheduleBuilder , triggerKey, jobData, triggerTime);
+		startJobScheduler(trigger);
+
+	}
+
+	@Override
+	public void work(ScheduleJob scheduleJob) throws ParseException {
+		CronExpression.validateExpression(scheduleJob.getCronExpression());
+		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
+		TriggerKey triggerKey = new TriggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
+		startCronJobSchedule(scheduleJob.getJobDataMap(), cronScheduleBuilder, triggerKey, scheduleJob.getTriggerEndTime());
+	}
+
+	/**
+	 * 
+	 * @author jingzz
+	 * @param jobData
+	 * @param cronScheduleBuilder
+	 * @param identityName 
+	 * @param identityGroup 
+	 * @param triggerEndTime 
+	 */
+	private void startCronJobSchedule(JobDataMap jobData, CronScheduleBuilder scheduleBuilder,TriggerKey triggerKey , Date triggerEndTime) {
+		Trigger newTrigger = SchedulerManager.getNewCronTrigger(scheduleBuilder, triggerKey, jobData, triggerEndTime);
+		startJobScheduler(newTrigger);
+	}
+
+	/**
+	 * @author jingzz
+	 * @param newTrigger
+	 */
+	private void startJobScheduler(Trigger newTrigger) {
+		try {
+			JobDetail jobDetail = SchedulerManager.getNewJobDetai(QuartzJobFactory.class);
+			Date firstFireTime = SchedulerManager.startJobScheduler(jobDetail, newTrigger);
+			if (firstFireTime == null) {
+				System.out.println("调度失败");
+				LOG.error("调度失败！");
+			} else {
+				LOG.info("开始调度时间：" + firstFireTime);
+				System.out.println("调度时间：" + DateFormat.getInstance().format(firstFireTime));
+			}
+		} catch (SchedulerException e) {
+			LOG.error("Scheduler error:" + e);
+		}
+	}
+
+	/**
+	 * 调度任务
+	 */
+	@Override
+	public void scheduleJob(ScheduleJob sJob) {
+		if (sJob == null) {
+			return;
+		}
+		String jobParams = serializeContext(sJob);
+		ZookeeperRegistryCenter zkRegCenter = ElasticJobSchedulerManager.getZkRegCenter();
+		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(sJob.getJobName(),ThroughputDataFlowElasticJob.class ,
+				sJob.getShardingTotalCount(), sJob.getCronExpression(),jobParams);
+		zkRegCenter.init();
+		
+		JobScheduler jobScheduler = new JobScheduler(zkRegCenter, jobConfig);
+		jobScheduler.init();
+		
+		DeserializeContext(jobConfig);
+	}
+
+	/**
+	 * 反序列化上下文，供SchedulerJob使用
+	 * @author jingzz
+	 * @param jobConfig
+	 */
+	private WorktimeApplicationContext DeserializeContext(JobConfiguration jobConfig) {
+		String jobParameter = jobConfig.getJobParameter();
+		JobDataMap jobData = JSON.parseObject(jobParameter, JobDataMap.class);
+		
+		String wtacStr = String.valueOf(jobData.get(WORKTIME_APPLICATIONCONTEXT_KEY));
+		WorktimeApplicationContext applicationContext = JSON.parseObject(wtacStr, DefaultWorktimeApplicationContext.class);
+		if (applicationContext != null) {
+			LOG.info("DeserializeContext is:"+ applicationContext.toString());
+		}
+		return applicationContext;
+	}
+
+	/**
+	 * 序列化上下文，供SchedulerJob使用
+	 * @author jingzz
+	 * @param sJob
+	 * @return
+	 */
+	private String serializeContext(ScheduleJob sJob) {
+//		WorktimeApplicationContext applicationContext = WorktimeApplicationContextUtils.getApplicationContext();
+		JobDataMap jobDataMap;
+		if (!CollectionUtils.isEmpty(sJob.getJobDataMap())) {
+			jobDataMap = sJob.getJobDataMap();
+		}else{
+			jobDataMap = new JobDataMap();
+		}
+		
+//		jobDataMap.put(WORKTIME_APPLICATIONCONTEXT_KEY, applicationContext);
+		
+		String jobParams = JSON.toJSONString(jobDataMap);
+		LOG.info(jobParams);
+		return jobParams;
+	}
+}
