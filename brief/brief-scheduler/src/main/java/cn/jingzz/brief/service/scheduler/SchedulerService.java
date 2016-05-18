@@ -47,5 +47,11 @@ public interface SchedulerService {
 	 * @author jingzz
 	 * @param scheduleJob
 	 */
-	void scheduleJob(ScheduleJob scheduleJob);
+	void scheduleThroughputDataFlowJob(ScheduleJob scheduleJob);
+	
+	/**
+	 * @author jingzz
+	 * @param scheduleJob
+	 */
+	void scheduleSimpleJob(ScheduleJob scheduleJob);
 }

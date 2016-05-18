@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.jingzz.brief.service.scheduler.impl;
+package cn.jingzz.brief.service.scheduler.core.job;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;

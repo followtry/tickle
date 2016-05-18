@@ -10,11 +10,13 @@
   <artifactId>brief-scheduler</artifactId>
     
   <properties>
+	<elastic-job.version>1.0.6</elastic-job.version>
+	<fastjson.version>1.2.11</fastjson.version>
+	<guava.version>19.0</guava.version>
+	<lombok.version>1.16.8</lombok.version>
   	<quartz-jobs.version>2.2.2</quartz-jobs.version>
 	<quartz.version>2.2.2</quartz.version>
 	<spring.version>4.2.5.RELEASE</spring.version>
-	<lombok.version>1.16.8</lombok.version>
-	<fastjson.version>1.2.11</fastjson.version>
   </properties>
   
   <dependencies>
@@ -46,18 +48,18 @@
   	<dependency> 
 	    <groupId>com.dangdang</groupId>
 	    <artifactId>elastic-job-core</artifactId>
-	    <version>1.0.6</version>
+	    <version>${elastic-job.version}</version>
 	</dependency>
-	<!-- <dependency> 
+	<dependency> 
 	    <groupId>com.dangdang</groupId>
 	    <artifactId>elastic-job-spring</artifactId>
-	    <version>1.0.6</version>
-	</dependency> -->
+	    <version>${elastic-job.version}</version>
+	</dependency>
 	
 	<dependency>
 	    <groupId>com.google.guava</groupId>
 	    <artifactId>guava</artifactId>
-	    <version>19.0</version>
+	    <version>${guava.version}</version>
 	</dependency>
 	<dependency>
     <groupId>com.alibaba</groupId>

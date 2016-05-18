@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-import org.quartz.CronExpression;
 import org.quartz.JobDataMap;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerKey;

@@ -15,7 +15,7 @@
  * </p>
  */
 
-package cn.jingzz.brief.service.scheduler.impl;
+package cn.jingzz.brief.service.scheduler.core.job;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +31,11 @@ import com.dangdang.ddframe.job.plugin.job.type.dataflow.AbstractBatchThroughput
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
 import cn.jingzz.brief.service.scheduler.util.PrintContext;
 
-public class ThroughputDataFlowElasticJob extends AbstractBatchThroughputDataFlowElasticJob<ScheduleJob> {
+public class BatchThroughputDataFlowJob extends AbstractBatchThroughputDataFlowElasticJob<ScheduleJob> {
     
-	 private PrintContext printContext = new PrintContext(ThroughputDataFlowElasticJob.class);
+	 private PrintContext printContext = new PrintContext(BatchThroughputDataFlowJob.class);
 	
-	 private Logger LOG = LoggerFactory.getLogger(ThroughputDataFlowElasticJob.class);
+	 private Logger LOG = LoggerFactory.getLogger(BatchThroughputDataFlowJob.class);
 	 
     public boolean isStreamingProcess() {
         return true;
@@ -48,7 +48,7 @@ public class ThroughputDataFlowElasticJob extends AbstractBatchThroughputDataFlo
 	public int processData(JobExecutionMultipleShardingContext shardingContext, List<ScheduleJob> data) {
 		printContext.printProcessDataMessage(data);
 		LOG.info("成功被调用");
-        int successCount = 0;
+        int successCount = 1;
         return successCount;
 	}
 
