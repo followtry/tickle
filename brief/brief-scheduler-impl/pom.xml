@@ -7,5 +7,5 @@
     <artifactId>brief</artifactId>
     <version>0.0.1</version>
   </parent>
-  <artifactId>brief-comm</artifactId>
+  <artifactId>brief-scheduler-impl</artifactId>
 </project>

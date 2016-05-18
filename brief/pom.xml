@@ -13,8 +13,7 @@
     <module>brief-service</module>
     <module>brief-layer</module>
     <module>brief-scheduler</module>
-    <module>service-scheduler</module>
-    <module>service-scheduler-impl</module>
+    <module>brief-scheduler-impl</module>
    </modules>
 
 	<!-- 依赖版本属性 -->

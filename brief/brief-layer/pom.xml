@@ -8,18 +8,4 @@
     <version>0.0.1</version>
   </parent>
   <artifactId>brief-layer</artifactId>
-  <packaging>war</packaging>
-  <name>brief-layer Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <build>
-    <finalName>brief-layer</finalName>
-  </build>
 </project>
