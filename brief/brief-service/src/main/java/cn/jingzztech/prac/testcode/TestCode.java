@@ -3,8 +3,6 @@
  */
 package cn.jingzztech.prac.testcode;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * 
  * 代码测试区
@@ -16,23 +14,4 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestCode {
 	
-	public enum TestEnum{
-		HEHE(1),
-		XIXI(2);
-		
-		int value;
-		
-		private TestEnum(int value) {
-			this.value = value;
-		}
-		
-		@Override
-		public String toString() {
-			return values().toString();
-		}
-	}
-	
-	public static void main(String[] args) {
-		System.out.println("TestCode.main()"+ TimeUnit.DAYS.toDays(System.currentTimeMillis()));
-	}
 }
