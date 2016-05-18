@@ -8,9 +8,6 @@
     <version>0.0.1</version>
   </parent>
   <artifactId>brief-service</artifactId>
-  <packaging>war</packaging>
-  <name>brief-service</name>
-  <url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,17 +109,6 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-lgpl</artifactId>
-			<version>0.9.5</version>
-		</dependency> -->
-
-		<!-- <dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-asl</artifactId>
-			<version>0.9.5</version>
-		</dependency> -->
 
 		<dependency>
 			<groupId>javax.validation</groupId>

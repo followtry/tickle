@@ -10,8 +10,6 @@ import org.quartz.JobDataMap;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerKey;
 
-import com.yonyou.worktime.base.stereotype.validation.NotNull;
-
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
 
 /**
@@ -29,7 +27,7 @@ public interface SchedulerService {
 	 * @param scheduleJob
 	 * @throws ParseException
 	 */
-	void work(@NotNull(name="scheduleJob") ScheduleJob scheduleJob) throws ParseException;
+	void work(ScheduleJob scheduleJob) throws ParseException;
 
 	/**
 	 * 定时触发调度（仅一次）任务
@@ -39,8 +37,10 @@ public interface SchedulerService {
 	 * @param triggerKey 触发器唯一key
 	 * @throws ParseException 
 	 * @throws SchedulerException 
-	 */
-	void work(JobDataMap jobData,@NotNull(name="triggerTime") Date triggerTime, @NotNull(name="triggerKey") TriggerKey triggerKey) throws ParseException, SchedulerException;
+	 */ 
+	
+	
+	void work(JobDataMap jobData,Date triggerTime, TriggerKey triggerKey) throws ParseException, SchedulerException;
 	
 	/**
 	 * 调度任务

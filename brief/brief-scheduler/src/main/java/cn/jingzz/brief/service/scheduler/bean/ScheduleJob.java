@@ -8,7 +8,6 @@ import java.util.Date;
 import org.quartz.JobDataMap;
 
 import com.dangdang.ddframe.job.api.ElasticJob;
-import com.yonyou.worktime.base.stereotype.validation.NotNull;
 
 /**
  * 任务调度实体
@@ -98,7 +97,6 @@ public class ScheduleJob {
 		this.jobParameter = jobParameter;
 	}
 */
-	@NotNull(name="triggerEndTime")
 	public Date getTriggerEndTime() {
 		return triggerEndTime;
 	}
@@ -115,7 +113,6 @@ public class ScheduleJob {
 		this.jobDataMap = jobDataMap;
 	}
 
-	@NotNull(name="jobId")
 	public String getJobId() {
 		return jobId;
 	}
@@ -124,7 +121,6 @@ public class ScheduleJob {
 		this.jobId = jobId;
 	}
 
-	@NotNull(name="jobName")
 	public String getJobName() {
 		return jobName;
 	}
@@ -137,7 +133,6 @@ public class ScheduleJob {
 		return jobGroup;
 	}
 
-	@NotNull(name="jobGroup")
 	public void setJobGroup(String jobGroup) {
 		this.jobGroup = jobGroup;
 	}
@@ -150,7 +145,6 @@ public class ScheduleJob {
 		this.jobStatus = jobStatus;
 	}
 
-	@NotNull(name="cronExpression")
 	public String getCronExpression() {
 		return cronExpression;
 	}

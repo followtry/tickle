@@ -23,8 +23,6 @@ import com.alibaba.fastjson.JSON;
 import com.dangdang.ddframe.job.api.JobConfiguration;
 import com.dangdang.ddframe.job.api.JobScheduler;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
-import com.yonyou.worktime.base.security.support.DefaultWorktimeApplicationContext;
-import com.yonyou.worktime.base.support.WorktimeApplicationContext;
 
 import cn.jingzz.brief.service.scheduler.SchedulerService;
 import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
@@ -111,7 +109,7 @@ public class SchedulerServiceImpl implements SchedulerService {
 		if (sJob == null) {
 			return;
 		}
-		String jobParams = serializeContext(sJob);
+		String jobParams = JSON.toJSONString(sJob);
 		ZookeeperRegistryCenter zkRegCenter = ElasticJobSchedulerManager.getZkRegCenter();
 		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(sJob.getJobName(),ThroughputDataFlowElasticJob.class ,
 				sJob.getShardingTotalCount(), sJob.getCronExpression(),jobParams);
@@ -120,45 +118,6 @@ public class SchedulerServiceImpl implements SchedulerService {
 		JobScheduler jobScheduler = new JobScheduler(zkRegCenter, jobConfig);
 		jobScheduler.init();
 		
-		DeserializeContext(jobConfig);
 	}
 
-	/**
-	 * 反序列化上下文，供SchedulerJob使用
-	 * @author jingzz
-	 * @param jobConfig
-	 */
-	private WorktimeApplicationContext DeserializeContext(JobConfiguration jobConfig) {
-		String jobParameter = jobConfig.getJobParameter();
-		JobDataMap jobData = JSON.parseObject(jobParameter, JobDataMap.class);
-		
-		String wtacStr = String.valueOf(jobData.get(WORKTIME_APPLICATIONCONTEXT_KEY));
-		WorktimeApplicationContext applicationContext = JSON.parseObject(wtacStr, DefaultWorktimeApplicationContext.class);
-		if (applicationContext != null) {
-			LOG.info("DeserializeContext is:"+ applicationContext.toString());
-		}
-		return applicationContext;
-	}
-
-	/**
-	 * 序列化上下文，供SchedulerJob使用
-	 * @author jingzz
-	 * @param sJob
-	 * @return
-	 */
-	private String serializeContext(ScheduleJob sJob) {
-//		WorktimeApplicationContext applicationContext = WorktimeApplicationContextUtils.getApplicationContext();
-		JobDataMap jobDataMap;
-		if (!CollectionUtils.isEmpty(sJob.getJobDataMap())) {
-			jobDataMap = sJob.getJobDataMap();
-		}else{
-			jobDataMap = new JobDataMap();
-		}
-		
-//		jobDataMap.put(WORKTIME_APPLICATIONCONTEXT_KEY, applicationContext);
-		
-		String jobParams = JSON.toJSONString(jobDataMap);
-		LOG.info(jobParams);
-		return jobParams;
-	}
 }
