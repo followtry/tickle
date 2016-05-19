@@ -3,8 +3,11 @@
  */
 package cn.jingzz.brief.service.scheduler.base;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.dangdang.ddframe.job.api.ElasticJob;
 import com.dangdang.ddframe.job.api.JobConfiguration;
+import com.dangdang.ddframe.job.api.JobScheduler;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
 
@@ -16,6 +19,11 @@ import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
  * @since 2016年5月4日 上午9:31:49
  */
 public class ElasticJobSchedulerManager {
+	
+	/**
+	 * 缓存已经被添加进调度的任务
+	 */
+	private static ConcurrentHashMap<String, JobScheduler> hadRegedCache = new ConcurrentHashMap<String,JobScheduler>();
 	
 	/**
 	 * 获取ZooKeeper注册中心
@@ -49,4 +57,28 @@ public class ElasticJobSchedulerManager {
 		jobConfig.setJobParameter(jobParameter);
 		return jobConfig;
 	}
+	
+	/**
+	 * 将新增的Scheduler添加进缓存
+	 * @author jingzz
+	 * @param key
+	 * @param task
+	 * @return 如果key存在，返回原来的值，否则返回null
+	 */
+	public static JobScheduler putRegTaskCache(String key,JobScheduler task){
+		JobScheduler oldValue = hadRegedCache.put(key, task);
+		return oldValue;
+	}
+	
+	/**
+	 * 获取缓存的Scheduler
+	 * @author jingzz
+	 * @param key
+	 * @return
+	 */
+	public static JobScheduler getRegTaskCache(String key){
+		JobScheduler value = hadRegedCache.get(key);
+		return value;
+	}
+	
 }

@@ -17,7 +17,6 @@ import org.quartz.Trigger;
 import org.quartz.TriggerKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.dangdang.ddframe.job.api.JobConfiguration;
@@ -28,6 +27,8 @@ import cn.jingzz.brief.service.scheduler.SchedulerService;
 import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
 import cn.jingzz.brief.service.scheduler.base.SchedulerManager;
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
+import cn.jingzz.brief.service.scheduler.core.job.JobListener;
+import cn.jingzz.brief.service.scheduler.core.job.MyJobScheduler;
 import cn.jingzz.brief.service.scheduler.core.job.QuartzJobFactory;
 
 /**
@@ -111,8 +112,9 @@ public class SchedulerServiceImpl implements SchedulerService {
 				sJob.getShardingTotalCount(), sJob.getCronExpression(),jobParams);
 		zkRegCenter.init();
 		
-		JobScheduler jobScheduler = new JobScheduler(zkRegCenter, jobConfig);
+		JobScheduler jobScheduler = new MyJobScheduler(zkRegCenter, jobConfig);
 		jobScheduler.init();
+		addJobSchedulerInCache(sJob.getJobId(), jobScheduler);
 		
 	}
 
@@ -126,8 +128,30 @@ public class SchedulerServiceImpl implements SchedulerService {
 				scheduleJob.getShardingTotalCount(), scheduleJob.getCronExpression(),jobParams);
 		zkRegCenter.init();
 		
-		JobScheduler jobScheduler = new JobScheduler(zkRegCenter, jobConfig);
+		JobScheduler jobScheduler = new MyJobScheduler(zkRegCenter, jobConfig,new JobListener(-1, -1));
 		jobScheduler.init();
+		addJobSchedulerInCache(scheduleJob.getJobId(), jobScheduler);
+	}
+
+	/**
+	 * @author jingzz
+	 * @param scheduleJob
+	 * @param jobScheduler
+	 */
+	private void addJobSchedulerInCache(String jobId, JobScheduler jobScheduler) {
+		ElasticJobSchedulerManager.putRegTaskCache(jobId, jobScheduler);
+	}
+
+	/**
+	 * 重新调度任务
+	 * @author jingzz
+	 * @param jobScheduler
+	 * @param cronExpression 
+	 */
+	@Override
+	public void reScheduler(JobScheduler jobScheduler, String cronExpression) {
+		System.out.println("SchedulerServiceImpl.reScheduler():任务已经被重新调度");
+		jobScheduler.rescheduleJob(cronExpression);
 	}
 
 	/**

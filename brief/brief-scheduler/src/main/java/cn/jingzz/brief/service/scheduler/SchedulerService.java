@@ -10,6 +10,8 @@ import org.quartz.JobDataMap;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerKey;
 
+import com.dangdang.ddframe.job.api.JobScheduler;
+
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
 
 /**
@@ -54,4 +56,12 @@ public interface SchedulerService {
 	 * @param scheduleJob
 	 */
 	void scheduleSimpleJob(ScheduleJob scheduleJob);
+
+	/**
+	 * 重新调度任务
+	 * @author jingzz
+	 * @param jobScheduler
+	 * @param cronExpression
+	 */
+	void reScheduler(JobScheduler jobScheduler, String cronExpression);
 }
