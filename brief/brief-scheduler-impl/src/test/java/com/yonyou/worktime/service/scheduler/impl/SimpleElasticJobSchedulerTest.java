@@ -3,6 +3,8 @@
  */
 package com.yonyou.worktime.service.scheduler.impl;
 
+import org.quartz.JobDataMap;
+
 import com.alibaba.fastjson.JSON;
 import com.dangdang.ddframe.job.api.JobScheduler;
 
@@ -37,6 +39,11 @@ public class SimpleElasticJobSchedulerTest {
 		scheduleJob.setCronExpression("0/10 * * * * ?");
 		System.out.println(scheduleJob.getCronExpression());
 		scheduleJob.setShardingTotalCount(3);
+		JobDataMap jobDataMap = new JobDataMap();
+		jobDataMap.put("test", "hehhe");
+		jobDataMap.put(scheduleJob.getJobId(), scheduleJob);
+		
+		scheduleJob.setJobDataMap(jobDataMap );
 		System.out.println(JSON.toJSONString(scheduleJob));
 		
 		schedulerService.scheduleSimpleJob(scheduleJob);
