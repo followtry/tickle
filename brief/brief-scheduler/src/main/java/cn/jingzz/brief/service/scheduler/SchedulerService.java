@@ -11,6 +11,7 @@ import org.quartz.SchedulerException;
 import org.quartz.TriggerKey;
 
 import com.dangdang.ddframe.job.api.JobScheduler;
+import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
 
@@ -63,5 +64,5 @@ public interface SchedulerService {
 	 * @param jobScheduler
 	 * @param cronExpression
 	 */
-	void reScheduler(JobScheduler jobScheduler, String cronExpression);
+	void reScheduler(JobScheduleController jobScheduler, String cronExpression);
 }

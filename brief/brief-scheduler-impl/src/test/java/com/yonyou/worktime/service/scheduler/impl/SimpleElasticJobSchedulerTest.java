@@ -7,6 +7,8 @@ import org.quartz.JobDataMap;
 
 import com.alibaba.fastjson.JSON;
 import com.dangdang.ddframe.job.api.JobScheduler;
+import com.dangdang.ddframe.job.internal.schedule.JobRegistry;
+import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 
 import cn.jingzz.brief.service.scheduler.SchedulerService;
 import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
@@ -51,7 +53,7 @@ public class SimpleElasticJobSchedulerTest {
 		/*
 		 * 重新调配任务
 		 */
-		JobScheduler jobScheduler = ElasticJobSchedulerManager.getRegTaskCache(jobName);
+		JobScheduleController jobScheduler = ElasticJobSchedulerManager.getJobScheduler(jobName); 
 		String cronExpression = "0/2 * * * * ?";
 		schedulerService.reScheduler(jobScheduler, cronExpression );
 		

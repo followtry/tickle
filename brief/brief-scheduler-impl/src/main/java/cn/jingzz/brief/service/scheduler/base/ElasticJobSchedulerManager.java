@@ -5,9 +5,14 @@ package cn.jingzz.brief.service.scheduler.base;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
+
 import com.dangdang.ddframe.job.api.ElasticJob;
 import com.dangdang.ddframe.job.api.JobConfiguration;
 import com.dangdang.ddframe.job.api.JobScheduler;
+import com.dangdang.ddframe.job.internal.schedule.JobRegistry;
+import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
 
@@ -21,17 +26,12 @@ import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
 public class ElasticJobSchedulerManager {
 	
 	/**
-	 * 缓存已经被添加进调度的任务
-	 */
-	private static ConcurrentHashMap<String, JobScheduler> hadRegedCache = new ConcurrentHashMap<String,JobScheduler>();
-	
-	/**
 	 * 获取ZooKeeper注册中心
 	 * @author jingzz
 	 * @return
 	 */
 	public static ZookeeperRegistryCenter getZkRegCenter(){
-		String serverLists = "localhost:2181";
+		String serverLists = "192.168.100.1:2181";
 		String namespace = "worktime_scheduler_center";
 		int baseSleepTimeMilliseconds = 1000;
 		int maxSleepTimeMilliseconds = 3000;
@@ -59,26 +59,16 @@ public class ElasticJobSchedulerManager {
 	}
 	
 	/**
-	 * 将新增的Scheduler添加进缓存
+	 * 从注册表中获取已经添加进调度的任务
 	 * @author jingzz
-	 * @param key
-	 * @param task
-	 * @return 如果key存在，返回原来的值，否则返回null
-	 */
-	public static JobScheduler putRegTaskCache(String key,JobScheduler task){
-		JobScheduler oldValue = hadRegedCache.put(key, task);
-		return oldValue;
-	}
-	
-	/**
-	 * 获取缓存的Scheduler
-	 * @author jingzz
-	 * @param key
+	 * @param jobName
 	 * @return
 	 */
-	public static JobScheduler getRegTaskCache(String key){
-		JobScheduler value = hadRegedCache.get(key);
-		return value;
+	public static JobScheduleController getJobScheduler(String jobName) {
+		if (StringUtils.isEmpty(jobName)) {
+			return null;
+		}
+		return JobRegistry.getInstance().getJobScheduleController(jobName);
 	}
 	
 }

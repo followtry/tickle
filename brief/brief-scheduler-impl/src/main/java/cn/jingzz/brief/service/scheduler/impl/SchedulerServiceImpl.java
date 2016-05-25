@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.dangdang.ddframe.job.api.JobConfiguration;
 import com.dangdang.ddframe.job.api.JobScheduler;
+import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
 
 import cn.jingzz.brief.service.scheduler.SchedulerService;
@@ -42,20 +43,23 @@ public class SchedulerServiceImpl implements SchedulerService {
 
 	/**  */
 	private static final String WORKTIME_APPLICATIONCONTEXT_KEY = "worktime-application-context";
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(SchedulerServiceImpl.class);
 
-	public void work(JobDataMap jobData, Date triggerTime,TriggerKey triggerKey) throws ParseException, SchedulerException {
-		/*String cronExp = CronUtil.parseDate2CronExp(triggerTime);
-		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cronExp);
-		Calendar instance = Calendar.getInstance();
-		instance.setTime(triggerTime);
-		instance.set(Calendar.MINUTE, instance.get(Calendar.MINUTE) + 1);
-		Date triggerEndTime = instance.getTime();
-		startJobSchedule(jobData, cronScheduleBuilder, triggerKey, triggerEndTime);*/
-		
+	public void work(JobDataMap jobData, Date triggerTime, TriggerKey triggerKey)
+			throws ParseException, SchedulerException {
+		/*
+		 * String cronExp = CronUtil.parseDate2CronExp(triggerTime);
+		 * CronScheduleBuilder cronScheduleBuilder =
+		 * CronScheduleBuilder.cronSchedule(cronExp); Calendar instance =
+		 * Calendar.getInstance(); instance.setTime(triggerTime);
+		 * instance.set(Calendar.MINUTE, instance.get(Calendar.MINUTE) + 1);
+		 * Date triggerEndTime = instance.getTime(); startJobSchedule(jobData,
+		 * cronScheduleBuilder, triggerKey, triggerEndTime);
+		 */
+
 		SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withRepeatCount(1);
-		Trigger trigger = SchedulerManager.getNewSimpleTrigger(simpleScheduleBuilder , triggerKey, jobData, triggerTime);
+		Trigger trigger = SchedulerManager.getNewSimpleTrigger(simpleScheduleBuilder, triggerKey, jobData, triggerTime);
 		startJobScheduler(trigger);
 
 	}
@@ -64,7 +68,8 @@ public class SchedulerServiceImpl implements SchedulerService {
 		CronExpression.validateExpression(scheduleJob.getCronExpression());
 		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
 		TriggerKey triggerKey = new TriggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
-		startCronJobSchedule(scheduleJob.getJobDataMap(), cronScheduleBuilder, triggerKey, scheduleJob.getTriggerEndTime());
+		startCronJobSchedule(scheduleJob.getJobDataMap(), cronScheduleBuilder, triggerKey,
+				scheduleJob.getTriggerEndTime());
 	}
 
 	/**
@@ -72,11 +77,12 @@ public class SchedulerServiceImpl implements SchedulerService {
 	 * @author jingzz
 	 * @param jobData
 	 * @param cronScheduleBuilder
-	 * @param identityName 
-	 * @param identityGroup 
-	 * @param triggerEndTime 
+	 * @param identityName
+	 * @param identityGroup
+	 * @param triggerEndTime
 	 */
-	private void startCronJobSchedule(JobDataMap jobData, CronScheduleBuilder scheduleBuilder,TriggerKey triggerKey , Date triggerEndTime) {
+	private void startCronJobSchedule(JobDataMap jobData, CronScheduleBuilder scheduleBuilder, TriggerKey triggerKey,
+			Date triggerEndTime) {
 		Trigger newTrigger = SchedulerManager.getNewCronTrigger(scheduleBuilder, triggerKey, jobData, triggerEndTime);
 		startJobScheduler(newTrigger);
 	}
@@ -108,48 +114,45 @@ public class SchedulerServiceImpl implements SchedulerService {
 		verifyNull(sJob);
 		String jobParams = JSON.toJSONString(sJob);
 		ZookeeperRegistryCenter zkRegCenter = ElasticJobSchedulerManager.getZkRegCenter();
-		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(sJob.getJobName(),sJob.getJobClass() ,
-				sJob.getShardingTotalCount(), sJob.getCronExpression(),jobParams);
+		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(sJob.getJobName(), sJob.getJobClass(),
+				sJob.getShardingTotalCount(), sJob.getCronExpression(), jobParams);
 		zkRegCenter.init();
-		
+
 		JobScheduler jobScheduler = new MyJobScheduler(zkRegCenter, jobConfig);
 		jobScheduler.init();
-		addJobSchedulerInCache(sJob.getJobId(), jobScheduler);
-		
-	}
 
+	}
 
 	@Override
 	public void scheduleSimpleJob(ScheduleJob scheduleJob) {
 		verifyNull(scheduleJob);
 		String jobParams = JSON.toJSONString(scheduleJob);
 		ZookeeperRegistryCenter zkRegCenter = ElasticJobSchedulerManager.getZkRegCenter();
-		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(scheduleJob.getJobName(),scheduleJob.getJobClass() ,
-				scheduleJob.getShardingTotalCount(), scheduleJob.getCronExpression(),jobParams);
+
+		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(scheduleJob.getJobName(),
+				scheduleJob.getJobClass(), scheduleJob.getShardingTotalCount(), scheduleJob.getCronExpression(),
+				jobParams);
+
+		//连接到ZooKeeper注册中心
 		zkRegCenter.init();
-		
-		JobScheduler jobScheduler = new MyJobScheduler(zkRegCenter, jobConfig,new JobListener(-1, -1));
+
+		JobScheduler jobScheduler = new MyJobScheduler(zkRegCenter, jobConfig, new JobListener(-1, -1));
+		//调度任务并添加到任务注册表JobRegistry中
 		jobScheduler.init();
-		addJobSchedulerInCache(scheduleJob.getJobId(), jobScheduler);
+		
+		
 	}
 
-	/**
-	 * @author jingzz
-	 * @param scheduleJob
-	 * @param jobScheduler
-	 */
-	private void addJobSchedulerInCache(String jobId, JobScheduler jobScheduler) {
-		ElasticJobSchedulerManager.putRegTaskCache(jobId, jobScheduler);
-	}
 
 	/**
 	 * 重新调度任务
+	 * 
 	 * @author jingzz
 	 * @param jobScheduler
-	 * @param cronExpression 
+	 * @param cronExpression
 	 */
 	@Override
-	public void reScheduler(JobScheduler jobScheduler, String cronExpression) {
+	public void reScheduler(JobScheduleController jobScheduler, String cronExpression) {
 		System.out.println("SchedulerServiceImpl.reScheduler():任务已经被重新调度");
 		jobScheduler.rescheduleJob(cronExpression);
 	}

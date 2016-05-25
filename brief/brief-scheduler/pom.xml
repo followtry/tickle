@@ -10,12 +10,14 @@
   <artifactId>brief-scheduler</artifactId>
     
   <properties>
-	<elastic-job.version>1.0.6</elastic-job.version>
+	<elastic-job.version>1.0.8</elastic-job.version>
 	<fastjson.version>1.2.11</fastjson.version>
 	<guava.version>19.0</guava.version>
+	<log4j.version>1.2.16</log4j.version>
 	<lombok.version>1.16.8</lombok.version>
   	<quartz-jobs.version>2.2.2</quartz-jobs.version>
 	<quartz.version>2.2.2</quartz.version>
+	<slf4j.version>1.7.2</slf4j.version>
 	<spring.version>4.2.5.RELEASE</spring.version>
   </properties>
   
@@ -62,9 +64,32 @@
 	    <version>${guava.version}</version>
 	</dependency>
 	<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>fastjson</artifactId>
-    <version>${fastjson.version}</version>
-</dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>fastjson</artifactId>
+	    <version>${fastjson.version}</version>
+	</dependency>
+		
+	<!-- logging -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>${slf4j.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>jcl-over-slf4j</artifactId>
+		<version>${slf4j.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>${slf4j.version}</version>
+	</dependency> 
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>${log4j.version}</version>
+	</dependency>
+	<!-- end of logging -->
   </dependencies>
 </project>
