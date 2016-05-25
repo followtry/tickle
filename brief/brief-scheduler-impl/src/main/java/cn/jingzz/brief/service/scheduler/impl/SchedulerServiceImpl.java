@@ -28,9 +28,11 @@ import cn.jingzz.brief.service.scheduler.SchedulerService;
 import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
 import cn.jingzz.brief.service.scheduler.base.SchedulerManager;
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
+import cn.jingzz.brief.service.scheduler.core.job.BatchThroughputDataFlowJob;
 import cn.jingzz.brief.service.scheduler.core.job.JobListener;
 import cn.jingzz.brief.service.scheduler.core.job.MyJobScheduler;
 import cn.jingzz.brief.service.scheduler.core.job.QuartzJobFactory;
+import cn.jingzz.brief.service.scheduler.core.job.SimpleJob;
 
 /**
  * @author jingzz
@@ -114,7 +116,7 @@ public class SchedulerServiceImpl implements SchedulerService {
 		verifyNull(sJob);
 		String jobParams = JSON.toJSONString(sJob);
 		ZookeeperRegistryCenter zkRegCenter = ElasticJobSchedulerManager.getZkRegCenter();
-		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(sJob.getJobName(), sJob.getJobClass(),
+		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(sJob.getJobName(), BatchThroughputDataFlowJob.class,
 				sJob.getShardingTotalCount(), sJob.getCronExpression(), jobParams);
 		zkRegCenter.init();
 
@@ -126,11 +128,11 @@ public class SchedulerServiceImpl implements SchedulerService {
 	@Override
 	public void scheduleSimpleJob(ScheduleJob scheduleJob) {
 		verifyNull(scheduleJob);
-		String jobParams = JSON.toJSONString(scheduleJob);
+		String jobParams = JSON.toJSONString(scheduleJob.getJobClass());
 		ZookeeperRegistryCenter zkRegCenter = ElasticJobSchedulerManager.getZkRegCenter();
 
 		JobConfiguration jobConfig = ElasticJobSchedulerManager.getJobConfig(scheduleJob.getJobName(),
-				scheduleJob.getJobClass(), scheduleJob.getShardingTotalCount(), scheduleJob.getCronExpression(),
+				SimpleJob.class, scheduleJob.getShardingTotalCount(), scheduleJob.getCronExpression(),
 				jobParams);
 
 		//连接到ZooKeeper注册中心

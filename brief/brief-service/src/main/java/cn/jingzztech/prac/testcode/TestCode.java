@@ -3,6 +3,8 @@
  */
 package cn.jingzztech.prac.testcode;
 
+import java.util.HashMap;
+
 /**
  * 
  * 代码测试区
@@ -13,5 +15,14 @@ package cn.jingzztech.prac.testcode;
  * @since 2016年5月9日 上午9:21:43
  */
 public class TestCode {
+	
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		
+		String className = HashMap.class.getCanonicalName();
+		Class clazz = Class.forName(className );
+		
+		Object instance = clazz.newInstance();
+		System.out.println(instance);
+	}
 	
 }

@@ -61,7 +61,7 @@ public class ScheduleJob {
 	/**
 	 * 执行Job的类
 	 */
-	private Class<? extends ElasticJob> jobClass;
+	private Class<? extends Object> jobClass;
 	
 	/**
 	 * 分片总数
@@ -71,13 +71,21 @@ public class ScheduleJob {
 	/**
 	 * 自定义参数
 	 */
-//	private String jobParameter;
+	private String jobParameter;
 	
-	public Class<? extends ElasticJob> getJobClass() {
+	public String getJobParameter() {
+		return jobParameter;
+	}
+
+	public void setJobParameter(String jobParameter) {
+		this.jobParameter = jobParameter;
+	}
+
+	public Class<? extends Object> getJobClass() {
 		return jobClass;
 	}
 
-	public void setJobClass(Class<? extends ElasticJob> jobClass) {
+	public void setJobClass(Class<? extends Object> jobClass) {
 		this.jobClass = jobClass;
 	}
 

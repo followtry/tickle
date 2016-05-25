@@ -3,6 +3,9 @@
  */
 package com.yonyou.worktime.service.scheduler.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.quartz.JobDataMap;
 
 import com.alibaba.fastjson.JSON;
@@ -37,7 +40,7 @@ public class SimpleElasticJobSchedulerTest {
 		String jobName = "SimpleElasticJobSchedulerTest" + System.currentTimeMillis();
 		scheduleJob.setJobId(jobName);
 		scheduleJob.setJobName(jobName);
-		scheduleJob.setJobClass(SimpleJob.class);
+		scheduleJob.setJobClass(HashMap.class);
 		scheduleJob.setCronExpression("0/10 * * * * ?");
 		System.out.println(scheduleJob.getCronExpression());
 		scheduleJob.setShardingTotalCount(3);
