@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
+?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
@@ -16,7 +17,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<!-- 扫描service、dao组件:cn.jingzztech.prac 下及所有子目录下注解bean -->
     <context:component-scan base-package="cn.jingzztech.prac..**.*" />
     <!-- 分解配置 jdbc.properites -->
-    <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" />
+   <!--  <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" /> -->
     <!-- 任务注解驱动 -->
     <task:annotation-driven/>
     
@@ -82,9 +83,9 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <util:properties id="propertiesReader" location="classpath:conf.properties" />
     
 	<!-- 引入其他配置文件 -->
-	<import resource="mybatis-config.xml" />
+	<!-- <import resource="mybatis-config.xml" />
 	<import resource="redis-config.xml" />
-	<import resource="quartz-config.xml" />
+	<import resource="quartz-config.xml" /> -->
 	<!-- <import resource="applicationMongo.xml" /> -->
 	<!-- <import resource="dubbo-consumer.xml" /> -->
 

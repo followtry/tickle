@@ -4,7 +4,7 @@ jdbc.username=root
 jdbc.password=jing
 
 
-#\u516c\u7528\u914d\u7f6e
+#公用配置
 c3p0.pool.size.max=20
 c3p0.pool.size.min=5
 c3p0.pool.size.ini=3

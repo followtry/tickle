@@ -355,8 +355,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -374,7 +374,7 @@
 			<resource>
 				<directory>src/main/resources/META-INF</directory>
 				<filtering>true</filtering>
-				<targetPath>META-INF</targetPath>
+				<targetPath>${project.build.directory}/META-INF</targetPath>
 			</resource>
 			<!-- 复制非class文件 -->
 			<resource>
@@ -388,11 +388,11 @@
 			<resource>
 				<directory>src/main/resources/</directory>
 				<filtering>true</filtering>
-				<!-- <includes>
+				<includes>
 					<include>*.xml</include>
 					<include>*.properties</include>
-				</includes> -->
-				<!-- <targetPath>${project.build.directory}/classes</targetPath> -->
+				</includes>
+				<targetPath>${project.build.directory}/classes</targetPath>
 			</resource>
 		</resources>
 	</build>
