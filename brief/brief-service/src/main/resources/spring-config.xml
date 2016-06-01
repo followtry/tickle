@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
+?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
@@ -13,4 +14,13 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task-4.1.xsd">
 	
+	<!-- 扫描service、dao组件:cn.jingzztech.prac 下及所有子目录下注解bean -->
+    <context:component-scan base-package="cn.jingzztech.prac..**.*" />
+    <!-- 分解配置 jdbc.properites -->
+   <!--  <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" /> -->
+    <!-- 任务注解驱动 -->
+    <task:annotation-driven/>
+    
+    <!-- 配置文件读入器 -->
+    <util:properties id="propertiesReader" location="classpath:conf.properties" />
 </beans>

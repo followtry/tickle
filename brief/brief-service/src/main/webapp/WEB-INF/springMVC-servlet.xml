@@ -14,51 +14,24 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd 
     http://www.springframework.org/schema/tx 
     http://www.springframework.org/schema/tx/spring-tx.xsd ">
-    <!-- 注解方式 -->
-    <mvc:annotation-driven />
-    
-    <aop:aspectj-autoproxy proxy-target-class="true" />
-
-	<!--  定义json解析 -->
-	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-	   <property name="messageConverters">
-	      <list>
-	         <ref bean="jacksonMessageConverter" />
-	      </list>
-	   </property>
-	</bean>
-    
-    <!-- 自动扫描Controller -->
-    <context:component-scan base-package="cn.jingzztech.prac..**.*" />
-    <!-- 配置一个springmvc框架的视图解析器 -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!-- 通过setter方法注入前缀 /WEB-INF/jsps/showMsg.jsp-->
-        <property name="prefix" value="/jsps/" />
-        <!-- 通过setter方法注入后缀 -->
-        <property name="suffix" value=".jsp" />
-    </bean>	
-    
-    <!-- 访问资源映射路径 -->
-    <mvc:resources location="/upload/" mapping="/upload/**"/>
-	<mvc:resources location="/css/" mapping="/css/**"/>
-	<mvc:resources location="/js/" mapping="/js/**"/>
-	<mvc:resources location="/images/" mapping="/images/**"/>
+	<context:property-placeholder location="classpath:/env/development.properties" />
+	<context:component-scan base-package="cn.jingzztech.prac" />
 	
-	<!-- 默认首页 -->
-	<mvc:view-controller path="/" view-name="redirect:/index" />
+	<!-- rest 返回json配置 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 	
-	<!-- url访问拦截器 -->
-	<!-- <mvc:interceptors>
-		<mvc:interceptor> -->
-			<!-- <mvc:mapping path="/**" /> -->
-			<!-- <mvc:mapping path="/overview/**"/> 
-			<mvc:mapping path="/syncData/**"/>  -->
-			<!-- <mvc:mapping path="/login/do_login"/> --> 
-			<!-- <mvc:mapping path="/login/change_pwd"/> --> 
-			<!-- <mvc:mapping path="/**"/>  --> 
-			<!-- <bean class="cn.jingzztech.prac.web.interceptor.LoginCheckInterceptor" /> -->
-		<!-- </mvc:interceptor>
-	</mvc:interceptors> -->
-
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 对所有的请求拦截使用/** ,对某个模块下的请求拦截使用：/myPath/* -->
+			<mvc:mapping path="/**" />
+			<ref bean="accessApiInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
