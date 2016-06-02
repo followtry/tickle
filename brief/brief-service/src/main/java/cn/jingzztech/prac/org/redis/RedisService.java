@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
  * @func 
  * @name RedisService
  */
-@Service
+//@Service
 public class RedisService {
-	@Resource
+	/*@Resource
 	private RedisTemplate<String, String> redisTemplate;
 	
 	public void setData(String key,String value){
@@ -25,5 +25,5 @@ public class RedisService {
 	
 	public Object getData(String key){
 		return redisTemplate.opsForValue().get(key);
-	}
+	}*/
 }

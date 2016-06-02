@@ -14,5 +14,24 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd 
     http://www.springframework.org/schema/tx 
     http://www.springframework.org/schema/tx/spring-tx.xsd ">
+	<context:property-placeholder location="classpath:/env/development.properties" />
 	<context:component-scan base-package="cn.jingzztech.prac" />
+	
+	<!-- rest 返回json配置 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 对所有的请求拦截使用/** ,对某个模块下的请求拦截使用：/myPath/* -->
+			<mvc:mapping path="/**" />
+			<ref bean="accessApiInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

@@ -23,8 +23,8 @@ public class RedisTest {
 	public static void main(String[] args) {
 		RedisService service = (RedisService)context.getBean("cn.jingzztech.prac.redis.RedisService");
 		String key = "name";
-		service.setData(key, "jingzz");
+		/*service.setData(key, "jingzz");
 		String data = (String)service.getData(key);
-		System.out.println(data);
+		System.out.println(data);*/
 	}
 }

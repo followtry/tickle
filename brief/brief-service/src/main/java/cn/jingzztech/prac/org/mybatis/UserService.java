@@ -3,14 +3,7 @@
  */
 package cn.jingzztech.prac.org.mybatis;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
-import cn.jingzztech.prac.org.mybatis.bean.UserBean;
-import cn.jingzztech.prac.org.mybatis.mapper.MybatisUsersMapper;
 
 /**
  * @author jingzz
@@ -21,12 +14,5 @@ import cn.jingzztech.prac.org.mybatis.mapper.MybatisUsersMapper;
 @Service
 public class UserService {
 	
-	@Resource
-	private MybatisUsersMapper usersMapper;
-	
-	public  List<UserBean> selectAll(){
-		List<UserBean> userBeans = usersMapper.selectAll();
-		return userBeans;
-	}
 }
   

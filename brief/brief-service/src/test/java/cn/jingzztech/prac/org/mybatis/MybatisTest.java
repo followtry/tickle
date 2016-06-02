@@ -23,18 +23,9 @@ public class MybatisTest {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	}
 	public static void main(String[] args) {
-		selectAllUser();
 		/*UserService service = context.getBean(UserService.class);
 		TestTable record = new TestTable(12, "测试功能", new Date(), null);
 		int insert = service.insert(record );
 		System.out.println("插入成功条数:"+insert);*/
-	}
-	/**
-	 * 
-	 */
-	private static void selectAllUser() {
-		UserService service = (UserService)context.getBean("cn.jingzztech.prac.mybatis.UserService");
-		List<UserBean> users = service.selectAll();
-		System.out.println(users);
 	}
 }
