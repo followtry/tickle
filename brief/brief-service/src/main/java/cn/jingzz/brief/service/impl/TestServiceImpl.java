@@ -3,8 +3,11 @@
  */
 package cn.jingzz.brief.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.jingzz.brief.dao.mapper.MyBatisMapper;
+import cn.jingzz.brief.dao.model.MyBatis;
 import cn.jingzz.brief.service.TestService;
 
 /**
@@ -15,10 +18,15 @@ import cn.jingzz.brief.service.TestService;
  */
 @Service
 public class TestServiceImpl implements TestService {
+	
+	@Autowired
+	private MyBatisMapper myBatisMapper;
 
 	@Override
-	public void test() {
+	public MyBatis test(String id) {
 		System.out.println("TestServiceImpl.Test()");
+		MyBatis result = myBatisMapper.selectByPrimaryKey(id);
+		return result;
 	}
 
 }

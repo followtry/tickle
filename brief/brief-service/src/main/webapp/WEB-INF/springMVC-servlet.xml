@@ -18,4 +18,16 @@
     <!-- 扫描包base-package下的注解了@Controller，@service@,Repository,@Component的type-->
 	<context:component-scan base-package="cn.jingzz.brief"/>
 	
+	<!-- 视图解析器 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
 </beans>
