@@ -4,6 +4,7 @@
 xmlns:context="http://www.springframework.org/schema/context"
 xmlns:util="http://www.springframework.org/schema/util"
 xmlns:task="http://www.springframework.org/schema/task"
+xmlns:aop="http://www.springframework.org/schema/aop"
 xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context 
@@ -11,16 +12,12 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/util 
 	http://www.springframework.org/schema/util/spring-util.xsd
 	http://www.springframework.org/schema/task
-	http://www.springframework.org/schema/task/spring-task.xsd">
-	
-	<!-- 扫描service、dao组件:cn.jingzztech.prac 下及所有子目录下注解bean -->
-    <context:component-scan base-package="cn.jingzztech..**.*" />
-    <context:annotation-config></context:annotation-config>
-    <!-- 分解配置 jdbc.properites -->
-   <!--  <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" /> -->
-    <!-- 任务注解驱动 -->
-   <!--  <task:annotation-driven/> -->
-    
-    <!-- 配置文件读入器 -->
-    <!-- <util:properties id="propertiesReader" location="classpath:conf.properties" /> -->
+	http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	">
+	<!-- 启动注解方式注入bean -->
+    <context:annotation-config/>
+    <!-- 引入springmvc配置 -->
+    <import resource="/WEB-INF/springMVC-servlet.xml" />
 </beans>

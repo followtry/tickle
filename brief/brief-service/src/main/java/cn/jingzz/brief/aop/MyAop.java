@@ -5,6 +5,7 @@ package cn.jingzz.brief.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.Ordered;
 
@@ -14,6 +15,7 @@ import org.springframework.core.Ordered;
  * @name brief-service/cn.jingzz.brief.aop.MyAop
  * @since 2016年6月2日 下午8:38:11
  */
+@Aspect
 public class MyAop implements Ordered {
 
 	@Override
@@ -21,16 +23,16 @@ public class MyAop implements Ordered {
 		return 0;
 	}
 	
-	@Around(value = "")
 	public void test(){
 		
 	}
 	
-	@Pointcut(AspectJointPoints.BUSINESS_SERVICE_ACTIONS)
+	@Pointcut("within(cn.jingzz.brief.service..*)")
 	public void myPointCut(ProceedingJoinPoint joinPoint) throws Throwable{
 		around(joinPoint);
 	}
-
+	
+	@Around("within(cn.jingzz.brief.service..*)")
 	public Object around(ProceedingJoinPoint joinPoint) throws Throwable{
 		long startTs = System.currentTimeMillis();
 		System.out.println("before joinPointer:"+startTs);
