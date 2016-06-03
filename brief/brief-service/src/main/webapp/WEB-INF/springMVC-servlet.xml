@@ -30,4 +30,20 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	<!-- rest 返回json配置,jackson解析 -->
+	<!-- <mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven> -->
+	
+	<!-- rest 返回json配置,fastjson解析,使用@org.springframework.web.bind.annotation.ResponseBody必须设置json解析器 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 </beans>
