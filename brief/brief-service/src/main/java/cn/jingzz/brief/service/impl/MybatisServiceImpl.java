@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import cn.jingzz.brief.dao.mapper.MyBatisMapper;
 import cn.jingzz.brief.dao.model.MyBatis;
-import cn.jingzz.brief.service.TestService;
+import cn.jingzz.brief.service.MybatisService;
 
 /**
  * @author jingzz
@@ -17,7 +17,7 @@ import cn.jingzz.brief.service.TestService;
  * @since 2016年6月2日 下午8:29:49
  */
 @Service
-public class TestServiceImpl implements TestService {
+public class MybatisServiceImpl implements MybatisService {
 	
 	@Autowired
 	private MyBatisMapper myBatisMapper;

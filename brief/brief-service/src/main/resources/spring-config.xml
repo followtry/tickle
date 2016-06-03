@@ -31,6 +31,9 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <!-- 引入mybatis配置 -->
     <import resource="mybatis-config.xml" />
     
+    <!-- 引入mybatis配置 -->
+    <import resource="redis-config.xml" />
+    
     <!-- 事务管理部分 -->
    <!--  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />

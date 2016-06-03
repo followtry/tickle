@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.jingzz.brief.dao.model.MyBatis;
-import cn.jingzz.brief.service.TestService;
+import cn.jingzz.brief.service.MybatisService;
+import cn.jingzz.brief.service.RedisService;
 
 /**
  * @author jingzz
@@ -23,16 +24,23 @@ import cn.jingzz.brief.service.TestService;
  * @since 2016年6月2日 下午9:03:56
  */
 @Controller
-public class TestController {
+public class RedisController {
 	
 	@Autowired
-	private TestService testService;
+	private RedisService redisService;
 	
-	@RequestMapping(value="/test/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/redis/{key}/{value}",method=RequestMethod.GET)
 	@ResponseBody
-	public MyBatis test(@PathVariable("id")String id, HttpServletRequest request,HttpServletResponse response){
-		MyBatis test = testService.test(id);
-		System.out.println(test);
-		return test;
+	public String setRedis(@PathVariable("key")String key,
+			@PathVariable("value")String value){
+		redisService.set(key, value);
+		return "success";
+	}
+	
+	@RequestMapping(value="/redis/{key}",method=RequestMethod.GET)
+	@ResponseBody
+	public Object getRedis(@PathVariable("key")String key){
+		Object value = redisService.get(key);
+		return value;
 	}
 }
