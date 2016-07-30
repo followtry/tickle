@@ -21,7 +21,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     
     <!-- 分解配置 jdbc.properites -->
     <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" />
-    
     <!-- 引入springmvc配置 -->
     <import resource="/WEB-INF/springMVC-servlet.xml" />
     
