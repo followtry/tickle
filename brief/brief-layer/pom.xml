@@ -8,4 +8,104 @@
     <version>0.0.1</version>
   </parent>
   <artifactId>brief-layer</artifactId>
+  
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.2.5.RELEASE</spring.version>
+		<slf4j.version>1.7.2</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+		<junit.version>4.11</junit.version>
+		<jsonlib.version>2.4</jsonlib.version>
+		<shiro.version>1.2.4</shiro.version>
+		<mybatis.version>3.2.6</mybatis.version>
+		<mysql.version>5.1.29</mysql.version>
+		<mongo.version>1.8.0.RELEASE</mongo.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<aspectjweaver.version>1.7.4</aspectjweaver.version>
+		<fastjson.version>1.1.39</fastjson.version>
+		<bonecp.version>0.8.0.RELEASE</bonecp.version>
+		<druid.version>1.0.4</druid.version>
+		<c3p0.version>0.9.2.1</c3p0.version>
+		<dubbo.version>2.5.3</dubbo.version>
+		<javassist_version>3.15.0-GA</javassist_version>
+		<zookeeper_version>3.4.6</zookeeper_version>
+		<zkclient_version>0.1</zkclient_version>
+		<jackson.version>2.6.1</jackson.version>
+		<validation.version>1.1.0.Final</validation.version>
+		<quartz-jobs.version>2.2.2</quartz-jobs.version>
+		<quartz.version>2.2.2</quartz.version>
+		<jedis.version>2.6.0</jedis.version>
+		<httpclient.version>4.3.5</httpclient.version>
+	</properties>
+	
+	<dependencies>
+		
+		<dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+        </dependency>
+	
+		<!-- servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		
+		<!-- spring boot -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-logging</artifactId>
+		        </exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		
+		<!-- Mybatis依赖 -->
+		<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-logging</artifactId>
+		        </exclusion>
+		    </exclusions>
+		</dependency>
+		<!-- mybatis反向生成插件 -->
+		<dependency> 
+               <groupId>org.mybatis.generator</groupId>
+               <artifactId>mybatis-generator-maven-plugin</artifactId>
+        </dependency>
+        
+        <!-- mybaits -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		
+		<!-- mysql驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+	</dependencies>
+  
 </project>

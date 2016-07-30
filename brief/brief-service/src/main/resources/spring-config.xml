@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:util="http://www.springframework.org/schema/util"
+xmlns:task="http://www.springframework.org/schema/task"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util 
+	http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	">
+	<!-- 启动注解方式注入bean -->
+    <context:annotation-config/>
+    
+    <!-- 分解配置 jdbc.properites -->
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" />
+    
+    <!-- 引入springmvc配置 -->
+    <import resource="/WEB-INF/springMVC-servlet.xml" />
+    
+    <!-- 引入datasource配置 -->
+    <import resource="data-source-config.xml" />
+    
+    <!-- 引入mybatis配置 -->
+    <import resource="mybatis-config.xml" />
+    
+    <!-- 引入mybatis配置 -->
+    <import resource="redis-config.xml" />
+    
+    <!-- 事务管理部分 -->
+   <!--  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="find" read-only="true" />
+            <tx:method name="get" read-only="true" />
+            <tx:method name="*" propagation="REQUIRED" />
+        </tx:attributes>
+    </tx:advice> -->
+    
+        <!-- 切面 -->
+<!--<aop:config>
+        <aop:pointcut expression="execution(* us.xuhang.project.service.*.*(..))"
+            id="pointCut" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
+    </aop:config> -->
+</beans>

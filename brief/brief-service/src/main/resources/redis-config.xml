@@ -29,16 +29,16 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <bean id="jedisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="hostName" value="${redis.host}" />
         <property name="port" value="${redis.port}" />
-        <property name="password" value="${redis.password}" />
         <property name="poolConfig" ref="jedisPoolConfig" />
+        <property name="timeout" value="3000" />
     </bean>
 
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
          <!-- 最大分配的对象数   -->
-        <property name="maxTotal" value="600" />
+        <property name="maxTotal" value="1" />
         
         <!-- 最大能够保持idel状态的对象数   -->
-        <property name="maxIdle" value="300" />
+        <property name="maxIdle" value="1" />
         
         <!-- 多长时间检查一次连接池中空闲的连接 -->
         <property name="timeBetweenEvictionRunsMillis" value="30000" />
