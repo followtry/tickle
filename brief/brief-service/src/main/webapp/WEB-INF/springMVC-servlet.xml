@@ -17,7 +17,7 @@
     
     <!-- 扫描包base-package下的注解了@Controller，@service@,Repository,@Component的type-->
 	<context:component-scan base-package="cn.jingzz.brief"/>
-	
+	<!-- <context:property-placeholder location="classpath:conf.properties" /> -->
 	<!-- 视图解析器 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass">

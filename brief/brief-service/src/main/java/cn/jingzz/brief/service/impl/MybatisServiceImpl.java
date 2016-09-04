@@ -4,6 +4,7 @@
 package cn.jingzz.brief.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import cn.jingzz.brief.dao.mapper.MyBatisMapper;
@@ -19,12 +20,15 @@ import cn.jingzz.brief.service.MybatisService;
 @Service
 public class MybatisServiceImpl implements MybatisService {
 	
+	@Value("${myuser.username}")
+	String name;
+	
 	@Autowired
 	private MyBatisMapper myBatisMapper;
 
 	@Override
 	public MyBatis test(String id) {
-		System.out.println("TestServiceImpl.Test()");
+		System.out.println("TestServiceImpl.Test()"+name);
 		MyBatis result = myBatisMapper.selectByPrimaryKey(id);
 		return result;
 	}

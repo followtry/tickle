@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,9 @@ import cn.jingzz.brief.service.MybatisService;
 @Controller
 public class MybatisController {
 	
+	@Value("${myuser.username}")
+	private String name;
+	
 	@Autowired
 	private MybatisService testService;
 	
@@ -32,7 +36,7 @@ public class MybatisController {
 	@ResponseBody
 	public MyBatis test(@PathVariable("id")String id, HttpServletRequest request,HttpServletResponse response){
 		MyBatis test = testService.test(id);
-		System.out.println(test);
+		System.out.println(test+","+name);
 		return test;
 	}
 }
