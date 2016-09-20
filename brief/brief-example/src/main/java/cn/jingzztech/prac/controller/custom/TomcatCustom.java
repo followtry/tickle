@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.jingzz.brief.controller.custom;
+package cn.jingzztech.prac.controller.custom;
 
 import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
