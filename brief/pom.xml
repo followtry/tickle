@@ -261,6 +261,14 @@
 			   			<groupId>org.springframework</groupId>
 			   			<artifactId>spring-context</artifactId>
 			   		</exclusion>
+			   		<exclusion>
+			   			<groupId>org.springframework</groupId>
+			   			<artifactId>spring-oxm</artifactId>
+			   		</exclusion>
+			   		<exclusion>
+			   			<groupId>org.springframework</groupId>
+			   			<artifactId>spring-web</artifactId>
+			   		</exclusion>
 			   </exclusions>
 			</dependency>
 			
@@ -313,6 +321,12 @@
 			    <groupId>org.springframework.boot</groupId>
 			    <artifactId>spring-boot-starter-web</artifactId>
 			    <version>${spring-boot.version}</version>
+			    <exclusions>
+			    	<exclusion>
+			    		<groupId>org.springframework</groupId>
+			   			<artifactId>spring-web</artifactId>
+			    	</exclusion>
+			    </exclusions>
 			</dependency>
 			
 			<dependency>
@@ -344,8 +358,19 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
+				<exclusions>
+			    	<exclusion>
+			    		<groupId>org.springframework</groupId>
+			   			<artifactId>spring-web</artifactId>
+			    	</exclusion>
+			    </exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.data</groupId>
