@@ -123,6 +123,23 @@
 			<groupId>org.mybatis.generator</groupId>
 			<artifactId>mybatis-generator-maven-plugin</artifactId>
 		</dependency>
+		<!-- 日志 -->
+		 <dependency>
+	      <groupId>org.slf4j</groupId>
+	      <artifactId>jcl-over-slf4j</artifactId>
+	   	</dependency>
+	   	<dependency>
+	      <groupId>org.slf4j</groupId>
+	      <artifactId>slf4j-api</artifactId>
+	   	</dependency>
+	   	<dependency>
+	      <groupId>org.slf4j</groupId>
+	      <artifactId>slf4j-log4j12</artifactId>
+	   	</dependency>
+	    <dependency>
+	      <groupId>log4j</groupId>
+	      <artifactId>log4j</artifactId>
+	    </dependency>
 	</dependencies>
 	
 	<!-- mybatis反向生成插件,生成时打开，完成后关闭该依赖 -->
