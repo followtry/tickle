@@ -9,6 +9,14 @@
   </parent>
   <artifactId>brief-example</artifactId>
   <dependencies>
+  
+  	<!-- 导入导出 -->
+  	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>${poi.version}</version>
+	</dependency>
+  
 	<dependency>
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjweaver</artifactId>
