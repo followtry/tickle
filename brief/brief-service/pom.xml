@@ -14,7 +14,12 @@
 		<dependency>
 			<groupId>cn.jingzz</groupId>
 			<artifactId>brief-tools</artifactId>
-			<version>0.0.1</version>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.jingzz</groupId>
+			<artifactId>brief-comm</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>

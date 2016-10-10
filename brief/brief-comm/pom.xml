@@ -9,6 +9,12 @@
   </parent>
   <artifactId>brief-comm</artifactId>
   <dependencies>
+  	
+  	<dependency>
+		<groupId>cn.jingzz</groupId>
+		<artifactId>brief-tools</artifactId>
+		<version>0.0.1</version>
+	</dependency>
 	<dependency>
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjweaver</artifactId>

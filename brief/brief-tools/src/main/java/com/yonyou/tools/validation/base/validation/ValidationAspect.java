@@ -44,8 +44,10 @@ public class ValidationAspect implements Ordered {
 			MethodSignature methodSignature = (MethodSignature) signature;
 			validate(methodSignature, joinpoint.getArgs());
 		}else if (signature instanceof FieldSignature) {//属性校验
+			@SuppressWarnings("unused")
 			FieldSignature fieldSignature = (FieldSignature)signature;
 		}else if (signature instanceof CatchClauseSignature) {
+			@SuppressWarnings("unused")
 			CatchClauseSignature catchClauseSignature = (CatchClauseSignature)signature;
 		}
 	}

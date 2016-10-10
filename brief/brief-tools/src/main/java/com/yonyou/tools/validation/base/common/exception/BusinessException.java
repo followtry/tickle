@@ -3,6 +3,7 @@ package com.yonyou.tools.validation.base.common.exception;
 /**
  * 
  * @author liuxrb
+ * @author jingzz
  */
 public class BusinessException extends RuntimeException{
 
