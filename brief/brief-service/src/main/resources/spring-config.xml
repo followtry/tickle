@@ -69,7 +69,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <bean class="com.yonyou.tools.validation.base.DefaultAspectServiceChain"/>
     
     <!-- 引入异常处理 -->
-    <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/>
+    <!-- <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/> -->
     
     <!-- 事务管理部分 -->
    <!--  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -13,12 +13,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>cn.jingzz</groupId>
-			<artifactId>brief-tools</artifactId>
+			<artifactId>brief-comm</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>cn.jingzz</groupId>
-			<artifactId>brief-comm</artifactId>
+			<artifactId>brief-tools</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -39,10 +39,16 @@
 		</dependency>
 		
 		<!-- Mybatis依赖 -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.mybatis.spring.boot</groupId>
 		    <artifactId>mybatis-spring-boot-starter</artifactId>
-		</dependency>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.springframework.boot</groupId>
+		    		<artifactId>spring-boot-starter-log4j2</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency> -->
 		<!-- mybatis反向生成插件 -->
 		<dependency> 
                <groupId>org.mybatis.generator</groupId>
@@ -144,10 +150,6 @@
 	   	<dependency>
 	      <groupId>org.slf4j</groupId>
 	      <artifactId>slf4j-api</artifactId>
-	   	</dependency>
-	   	<dependency>
-	      <groupId>org.slf4j</groupId>
-	      <artifactId>slf4j-log4j12</artifactId>
 	   	</dependency>
 	    <dependency>
 	      <groupId>log4j</groupId>

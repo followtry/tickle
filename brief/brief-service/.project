@@ -3,6 +3,7 @@
 	<name>brief-service</name>
 	<comment></comment>
 	<projects>
+		<project>brief-comm</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
