@@ -4,19 +4,15 @@
 package com.yonyou.worktime.service.scheduler.impl;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.quartz.JobDataMap;
 
 import com.alibaba.fastjson.JSON;
-import com.dangdang.ddframe.job.api.JobScheduler;
-import com.dangdang.ddframe.job.internal.schedule.JobRegistry;
 import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 
 import cn.jingzz.brief.service.scheduler.SchedulerService;
 import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
 import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
-import cn.jingzz.brief.service.scheduler.core.job.SimpleJob;
 import cn.jingzz.brief.service.scheduler.impl.SchedulerServiceImpl;
 
 /**

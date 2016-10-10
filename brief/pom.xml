@@ -6,7 +6,6 @@
   <artifactId>brief</artifactId>
   <packaging>pom</packaging>
   <version>0.0.1</version>
-  <name>brief Maven Webapp</name>
   
   <!-- 模块 -->
    <modules>
@@ -16,11 +15,12 @@
     <module>brief-scheduler</module>
     <module>brief-scheduler-impl</module>
     <module>brief-example</module>
+    <module>brief-tools</module>
    </modules>
    
    
 	<properties>
-		<aspectjweaver.version>1.5.4</aspectjweaver.version>
+		<aspectjweaver.version>1.8.9</aspectjweaver.version>
 		<bonecp.version>0.8.0.RELEASE</bonecp.version>
 		<c3p0.version>0.9.2.1</c3p0.version>
 		<dom4j.version>1.6.1</dom4j.version>

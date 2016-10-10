@@ -3,12 +3,9 @@
  */
 package cn.jingzztech.prac.springinaction.inject.runtime;
 
-import java.io.File;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.rules.TestName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 

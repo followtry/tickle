@@ -3,13 +3,8 @@
  */
 package cn.jingzztech.prac.org.mybatis;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import cn.jingzztech.prac.org.mybatis.UserService;
-import cn.jingzztech.prac.org.mybatis.bean.UserBean;
 
 /**
  * @author jingzz

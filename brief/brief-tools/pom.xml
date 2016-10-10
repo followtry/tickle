@@ -7,65 +7,15 @@
     <artifactId>brief</artifactId>
     <version>0.0.1</version>
   </parent>
-  <artifactId>brief-service</artifactId>
-
-	
+  <artifactId>brief-tools</artifactId>
+  
 	<dependencies>
-		<dependency>
-			<groupId>cn.jingzz</groupId>
-			<artifactId>brief-tools</artifactId>
-			<version>0.0.1</version>
-		</dependency>
+	
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 		
-		<!-- 连接池 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-		</dependency>
-	        
-	    <!-- fastjson -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-		</dependency>
-		
-		<!-- Mybatis依赖 -->
-		<dependency>
-		    <groupId>org.mybatis.spring.boot</groupId>
-		    <artifactId>mybatis-spring-boot-starter</artifactId>
-		</dependency>
-		<!-- mybatis反向生成插件 -->
-		<dependency> 
-               <groupId>org.mybatis.generator</groupId>
-               <artifactId>mybatis-generator-maven-plugin</artifactId>
-        </dependency>
-        
-        <!-- mybaits -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-		</dependency>
-		
-		<!-- mysql驱动 -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		
-		 <!-- redis依赖 -->
-		<dependency>
-		    <groupId>redis.clients</groupId>
-		    <artifactId>jedis</artifactId>
-		</dependency>
 		<dependency>
 		   <groupId>org.springframework.data</groupId>
 		   <artifactId>spring-data-redis</artifactId>
@@ -84,13 +34,6 @@
 		   		</exclusion>
 		   </exclusions>
 		  </dependency>
-		
-		
-		<!-- servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
 		
 		<!-- spring -->
 		<dependency>
@@ -126,11 +69,6 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		
-		<!-- mybatis反向生成插件,生成时打开，完成后关闭该依赖 -->
-		<dependency>
-			<groupId>org.mybatis.generator</groupId>
-			<artifactId>mybatis-generator-maven-plugin</artifactId>
-		</dependency>
 		<!-- 日志 -->
 		 <dependency>
 	      <groupId>org.slf4j</groupId>
@@ -149,28 +87,4 @@
 	      <artifactId>log4j</artifactId>
 	    </dependency>
 	</dependencies>
-	
-	<!-- mybatis反向生成插件,生成时打开，完成后关闭该依赖 -->
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-maven-plugin</artifactId>
-				<configuration>
-					<verbose>true</verbose>
-					<overwrite>true</overwrite>
-				</configuration>
-				<executions>
-		           <!--  <execution>
-		              <id>test</id>
-		              <goals>
-		                <goal>generate</goal>
-		              </goals>
-		            </execution> -->
-         		 </executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
-

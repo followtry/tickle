@@ -26,17 +26,14 @@
 	<dependency>
 	    <groupId>org.quartz-scheduler</groupId>
 	    <artifactId>quartz</artifactId>
-	    <version>${quartz.version}</version>
 	</dependency>
 	<dependency>
 	    <groupId>org.quartz-scheduler</groupId>
 	    <artifactId>quartz-jobs</artifactId>
-	    <version>${quartz-jobs.version}</version>
 	</dependency>
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context-support</artifactId>
-        <version>${spring.version}</version>
     </dependency>
     
 	<dependency>
@@ -66,29 +63,24 @@
 	<dependency>
 	    <groupId>com.alibaba</groupId>
 	    <artifactId>fastjson</artifactId>
-	    <version>${fastjson.version}</version>
 	</dependency>
 		
 	<!-- logging -->
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-api</artifactId>
-		<version>${slf4j.version}</version>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>jcl-over-slf4j</artifactId>
-		<version>${slf4j.version}</version>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-log4j12</artifactId>
-		<version>${slf4j.version}</version>
 	</dependency> 
 	<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
-		<version>${log4j.version}</version>
 	</dependency>
 	<!-- end of logging -->
   </dependencies>

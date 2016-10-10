@@ -3,11 +3,6 @@
  */
 package cn.jingzztech.prac.org.redis;
 
-import javax.annotation.Resource;
-
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
-
 /**
  * @author jingzz
  * @time 2016年2月23日 下午3:01:37

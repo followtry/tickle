@@ -63,6 +63,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <!-- 引入mybatis配置 -->
     <import resource="redis-config.xml" />
     
+    <!-- 引入注解校验 -->
+    <context:component-scan base-package="com.yonyou.tools"/>
+    <bean class="com.yonyou.tools.validation.base.logger.LoggingAspect" />
+    <bean class="com.yonyou.tools.validation.base.DefaultAspectServiceChain"/>
+    
     <!-- 事务管理部分 -->
    <!--  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
