@@ -14,7 +14,7 @@ public class NotNullValidator implements ConstraintValidator {
 	}
 
 	public static void checkNotNull(String targetName, Object targetValue) {
-		if (targetValue == null) {
+		if (targetValue == null || "".equals(targetValue)) {
 			throw new ValidationException(4001, String.format("'%s'不允许为空！", targetName));
 		}
 	}

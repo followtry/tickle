@@ -1,4 +1,4 @@
-package com.yonyou.test;
+/*package com.yonyou.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.bson.types.ObjectId;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 
-/**
+*//**
  * @author Administrator
  *
- */
+ *//*
 public class TestJson {
 	private ObjectId _id;
 	
@@ -51,14 +51,14 @@ public class TestJson {
 	}
 
 	public static void main(String[] args) throws Exception {
-		/*TestJson testJson = new TestJson();
+		TestJson testJson = new TestJson();
 		
 		testJson.setId("1234567890987654");
 		testJson.set__id("abcdefghijklmnopqrst");
 		String json = JSON.toJSONString(testJson);
-		System.out.println("json:"+json);*/
-		/*TestJson tj = (TestJson) JSON.parseObject(json, TestJson.class);
-		System.out.println(tj.toString());*/
+		System.out.println("json:"+json);
+		TestJson tj = (TestJson) JSON.parseObject(json, TestJson.class);
+		System.out.println(tj.toString());
 		
 		String json="{id2:123231, id4:123233, id3:123232, id:123230}";
 		Map map = JSON.parseObject(json, Map.class);
@@ -71,3 +71,4 @@ public class TestJson {
 		System.out.println(oList.toString()+"end");
 	}
 }
+*/

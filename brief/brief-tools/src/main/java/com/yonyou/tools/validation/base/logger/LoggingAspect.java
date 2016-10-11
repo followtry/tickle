@@ -37,6 +37,17 @@ public class LoggingAspect extends LoggingAspectBase {
 	private Object onControllerInvoked(ProceedingJoinPoint joinPoint) {
 		return controllerLogAround(joinPoint);
 	}
+	
+	/**
+	 * 记录RestController接口的调用日志
+	 * @author jingzz
+	 * @param joinPoint
+	 * @return
+	 */
+	@Around(AspectJointPoints.BUSINESS_RESTCONTROLLER_ACTIONS)
+	private Object onRestControllerInvoked(ProceedingJoinPoint joinPoint) {
+		return controllerLogAround(joinPoint);
+	}
 
 	/**
 	 * 记录数据访问服务接口的调用日志；
@@ -45,6 +56,11 @@ public class LoggingAspect extends LoggingAspectBase {
 	 */
 	@Around(AspectJointPoints.BUSINESS_DATA_ACCESS_ACTIONS)
 	private Object onRepositoryInvoked(ProceedingJoinPoint joinPoint) {
+		return serviceLogAround(joinPoint);
+	}
+	
+	@Around(AspectJointPoints.BUSINESS_COMPONENT_ACTIONS)
+	private Object onComponentInvoked(ProceedingJoinPoint joinPoint) {
 		return serviceLogAround(joinPoint);
 	}
 
