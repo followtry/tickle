@@ -2,7 +2,7 @@ package com.yonyou.tools.validation.base.validation;
 
 import java.util.Arrays;
 
-import com.yonyou.tools.validation.annotation.NotNull;
+import com.yonyou.tools.validation.annotation.NotEmpty;
 import com.yonyou.tools.validation.annotation.NumericCheck;
 import com.yonyou.tools.validation.base.stereotype.validation.ComparisonOperator;
 import com.yonyou.tools.validation.base.stereotype.validation.ValidationException;
@@ -32,7 +32,7 @@ public class NumericValidator extends AbstractValidator {
 	 *            非空约束标注；如果指定了非空约束，则忽略 NumericCheck 中的 nullable 设置；
 	 * @return
 	 */
-	public static NumericValidator create(Class<?> targetType, NumericCheck numericCheck, NotNull notnullCheck) {
+	public static NumericValidator create(Class<?> targetType, NumericCheck numericCheck, NotEmpty notnullCheck) {
 		if (numericCheck.args().length < numericCheck.value().getOperandCount()) {
 			throw new IllegalArgumentException(
 					"The number of NumericCheck's args is less than the required operand number of operator["

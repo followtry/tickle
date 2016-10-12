@@ -1,19 +1,19 @@
 package com.yonyou.tools.validation.base.validation;
 
-import com.yonyou.tools.validation.annotation.NotNull;
+import com.yonyou.tools.validation.annotation.NotEmpty;
 import com.yonyou.tools.validation.base.stereotype.validation.ValidationException;
 
 /**
  * @author haiq
  *
  */
-public class NotNullValidator implements ConstraintValidator {
+public class NotEmptyValidator implements ConstraintValidator {
 
-	public static final NotNullValidator create(NotNull notnull) {
-		return new NotNullValidator(notnull.name());
+	public static final NotEmptyValidator create(NotEmpty notnull) {
+		return new NotEmptyValidator(notnull.name());
 	}
 
-	public static void checkNotNull(String targetName, Object targetValue) {
+	public static void checkNotEmpty(String targetName, Object targetValue) {
 		if (targetValue == null || "".equals(targetValue)) {
 			throw new ValidationException(4001, String.format("'%s'不允许为空！", targetName));
 		}
@@ -21,13 +21,13 @@ public class NotNullValidator implements ConstraintValidator {
 
 	private String name;
 
-	private NotNullValidator(String name) {
+	private NotEmptyValidator(String name) {
 		this.name = name;
 	}
 
 	@Override
 	public void check(Object value) throws ValidationException {
-		checkNotNull(name, value);
+		checkNotEmpty(name, value);
 	}
 
 }

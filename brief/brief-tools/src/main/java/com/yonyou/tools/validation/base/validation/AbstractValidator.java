@@ -40,7 +40,7 @@ public abstract class AbstractValidator implements ConstraintValidator {
 				return;
 			}
 			// 不可为空；
-			NotNullValidator.checkNotNull(name, value);
+			NotEmptyValidator.checkNotEmpty(name, value);
 		}
 		doCheckValue(value);
 	}

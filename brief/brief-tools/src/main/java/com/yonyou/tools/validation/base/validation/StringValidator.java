@@ -2,7 +2,7 @@ package com.yonyou.tools.validation.base.validation;
 
 import java.util.regex.Pattern;
 
-import com.yonyou.tools.validation.annotation.NotNull;
+import com.yonyou.tools.validation.annotation.NotEmpty;
 import com.yonyou.tools.validation.annotation.StringCheck;
 import com.yonyou.tools.validation.base.stereotype.validation.StringOperator;
 import com.yonyou.tools.validation.base.stereotype.validation.ValidationException;
@@ -23,7 +23,7 @@ public class StringValidator extends AbstractValidator {
 	 * @param notnullCheck 目标上标注的非空约束；如果指定了非空约束，则忽略 StringCheck 中的 nullable 设置；
 	 * @return
 	 */
-	public static StringValidator create(Class<?> targetType, StringCheck stringCheck, NotNull notnullCheck) {
+	public static StringValidator create(Class<?> targetType, StringCheck stringCheck, NotEmpty notnullCheck) {
 		// 当指明不通过 toString 方法获取要检查的目标的文本值时，目标类型必须是文本类型；
 		if ((!stringCheck.checkToString()) && (!TypeUtils.isStringType(targetType))) {
 			throw new IllegalArgumentException(

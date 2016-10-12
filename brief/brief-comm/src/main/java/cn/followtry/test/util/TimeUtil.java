@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.jingzz.brief.util;
+package cn.followtry.test.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

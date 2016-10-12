@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Constraint
 @Target({ ElementType.METHOD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NotNull{
+public @interface NotEmpty{
 	
 	/**
 	 * 目标对象的名称；

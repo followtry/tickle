@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.BeanUtils;
 
 import com.yonyou.tools.validation.annotation.CustomCheck;
-import com.yonyou.tools.validation.annotation.NotNull;
+import com.yonyou.tools.validation.annotation.NotEmpty;
 import com.yonyou.tools.validation.base.stereotype.validation.CustomConstraintHandle;
 import com.yonyou.tools.validation.base.stereotype.validation.ValidationException;
 
@@ -30,7 +30,7 @@ public class CustomValidator extends AbstractValidator {
 	 *            非空约束标注；如果指定了非空约束，则忽略 CustomCheck 中的 nullable 设置；
 	 * @return
 	 */
-	public static CustomValidator create(CustomCheck customCheck, NotNull notNull) {
+	public static CustomValidator create(CustomCheck customCheck, NotEmpty notNull) {
 		boolean ignoreNullableCheck = notNull != null;
 		boolean nullable = customCheck.nullable();
 		Class<?> customCheckerType = customCheck.handler();

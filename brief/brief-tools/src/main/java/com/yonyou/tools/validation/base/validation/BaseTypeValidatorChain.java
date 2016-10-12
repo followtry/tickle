@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.yonyou.tools.validation.annotation.CollectionCheck;
 import com.yonyou.tools.validation.annotation.CustomCheck;
-import com.yonyou.tools.validation.annotation.NotNull;
+import com.yonyou.tools.validation.annotation.NotEmpty;
 import com.yonyou.tools.validation.annotation.NumericCheck;
 import com.yonyou.tools.validation.annotation.NumericChecks;
 import com.yonyou.tools.validation.annotation.StringCheck;
@@ -35,7 +35,7 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
 	private static Map<Class<?>, Integer> contraintOrders = new HashMap<Class<?>, Integer>();
 
 	static {
-		contraintOrders.put(NotNull.class, 1);
+		contraintOrders.put(NotEmpty.class, 1);
 
 		// 数值约束和字符约束针对的是不同的数据类型；
 		contraintOrders.put(NumericCheck.class, 10);
@@ -72,7 +72,7 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
 	 * @return 当指定的约束标注列表中存在匹配目标类型的有效的标注，则创建并返回校验链；如果没有有效的标注，则返回 null；
 	 */
 	public static BaseTypeValidatorChain create(Class<?> targetType, Annotation[] constraints) {
-		NotNull notNullCheck = null;
+		NotEmpty notEmptyCheck = null;
 		LinkedList<NumericCheck> numericChecks = new LinkedList<NumericCheck>();
 		LinkedList<StringCheck> stringChecks = new LinkedList<StringCheck>();
 		LinkedList<CustomCheck> customChecks = new LinkedList<CustomCheck>();
@@ -83,12 +83,12 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
 
 		//遍历参数上的注解
 		for (Annotation anno : constraints) {
-			if (anno instanceof NotNull) {
+			if (anno instanceof NotEmpty) {
 				// 非空约束仅设置一次；
-				if (notNullCheck != null) {
+				if (notEmptyCheck != null) {
 					throw new IllegalArgumentException("Cann't set the NotNull constraint twice!");
 				}
-				notNullCheck = (NotNull) anno;
+				notEmptyCheck = (NotEmpty) anno;
 			}
 			
 			if (anno instanceof NumericCheck || anno instanceof NumericChecks) {
@@ -140,22 +140,22 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
 		// 优先次序：非空校验 -> 数值校验 -> 文本校验 -> 自定义校验；
 		LinkedList<ConstraintValidator> validatorChain = new LinkedList<ConstraintValidator>();
 		// 创建非空校验；
-		if (notNullCheck != null) {
-			validatorChain.add(NotNullValidator.create(notNullCheck));
+		if (notEmptyCheck != null) {
+			validatorChain.add(NotEmptyValidator.create(notEmptyCheck));
 		}
 		// 创建数值校验；
 		for (NumericCheck numCheck : numericChecks) {
-			NumericValidator numValidator = NumericValidator.create(targetType, numCheck, notNullCheck);
+			NumericValidator numValidator = NumericValidator.create(targetType, numCheck, notEmptyCheck);
 			validatorChain.add(numValidator);
 		}
 		// 创建文本校验；
 		for (StringCheck strCheck : stringChecks) {
-			StringValidator strValidator = StringValidator.create(targetType, strCheck, notNullCheck);
+			StringValidator strValidator = StringValidator.create(targetType, strCheck, notEmptyCheck);
 			validatorChain.add(strValidator);
 		}
 		
 		for (CustomCheck customCheck : customChecks) {
-			CustomValidator customValidator = CustomValidator.create(customCheck, notNullCheck);
+			CustomValidator customValidator = CustomValidator.create(customCheck, notEmptyCheck);
 			validatorChain.add(customValidator);
 		}
 		
