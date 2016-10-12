@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.yonyou.tools.validation.base.common.exception.BusinessException;
 
 /**
+ * 利用注解统一处理异常
  * @author jingzz
  * @time 2016年10月10日 下午4:03:31
  * @name brief-service/cn.jingzz.brief.controller.ExceptionController
@@ -32,7 +33,7 @@ public class ExceptionController {
 	public void test(BusinessException bException,HttpServletResponse response) throws IOException{
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().write(bException.getErrorMessage());
-		LOG.info("BusinessException系统报异常");
+		LOG.info("BusinessException系统报异常",bException);
 	}
 	
 	@ExceptionHandler(RuntimeException.class)
@@ -40,6 +41,6 @@ public class ExceptionController {
 	public void test2(BusinessException bException,HttpServletResponse response) throws IOException{
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().write(bException.getErrorMessage());
-		LOG.info("RuntimeException系统报异常");
+		LOG.info("RuntimeException系统报异常",bException);
 	}
 }
