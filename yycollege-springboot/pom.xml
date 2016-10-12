@@ -22,10 +22,16 @@
 		<mybatis-spring-boot.version>1.1.1</mybatis-spring-boot.version>
 		<spring-hot-load.version>1.2.5.RELEASE</spring-hot-load.version>
 		<java.version>1.8</java.version>
+		<brief.version>0.0.2</brief.version>
 	</properties>
 	
 	
 	<dependencies>
+	
+		<dependency>
+			<groupId>cn.jingzz</groupId>
+		    <artifactId>brief-tools</artifactId>
+		</dependency>
 		
 		<!-- 使用jetty作为应用运行环境 -->
 		<dependency>
@@ -362,6 +368,12 @@
 			    <groupId>org.springframework.boot</groupId>
 			    <artifactId>spring-boot-starter-jetty</artifactId>
 			    <version>${spring-boot.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>cn.jingzz</groupId>
+			    <artifactId>brief-tools</artifactId>
+			    <version>${brief.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
