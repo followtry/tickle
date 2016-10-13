@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.jingzztech.prac.org.spring.autoboot;
+package cn.followtry.springboot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @name brief-layer/cn.jingzz.brief.controller.custom.TomcatCustom
  * @since 2016年7月26日 下午3:40:07
  */
-@ComponentScan(basePackages="cn.jingzztech.prac.org.spring.autoboot")
+@ComponentScan(basePackageClasses=TomcatCustom.class)
 @SpringBootApplication
 public class TomcatCustom implements EmbeddedServletContainerCustomizer{
 		
