@@ -17,19 +17,23 @@ import cn.followtry.springboot.springinaction.aop.Performance;
  * @since 2016年10月13日 上午9:09:48
  */
 @RestController
-public class TestController {
+public class HelloController {
 	
 	@Autowired
 	private Performance performance;
 	
 	@RequestMapping("/test")
 	public void test(@RequestParam("name")String name){
-		System.out.println("TestController.test()");
+		System.out.println("HelloController.test()");
 		performance.perform();
 		System.out.println();
 		System.out.println();
-		System.out.println("TestController.test()2");
+		System.out.println("HelloController.test()2");
 		performance.perform(name);
-		System.out.println("TestController.test()3");
+		System.out.println("HelloController.test()3");
+	}
+	@RequestMapping("/")
+	public Object rootHandler(){
+		return "this is my app end-point";
 	}
 }

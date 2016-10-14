@@ -83,7 +83,7 @@ public class SpringBootMainContext {
 			String configLocation = "D:\\open-source-project\\mycode\\practice\\tickle\\brief\\brief-example\\src\\main\\resources\\applicationContext.xml";
 			ApplicationContext context = new FileSystemXmlApplicationContext(configLocation);
 			XmlComponent bean = context.getBean(XmlComponent.class);
-			System.out.println("SpringBootMainContext.xmlBootSpring(classpath)");
+			System.out.println("SpringBootMainContext.xmlBootSpring(classpath1)");
 			bean.play();
 			XmlComponent2 bean2 = context.getBean(XmlComponent2.class);
 			bean2.play();
@@ -91,7 +91,7 @@ public class SpringBootMainContext {
 			String configLocation = "classpath*:applicationContext.xml";
 			ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 			XmlComponent bean = context.getBean(XmlComponent.class);
-			System.out.println("SpringBootMainContext.xmlBootSpring(classpath)");
+			System.out.println("SpringBootMainContext.xmlBootSpring(classpath2)");
 			bean.play();
 			XmlComponent2 bean2 = context.getBean(XmlComponent2.class);
 			bean2.play();
