@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.followtry.mybatis.UserMapper">
+	
+	<resultMap type="cn.followtry.mybatis.bean.User" id="BaseResultMap">
+		<id column="id" property="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+		<result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result column="age" property="age" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<result column="date" property="date" javaType="java.util.Date" jdbcType="DATE"/>
+	</resultMap>
+	<select id="getUserById" resultMap="BaseResultMap">
+	   select * from user
+	   where id = #{id}
+	</select>
+</mapper>

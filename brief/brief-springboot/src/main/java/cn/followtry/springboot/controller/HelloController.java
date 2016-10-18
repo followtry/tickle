@@ -6,6 +6,8 @@ package cn.followtry.springboot.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
@@ -34,9 +36,12 @@ public class HelloController {
 	
 	//处理不存在的URL
 	@RequestMapping(value={"/**",})
-	public ResponseEntity<Object> root(){
+	public ResponseEntity<Object> root(HttpServletRequest request,HttpServletResponse response){
 		Map<Object, Object> res = new HashMap<Object,Object>();
-		res.put("data", "404，未找到请求的资源");
+		res.put("message", "未找到请求的资源");
+		res.put("URL", request.getServletPath());
+		res.put("timestamp", System.currentTimeMillis()/1000);
+		res.put("status", HttpStatus.NOT_FOUND.value());
 		return new ResponseEntity<Object>(res, HttpStatus.NOT_FOUND);
 	}
 	

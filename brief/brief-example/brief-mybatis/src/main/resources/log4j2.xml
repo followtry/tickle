@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration status="OFF">  
+    <properties>  
+        <property name="LOG_HOME">/log</property>  
+    </properties>  
+    <loggers>  
+        <root level="trace">  
+            <appender-ref ref="Console" />  
+        </root>  
+    </loggers>  
+  
+    <appenders>  
+        <Console name="Console" target="SYSTEM_OUT">  
+            <ThresholdFilter level="trace" onMatch="ACCEPT"  
+                onMismatch="DENY" />  
+            <PatternLayout pattern="%d %p %c.%M(%F:%L) - %m%n" />  
+        </Console>  
+    </appenders>  
+</configuration>
