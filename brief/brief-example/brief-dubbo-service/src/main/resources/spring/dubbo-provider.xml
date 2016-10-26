@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="dubbo-demo" owner="jingzz" organization="test"/>
+    
+	<!-- service provider 本地缓存的service provider列表 文件位置-->
+    <dubbo:registry address="zookeeper://192.168.100.128:2181"/>
+	
+	<!-- 监测协议 -->
+    <!-- <dubbo:monitor protocol="registry"/> -->
+
+    <dubbo:protocol name="dubbo" port="28080" contextpath="services" />
+    
+    <!-- 实现服务 -->
+    <!--spring已经注解扫描了基础包，即不用再次手写实例bean了(bean的实例化与dubbo:service的先后位置无关) -->
+    <!-- <bean id="etpAccountService" class="com.yonyou.iuap.sns.im.phosvr.service.imp.EtpAccountServiceImpl" /> -->
+    
+    <dubbo:service interface="cn.followtry.dubbo.api.UserService" connections="1" executes="300" ref="userService"/>
+    
+</beans>

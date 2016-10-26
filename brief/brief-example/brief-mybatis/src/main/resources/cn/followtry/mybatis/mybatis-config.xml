@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>     
+<!DOCTYPE configuration     
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"     
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+	
+	<!-- 指定类型别名 -->
+	<!-- <typeAliases>
+		<typeAlias alias="User" type="cn.followtry.mybatis.bean.User"/>
+	</typeAliases> -->
+	
+	<!-- 指定类型的处理器 -->
+	<!-- <typeHandlers>
+		<typeHandler handler="cn.followtry.test.mybatis.handler.EnumValueTypeHandler"/>
+	</typeHandlers> -->
+	
+	<!-- 指定配置文件位置 -->
+	<properties resource="config.properties">
+		<!-- 优先级低于properties配置文件中的配置 -->
+		<property name="jdbc.username" value="ewqe"/>
+	</properties>
+	
+	<plugins>
+		<plugin interceptor="cn.followtry.mybatis.plugin.ExamplePlugin"></plugin>
+	</plugins>
+	
+	<!-- 设置指定的参数 -->
+	<settings>
+		<setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<!-- 配置环境及数据源 -->
+    <environments default="development"> 
+    <!--数据源配置  这块用 mysql数据库 -->  
+        <environment id="development">  
+            <transactionManager type="jdbc" />  
+            <dataSource type="POOLED">  
+                <property name="driver" value="${jdbc.driver}" />  
+                <property name="url" value="${jdbc.url}" />  
+                <property name="username" value="${jdbc.username}" />  
+                <property name="password" value="${jdbc.pwd}" />  
+            </dataSource> 
+        </environment>  
+    </environments> 
+    
+    <!-- 配置接口映射的xml配置文件 --> 
+    <mappers>  
+        <mapper resource="cn/followtry/mybatis/userMapper.xml"/>
+    </mappers>  
+</configuration>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.mybatis;
+package cn.followtry.mybatis.xml.mapper;
 
 import cn.followtry.mybatis.bean.User;
 

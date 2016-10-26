@@ -7,9 +7,32 @@
     <artifactId>brief-example</artifactId>
     <version>0.0.2</version>
   </parent>
+  <packaging>jar</packaging>
   <groupId>cn.followtry</groupId>
   <artifactId>brief-mybatis</artifactId>
   <dependencies>
+  
+  	
+	  	<dependency>
+		    <groupId>org.mybatis.caches</groupId>
+		    <artifactId>mybatis-redis</artifactId>
+		</dependency>
+  		<dependency>
+			  <groupId>org.mybatis</groupId>
+			  <artifactId>mybatis-typehandlers-jsr310</artifactId>
+  		</dependency>
+		<dependency> 
+              <groupId>cn.jingzz</groupId>
+              <artifactId>brief-comm</artifactId>
+              <version>${project.version}</version>
+              <exclusions>
+              	<exclusion>
+              		<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-log4j12</artifactId>
+              	</exclusion>
+              </exclusions>
+       </dependency>
+  		
 	  	<!-- mybatis反向生成插件 -->
 		<dependency> 
               <groupId>org.mybatis.generator</groupId>
@@ -33,4 +56,25 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
   </dependencies>
+  <build>
+  		<!-- 指定构建的资源及构建的位置 -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<targetPath>${project.build.directory}</targetPath>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+  </build>
+  
 </project>
