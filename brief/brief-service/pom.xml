@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>cn.jingzz</groupId>
+    <groupId>cn.followtry</groupId>
     <artifactId>brief</artifactId>
     <version>0.0.2</version>
   </parent>
@@ -12,12 +12,12 @@
 	
 	<dependencies>
 		<dependency>
-			<groupId>cn.jingzz</groupId>
+			<groupId>cn.followtry</groupId>
 			<artifactId>brief-comm</artifactId>
 			<version>${project.version}</version>
 		</dependency> 
 		<dependency>
-			<groupId>cn.jingzz</groupId>
+			<groupId>cn.followtry</groupId>
 			<artifactId>brief-tools</artifactId>
 			<version>${project.version}</version>
 		</dependency>

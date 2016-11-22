@@ -12,10 +12,10 @@ import org.quartz.JobDataMap;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerKey;
 
-import cn.jingzz.brief.service.scheduler.SchedulerService;
-import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
-import cn.jingzz.brief.service.scheduler.impl.SchedulerServiceImpl;
-import cn.jingzz.brief.service.scheduler.util.CronUtil;
+import cn.followtry.service.scheduler.SchedulerService;
+import cn.followtry.service.scheduler.bean.ScheduleJob;
+import cn.followtry.service.scheduler.impl.SchedulerServiceImpl;
+import cn.followtry.service.scheduler.util.CronUtil;
 
 /**
  * @author jingzz

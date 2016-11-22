@@ -6,7 +6,7 @@ package cn.jingzztech.prac.org.redis;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.jingzztech.prac.org.redis.RedisService;
+import cn.followtry.prac.org.redis.RedisService;
 
 /**
  * @author jingzz

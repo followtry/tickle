@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.jingzztech.prac.springinaction.boot.anno.AnnotationComponent2;
+import cn.followtry.prac.springinaction.boot.anno.AnnotationComponent2;
 
 /**
  * 测试{@link AnnotationComponent2}

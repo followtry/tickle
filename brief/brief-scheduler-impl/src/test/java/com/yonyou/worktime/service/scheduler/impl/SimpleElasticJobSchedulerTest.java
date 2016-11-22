@@ -10,10 +10,10 @@ import org.quartz.JobDataMap;
 import com.alibaba.fastjson.JSON;
 import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 
-import cn.jingzz.brief.service.scheduler.SchedulerService;
-import cn.jingzz.brief.service.scheduler.base.ElasticJobSchedulerManager;
-import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
-import cn.jingzz.brief.service.scheduler.impl.SchedulerServiceImpl;
+import cn.followtry.service.scheduler.SchedulerService;
+import cn.followtry.service.scheduler.base.ElasticJobSchedulerManager;
+import cn.followtry.service.scheduler.bean.ScheduleJob;
+import cn.followtry.service.scheduler.impl.SchedulerServiceImpl;
 
 /**
  * @author jingzz

@@ -3,12 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>cn.jingzz</groupId>
+    <groupId>cn.followtry</groupId>
     <artifactId>brief-example</artifactId>
     <version>0.0.2</version>
   </parent>
   <packaging>jar</packaging>
-  <groupId>cn.followtry</groupId>
   <artifactId>brief-mybatis</artifactId>
   <dependencies>
   
@@ -22,7 +21,7 @@
 			  <artifactId>mybatis-typehandlers-jsr310</artifactId>
   		</dependency>
 		<dependency> 
-              <groupId>cn.jingzz</groupId>
+              <groupId>cn.followtry</groupId>
               <artifactId>brief-comm</artifactId>
               <version>${project.version}</version>
               <exclusions>

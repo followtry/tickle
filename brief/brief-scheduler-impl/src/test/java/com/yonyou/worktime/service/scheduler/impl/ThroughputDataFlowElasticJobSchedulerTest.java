@@ -7,11 +7,11 @@ import java.util.Date;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.jingzz.brief.service.scheduler.SchedulerService;
-import cn.jingzz.brief.service.scheduler.bean.ScheduleJob;
-import cn.jingzz.brief.service.scheduler.core.job.BatchThroughputDataFlowJob;
-import cn.jingzz.brief.service.scheduler.impl.SchedulerServiceImpl;
-import cn.jingzz.brief.service.scheduler.util.CronUtil;
+import cn.followtry.service.scheduler.SchedulerService;
+import cn.followtry.service.scheduler.bean.ScheduleJob;
+import cn.followtry.service.scheduler.core.job.BatchThroughputDataFlowJob;
+import cn.followtry.service.scheduler.impl.SchedulerServiceImpl;
+import cn.followtry.service.scheduler.util.CronUtil;
 
 /**
  * @author jingzz
