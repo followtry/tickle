@@ -25,11 +25,11 @@ public class LoggingAspectBase implements Ordered{
 		Signature signature = joinPoint.getSignature();
 		String methodName = signature.toLongString();
 		String serviceTypeName = signature.getDeclaringTypeName();
-//		String serviceMethodName = signature.getName();
 		
 		Logger logger = LoggerFactory.getLogger(serviceTypeName);
 		logger.info(String.format("Service begin... --[ACTION=%s]", methodName));
 		
+		long elapsedTs = 0;
 		try {
 			long startTs = System.currentTimeMillis();
 			
@@ -37,13 +37,16 @@ public class LoggingAspectBase implements Ordered{
 			
 			Object retn = joinPoint.proceed();
 			
-			long elapsedTs = System.currentTimeMillis() - startTs;
-			logger.info(String.format("Service completed. --[ACTION=%s][TIME=%s ms]", methodName, elapsedTs));
+			elapsedTs  = System.currentTimeMillis() - startTs;
 			return retn;
-		} catch (Throwable e) {
-			logger.error(String.format("Service occurred error! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
-			
+		}catch(RuntimeException e){
+			logger.error(String.format("Service occurred runtimeException! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
 			throw new RuntimeException(e);
+		} catch (Throwable e) {
+			logger.error(String.format("Service occurred throwable! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
+			throw new RuntimeException(e);
+		}finally {
+			logger.info(String.format("Service completed. --[ACTION=%s][TIME=%s ms]", methodName, elapsedTs));
 		}
 	}
 	
@@ -51,16 +54,10 @@ public class LoggingAspectBase implements Ordered{
 		Signature signature = joinPoint.getSignature();
 		String methodName = signature.toLongString();
 		String serviceTypeName = signature.getDeclaringTypeName();
-//		String serviceMethodName = signature.getName();
-//		String targetName = joinPoint.getTarget().getClass().getName();
-//		Object[] args = joinPoint.getArgs();
-//		String kind = joinPoint.getKind();
-//		Annotation annotation = joinPoint.getSignature().getDeclaringType().getAnnotation(ExtendController.class);
-//		
-//		Class withinType = joinPoint.getStaticPart().getSourceLocation().getWithinType();
 		Logger logger = LoggerFactory.getLogger(serviceTypeName);
 		logger.info(String.format("Controller begin... --[ACTION=%s]", methodName));
 		
+		long elapsedTs = 0;
 		try {
 			long startTs = System.currentTimeMillis();
 			
@@ -68,12 +65,16 @@ public class LoggingAspectBase implements Ordered{
 			
 			Object retn = joinPoint.proceed();
 			
-			long elapsedTs = System.currentTimeMillis() - startTs;
-			logger.info(String.format("Controller completed. --[ACTION=%s][TIME=%s ms]", methodName, elapsedTs));
+			elapsedTs  = System.currentTimeMillis() - startTs;
 			return retn;
-		} catch (Throwable e) {
-			logger.error(String.format("Controller occurred error! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
+		}catch(RuntimeException e){
+			logger.error(String.format("Controller occurred runtimeException! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
 			throw new RuntimeException(e);
+		} catch (Throwable e) {
+			logger.error(String.format("Controller occurred throwable! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
+			throw new RuntimeException(e);
+		}finally {
+			logger.info(String.format("Controller completed. --[ACTION=%s][TIME=%s ms]", methodName, elapsedTs));
 		}
 	}
 	
