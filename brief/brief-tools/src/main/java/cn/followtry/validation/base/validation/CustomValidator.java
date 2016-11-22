@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 
 import cn.followtry.validation.annotation.CustomCheck;
 import cn.followtry.validation.annotation.NotEmpty;
+import cn.followtry.validation.base.common.exception.ValidationException;
 import cn.followtry.validation.base.stereotype.validation.CustomConstraintHandle;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
 
 /**
  * 

@@ -1,6 +1,6 @@
 package cn.followtry.validation.base.validation;
 
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * MethodSignatureValidate 抽象了方法签名的校验；

@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 import cn.followtry.validation.annotation.NotEmpty;
 import cn.followtry.validation.annotation.StringCheck;
+import cn.followtry.validation.base.common.exception.ValidationException;
 import cn.followtry.validation.base.stereotype.validation.StringOperator;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
 
 /**
  * 字符校验器；

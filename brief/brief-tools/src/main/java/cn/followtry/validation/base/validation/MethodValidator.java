@@ -3,7 +3,7 @@ package cn.followtry.validation.base.validation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * 方法校验器；

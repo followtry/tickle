@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * Bean 属性约束校验器；

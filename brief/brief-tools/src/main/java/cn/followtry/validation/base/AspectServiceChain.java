@@ -6,5 +6,5 @@ import org.aspectj.lang.ProceedingJoinPoint;
 public interface AspectServiceChain {
 
 
-	void doService(ProceedingJoinPoint joinPoint) throws Throwable;
+	void doService(ProceedingJoinPoint joinPoint);
 }

@@ -9,6 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.BeanUtils;
 
+import cn.followtry.validation.base.common.exception.ValidationException;
+
 /**
  * Java Bean 校验器；
  * 

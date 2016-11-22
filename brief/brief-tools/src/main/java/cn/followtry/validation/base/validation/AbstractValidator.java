@@ -1,5 +1,6 @@
 package cn.followtry.validation.base.validation;
-import com.yonyou.tools.validation.base.stereotype.validation.ValidationException;
+
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * @author haiq

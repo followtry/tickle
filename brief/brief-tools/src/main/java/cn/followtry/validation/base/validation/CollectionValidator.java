@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.util.CollectionUtils;
 
 import cn.followtry.validation.annotation.CollectionCheck;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * @author haiq

@@ -12,7 +12,7 @@ import cn.followtry.validation.annotation.NumericCheck;
 import cn.followtry.validation.annotation.NumericChecks;
 import cn.followtry.validation.annotation.StringCheck;
 import cn.followtry.validation.annotation.StringChecks;
-import com.yonyou.tools.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * ConstraintChainValidator 约束链校验器；

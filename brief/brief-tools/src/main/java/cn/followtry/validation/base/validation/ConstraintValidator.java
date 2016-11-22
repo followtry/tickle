@@ -1,6 +1,6 @@
 package cn.followtry.validation.base.validation;
 
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * 约束校验器；

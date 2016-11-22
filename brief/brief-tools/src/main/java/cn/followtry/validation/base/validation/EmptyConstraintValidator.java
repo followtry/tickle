@@ -1,6 +1,6 @@
 package cn.followtry.validation.base.validation;
 
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * EmptyValidator 空校验器，不做任何处理；

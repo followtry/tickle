@@ -6,8 +6,8 @@ package cn.followtry.validation.base.validation;
 import java.lang.reflect.Field;
 import java.util.Date;
 
+import cn.followtry.validation.base.common.exception.ValidationException;
 import cn.followtry.validation.base.stereotype.validation.CustomConstraintHandle;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
 
 /**
  * 对时间类型的校验器

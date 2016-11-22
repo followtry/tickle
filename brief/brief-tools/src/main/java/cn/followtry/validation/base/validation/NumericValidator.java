@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 import cn.followtry.validation.annotation.NotEmpty;
 import cn.followtry.validation.annotation.NumericCheck;
+import cn.followtry.validation.base.common.exception.ValidationException;
 import cn.followtry.validation.base.stereotype.validation.ComparisonOperator;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
 
 /**
  * NumericValidator 数值校验器；

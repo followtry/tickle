@@ -1,7 +1,7 @@
 package cn.followtry.validation.base.validation;
 
 import cn.followtry.validation.annotation.NotEmpty;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * 非空约束校验器

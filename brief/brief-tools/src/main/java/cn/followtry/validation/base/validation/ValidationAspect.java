@@ -12,7 +12,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.Ordered;
 
 import cn.followtry.validation.base.aop.AspectOrders;
-import cn.followtry.validation.base.stereotype.validation.ValidationException;
+import cn.followtry.validation.base.common.exception.ValidationException;
 
 /**
  * 对字段约束进行校验；
@@ -29,7 +29,7 @@ public class ValidationAspect implements Ordered {
 		return AspectOrders.VALIDATION;
 	}
 
-	public void check(ProceedingJoinPoint joinpoint) throws Throwable {
+	public void check(ProceedingJoinPoint joinpoint){
 		// 校验数据，如果未通过，将抛出 ValidationException 异常；
 		validate(joinpoint);
 	}

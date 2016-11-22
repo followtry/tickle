@@ -9,7 +9,7 @@ public class DefaultAspectServiceChain implements AspectServiceChain{
 	private ValidationAspect validation = new ValidationAspect();
 	
 	@Override
-	public void doService(ProceedingJoinPoint joinPoint) throws Throwable{
+	public void doService(ProceedingJoinPoint joinPoint){
 		
 		validation.check(joinPoint);
 		
