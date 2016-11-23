@@ -16,5 +16,6 @@
     <module>brief-dubbo-service</module>
     <module>brief-dubbo-customer</module>
     <module>brief-example-temp</module>
+    <module>brief-quartz</module>
   </modules>
 </project>
