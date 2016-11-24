@@ -3,6 +3,8 @@ package cn.followtry.quartz;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.quartz.JobBuilder;
@@ -10,24 +12,36 @@ import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.triggers.CronTriggerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TaskServiceImpl implements ITaskService {
+public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 	
-	@Autowired
-	private SchedulerFactoryBean schedulerFactory;
+	private static final Logger LOGGER = LoggerFactory.getLogger(TaskServiceImpl.class);
 	
-	private ConcurrentHashMap<String,ScheduleTask> allTask = new ConcurrentHashMap<String,ScheduleTask>();
-
+	private static Scheduler scheduler;
+	
+	private Map<String,ScheduleTask> allTaskCache = new ConcurrentHashMap<String,ScheduleTask>();
+	
+	private ConcurrentHashMap<String,String> allTaskNameCache = new ConcurrentHashMap<String,String>();
+	
+	private ApplicationContext ac;
+	
+	public TaskServiceImpl() {
+		
+	}
+	
 	@Override
-	public List<ScheduleTask> getAllTask() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String,ScheduleTask> getAllTask() {
+		return  new HashMap<String,ScheduleTask>(allTaskCache);
 	}
 
 	@Override
@@ -38,16 +52,18 @@ public class TaskServiceImpl implements ITaskService {
 
 	@Override
 	public ScheduleTask getTaskById(String taskId) {
-		// TODO Auto-generated method stub
-		return null;
+		ScheduleTask scheduleTask = new ScheduleTask();
+		scheduleTask.setId("12323");
+		return scheduleTask;
 	}
 
 	@Override
 	public ScheduleTask addTask(ScheduleTask task) throws Exception {
-		Scheduler scheduler = schedulerFactory.getScheduler();
+		scheduler = new StdSchedulerFactory().getScheduler();
 		JobDetail jobDetail = JobBuilder.newJob(ProxyJob.class).withIdentity(task.getId(), task.getGroup()).build();
-		Trigger trigger = TriggerBuilder.newTrigger().withIdentity(task.getId(), task.getTrigger()).build();
-		
+		@SuppressWarnings("deprecation")
+		CronTriggerImpl trigger = new CronTriggerImpl(task.getId(), task.getGroup(), task.getCron());
+		trigger.setCronExpression(task.getCron());
 		Object target = Class.forName(task.getGroup()).newInstance();
 		Method method = target.getClass().getMethod(task.getTrigger());
 		JobDataMap dataMap = trigger.getJobDataMap();
@@ -59,21 +75,72 @@ public class TaskServiceImpl implements ITaskService {
 		if (!scheduler.isShutdown()) {
 			scheduler.start();
 		}
-		if (!allTask.containsKey(task.getId())) {
-			allTask.put(task.getId(), task);
+		if (!allTaskCache.containsKey(task.getId())) {
+			allTaskCache.put(task.getId(), task);
+		}
+		if (!allTaskNameCache.containsKey(task.getId())) {
+			allTaskNameCache.put(task.getId(), task.getName());
 		}
 		return task;
 	}
 	
+	/**
+	 * 处理与spring的集成
+	 * @author jingzz
+	 * @param m
+	 * @return
+	 */
 	private ScheduleTask createSchedulerTask(Method m){
-		
+		ScheduleTask task = new ScheduleTask();
+		task.setCron(m.getAnnotation(Scheduled.class).cron());
+		task.setId(UUIDUtil.getUUID());
+		task.setTrigger(m.getName());
+		task.setGroup(m.getDeclaringClass().getName());
+		return task;
+	}
+	
+
+	@Override
+	public ScheduleTask addTask(String taskName, String taskClassName, String triggerName, String cron) throws Exception {
+		ScheduleTask task = new ScheduleTask();
+		task.setName(taskName);
+		String id = UUIDUtil.getUUID();
+		task.setId(id);
+		task.setGroup(taskClassName);
+		task.setTrigger(triggerName);
+		task.setCron(cron);
+		ScheduleTask newTask = addTask(task);
+		return newTask;
+	}
+
+	@Override
+	public ScheduleTask removeTaskbyId(String taskId) {
 		return null;
 	}
 
 	@Override
-	public ScheduleTask addTask(String taskName, String taskClassName, String triggerName, String cron) {
-		// TODO Auto-generated method stub
-		return null;
+	public void stopScheduler() throws SchedulerException {
+		if (scheduler.isStarted()) {
+			scheduler.shutdown();
+		}
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext ac) throws BeansException {
+		this.ac = ac;
+		for (String beanDefinitionName : ac.getBeanDefinitionNames()) {
+			try {
+				Class<?> bean = ac.getBean(beanDefinitionName).getClass();
+				for (Method m : bean.getDeclaredMethods()) {
+					if (m.isAnnotationPresent(Scheduled.class)) {
+						ScheduleTask springTask = createSchedulerTask(m);
+						addTask(springTask);
+					}
+				}
+			} catch (Exception e) {
+				LOGGER.error("获取bean任务异常",e);
+			}
+		}
 	}
 	
 

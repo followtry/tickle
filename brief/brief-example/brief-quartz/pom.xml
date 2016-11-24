@@ -8,22 +8,16 @@
     <version>0.0.2</version>
   </parent>
   <artifactId>brief-quartz</artifactId>
-  <name>brief-quartz</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<elastic-job.version>1.0.8</elastic-job.version>
-	<fastjson.version>1.2.11</fastjson.version>
-	<guava.version>19.0</guava.version>
-	<log4j.version>1.2.16</log4j.version>
-	<lombok.version>1.16.8</lombok.version>
-  	<quartz-jobs.version>2.2.2</quartz-jobs.version>
-	<quartz.version>2.2.2</quartz.version>
-	<slf4j.version>1.7.2</slf4j.version>
-	<spring.version>4.2.5.RELEASE</spring.version>
-  </properties>
   
   <dependencies>
+  		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
   	<!-- 调度器 -->
 	<dependency>
 	    <groupId>org.quartz-scheduler</groupId>
@@ -41,7 +35,6 @@
 	<dependency>
 		<groupId>org.projectlombok</groupId>
 		<artifactId>lombok</artifactId>
-		<version>${lombok.version}</version>
 		<scope>provided</scope>
 	</dependency>
 	
@@ -49,18 +42,15 @@
   	<dependency> 
 	    <groupId>com.dangdang</groupId>
 	    <artifactId>elastic-job-core</artifactId>
-	    <version>${elastic-job.version}</version>
 	</dependency>
 	<dependency> 
 	    <groupId>com.dangdang</groupId>
 	    <artifactId>elastic-job-spring</artifactId>
-	    <version>${elastic-job.version}</version>
 	</dependency>
 	
 	<dependency>
 	    <groupId>com.google.guava</groupId>
 	    <artifactId>guava</artifactId>
-	    <version>${guava.version}</version>
 	</dependency>
 	<dependency>
 	    <groupId>com.alibaba</groupId>
@@ -86,4 +76,29 @@
 	</dependency>
 	<!-- end of logging -->
   </dependencies>
+	 <build>
+	<plugins>
+
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>2.4.1</version>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>shade</goal>
+					</goals>
+					<configuration>
+						<transformers>
+							<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							</transformer>
+						</transformers>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+
+	</plugins>
+</build>
 </project>

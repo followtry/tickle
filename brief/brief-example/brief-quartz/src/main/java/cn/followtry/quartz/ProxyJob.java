@@ -1,6 +1,5 @@
 package cn.followtry.quartz;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.quartz.Job;
@@ -30,9 +29,8 @@ public class ProxyJob implements Job {
 		
 		System.out.println(JSON.toJSONString(task));
 		try {
-			Object invoke = method.invoke(target, params);
+			method.invoke(target, params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
