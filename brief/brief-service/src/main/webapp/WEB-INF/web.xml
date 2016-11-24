@@ -21,7 +21,7 @@
   <!-- spring MVC 的主控Servlet -->
   <servlet>
     <servlet-name>springMVC</servlet-name>
-    <servlet-class>cn.jingzz.brief.custom.CustomDispatherServlet</servlet-class>
+    <servlet-class>cn.followtry.custom.CustomDispatherServlet</servlet-class>
     <!-- 指定mvc配置文件 -->
     <init-param>
     	<param-name>contextConfigLocation</param-name>

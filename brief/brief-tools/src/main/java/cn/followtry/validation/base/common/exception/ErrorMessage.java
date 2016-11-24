@@ -4,10 +4,8 @@
 package cn.followtry.validation.base.common.exception;
 
 /**
- * @author jingzz
- * @time 2016年10月10日 上午11:13:01
- * @name brief-tools/com.yonyou.tools.validation.base.common.exception.ErrorMessage
- * @since 2016年10月10日 上午11:13:01
+ * @author followtry 作者
+ * @since 2016年10月10日 上午11:13:01  开始时间
  */
 public class ErrorMessage {
 	private int errorCode;

@@ -16,7 +16,7 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd ">
     
     <!-- 扫描包base-package下的注解了@Controller，@service@,Repository,@Component的type-->
-	<context:component-scan base-package="cn.jingzz.brief"/>
+	<context:component-scan base-package="cn.followtry"/>
 	<!-- <context:property-placeholder location="classpath:conf.properties" /> -->
 	
 	<!-- 放弃JDK的动态代理，而使用cglib  -->

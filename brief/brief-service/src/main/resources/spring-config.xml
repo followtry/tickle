@@ -53,18 +53,18 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties" />
     
     <!-- 引入datasource配置 -->
-    <import resource="data-source-config.xml" />
+<!--     <import resource="data-source-config.xml" /> -->
     
-    <!-- 引入mybatis配置 -->
-    <import resource="mybatis-config.xml" />
+<!--     引入mybatis配置 -->
+<!--     <import resource="mybatis-config.xml" /> -->
     
-    <!-- 引入mybatis配置 -->
-    <import resource="redis-config.xml" />
+<!--     引入mybatis配置 -->
+<!--     <import resource="redis-config.xml" /> -->
     
     <!-- 引入注解校验 -->
-    <context:component-scan base-package="com.yonyou.tools"/>
-    <bean class="com.yonyou.tools.validation.base.logger.LoggingAspect" />
-    <bean class="com.yonyou.tools.validation.base.DefaultAspectServiceChain"/>
+    <context:component-scan base-package="cn.followtry"/>
+    <bean class="cn.followtry.validation.base.logger.LoggingAspect" />
+    <bean class="cn.followtry.validation.base.DefaultAspectServiceChain"/>
     
     <!-- 引入异常处理 -->
     <!-- <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/> -->

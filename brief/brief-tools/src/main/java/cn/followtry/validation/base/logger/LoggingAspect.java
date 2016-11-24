@@ -10,7 +10,7 @@ import cn.followtry.validation.base.aop.AspectJointPoints;
  * 对 Service、Data 层的通用日志处理；
  * 
  * @author haiq
- * @author jingzz
+ * @author followtry
  * 
  *
  */
@@ -22,45 +22,37 @@ public class LoggingAspect extends LoggingAspectBase {
 	 * 
 	 * @param joinPoint
 	 */
-	@Around(AspectJointPoints.BUSINESS_SERVICE_ACTIONS)
+	@Around(AspectJointPoints.SERVICE_ACTIONS)
 	private Object onServiceInvoked(ProceedingJoinPoint joinPoint) {
 		return serviceLogAround(joinPoint);
 	}
 	
 	/**
-	 * 记录controller接口的调用日志
-	 * @author jingzz
+	 * 记录控制器接口的调用日志
 	 * @param joinPoint
 	 * @return
 	 */
-	@Around(AspectJointPoints.BUSINESS_CONTROLLER_ACTIONS)
+	@Around(AspectJointPoints.CONTROLLER_ACTIONS)
 	private Object onControllerInvoked(ProceedingJoinPoint joinPoint) {
-		return controllerLogAround(joinPoint);
+		return controllerLogAround(joinPoint);	
 	}
 	
-	/**
-	 * 记录RestController接口的调用日志
-	 * @author jingzz
-	 * @param joinPoint
-	 * @return
-	 */
-	@Around(AspectJointPoints.BUSINESS_RESTCONTROLLER_ACTIONS)
-	private Object onRestControllerInvoked(ProceedingJoinPoint joinPoint) {
-		return controllerLogAround(joinPoint);
-	}
-
 	/**
 	 * 记录数据访问服务接口的调用日志；
 	 * 
-	 * @param joinPoint
+	 * @param joinPoint 切入点
 	 */
-	@Around(AspectJointPoints.BUSINESS_DATA_ACCESS_ACTIONS)
+	@Around(AspectJointPoints.DATA_ACCESS_ACTIONS)
 	private Object onRepositoryInvoked(ProceedingJoinPoint joinPoint) {
-		return serviceLogAround(joinPoint);
+		return repositoryLogAround(joinPoint);
 	}
 	
-	@Around(AspectJointPoints.BUSINESS_COMPONENT_ACTIONS)
+	/**
+	 * 组件访问的调用日志
+	 * @param joinPoint 切入点
+	 */
+	@Around(AspectJointPoints.COMPONENT_ACTIONS)
 	private Object onComponentInvoked(ProceedingJoinPoint joinPoint) {
-		return serviceLogAround(joinPoint);
+		return componentLogAround(joinPoint);
 	}
 }

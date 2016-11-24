@@ -8,74 +8,64 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 
+import cn.followtry.validation.base.AnnotationType;
 import cn.followtry.validation.base.AspectServiceChain;
+import cn.followtry.validation.base.DefaultAspectServiceChain;
 import cn.followtry.validation.base.aop.AspectOrders;
 
-public class LoggingAspectBase implements Ordered{
-	
-	@Resource
-	private AspectServiceChain serviceChain;
-	
+public class LoggingAspectBase implements ILogging, Ordered {
+
+	private static AspectServiceChain serviceChain = new DefaultAspectServiceChain();
+
 	@Override
 	public int getOrder() {
 		return AspectOrders.LOGGING;
 	}
-	
-	protected Object serviceLogAround(ProceedingJoinPoint joinPoint){
-		Signature signature = joinPoint.getSignature();
-		String methodName = signature.toLongString();
-		String serviceTypeName = signature.getDeclaringTypeName();
-		
-		Logger logger = LoggerFactory.getLogger(serviceTypeName);
-		logger.info(String.format("Service begin... --[ACTION=%s]", methodName));
-		
-		long elapsedTs = 0;
-		try {
-			long startTs = System.currentTimeMillis();
-			
-			serviceChain.doService(joinPoint);
-			
-			Object retn = joinPoint.proceed();
-			
-			elapsedTs  = System.currentTimeMillis() - startTs;
-			return retn;
-		}catch(RuntimeException e){
-			logger.error(String.format("Service occurred runtimeException! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
-			throw new RuntimeException(e);
-		} catch (Throwable e) {
-			logger.error(String.format("Service occurred throwable! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
-			throw new RuntimeException(e);
-		}finally {
-			logger.info(String.format("Service completed. --[ACTION=%s][TIME=%s ms]", methodName, elapsedTs));
-		}
+
+	protected Object serviceLogAround(ProceedingJoinPoint joinPoint) {
+		return loggingAround(AnnotationType.SERVICE, joinPoint);
 	}
-	
-	protected Object controllerLogAround(ProceedingJoinPoint joinPoint){
+
+	protected Object repositoryLogAround(ProceedingJoinPoint joinPoint) {
+		return loggingAround(AnnotationType.REPOSITORY, joinPoint);
+	}
+
+	protected Object componentLogAround(ProceedingJoinPoint joinPoint) {
+		return loggingAround(AnnotationType.COMPONENT, joinPoint);
+	}
+
+	protected Object controllerLogAround(ProceedingJoinPoint joinPoint) {
+		return loggingAround(AnnotationType.CONTROLLER, joinPoint);
+	}
+
+	@Override
+	public Object loggingAround(AnnotationType annoType, ProceedingJoinPoint joinPoint) {
+		String annoTypeName = annoType.name().toLowerCase();
 		Signature signature = joinPoint.getSignature();
 		String methodName = signature.toLongString();
 		String serviceTypeName = signature.getDeclaringTypeName();
 		Logger logger = LoggerFactory.getLogger(serviceTypeName);
-		logger.info(String.format("Controller begin... --[ACTION=%s]", methodName));
-		
-		long elapsedTs = 0;
+		logger.debug(String.format("%s begin... --[ACTION=%s]", annoTypeName, methodName));
+		long elapsedTs = -1;
+		long startTs = 0;
 		try {
-			long startTs = System.currentTimeMillis();
-			
-			serviceChain.doService(joinPoint);
-			
+
+			serviceChain.doCheck(joinPoint);
+			startTs = System.currentTimeMillis();
 			Object retn = joinPoint.proceed();
-			
-			elapsedTs  = System.currentTimeMillis() - startTs;
+
 			return retn;
-		}catch(RuntimeException e){
-			logger.error(String.format("Controller occurred runtimeException! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
-			throw new RuntimeException(e);
+		} catch (RuntimeException e) {
+			logger.error(String.format("%s occurred runtimeException! --[ACTION=%s] --%s", annoTypeName, methodName,
+					e.getMessage()), e);
+			throw e;
 		} catch (Throwable e) {
-			logger.error(String.format("Controller occurred throwable! --[ACTION=%s] --%s", methodName, e.getMessage()), e);
+			logger.error(String.format("%s occurred throwable! --[ACTION=%s] --%s", annoTypeName, e.getMessage()), e);
 			throw new RuntimeException(e);
-		}finally {
-			logger.info(String.format("Controller completed. --[ACTION=%s][TIME=%s ms]", methodName, elapsedTs));
+		} finally {
+			elapsedTs = System.currentTimeMillis() - startTs;
+			logger.info(String.format("%s completed. --[COMPLETED TIME=%s ms][ACTION=%s]", annoTypeName, elapsedTs,
+					methodName));
 		}
 	}
-	
 }
