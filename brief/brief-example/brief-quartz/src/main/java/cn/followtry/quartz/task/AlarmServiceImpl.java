@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.quartz;
+package cn.followtry.quartz.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +23,12 @@ public class AlarmServiceImpl implements AlarmService {
 	@Scheduled(cron="0/5 * * * * ?")
 	public void myAlarm() {
 		LOGGER.info("启动我的闹钟");
+	}
+
+	@Override
+	@Scheduled(cron="0/4 * * * * ?")
+	public void callMe() {
+		LOGGER.info("懒猪，快点起床！");
 	}
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.quartz;
+package cn.followtry.quartz.task;
 
 /**
  * @author jingzz
@@ -12,4 +12,6 @@ package cn.followtry.quartz;
 public interface AlarmService {
 	
 	void myAlarm();
+	
+	void callMe();
 }

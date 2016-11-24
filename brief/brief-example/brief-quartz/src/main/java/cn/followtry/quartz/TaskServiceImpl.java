@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.quartz.JobBuilder;
@@ -86,9 +85,8 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 	
 	/**
 	 * 处理与spring的集成
-	 * @author jingzz
-	 * @param m
-	 * @return
+	 * @param m 被{@link Scheduled}注解了的方法的反射类
+	 * @return 调度任务模型
 	 */
 	private ScheduleTask createSchedulerTask(Method m){
 		ScheduleTask task = new ScheduleTask();
@@ -126,8 +124,8 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 	}
 
 	@Override
-	public void setApplicationContext(ApplicationContext ac) throws BeansException {
-		this.ac = ac;
+	public void setApplicationContext(ApplicationContext context) throws BeansException {
+		this.ac = context;
 		for (String beanDefinitionName : ac.getBeanDefinitionNames()) {
 			try {
 				Class<?> bean = ac.getBean(beanDefinitionName).getClass();
@@ -141,6 +139,11 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 				LOGGER.error("获取bean任务异常",e);
 			}
 		}
+	}
+
+	@Override
+	public ScheduleTask addTask(Method m) throws Exception {
+		return createSchedulerTask(m);
 	}
 	
 
