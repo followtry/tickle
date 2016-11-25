@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
+import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
@@ -22,25 +23,33 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TaskServiceImpl implements TaskService,ApplicationContextAware {
-	
+public class TaskServiceImpl implements TaskService, ApplicationContextAware {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(TaskServiceImpl.class);
-	
-	private static Scheduler scheduler;
-	
-	private Map<String,ScheduleTask> allTaskCache = new ConcurrentHashMap<String,ScheduleTask>();
-	
-	private ConcurrentHashMap<String,String> allTaskNameCache = new ConcurrentHashMap<String,String>();
-	
+
+	private static Scheduler scheduler ;
+
+	private Map<String, ScheduleTask> allTaskCache = new ConcurrentHashMap<String, ScheduleTask>();
+
+	private ConcurrentHashMap<String, String> allTaskNameCache = new ConcurrentHashMap<String, String>();
+
 	private ApplicationContext ac;
-	
+
 	public TaskServiceImpl() {
-		
+		try {
+			scheduler = new StdSchedulerFactory().getScheduler();
+		} catch (SchedulerException e) {
+			try {
+				scheduler = new StdSchedulerFactory().getScheduler();
+			} catch (SchedulerException e1) {
+				LOGGER.error("重试两次并仍然出错",e1);
+			}
+		}
 	}
-	
+
 	@Override
-	public Map<String,ScheduleTask> getAllTask() {
-		return  new HashMap<String,ScheduleTask>(allTaskCache);
+	public Map<String, ScheduleTask> getAllTask() {
+		return new HashMap<String, ScheduleTask>(allTaskCache);
 	}
 
 	@Override
@@ -58,7 +67,12 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 
 	@Override
 	public ScheduleTask addTask(ScheduleTask task) throws Exception {
-		scheduler = new StdSchedulerFactory().getScheduler();
+		
+		JobKey jobKey = new JobKey(task.getId(), task.getGroup());
+		if (scheduler.checkExists(jobKey)) {
+			throw new RuntimeException("task of [" + task
+					+ "] has been created,can not created new Task with duplicate key[" + jobKey + "]");
+		}
 		JobDetail jobDetail = JobBuilder.newJob(ProxyJob.class).withIdentity(task.getId(), task.getGroup()).build();
 		@SuppressWarnings("deprecation")
 		CronTriggerImpl trigger = new CronTriggerImpl(task.getId(), task.getGroup(), task.getCron());
@@ -69,7 +83,7 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 		dataMap.put(ProxyJob.DATA_TARGET_KEY, target);
 		dataMap.put(ProxyJob.DATA_TASK_KEY, task);
 		dataMap.put(ProxyJob.DATA_TRIGGER_KEY, method);
-		dataMap.put(ProxyJob.DATA_TRIGGER_PARAMS_KEY, new Object[]{});
+		dataMap.put(ProxyJob.DATA_TRIGGER_PARAMS_KEY, new Object[] {});
 		scheduler.scheduleJob(jobDetail, trigger);
 		if (!scheduler.isShutdown()) {
 			scheduler.start();
@@ -82,24 +96,27 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 		}
 		return task;
 	}
-	
+
 	/**
 	 * 处理与spring的集成
-	 * @param m 被{@link Scheduled}注解了的方法的反射类
+	 * 
+	 * @param m
+	 *            被{@link Scheduled}注解了的方法的反射类
 	 * @return 调度任务模型
 	 */
-	private ScheduleTask createSchedulerTask(Method m){
+	private ScheduleTask createSchedulerTask(Method m) {
 		ScheduleTask task = new ScheduleTask();
 		task.setCron(m.getAnnotation(Scheduled.class).cron());
+		LOGGER.info("添加到任务的方法为：{}",m.toString());
 		task.setId(UUIDUtil.getUUID());
 		task.setTrigger(m.getName());
 		task.setGroup(m.getDeclaringClass().getName());
 		return task;
 	}
-	
 
 	@Override
-	public ScheduleTask addTask(String taskName, String taskClassName, String triggerName, String cron) throws Exception {
+	public ScheduleTask addTask(String taskName, String taskClassName, String triggerName, String cron)
+			throws Exception {
 		ScheduleTask task = new ScheduleTask();
 		task.setName(taskName);
 		String id = UUIDUtil.getUUID();
@@ -136,15 +153,15 @@ public class TaskServiceImpl implements TaskService,ApplicationContextAware {
 					}
 				}
 			} catch (Exception e) {
-				LOGGER.error("获取bean任务异常",e);
+				LOGGER.error("获取bean任务异常", e);
 			}
 		}
 	}
 
 	@Override
 	public ScheduleTask addTask(Method m) throws Exception {
-		return createSchedulerTask(m);
+		ScheduleTask task = createSchedulerTask(m);
+		return addTask(task);
 	}
-	
 
 }
