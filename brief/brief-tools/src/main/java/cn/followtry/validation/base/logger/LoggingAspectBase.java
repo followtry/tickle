@@ -1,7 +1,5 @@
 package cn.followtry.validation.base.logger;
 
-import javax.annotation.Resource;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.slf4j.Logger;
@@ -48,12 +46,12 @@ public class LoggingAspectBase implements ILogging, Ordered {
 		logger.debug(String.format("%s begin... --[ACTION=%s]", annoTypeName, methodName));
 		long elapsedTs = -1;
 		long startTs = 0;
+		Object retn = null;
 		try {
 
 			serviceChain.doCheck(joinPoint);
 			startTs = System.currentTimeMillis();
-			Object retn = joinPoint.proceed();
-
+			retn = joinPoint.proceed();
 			return retn;
 		} catch (RuntimeException e) {
 			logger.error(String.format("%s occurred runtimeException! --[ACTION=%s] --%s", annoTypeName, methodName,
@@ -64,6 +62,20 @@ public class LoggingAspectBase implements ILogging, Ordered {
 			throw new RuntimeException(e);
 		} finally {
 			elapsedTs = System.currentTimeMillis() - startTs;
+			Object[] args = joinPoint.getArgs();
+			StringBuilder params = new StringBuilder();
+			int arglength = args.length;
+			for (int i = 0; i < arglength; i++) {
+				params.append(args[i].getClass().getSimpleName());
+				params.append(":");
+				params.append(args[i]);
+				if (i < arglength - 1) {
+					params.append(",");
+				}
+			}
+			logger.info("args list are [{}]", params);
+			logger.info("target method is [{}]", methodName);
+			logger.info("result of [{}] is [{}]", methodName, retn);
 			logger.info(String.format("%s completed. --[COMPLETED TIME=%s ms][ACTION=%s]", annoTypeName, elapsedTs,
 					methodName));
 		}
