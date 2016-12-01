@@ -43,7 +43,7 @@ public class LoggingAspectBase implements ILogging, Ordered {
 		String methodName = signature.toLongString();
 		String serviceTypeName = signature.getDeclaringTypeName();
 		Logger logger = LoggerFactory.getLogger(serviceTypeName);
-		logger.debug(String.format("%s begin... --[ACTION=%s]", annoTypeName, methodName));
+		logger.debug("{} begin... --[ACTION={}]", annoTypeName, methodName);
 		long elapsedTs = -1;
 		long startTs = 0;
 		Object retn = null;
@@ -54,30 +54,39 @@ public class LoggingAspectBase implements ILogging, Ordered {
 			retn = joinPoint.proceed();
 			return retn;
 		} catch (RuntimeException e) {
-			logger.error(String.format("%s occurred runtimeException! --[ACTION=%s] --%s", annoTypeName, methodName,
-					e.getMessage()), e);
+			logger.error("{} occurred runtimeException! --[ACTION={}] --{}", annoTypeName, methodName,
+					e.getMessage(), e);
 			throw e;
 		} catch (Throwable e) {
-			logger.error(String.format("%s occurred throwable! --[ACTION=%s] --%s", annoTypeName, e.getMessage()), e);
+			logger.error("{} occurred throwable! --[ACTION={}] --{}", annoTypeName, e.getMessage(), e);
 			throw new RuntimeException(e);
 		} finally {
 			elapsedTs = System.currentTimeMillis() - startTs;
-			Object[] args = joinPoint.getArgs();
-			StringBuilder params = new StringBuilder();
-			int arglength = args.length;
-			for (int i = 0; i < arglength; i++) {
-				params.append(args[i].getClass().getSimpleName());
-				params.append(":");
-				params.append(args[i]);
-				if (i < arglength - 1) {
-					params.append(",");
-				}
-			}
-			logger.info("args list are [{}]", params);
-			logger.info("target method is [{}]", methodName);
-			logger.info("result of [{}] is [{}]", methodName, retn);
-			logger.info(String.format("%s completed. --[COMPLETED TIME=%s ms][ACTION=%s]", annoTypeName, elapsedTs,
-					methodName));
+			String params = getArgsTypeAndValues(joinPoint);
+			logger.debug("args list are [{}]", params);
+			logger.debug("target method is [{}]", methodName);
+			logger.debug("result of [{}] is [{}]", methodName, retn);
+			logger.info("{} completed. --[COMPLETED TIME={} ms][ACTION={}]", annoTypeName, elapsedTs,
+					methodName);
 		}
+	}
+
+	/**
+	 * @param joinPoint 切入点
+	 * @return 返回组装的参数列表格式为type1:value,type2:value
+	 */
+	private String getArgsTypeAndValues(ProceedingJoinPoint joinPoint) {
+		Object[] args = joinPoint.getArgs();
+		StringBuilder params = new StringBuilder();
+		int arglength = args.length;
+		for (int i = 0; i < arglength; i++) {
+			params.append(args[i].getClass().getSimpleName());
+			params.append(":");
+			params.append(args[i]);
+			if (i < arglength - 1) {
+				params.append(",");
+			}
+		}
+		return params.toString();
 	}
 }
