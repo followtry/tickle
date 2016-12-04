@@ -7,7 +7,6 @@
     <version>0.0.2</version>
   </parent>
   <artifactId>brief-example-temp</artifactId>
-  <packaging>pom</packaging>
   <dependencies>
   
   	<!-- 导入导出 -->
