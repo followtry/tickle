@@ -14,6 +14,8 @@ import cn.followtry.validation.base.aop.AspectOrders;
 public class LoggingAspectBase implements ILogging, Ordered {
 
 	private static AspectServiceChain serviceChain = new DefaultAspectServiceChain();
+	
+	private static final Logger logger = LoggerFactory.getLogger(LoggingAspectBase.class);
 
 	@Override
 	public int getOrder() {
@@ -41,8 +43,7 @@ public class LoggingAspectBase implements ILogging, Ordered {
 		String annoTypeName = annoType.name().toLowerCase();
 		Signature signature = joinPoint.getSignature();
 		String methodName = signature.toLongString();
-		String serviceTypeName = signature.getDeclaringTypeName();
-		Logger logger = LoggerFactory.getLogger(serviceTypeName);
+//		String serviceTypeName = signature.getDeclaringTypeName();
 		logger.debug("{} begin... --[ACTION={}]", annoTypeName, methodName);
 		long elapsedTs = -1;
 		long startTs = 0;
@@ -80,6 +81,10 @@ public class LoggingAspectBase implements ILogging, Ordered {
 		StringBuilder params = new StringBuilder();
 		int arglength = args.length;
 		for (int i = 0; i < arglength; i++) {
+			if (args[i] == null) {
+				params.append("null:null");
+				continue;
+			}
 			params.append(args[i].getClass().getSimpleName());
 			params.append(":");
 			params.append(args[i]);
