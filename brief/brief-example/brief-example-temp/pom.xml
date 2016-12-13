@@ -4,7 +4,7 @@
   <parent>
     <groupId>cn.followtry</groupId>
     <artifactId>brief-example</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </parent>
   <artifactId>brief-example-temp</artifactId>
   <dependencies>

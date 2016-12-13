@@ -10,8 +10,6 @@ import java.util.Date;
 
 /**
  * @author jingzz
- * @time 2016年9月8日 下午4:46:03
- * @name yycollege/com.yonyou.esn.yycollege.utils.TimeUtil
  * @since 2016年9月8日 下午4:46:03
  */
 public class TimeUtil {

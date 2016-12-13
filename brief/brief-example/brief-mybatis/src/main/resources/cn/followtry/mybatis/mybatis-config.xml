@@ -20,9 +20,6 @@
 		<property name="jdbc.username" value="ewqe"/>
 	</properties>
 	
-	<plugins>
-		<plugin interceptor="cn.followtry.mybatis.plugin.ExamplePlugin"></plugin>
-	</plugins>
 	
 	<!-- 设置指定的参数 -->
 	<settings>
