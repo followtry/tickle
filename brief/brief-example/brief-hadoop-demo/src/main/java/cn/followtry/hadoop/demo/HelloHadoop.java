@@ -1,8 +1,6 @@
 package cn.followtry.hadoop.demo;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,10 +22,12 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HelloHadoop {
-	
-		
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloHadoop.class);
 
 	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
 
@@ -102,15 +102,16 @@ public class HelloHadoop {
 	}
 
 	private static final String preifx_path = "webhdfs://h2m1:50070/webhdfs/v1/user/root";
-	private static final String output_path = preifx_path + "/input";
+	private static final String output_path = preifx_path + "/input/";
 	private static final String input_path = preifx_path + "/output";
 	private static final String target_path = preifx_path + "/";
 	private static String path = "/";
 
 	public static void main(String[] args) throws Exception {
-		 
+
+		rmExistsOutputDir("/user/root/output");
 		// 文件操作
-		fsOperator();
+		// fsOperator();
 		// commitJob();
 	}
 
@@ -131,19 +132,40 @@ public class HelloHadoop {
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
 
+	private static void rmExistsOutputDir(String outpathDir) throws FileNotFoundException, IOException {
+		// 将本地文件上传到hdfs。
+		Configuration config = new Configuration();
+		FileSystem fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
+		Path output = new Path(outpathDir);
+		if (fs.exists(output)) {
+			LOGGER.info("目录{}已经存在,正在删除...", outpathDir);
+			System.out.println("目录" + outpathDir + "已经存在,正在删除...");
+			if (fs.delete(output, true)) {
+				System.out.println("目录" + outpathDir + "已经删除");
+				LOGGER.info("目录{}已经删除", outpathDir);
+			}else {
+				System.out.println("目录" + outpathDir + "删除失败");
+				LOGGER.info("目录{}删除失败", outpathDir);
+				
+			}
+		} else {
+			System.out.println("目录" + outpathDir + "不存在");
+			LOGGER.info("目录{}不存在", outpathDir);
+		}
+	}
+
 	private static void fsOperator() throws FileNotFoundException, IOException {
 		// 将本地文件上传到hdfs。
 		Configuration config = new Configuration();
-		FileInputStream fis = new FileInputStream(new File("D:\\hello.java"));// 读取本地文件
 		FileSystem fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
 		int fileNum = 0;
 		int level = 0;
-		fileNum += listFiles(fs, path,level);
+		fileNum += listFiles(fs, path, level);
 		System.out.println("-----------------------------------------------------");
 		System.out.println("总文件数为：" + fileNum + "个");
 	}
 
-	private static int listFiles(FileSystem fs, String path,int level) throws FileNotFoundException, IOException {
+	private static int listFiles(FileSystem fs, String path, int level) throws FileNotFoundException, IOException {
 		int fileNum = 0;
 		String tempPath = path;
 		StringBuilder prefix = new StringBuilder();
@@ -157,20 +179,20 @@ public class HelloHadoop {
 			String dir = f.isDirectory() ? "目录" : "文件";
 			String name = f.getPath().getName();
 			String realPath = f.getPath().toString();
-			System.out.println((level + 1)+"层："+dir + ":" + name);
-			System.out.println(prefix+"路径:" + realPath);
-			System.out.println(prefix+"访问时间：" + f.getAccessTime());
-			System.out.println(prefix+"块大小:" + f.getBlockSize());
-			System.out.println(prefix+"所属组:" + f.getGroup());
-			System.out.println(prefix+"长度:" + f.getLen());
-			System.out.println(prefix+"修改时间:" + f.getModificationTime());
-			System.out.println(prefix+"所有者:" + f.getOwner());
-			System.out.println(prefix+"权限:" + f.getPermission());
-			System.out.println(prefix+"副本:" + f.getReplication());
-			System.out.println(prefix+"============================================================");
+			System.out.println((level + 1) + "层：" + dir + ":" + name);
+			System.out.println(prefix + "路径:" + realPath);
+			System.out.println(prefix + "访问时间：" + f.getAccessTime());
+			System.out.println(prefix + "块大小:" + f.getBlockSize());
+			System.out.println(prefix + "所属组:" + f.getGroup());
+			System.out.println(prefix + "长度:" + f.getLen());
+			System.out.println(prefix + "修改时间:" + f.getModificationTime());
+			System.out.println(prefix + "所有者:" + f.getOwner());
+			System.out.println(prefix + "权限:" + f.getPermission());
+			System.out.println(prefix + "副本:" + f.getReplication());
+			System.out.println(prefix + "============================================================");
 			if (f.isDirectory()) {
-				fileNum += listFiles(fs, realPath,level + 1);
-			}else {
+				fileNum += listFiles(fs, realPath, level + 1);
+			} else {
 				fileNum++;
 			}
 		}
