@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cn.followtry.hadoop.demo.v2.mr;
 
 import java.io.IOException;
@@ -12,10 +9,12 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 /**
- * @author jingzz
- * @time 2016年12月13日 下午6:46:06
- * @name brief-hadoop-demo/cn.followtry.hadoop.demo.mr.WordCountMapper
- * @since 2016年12月13日 下午6:46:06
+ * 
+ *  brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.WordCountMapV2
+ * @author 
+ *		jingzz 
+ * @since 
+ *		2016年12月14日 上午10:25:07
  */
 public class WordCountMapV2 extends Mapper<LongWritable, Text, Text, IntWritable>{
 

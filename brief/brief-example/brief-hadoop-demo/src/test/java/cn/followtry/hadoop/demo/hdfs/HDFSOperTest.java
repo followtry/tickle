@@ -25,4 +25,14 @@ public class HDFSOperTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void testRecListDir(){
+		try {
+			int actualNum = HDFSOper.recDirListInfo("/");
+			Assert.assertNotEquals(0, actualNum);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

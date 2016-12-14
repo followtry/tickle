@@ -5,20 +5,57 @@ import java.io.IOException;
 import java.net.URI;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * brief-hadoop-demo/cn.followtry.hadoop.demo.hdfs.HDFSOper
+ * 
+ * @author jingzz
+ * @since 2016年12月14日 上午10:26:23
+ */
 public class HDFSOper {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HDFSOper.class);
 
-	public static boolean rmExistsOutputDir(String outpathDir) throws FileNotFoundException, IOException {
+	private static Configuration config = new Configuration();
+
+	private static FileSystem fs;
+
+	static {
+		try {
+			fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
+		} catch (IOException e) {
+			LOGGER.error("fs连接异常", e);
+			try {
+				fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
+			} catch (IOException e2) {
+				LOGGER.error("fs连接重试异常", e2);
+			}
+		}
+	}
+
+	private HDFSOper() {
+	}
+
+	/**
+	 * 删除指定的目录
+	 * 
+	 * @author jingzz
+	 * @param outpathDir
+	 *            指定要删除的目录路径
+	 * @return 删除返回true,不存在或没有删除返回false
+	 * @throws FileNotFoundException
+	 *             文件未找到异常
+	 * @throws IOException
+	 *             IO异常
+	 */
+	public static boolean rmExistsOutputDir(String outpathDir) throws IOException {
 		boolean hasDel = false;
-		// 将本地文件上传到hdfs。
-		Configuration config = new Configuration();
-		FileSystem fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
 		Path output = new Path(outpathDir);
 		if (hasDel = fs.exists(output)) {
 			LOGGER.info("目录{}已经存在,正在删除...", outpathDir);
@@ -37,4 +74,71 @@ public class HDFSOper {
 		}
 		return hasDel;
 	}
+
+	public static int recDirListInfo(String path) throws FileNotFoundException, IOException {
+		int fileNum = 0;
+		int level = 0;
+		fileNum += listFiles(fs, path, level);
+		System.out.println("-----------------------------------------------------");
+		LOGGER.info("总文件数为：{}个", fileNum);
+		System.out.println("总文件数为：" + fileNum + "个");
+		return fileNum;
+	}
+
+	private static int listFiles(FileSystem fs, String path, int level) throws FileNotFoundException, IOException {
+		int fileNum = 0;
+		String tempPath = path;
+		StringBuilder prefix = new StringBuilder();
+		if (level > 0) {
+			for (int i = 0; i < level; i++) {
+				prefix.append("    ");
+			}
+		}
+		FileStatus[] listStatus = fs.listStatus(new Path(tempPath));
+		for (FileStatus f : listStatus) {
+			String dir = f.isDirectory() ? "目录" : "文件";
+			String name = f.getPath().getName();
+			String realPath = f.getPath().toString();
+			System.out.println((level + 1) + "层：" + dir + ":" + name);
+			LOGGER.info((level + 1) + "层：" + dir + ":" + name);
+
+			System.out.println(prefix + "路径:" + realPath);
+			LOGGER.info(prefix + "路径:" + realPath);
+
+			System.out.println(prefix + "访问时间：" + f.getAccessTime());
+			LOGGER.info(prefix + "访问时间：" + f.getAccessTime());
+
+			System.out.println(prefix + "块大小:" + f.getBlockSize());
+			LOGGER.info(prefix + "块大小:" + f.getBlockSize());
+
+			System.out.println(prefix + "所属组:" + f.getGroup());
+			LOGGER.info(prefix + "所属组:" + f.getGroup());
+
+			System.out.println(prefix + "长度:" + f.getLen());
+			LOGGER.info(prefix + "长度:" + f.getLen());
+
+			System.out.println(prefix + "修改时间:" + f.getModificationTime());
+			LOGGER.info(prefix + "修改时间:" + f.getModificationTime());
+
+			System.out.println(prefix + "所有者:" + f.getOwner());
+			LOGGER.info(prefix + "所有者:" + f.getOwner());
+
+			System.out.println(prefix + "权限:" + f.getPermission());
+			LOGGER.info(prefix + "权限:" + f.getPermission());
+
+			System.out.println(prefix + "副本:" + f.getReplication());
+			LOGGER.info(prefix + "副本:" + f.getReplication());
+
+			System.out.println(prefix + "============================================================");
+			LOGGER.info(prefix + "============================================================");
+
+			if (f.isDirectory()) {
+				fileNum += listFiles(fs, realPath, level + 1);
+			} else {
+				fileNum++;
+			}
+		}
+		return fileNum;
+	}
+
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cn.followtry.hadoop.demo.v2.mr;
 
 import java.io.IOException;
@@ -12,8 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author jingzz
- * @since 2016年12月13日 下午6:52:38
+ * 
+ *  brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.WordCountReduceV2
+ * @author 
+ *		jingzz 
+ * @since 
+ *		2016年12月14日 上午10:25:28
  */
 public class WordCountReduceV2 extends Reducer<Text, IntWritable, Text, IntWritable> {
 
@@ -22,7 +23,6 @@ public class WordCountReduceV2 extends Reducer<Text, IntWritable, Text, IntWrita
 	@Override
 	protected void reduce(Text key, Iterable<IntWritable> values,
 			Reducer<Text, IntWritable, Text, IntWritable>.Context context) throws IOException, InterruptedException {
-		// TODO Auto-generated method stub
 		int count = 0;
 		for (IntWritable intValue : values) {
 			count += intValue.get();
