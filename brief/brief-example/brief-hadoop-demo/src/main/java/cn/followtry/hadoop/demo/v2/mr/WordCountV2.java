@@ -1,0 +1,66 @@
+/**
+ * 
+ */
+package cn.followtry.hadoop.demo.v2.mr;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
+
+import cn.followtry.hadoop.demo.hdfs.HDFSOper;
+
+/**
+ * 
+ *  brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.WordCountV2
+ * @author 
+ *		jingzz 
+ * @since 
+ *		2016年12月14日 上午10:03:48
+ */
+public class WordCountV2 {
+	
+	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+		Configuration conf = new Configuration();
+		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+		if (otherArgs == null || otherArgs.length < 2) {
+			System.out.println("用法：\n"
+					+ "     至少需要两个参数,最后一个为输出目录，其他为输入文件路径");
+			System.exit(-1);
+		}
+		StringBuilder inputPaths = new StringBuilder();
+		String outpathDir;
+		int len = otherArgs.length - 1;
+		for (int i = 0; i < len; i++) {
+			inputPaths.append(otherArgs[i]);
+			if (i < len - 1) {
+				inputPaths.append(",");
+			}
+		}
+		outpathDir = otherArgs[len];
+		//检查输出目录是否存在，存在则直接删除目录
+		HDFSOper.rmExistsOutputDir(outpathDir);
+		
+		Job job = Job.getInstance(conf, "wordCount v2 demo");
+		
+		job.setJarByClass(WordCountV2.class);
+		
+		job.setMapperClass(WordCountMapV2.class);
+		job.setCombinerClass(WordCountReduceV2.class);
+		job.setReducerClass(WordCountReduceV2.class);
+
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(IntWritable.class);
+		
+		FileInputFormat.setInputPaths(job, inputPaths.toString());
+		FileOutputFormat.setOutputPath(job, new Path(outpathDir));
+		
+		System.exit(job.waitForCompletion(true) ? 0 : 1);
+	}
+}

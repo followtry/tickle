@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.hadoop.demo;
+package cn.followtry.hadoop.demo.yarn;
 
 import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest;
 import org.apache.hadoop.yarn.client.api.async.AMRMClientAsync;

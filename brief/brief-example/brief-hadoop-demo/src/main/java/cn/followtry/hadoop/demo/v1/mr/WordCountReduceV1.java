@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.hadoop.demo.mr;
+package cn.followtry.hadoop.demo.v1.mr;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -21,9 +21,9 @@ import org.slf4j.LoggerFactory;
  * @name brief-hadoop-demo/cn.followtry.hadoop.demo.mr.WordCountReduce
  * @since 2016年12月13日 下午6:52:38
  */
-public class WordCountReduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+public class WordCountReduceV1 extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WordCountReduce.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WordCountReduceV1.class);
 
 	@Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output,
