@@ -33,12 +33,17 @@ public class WordCountTest {
 //		HDFSOper.rmExistsOutputDir(outpathDir);
 		Configuration conf = new Configuration();
 		conf.set("mapreduce.framework.name", "yarn");  
-//		conf.set("yarn.app.mapreduce.am.staging-dir", "c:\\users\\Administrator\\tmp\\hadoop-yarn\\staging");  
+		conf.set("fs.defaultFS", "hdfs://h2m1:8220");  
+		conf.set("mapred.remote.os", "Linux");  
+		conf.set("mapreduce.app-submission.cross-platform", "true");  
+		conf.set("yarn.resourcemanager.scheduler.address", "h2m1:8030");  
 		conf.set("yarn.resourcemanager.address", "192.168.2.201:8032");
+//		conf.set("mapred.jar", "d:\\mapreduce.jar");
 		Job job = Job.getInstance(conf, "wordCount v2 demo");
 		
 		job.setJarByClass(WordCountTest.class);
 		
+//		job.setJar("d:\\mapreduce.jar");
 		job.setMapperClass(WordCountMapV2.class);
 		job.setCombinerClass(WordCountReduceV2.class);
 		job.setReducerClass(WordCountReduceV2.class);
