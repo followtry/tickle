@@ -17,12 +17,16 @@ import org.junit.runners.MethodSorters;
 public class HDFSOperTest {
 
 	private String outpathDir = "/user/root/output";
+	
+	private String newOutpathDir = "/user/root/output2";
 
 	private String fileName = outpathDir + "/123";
+	
+	private String newFileName = outpathDir + "/456";
 
 	@Test
 	// 创建目录
-	public void test001CreateDir() {
+	public void test010CreateDir() {
 		try {
 			boolean hasCreated = HDFSOper.createFileOrDir(outpathDir, true, true);
 			System.out.println("创建目录【" + outpathDir + "】成功");
@@ -32,10 +36,26 @@ public class HDFSOperTest {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	@Test
+	public void test011RenameDir() throws IOException {
+		String srcPath = outpathDir; 
+		String dstPath = newOutpathDir;
+		boolean hasRename = HDFSOper.renameFileOrDir(srcPath, dstPath);
+		Assert.assertTrue(hasRename);
+	}
 
 	@Test
+	public void test012RenameDir() throws IOException {
+		String srcPath = newOutpathDir; 
+		String dstPath = outpathDir;
+		boolean hasRename = HDFSOper.renameFileOrDir(srcPath, dstPath);
+		Assert.assertTrue(hasRename);
+	}
+	
+	@Test
 	// 创建文件
-	public void test002CreateFile() {
+	public void test020CreateFile() {
 		try {
 			boolean hasCreated = HDFSOper.createFileOrDir(fileName, false, true);
 			System.out.println("创建文件【" + fileName + "】成功");
@@ -46,9 +66,25 @@ public class HDFSOperTest {
 		}
 	}
 
+	@Test	
+	public void test021RenameFile() throws IOException {
+		String srcPath = fileName; 
+		String dstPath = newFileName;
+		boolean hasRename = HDFSOper.renameFileOrDir(srcPath, dstPath);
+		Assert.assertTrue(hasRename);
+	}
+
+	@Test
+	public void test022RenameFile() throws IOException {
+		String srcPath = newFileName; 
+		String dstPath = fileName;
+		boolean hasRename = HDFSOper.renameFileOrDir(srcPath, dstPath);
+		Assert.assertTrue(hasRename);
+	}
+
 	@Test
 	// 遍历目录下文件
-	public void test003RecListDir() {
+	public void test030RecListDir() {
 		try {
 			int actualNum = HDFSOper.recDirListInfo(outpathDir);
 			System.out.println("遍历目录【" + outpathDir + "】");
@@ -61,7 +97,7 @@ public class HDFSOperTest {
 
 	@Test
 	//删除文件
-	public void test004DeleteFile() {
+	public void test040DeleteFile() {
 		try {
 			boolean deleteFile = HDFSOper.delFileOrDir(fileName, true);
 			System.out.println("删除文件【" + fileName + "】成功");
@@ -74,7 +110,7 @@ public class HDFSOperTest {
 
 	@Test
 	//删除目录
-	public void test005RmDir() {
+	public void test050RmDir() {
 		try {
 			boolean rmExistsOutputDir = HDFSOper.rmExistsOutputDir(outpathDir);
 			System.out.println("删除目录【" + outpathDir + "】成功");

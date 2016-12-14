@@ -255,5 +255,20 @@ public class HDFSOper {
 		}
 		return fileNum;
 	}
+	
+	/**
+	 * 重命名文件或目录
+	 * @author jingzz
+	 * @param srcPath
+	 * @param dstPath
+	 * @return
+	 * @throws IOException
+	 */
+	public static boolean renameFileOrDir(String srcPath, String dstPath) throws IOException{
+		Path src = new Path(srcPath);
+		Path dst = new Path(dstPath);
+		boolean hasRename = fs.rename(src, dst);
+		return hasRename;
+	}
 
 }
