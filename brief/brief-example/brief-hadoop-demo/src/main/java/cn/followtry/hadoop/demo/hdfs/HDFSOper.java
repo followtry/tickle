@@ -3,8 +3,11 @@ package cn.followtry.hadoop.demo.hdfs;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.FileAlreadyExistsException;
+import java.util.InputMismatchException;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -26,13 +29,15 @@ public class HDFSOper {
 
 	private static FileSystem fs;
 
+	static String url = "webhdfs://h2m1:50070";
+
 	static {
 		try {
-			fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
+			fs = FileSystem.get(URI.create(url), config);
 		} catch (IOException e) {
 			LOGGER.error("fs连接异常", e);
 			try {
-				fs = FileSystem.get(URI.create("webhdfs://h2m1:50070"), config);
+				fs = FileSystem.get(URI.create(url), config);
 			} catch (IOException e2) {
 				LOGGER.error("fs连接重试异常", e2);
 			}
@@ -57,6 +62,9 @@ public class HDFSOper {
 	public static boolean rmExistsOutputDir(String outpathDir) throws IOException {
 		boolean hasDel = false;
 		Path output = new Path(outpathDir);
+		if (!fs.isDirectory(output)) {
+			throw new InputMismatchException("请求路径" + outpathDir + "不是一个目录");
+		}
 		if (hasDel = fs.exists(output)) {
 			LOGGER.info("目录{}已经存在,正在删除...", outpathDir);
 			System.out.println("目录" + outpathDir + "已经存在,正在删除...");
@@ -75,6 +83,113 @@ public class HDFSOper {
 		return hasDel;
 	}
 
+	/**
+	 * 创建文件或目录
+	 * 
+	 * @author jingzz
+	 * @param path
+	 * @param isDir
+	 * @param overwrite
+	 * @return
+	 * @throws IllegalArgumentException
+	 * @throws IOException
+	 */
+	public static boolean createFileOrDir(String path, boolean isDir, boolean overwrite)
+			throws IllegalArgumentException, IOException {
+		Path realPath = new Path(path);
+		boolean isSuccess = false;
+		if (isDir) {// 创建目录
+			if (fs.exists(realPath)) {
+				throw new FileAlreadyExistsException(getFullQualifiedName(realPath));
+			} else {
+				boolean mkdirs = fs.mkdirs(realPath);
+				if (mkdirs) {
+					LOGGER.info("目录{}创建成功", getFullQualifiedName(realPath));
+				} else {
+					LOGGER.info("目录{}创建失败", path);
+				}
+				isSuccess = mkdirs;
+			}
+		} else {// 创建文件
+			if (overwrite) {
+				FSDataOutputStream file = fs.create(realPath, overwrite);
+				file.close();
+				LOGGER.info("文件{}创建成功", getFullQualifiedName(realPath));
+				isSuccess = true;
+			} else if (fs.exists(realPath)) {
+				LOGGER.info("文件{}已经存在", getFullQualifiedName(realPath));
+				throw new FileAlreadyExistsException(getFullQualifiedName(realPath));
+			} else {
+				isSuccess = fs.createNewFile(realPath);
+				if (isSuccess) {
+					LOGGER.info("文件{}创建成功", getFullQualifiedName(realPath));
+				} else {
+					LOGGER.info("文件{}创建失败", path);
+				}
+			}
+		}
+		return isSuccess;
+	}
+
+	/**
+	 * 删除文件 或目录
+	 * 
+	 * @author jingzz
+	 * @param path
+	 * @param recursive
+	 * @return
+	 * @throws IOException
+	 */
+	public static boolean delFileOrDir(String path, boolean recursive) throws IOException {
+		Path realPath = new Path(path);
+		boolean isSuccess = false;
+		if (fs.isDirectory(realPath)) {
+			if (fs.exists(realPath)) {
+				LOGGER.info("目录{}已经删除", getFullQualifiedName(realPath));
+				isSuccess = fs.delete(realPath, recursive);
+			} else {
+				LOGGER.info("目录{}不存在", path);
+				throw new FileNotFoundException(path);
+			}
+		} else {
+			if (fs.exists(realPath)) {
+				LOGGER.info("文件{}已经删除", getFullQualifiedName(realPath));
+				isSuccess = fs.delete(realPath, true);
+			} else {
+				LOGGER.info("文件{}不存在", path);
+				throw new FileNotFoundException(path);
+			}
+		}
+		return isSuccess;
+	}
+
+	/**
+	 * 获取文件全限定名
+	 * 
+	 * @author jingzz
+	 * @param realPath
+	 * @return
+	 * @throws IOException
+	 */
+	public static String getFullQualifiedName(Path realPath) throws IOException {
+		String fullQualName;
+		try {
+			fullQualName = fs.resolvePath(realPath).toString();
+		} catch (Exception e) {
+			fullQualName = realPath.getName();
+		}
+		return fullQualName;
+	}
+
+	/**
+	 * 递归显示目录下的文件信息列表
+	 * 
+	 * @author jingzz
+	 * @param path
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int recDirListInfo(String path) throws FileNotFoundException, IOException {
 		int fileNum = 0;
 		int level = 0;
