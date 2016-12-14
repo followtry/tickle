@@ -27,8 +27,8 @@ import cn.followtry.hadoop.demo.hdfs.HDFSOper;
 public class WordCountTest {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-		String outpathDir = "/user/root/input";
-		String inputPaths = "/user/root/output";
+		String inputPaths = "webhdfs://h2m1:50070/user/root/input";
+		String outpathDir = "webhdfs://h2m1:50070/user/root/output";
 		//检查输出目录是否存在，存在则直接删除目录
 //		HDFSOper.rmExistsOutputDir(outpathDir);
 		Configuration conf = new Configuration();
