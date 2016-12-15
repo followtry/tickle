@@ -62,22 +62,19 @@ public class HDFSOper {
 	public static boolean rmExistsOutputDir(String outpathDir) throws IOException {
 		boolean hasDel = false;
 		Path output = new Path(outpathDir);
-		if (!fs.isDirectory(output)) {
-			throw new InputMismatchException("请求路径" + outpathDir + "不是一个目录");
-		}
+		
 		if (hasDel = fs.exists(output)) {
+			if (!fs.isDirectory(output)) {
+				throw new InputMismatchException("请求路径" + outpathDir + "不是一个目录");
+			}
 			LOGGER.info("目录{}已经存在,正在删除...", outpathDir);
-			System.out.println("目录" + outpathDir + "已经存在,正在删除...");
 			if (hasDel = fs.delete(output, true)) {
-				System.out.println("目录" + outpathDir + "已经删除");
 				LOGGER.info("目录{}已经删除", outpathDir);
 			} else {
-				System.out.println("目录" + outpathDir + "删除失败");
 				LOGGER.info("目录{}删除失败", outpathDir);
 
 			}
 		} else {
-			System.out.println("目录" + outpathDir + "不存在");
 			LOGGER.info("目录{}不存在", outpathDir);
 		}
 		return hasDel;
@@ -215,37 +212,37 @@ public class HDFSOper {
 			String name = f.getPath().getName();
 			String realPath = f.getPath().toString();
 			System.out.println((level + 1) + "层：" + dir + ":" + name);
-			LOGGER.info((level + 1) + "层：" + dir + ":" + name);
+			//LOGGER.info((level + 1) + "层：" + dir + ":" + name);
 
 			System.out.println(prefix + "路径:" + realPath);
-			LOGGER.info(prefix + "路径:" + realPath);
+			//LOGGER.info(prefix + "路径:" + realPath);
 
 			System.out.println(prefix + "访问时间：" + f.getAccessTime());
-			LOGGER.info(prefix + "访问时间：" + f.getAccessTime());
+			//LOGGER.info(prefix + "访问时间：" + f.getAccessTime());
 
 			System.out.println(prefix + "块大小:" + f.getBlockSize());
-			LOGGER.info(prefix + "块大小:" + f.getBlockSize());
+			//LOGGER.info(prefix + "块大小:" + f.getBlockSize());
 
 			System.out.println(prefix + "所属组:" + f.getGroup());
-			LOGGER.info(prefix + "所属组:" + f.getGroup());
+			//LOGGER.info(prefix + "所属组:" + f.getGroup());
 
 			System.out.println(prefix + "长度:" + f.getLen());
-			LOGGER.info(prefix + "长度:" + f.getLen());
+			//LOGGER.info(prefix + "长度:" + f.getLen());
 
 			System.out.println(prefix + "修改时间:" + f.getModificationTime());
-			LOGGER.info(prefix + "修改时间:" + f.getModificationTime());
+			//LOGGER.info(prefix + "修改时间:" + f.getModificationTime());
 
 			System.out.println(prefix + "所有者:" + f.getOwner());
-			LOGGER.info(prefix + "所有者:" + f.getOwner());
+			//LOGGER.info(prefix + "所有者:" + f.getOwner());
 
 			System.out.println(prefix + "权限:" + f.getPermission());
-			LOGGER.info(prefix + "权限:" + f.getPermission());
+			//LOGGER.info(prefix + "权限:" + f.getPermission());
 
 			System.out.println(prefix + "副本:" + f.getReplication());
-			LOGGER.info(prefix + "副本:" + f.getReplication());
+			//LOGGER.info(prefix + "副本:" + f.getReplication());
 
 			System.out.println(prefix + "============================================================");
-			LOGGER.info(prefix + "============================================================");
+			//LOGGER.info(prefix + "============================================================");
 
 			if (f.isDirectory()) {
 				fileNum += listFiles(fs, realPath, level + 1);

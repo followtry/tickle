@@ -13,25 +13,28 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cn.followtry.hadoop.demo.hdfs.HDFSOper;
+import cn.followtry.hadoop.demo.util.DebugConfUtil;
 
 /**
  * 
- *  brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.WordCountV2
- * @author 
- *		jingzz 
- * @since 
- *		2016年12月14日 上午10:03:48
+ * brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.WordCountV2
+ * 
+ * @author jingzz
+ * @since 2016年12月14日 上午10:03:48
  */
 public class WordCountV2 {
-	
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(WordCountV2.class);
+
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		if (otherArgs == null || otherArgs.length < 2) {
-			System.out.println("用法：\n"
-					+ "     至少需要两个参数,最后一个为输出目录，其他为输入文件路径");
+			System.out.println("用法：\n" + "     至少需要两个参数,最后一个为输出目录，其他为输入文件路径");
 			System.exit(-1);
 		}
 		StringBuilder inputPaths = new StringBuilder();
@@ -44,23 +47,32 @@ public class WordCountV2 {
 			}
 		}
 		outpathDir = otherArgs[len];
-		//检查输出目录是否存在，存在则直接删除目录
+		// 检查输出目录是否存在，存在则直接删除目录
 		HDFSOper.rmExistsOutputDir(outpathDir);
-		
-		Job job = Job.getInstance(conf, "wordCount v2 demo");
-		
+
+		// 只有在当前系统为windows是设置该debug配置
+		String osName = System.getProperties().getProperty("os.name").toLowerCase();
+		if (osName.contains("windows")) {
+			LOGGER.info("运行在windows平台，需要设置配置");
+			String jarPath = "d:\\mapreduce.jar";
+			DebugConfUtil.setLocalDebugConfiguration(jarPath, conf);
+		} else {
+			LOGGER.info("运行在{}平台", osName);
+		}
+		Job job = Job.getInstance(conf, "wordCount v2 demo 2");
+
 		job.setJarByClass(WordCountV2.class);
-		
+
 		job.setMapperClass(WordCountMapV2.class);
 		job.setCombinerClass(WordCountReduceV2.class);
 		job.setReducerClass(WordCountReduceV2.class);
 
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
-		
+
 		FileInputFormat.setInputPaths(job, inputPaths.toString());
 		FileOutputFormat.setOutputPath(job, new Path(outpathDir));
-		
+
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
 }
