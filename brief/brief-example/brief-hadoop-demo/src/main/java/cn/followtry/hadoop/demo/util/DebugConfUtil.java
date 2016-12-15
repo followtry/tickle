@@ -1,6 +1,8 @@
 package cn.followtry.hadoop.demo.util;
 
 import org.apache.hadoop.conf.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *  brief-hadoop-demo/cn.followtry.hadoop.demo.util.DebugConfUtil
@@ -10,6 +12,8 @@ import org.apache.hadoop.conf.Configuration;
  *		2016年12月15日 下午12:32:02
  */
 public class DebugConfUtil {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DebugConfUtil.class);
 	
 	private DebugConfUtil() {
 	}
@@ -50,5 +54,23 @@ public class DebugConfUtil {
 		//conf.set("mapred.jar", "d:\\mapreduce.jar");
 		conf.set("mapreduce.job.jar", jarPath);
 	}
+	
+	/**
+	 * 根据系统类型做配置
+	 * @author jingzz
+	 * @param conf
+	 */
+	public static void confByOS(Configuration conf) {
+		// 只有在当前系统为windows是设置该debug配置
+		String osName = System.getProperties().getProperty("os.name").toLowerCase();
+		if (osName.contains("windows")) {
+			LOGGER.info("运行在windows平台，需要设置配置");
+			String jarPath = "d:\\mapreduce.jar";
+			setLocalDebugConfiguration(jarPath, conf);
+		} else {
+			LOGGER.info("运行在{}平台", osName);
+		}
+	}
+	
 	
 }
