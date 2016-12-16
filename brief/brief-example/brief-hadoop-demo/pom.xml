@@ -10,8 +10,14 @@
   <artifactId>brief-hadoop-demo</artifactId>
   <properties>
   	<hadoop.version>2.7.2</hadoop.version>
+  	<hbase.version>1.2.4</hbase.version>
   </properties>
   <dependencies>
+ 	 <dependency>
+	    <groupId>org.apache.hbase</groupId>
+	    <artifactId>hbase-client</artifactId>
+	    <version>${hbase.version}</version>
+	</dependency>
     <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-client</artifactId>
