@@ -2,20 +2,16 @@ package cn.followtry.hbase.demo;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
-import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
-import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Result;
@@ -34,43 +30,7 @@ public class HBaseOper {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HBaseOper.class);
 
-	private static Connection conn;
-
-	private static final String tName = "t1";
-	
-	private static final String cfName = "col1";
-	
-	private static final String rowKey = "123456";
-
-	static {
-		Configuration conf = HBaseConfiguration.create();
-		conf.set("hbase.zookeeper.quorum", "h2m1,h2s1,h2s2");
-		conf.set("hbase.rootdir", "hdfs://h2m1:8220/hbase");
-		try {
-			conn = ConnectionFactory.createConnection(conf);
-		} catch (IOException e) {
-			LOGGER.error("创建HBase连接异常", e);
-		}
-	}
-
-	public static void main(String[] args) throws Exception {
-		// getClusterStatus();
-		createTable();
-		
-		Map<String, String> colVlues = new HashMap<String,String>();
-		colVlues.put("id", "59380");
-		colVlues.put("name", "jingzz");
-		colVlues.put("sex", "男");
-		colVlues.put("age", "24");
-		colVlues.put("location", "beijing");
-		addData(tName, rowKey , cfName, colVlues);
-		
-		getData(tName, rowKey);
-		
-		dropTable();
-	}
-	
-	public static List<Cell> getData(String tName,String rowKey) throws IOException{
+	public static List<Cell> getData(Connection conn,String tName,String rowKey) throws IOException{
 		TableName tableName = TableName.valueOf(tName);
 		Table table = conn.getTable(tableName);
 		Get get = new Get(Bytes.toBytes(rowKey));
@@ -88,8 +48,11 @@ public class HBaseOper {
 		return listCells;
 	}
 
-	public static void addData(String tName, String rowKey, String colFamName, Map<String, String> colVlues)
+	public static boolean addData(Connection conn,String tName, String rowKey, String colFamName, Map<String, String> colVlues)
 			throws IOException {
+		if (colVlues == null || colVlues.size() == 0) {
+			return false;
+		}
 		TableName tableName = TableName.valueOf(tName);
 		Table table = conn.getTable(tableName);
 		Put put = new Put(Bytes.toBytes(rowKey));
@@ -107,13 +70,14 @@ public class HBaseOper {
 		}
 		table.put(Arrays.asList(put));
 		LOGGER.info("数据添加成功");
+		return true;
 	}
 
 	/**
 	 * @author jingzz
 	 * @throws IOException
 	 */
-	public static void dropTable() throws IOException {
+	public static boolean dropTable(Connection conn,String tName) throws IOException {
 		Admin admin = conn.getAdmin();
 		TableName tableName = TableName.valueOf(tName);
 		if (admin.tableExists(tableName)) {
@@ -122,9 +86,11 @@ public class HBaseOper {
 			LOGGER.info("表【{}】已经失效", tableName.getNameAsString());
 			LOGGER.info("表【{}】正在删除...", tableName.getNameAsString());
 			admin.deleteTable(tableName);
-			LOGGER.info("表【{}】删除", tableName.getNameAsString());
+			LOGGER.info("表【{}】已经删除", tableName.getNameAsString());
+			return true;
 		} else {
 			LOGGER.info("表【{}】不存在，无法删除", tableName.getNameAsString());
+			return false;
 		}
 	}
 
@@ -132,7 +98,7 @@ public class HBaseOper {
 	 * @author jingzz
 	 * @throws Exception
 	 */
-	public static void createTable() throws Exception {
+	public static boolean createTable(Connection conn,String tName,String cfName) throws Exception {
 		Admin admin = conn.getAdmin();
 		TableName tableName = TableName.valueOf(tName);
 		HTableDescriptor desc = new HTableDescriptor(tableName);
@@ -142,16 +108,17 @@ public class HBaseOper {
 			LOGGER.info("表【{}】不存在，正在创建...", tableName.getNameAsString());
 			admin.createTable(desc);
 			LOGGER.info("表【{}】已经创建", tableName.getNameAsString());
-			return;
+			return true;
 		}
 		LOGGER.info("表【{}】已经存在", tableName.getNameAsString());
+		return false;
 	}
 
 	/**
 	 * @author jingzz
 	 * @throws IOException
 	 */
-	public static void getClusterStatus() throws IOException {
+	public static void getClusterStatus(Connection conn) throws IOException {
 		Admin admin = conn.getAdmin();
 		String clusterStatus = admin.getClusterStatus().toString();
 		System.out.println("集群环境：==============");
