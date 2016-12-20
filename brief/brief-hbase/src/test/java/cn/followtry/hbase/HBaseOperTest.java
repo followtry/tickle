@@ -43,6 +43,8 @@ public class HBaseOperTest {
 	
 	private static final String rowKey = "123456";
 	
+	private static final String testColName = "sex";
+	
 	static{
 		Configuration conf = HBaseConfiguration.create();
 		conf.set("hbase.zookeeper.quorum", "h2m1,h2s1,h2s2");
@@ -75,9 +77,14 @@ public class HBaseOperTest {
 		Map<String, String> colVlues = new HashMap<String,String>();
 		colVlues.put("id", "59380");
 		colVlues.put("name", "jingzz");
-		colVlues.put("sex", "男");
+		colVlues.put(testColName, "男");
 		colVlues.put("age", "24");
 		colVlues.put("location", "beijing");
+		colVlues.put("id2", "59380");
+		colVlues.put("name2", "jingzz");
+		colVlues.put("sex2", "男");
+		colVlues.put("age2", "24");
+		colVlues.put("location2", "beijing");
 		boolean addData = HBaseOper.addData(conn,tName, rowKey , cfName, colVlues);
 		Assert.assertTrue(addData);
 	}
@@ -89,8 +96,26 @@ public class HBaseOperTest {
 	}
 	
 	@Test
-	public void  test0400DropTable() throws Exception{
+	public void  test0400DeleteData() throws Exception{
+		boolean delete = HBaseOper.deleteData(conn, tName, rowKey, cfName, testColName);
+		Assert.assertTrue(delete);
+	}
+	
+	@Test
+	public void  test0401DisableTable() throws Exception{
+		boolean delete = HBaseOper.disableTable(conn, tName);
+		Assert.assertTrue(delete);
+	}
+	
+	@Test
+	public void  test0402DropTable() throws Exception{
 		boolean dropTable = HBaseOper.dropTable(conn,tName);
 		Assert.assertTrue(dropTable);
+	}
+	
+	@Test
+	public void  test0301ScanTable() throws Exception{
+		List<Cell> scan = HBaseOper.scan(conn, tName);
+		Assert.assertNotNull(scan);
 	}
 }
