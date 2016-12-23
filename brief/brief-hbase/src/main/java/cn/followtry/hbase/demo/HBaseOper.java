@@ -206,5 +206,4 @@ public class HBaseOper {
 		}
 		return isSuccessed;
 	}
-
 }
