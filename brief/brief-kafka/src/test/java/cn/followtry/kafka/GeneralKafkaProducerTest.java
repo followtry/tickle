@@ -28,9 +28,12 @@ public class GeneralKafkaProducerTest {
 		MsgBody msgBody = new MsgBody();
 		msgBody.setType(HelloBean.class.getName());
 		msgBody.setMethodName("cn.followtry.kafka.executor.HelloBean.sayHello");
-		msgBody.setArgsType(String.class, Integer.class);
+		/*
+		 * 可以通过对参数序列和参数值序列的设置来调用sayHello的不同重载方法
+		 */
+//		msgBody.setArgsType(String.class, Integer.class);
 		while(true){
-			msgBody.setArgsValue("荆中志", randomUtil.nextInt(30));
+//			msgBody.setArgsValue("荆中志", randomUtil.nextInt(30));
 			String value = JSON.toJSONString(msgBody);
 			kafkaBean = new KafkaBean<String, String>("test", 0, "quartz", value);
 			producer.send(kafkaBean);

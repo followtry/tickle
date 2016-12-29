@@ -11,4 +11,8 @@ public class HelloBean {
 	public void sayHello(String name, Integer age) {
 		System.out.println("你好，" + age + "岁的" + name);
 	}
+	
+	public void sayHello() {
+		System.out.println("你好，欢迎访问fakfa");
+	}
 }
