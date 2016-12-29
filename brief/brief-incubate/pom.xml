@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>cn.followtry</groupId>
-    <artifactId>brief-example</artifactId>
+    <artifactId>brief</artifactId>
     <version>0.0.3</version>
   </parent>
-  <artifactId>brief-example-temp</artifactId>
+  <artifactId>brief-incubate</artifactId>
   <dependencies>
   
   	<!-- 导入导出 -->

@@ -40,6 +40,14 @@
     <module>brief-springboot</module>
     <module>brief-tools</module>
     <module>brief-hbase</module>
+    <module>brief-kafka</module>
+    <module>brief-mybatis</module>
+    <module>brief-dubbo-api</module>
+    <module>brief-dubbo-service</module>
+    <module>brief-dubbo-customer</module>
+    <module>brief-incubate</module>
+    <module>brief-quartz</module>
+    <module>brief-hadoop-demo</module>
   </modules>
    
    
@@ -61,6 +69,7 @@
 		<jedis.version>2.8.1</jedis.version>
 		<jsonlib.version>2.4</jsonlib.version>
 		<junit.version>4.12</junit.version>
+		<kafka.version>0.9.0.1</kafka.version>
 		<log4j.version>1.2.16</log4j.version>
 		<lombok.version>1.16.8</lombok.version>
 		<mongo.version>3.3.0</mongo.version>
@@ -81,6 +90,7 @@
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 		<spring-hot-load.version>1.2.5.RELEASE</spring-hot-load.version>
+		<spring-kafka.version>1.1.1.RELEASE</spring-kafka.version>
 		<spring-redis.version>1.7.1.RELEASE</spring-redis.version>
 		<spring-mongo.version>1.9.2.RELEASE</spring-mongo.version>
 		<validation.version>1.1.0.Final</validation.version>
@@ -89,7 +99,24 @@
 	</properties>
 	
 	<dependencyManagement>
-		<dependencies> 
+	  <dependencies> 
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-clients</artifactId>
+		    <version>${kafka.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka_2.11</artifactId>
+		    <version>${kafka.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.kafka</groupId>
+		    <artifactId>spring-kafka</artifactId>
+		    <version>${spring-kafka.version}</version>
+		</dependency>
+		
+		
 		<!-- 当当的定时调度集群框架 -->
 	  	<dependency> 
 		    <groupId>com.dangdang</groupId>

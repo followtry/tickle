@@ -4,11 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>cn.followtry</groupId>
-    <artifactId>brief-example</artifactId>
+    <artifactId>brief</artifactId>
     <version>0.0.3</version>
   </parent>
   <packaging>jar</packaging>
-  <groupId>cn.followtry</groupId>
   <artifactId>brief-dubbo-customer</artifactId>
   <dependencies>
   	<dependency>
