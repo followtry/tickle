@@ -4,7 +4,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 
-import cn.followtry.validation.base.aop.AspectJointPoints;
+import cn.followtry.validation.base.constant.AspectJointPoints;
 
 /**
  * 对 Service、Data 层的通用日志处理；

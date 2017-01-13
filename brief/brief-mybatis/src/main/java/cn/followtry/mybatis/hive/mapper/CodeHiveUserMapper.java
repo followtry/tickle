@@ -1,7 +1,5 @@
-/**
- * 
- */
 package cn.followtry.mybatis.hive.mapper;
+
 
 import java.util.List;
 

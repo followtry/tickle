@@ -8,7 +8,15 @@
   </parent>
   <artifactId>brief-incubate</artifactId>
   <dependencies>
-  
+  	<dependency>
+	    <groupId>com.mashape.unirest</groupId>
+	    <artifactId>unirest-java</artifactId>
+	    <version>1.4.9</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.squareup.okhttp3</groupId>
+	    <artifactId>okhttp</artifactId>
+	</dependency>
   	<!-- 导入导出 -->
   	<dependency>
 		<groupId>org.apache.poi</groupId>
@@ -75,14 +83,14 @@
     </dependency>
     
     <!-- mongoDB 驱动 -->
-	<!-- <dependency>
+	<dependency>
 		<groupId>org.mongodb</groupId>
 		<artifactId>mongo-java-driver</artifactId>
 	</dependency>		
 	<dependency>
 		<groupId>org.springframework.data</groupId>
 		<artifactId>spring-data-mongodb</artifactId>
-	</dependency> -->
+	</dependency>
 	
 	<!-- spring boot -->
 	<dependency>

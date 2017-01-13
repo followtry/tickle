@@ -11,8 +11,8 @@ import org.aspectj.lang.reflect.FieldSignature;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.Ordered;
 
-import cn.followtry.validation.base.aop.AspectOrders;
 import cn.followtry.validation.base.common.exception.ValidationException;
+import cn.followtry.validation.base.constant.AspectOrders;
 
 /**
  * 对字段约束进行校验；

@@ -14,6 +14,14 @@
   
   <dependencies>
   	<dependency>
+	    <groupId>cn.followtry</groupId>
+	    <artifactId>brief-comm</artifactId>
+	</dependency>
+  	<dependency>
+	    <groupId>commons-collections</groupId>
+	    <artifactId>commons-collections</artifactId>
+	</dependency>
+  	<dependency>
 		<groupId>com.alibaba</groupId>
 		<artifactId>fastjson</artifactId>
 	</dependency>
@@ -21,14 +29,10 @@
 	    <groupId>org.apache.kafka</groupId>
 	    <artifactId>kafka-clients</artifactId>
 	</dependency>
-	<dependency>
-	    <groupId>org.apache.kafka</groupId>
-	    <artifactId>kafka_2.11</artifactId>
-	</dependency>
-	<dependency>
-	    <groupId>org.springframework.kafka</groupId>
-	    <artifactId>spring-kafka</artifactId>
-	</dependency>
+<!-- 	<dependency> -->
+<!-- 	    <groupId>org.springframework.kafka</groupId> -->
+<!-- 	    <artifactId>spring-kafka</artifactId> -->
+<!-- 	</dependency> -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

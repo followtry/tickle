@@ -20,11 +20,12 @@ public class TestJson {
 	
 	private String __id;
 
-	@JSONField(serialize=false,deserialize=false)
+	@JSONField(name="_id")
 	public ObjectId get_id() {
 		return _id;
 	}
 
+	@JSONField(name="_id")
 	public void set_id(ObjectId _id) {
 		this._id = _id;
 	}
@@ -37,10 +38,12 @@ public class TestJson {
 		this.id = id;
 	}
 
+	@JSONField(name="__id")
 	public String get__id() {
 		return __id;
 	}
 
+	@JSONField(name="__id")
 	public void set__id(String __id) {
 		this.__id = __id;
 	}
@@ -60,14 +63,14 @@ public class TestJson {
 		TestJson tj = (TestJson) JSON.parseObject(json, TestJson.class);
 		System.out.println(tj.toString());
 		
-		String json2 ="{id2:123231, id4:123233, id3:123232, id:123230}";
-		Map map = JSON.parseObject(json2, Map.class);
-		System.out.println(map.toString());
-		List<ObjectId> oList=new ArrayList<ObjectId>();
-		for (int i = 0; i < 10; i++) {
-			ObjectId objectId = new ObjectId();
-			oList.add(objectId);
-		}
-		System.out.println(oList.toString()+"end");
+//		String json2 ="{id2:123231, id4:123233, id3:123232, id:123230}";
+//		Map map = JSON.parseObject(json2, Map.class);
+//		System.out.println(map.toString());
+//		List<ObjectId> oList=new ArrayList<ObjectId>();
+//		for (int i = 0; i < 10; i++) {
+//			ObjectId objectId = new ObjectId();
+//			oList.add(objectId);
+//		}
+//		System.out.println(oList.toString()+"end");
 	}
 }

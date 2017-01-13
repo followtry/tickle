@@ -21,13 +21,16 @@ public class KafkaProperties {
 	
 	private KafkaProperties(){}
 
+	/**
+	 * acks是判别请求是否完整的条件，即是不是发送了，如果指定为all会阻塞消息，性能最低但是最可靠的。
+	 */
 	private static final String ACKS_VALUE = "all";
 	
 	private static Properties producerProperties;
 	
 	private static Properties consumerProperties;
 
-	private static String ZK_SERVERS = "h2m1:2181,h2s1:2181,h2s2:2181";
+//	private static String ZK_SERVERS = "h2m1:2181,h2s1:2181,h2s2:2181";
 	
 	private static final Object PRODUCER_LOCK = new Object();
 	
@@ -46,6 +49,7 @@ public class KafkaProperties {
 					producerProperties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
 					producerProperties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
 					producerProperties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
+					producerProperties.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 3000);
 				}
 			}
 		}
@@ -58,12 +62,14 @@ public class KafkaProperties {
 			synchronized (CONSUMER_LOCK) {
 				if (consumerProperties == null) {
 					consumerProperties = new Properties();
-					consumerProperties.put("zk.zk.connect", ZK_SERVERS );
+					//可指定一个或多个，指定一个也会发现全部的broker
 					consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTART_SERVER);
+					//不自动提交消费的偏移量
 					consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 					consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
 					consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 					consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+					//控制自动提交消费偏移量的频率
 					consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 1000);
 					consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
 					consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, OffsetType.LATEST.getName());

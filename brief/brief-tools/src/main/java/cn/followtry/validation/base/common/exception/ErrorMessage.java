@@ -4,10 +4,17 @@
 package cn.followtry.validation.base.common.exception;
 
 /**
- * @author followtry 作者
- * @since 2016年10月10日 上午11:13:01  开始时间
+ * 错误信息试题
+ * 
+ * @author 
+ *		followtry
+ * @since 
+ *		0.0.2
+ * @version 
+ * 		0.0.2
  */
 public class ErrorMessage {
+	
 	private int errorCode;
 
 	private String errorMessage;

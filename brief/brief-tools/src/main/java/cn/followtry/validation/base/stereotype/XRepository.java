@@ -19,6 +19,7 @@ import org.springframework.core.annotation.AliasFor;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@XComponent
 public @interface XRepository {
 	
 	@AliasFor("value")
@@ -26,5 +27,19 @@ public @interface XRepository {
 	
 	@AliasFor("name")
 	String value() default "";
+	
+	/**
+	 * 默认检查所有的日志
+	 * @author jingzz
+	 * @return
+	 */
+	boolean allMethods() default true;
+	
+	/**
+	 * 设置要监控的方法集合，默认为空。如果{@link setAllMethods}方法设置为true，则该设置不起作用。
+	 * @author jingzz
+	 * @return
+	 */
+	String[] monitorMethods() default "";
 
 }

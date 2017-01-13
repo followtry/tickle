@@ -2,7 +2,6 @@ package cn.followtry.quartz;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 import org.quartz.Job;
 import org.quartz.JobDataMap;

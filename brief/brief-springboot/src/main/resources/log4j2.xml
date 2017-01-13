@@ -21,6 +21,7 @@
         <Logger name="org.springframework.web" level="debug" />  
         <Logger name="org.springframework" level="info" />  
         <Logger name="com.github" level="info" />  
+        <Logger name="cn.followtry" level="debug" />  
         <Root level="info">  
             <AppenderRef ref="Console" />  
         </Root>  

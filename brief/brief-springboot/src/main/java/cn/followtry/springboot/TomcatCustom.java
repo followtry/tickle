@@ -9,7 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
+
+import cn.followtry.validation.http.MonitorServlet;
 
 /**
  * @author jingzz
@@ -17,15 +20,16 @@ import org.springframework.context.annotation.ComponentScan;
  * @name brief-layer/cn.jingzz.brief.controller.custom.TomcatCustom
  * @since 2016年7月26日 下午3:40:07
  */
-@ComponentScan(basePackageClasses=TomcatCustom.class)
+@ComponentScan(basePackageClasses={TomcatCustom.class},basePackages={"cn.followtry"})
 @SpringBootApplication
+@ServletComponentScan(basePackageClasses=MonitorServlet.class)
 public class TomcatCustom implements EmbeddedServletContainerCustomizer{
 		
 	private static final Logger LOG = LoggerFactory.getLogger(TomcatCustom.class);
 	
 	@Override
 	public void customize(ConfigurableEmbeddedServletContainer container) {
-//		container.setPort(8090);
+		container.setPort(8080);
 	}
 	
 	public static void main(String[] args) {

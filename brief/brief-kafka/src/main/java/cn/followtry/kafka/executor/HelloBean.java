@@ -13,6 +13,6 @@ public class HelloBean {
 	}
 	
 	public void sayHello() {
-		System.out.println("你好，欢迎访问fakfa");
+		System.out.println("你好，欢迎访问kafka");
 	}
 }

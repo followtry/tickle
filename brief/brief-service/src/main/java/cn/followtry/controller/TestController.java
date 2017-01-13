@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.followtry.dao.IHelloDao;
 import cn.followtry.service.IHello;
 import cn.followtry.validation.annotation.NotEmpty;
-import cn.followtry.validation.base.common.exception.ErrorCode;
 import cn.followtry.validation.base.stereotype.XController;
 /**
  * @author jingzz

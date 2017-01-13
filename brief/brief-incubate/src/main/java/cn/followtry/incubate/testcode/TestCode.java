@@ -4,6 +4,7 @@
 package cn.followtry.incubate.testcode;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * 
@@ -17,12 +18,6 @@ import java.util.HashMap;
 public class TestCode {
 	
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-		
-		String className = HashMap.class.getCanonicalName();
-		Class clazz = Class.forName(className );
-		
-		Object instance = clazz.newInstance();
-		System.out.println(instance);
 	}
 	
 }
