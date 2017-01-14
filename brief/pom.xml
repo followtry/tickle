@@ -86,6 +86,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<quartz.version>2.2.2</quartz.version>
 		<quartz-jobs.version>2.2.2</quartz-jobs.version>
+		<rabbitmq.version>3.6.6</rabbitmq.version>
 		<servlet.version>3.1.0</servlet.version>
 		<shiro.version>1.2.4</shiro.version>
 		<slf4j.version>1.7.2</slf4j.version>
@@ -112,6 +113,11 @@
 	    	<groupId>cn.followtry</groupId>
 	    	<artifactId>brief-comm</artifactId>
 	    	<version>${project.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.rabbitmq</groupId>
+		    <artifactId>amqp-client</artifactId>
+		    <version>${rabbitmq.version}</version>
 		</dependency>
 	  <dependency>
 	    <groupId>commons-collections</groupId>

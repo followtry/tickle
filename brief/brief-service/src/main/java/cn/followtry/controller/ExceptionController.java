@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import cn.followtry.validation.base.common.exception.BusinessException;
-
 /**
  * 利用注解统一处理异常
  * @author jingzz
@@ -28,19 +26,11 @@ public class ExceptionController {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ExceptionController.class);
 	
-	@ExceptionHandler(BusinessException.class)
-	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-	public void test(BusinessException bException,HttpServletResponse response) throws IOException{
-		response.setCharacterEncoding("utf-8");
-		response.getWriter().write(bException.getErrorMessage());
-		LOG.info("BusinessException系统报异常",bException);
-	}
-	
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-	public void test2(BusinessException bException,HttpServletResponse response) throws IOException{
+	public void test2(RuntimeException bException,HttpServletResponse response) throws IOException{
 		response.setCharacterEncoding("utf-8");
-		response.getWriter().write(bException.getErrorMessage());
+		response.getWriter().write(bException.getMessage());
 		LOG.info("RuntimeException系统报异常",bException);
 	}
 }
