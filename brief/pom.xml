@@ -39,7 +39,7 @@
     <module>brief-springboot</module>
     <module>brief-tools</module>
     <module>brief-hbase</module>
-    <module>brief-kafka</module>
+    <module>brief-mq</module>
     <module>brief-mybatis</module>
     <module>brief-dubbo-api</module>
     <module>brief-dubbo-service</module>
