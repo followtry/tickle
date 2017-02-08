@@ -78,7 +78,7 @@ public class Dedup {
 		//3.根据系统类型进行配置
 		DebugConfUtil.confByOS(conf);
 		
-		String jobName = "my demo mapreduce program" + RandomUtils.nextInt();
+		String jobName = "my dedup mapreduce" + RandomUtils.nextInt();
 		//4.获取Job实例
 		Job job = Job.getInstance(conf, jobName );
 		
@@ -92,7 +92,7 @@ public class Dedup {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(NullWritable.class);
 		
-		//7.设置文件格式化
+		//7.设置job任务的文件输入和输出目录
 		FileInputFormat.setInputPaths(job, inputPaths.toString());
 		FileOutputFormat.setOutputPath(job, new Path(outputPath));
 		

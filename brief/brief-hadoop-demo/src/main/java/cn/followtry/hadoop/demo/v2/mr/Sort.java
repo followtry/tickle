@@ -61,7 +61,7 @@ public class Sort {
 						throws IOException, InterruptedException {
 			for (IntWritable value : values) {
 				value.get();
-				//k-v 排名(行号)，数值
+				//k-v 排名(行号，数值)
 				context.write(lineNum, key);
 				lineNum.set(lineNum.get() + 1);
 			}
@@ -91,7 +91,7 @@ public class Sort {
 		
 		DebugConfUtil.confByOS(conf);
 		
-		Job job = Job.getInstance(conf, "sort num " + RandomUtils.nextInt());
+		Job job = Job.getInstance(conf, "MR Sort; Num=" + RandomUtils.nextInt());
 		
 		job.setJarByClass(Sort.class);
 		

@@ -5,11 +5,15 @@ package cn.followtry.hadoop.demo.v2.mr;
 
 import java.io.IOException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
@@ -25,6 +29,36 @@ import cn.followtry.hadoop.demo.util.DebugConfUtil;
  * @since 2016年12月14日 上午10:03:48
  */
 public class WordCountV2 {
+	
+	private static final IntWritable ONE = new IntWritable(1);
+	
+	static class WordCountMapV2 extends Mapper<LongWritable, Text, Text, IntWritable>{
+		
+		@Override
+		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context)
+				throws IOException, InterruptedException {
+			String line = value.toString();
+			if (StringUtils.isNotEmpty(line)) {
+				String[] words = line.split(" ");
+				for (String word : words) {
+					context.write(new Text(word), ONE);
+				}
+			}
+		}
+	}
+	
+	static class WordCountReduceV2 extends Reducer<Text, IntWritable, Text, IntWritable> {
+		@Override
+		protected void reduce(Text key, Iterable<IntWritable> values,
+				Reducer<Text, IntWritable, Text, IntWritable>.Context context) throws IOException, InterruptedException {
+			int count = 0;
+			for (IntWritable intValue : values) {
+				count += intValue.get();
+			}
+			context.write(key, new IntWritable(count));
+		}
+
+	}
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		

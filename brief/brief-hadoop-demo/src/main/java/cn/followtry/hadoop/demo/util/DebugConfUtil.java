@@ -47,9 +47,12 @@ public class DebugConfUtil {
 		/*
 		 * 避免java.lang.ClassNotFoundException: Class cn.followtry.hadoop.demo.v2.mr.WordCountMapV2 not found问题
 		 * 日志提示：No job jar file set.  User classes may not be found. See JobConf(Class) or JobConf#setJar(String)
+		 * 
 		 * 所以不管是在Eclipse中直接调试运行还是上传到Yarn集群，都需要先打成Jar包。
 		 * "mapred.jar"不需要动，只要将"d:\\mapreduce.jar"处替换为打好包的jar的位置。
 		 * "mapred.jar" 已经过期，请替换为"mapreduce.job.jar"
+		 * 
+		 * 注意：在开发调试时，只要保证该jar包中含有指定的Type即可，在开发环境做的修改，可以在执行时直接反映在程序中，而不需要每次运行都打成新的jar包。
 		 */
 		//conf.set("mapred.jar", "d:\\mapreduce.jar");
 		conf.set("mapreduce.job.jar", jarPath);

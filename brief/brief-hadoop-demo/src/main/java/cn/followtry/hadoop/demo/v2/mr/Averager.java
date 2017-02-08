@@ -22,6 +22,7 @@ import cn.followtry.hadoop.demo.hdfs.HDFSOper;
 import cn.followtry.hadoop.demo.util.DebugConfUtil;
 
 /**
+ * 计算平均成绩
  * brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.Averager
  * 
  * @author jingzz
@@ -88,7 +89,7 @@ public class Averager {
 
 		DebugConfUtil.confByOS(conf);
 
-		Job job = Job.getInstance(conf, "average scoe " + RandomUtils.nextInt());
+		Job job = Job.getInstance(conf, "MR Average scoe " + RandomUtils.nextInt());
 
 		job.setJarByClass(Averager.class);
 
