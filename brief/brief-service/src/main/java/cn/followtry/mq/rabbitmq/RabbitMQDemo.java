@@ -1,4 +1,4 @@
-package cn.folowtry.mq.rabbitmq;
+package cn.followtry.mq.rabbitmq;
 
 import java.util.concurrent.TimeUnit;
 

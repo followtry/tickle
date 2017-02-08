@@ -65,6 +65,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <context:component-scan base-package="cn.followtry"/>
     <bean class="cn.followtry.validation.base.logger.LoggingAspect" />
     <bean class="cn.followtry.validation.base.DefaultAspectServiceChain"/>
+
+    <bean class="cn.followtry.custom.MyListener"/>
     
     <!-- 引入异常处理 -->
     <!-- <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/> -->

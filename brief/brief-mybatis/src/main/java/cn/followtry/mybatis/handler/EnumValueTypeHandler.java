@@ -3,15 +3,13 @@ package cn.followtry.mybatis.handler;
  * 
  */
 
+import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.JdbcType;
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-
-import cn.followtry.test.mybatis.handler.IBaseEnum;
 
 /**
  * 自定义处理实现了{@link IBaseEnum}接口的枚举类

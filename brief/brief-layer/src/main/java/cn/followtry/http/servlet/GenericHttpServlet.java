@@ -1,11 +1,10 @@
 package cn.followtry.http.servlet;
 
-import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  *  brief-layer/cn.followtry.http.servlet.GenericHttpServlet
@@ -32,7 +31,9 @@ public class GenericHttpServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("GenericHttpServlet.doPost()");
-		super.doPost(req, resp);
+		System.out.println("GenericHttpServlet.doPost()2");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html");
+		resp.getWriter().write("欢迎访问servlet原生web程序ddd");
 	}
 }

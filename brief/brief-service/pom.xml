@@ -8,6 +8,7 @@
     <version>0.0.3</version>
   </parent>
   <artifactId>brief-service</artifactId>
+	<packaging>war</packaging>
 
 	
 	<dependencies>
@@ -30,8 +31,14 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 		</dependency>
-		
-		
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+		</dependency>
 		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
