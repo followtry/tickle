@@ -99,6 +99,20 @@ public class STjoin {
 					}
 				}
 			}
+			writeReducerResult(context, grandchildNameList, grandparentNameList);
+		}
+
+		/**
+		 * @author jingzz
+		 * @param context
+		 * @param grandchildNameList
+		 * @param grandparentNameList
+		 * @throws IOException
+		 * @throws InterruptedException
+		 */
+		private void writeReducerResult(Reducer<Text, Text, Text, Text>.Context context,
+				List<String> grandchildNameList, List<String> grandparentNameList)
+						throws IOException, InterruptedException {
 			if (CollectionUtils.isNotEmpty(grandchildNameList) && CollectionUtils.isNotEmpty(grandparentNameList)) {
 				for (String grandchildName : grandchildNameList) {
 					for (String grandparentName : grandparentNameList) {

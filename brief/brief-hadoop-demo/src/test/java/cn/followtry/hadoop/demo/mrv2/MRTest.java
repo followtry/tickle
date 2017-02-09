@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import cn.followtry.hadoop.demo.v2.mr.Averager;
 import cn.followtry.hadoop.demo.v2.mr.Dedup;
+import cn.followtry.hadoop.demo.v2.mr.MTjoin;
 import cn.followtry.hadoop.demo.v2.mr.STjoin;
 import cn.followtry.hadoop.demo.v2.mr.Sort;
 import cn.followtry.hadoop.demo.v2.mr.WordCountV2;
@@ -113,6 +114,23 @@ public class MRTest {
 			res = true;
 		} catch (Exception e) {
 			LOGGER.error("单表关联异常",e);
+			res = false;
+		}
+		Assert.assertTrue(res);
+	}
+	
+	@Test
+	//多表关联
+	public void test060MTjoin() {
+		inputPath = basePath + "/input_mt";
+		outputPath = basePath + "/output_mt";
+		String[] args = {inputPath,outputPath};
+		boolean res = false;
+		try {
+			MTjoin.main(args);
+			res = true;
+		} catch (Exception e) {
+			LOGGER.error("多表关联异常",e);
 			res = false;
 		}
 		Assert.assertTrue(res);
