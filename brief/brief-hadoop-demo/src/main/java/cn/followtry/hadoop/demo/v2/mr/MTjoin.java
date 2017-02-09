@@ -131,10 +131,9 @@ public class MTjoin {
 
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
-
+		
 		FileInputFormat.setInputPaths(job, inputPaths.toString());
 		FileOutputFormat.setOutputPath(job, new Path(outputPath));
-
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 
 	}

@@ -1,0 +1,10 @@
+zhangsan,56
+lisi,89
+wangwu,100
+maliu,78
+fengqi,88
+zhangsna,96
+lisi,69
+wangwu,80
+maliu,98
+fengqi,38

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import cn.followtry.hadoop.demo.v2.mr.Averager;
 import cn.followtry.hadoop.demo.v2.mr.Dedup;
+import cn.followtry.hadoop.demo.v2.mr.InvertedIndex;
 import cn.followtry.hadoop.demo.v2.mr.MTjoin;
 import cn.followtry.hadoop.demo.v2.mr.STjoin;
 import cn.followtry.hadoop.demo.v2.mr.Sort;
@@ -131,6 +132,23 @@ public class MRTest {
 			res = true;
 		} catch (Exception e) {
 			LOGGER.error("多表关联异常",e);
+			res = false;
+		}
+		Assert.assertTrue(res);
+	}
+	
+	@Test
+	//倒排索引
+	public void test070InvertedIndex() {
+		inputPath = basePath + "/input_inverted";
+		outputPath = basePath + "/output_inverted";
+		String[] args = {inputPath,outputPath};
+		boolean res = false;
+		try {
+			InvertedIndex.main(args);
+			res = true;
+		} catch (Exception e) {
+			LOGGER.error("倒排索引异常",e);
 			res = false;
 		}
 		Assert.assertTrue(res);

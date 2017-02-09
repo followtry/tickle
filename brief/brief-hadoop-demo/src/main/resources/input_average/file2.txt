@@ -1,0 +1,10 @@
+zhangsan2,56
+lisi2,89
+wangwu2,100
+maliu2,78
+fengqi2,88
+zhangsan2,96
+lisi2,69
+wangwu2,80
+maliu2,98
+fengqi2,38
