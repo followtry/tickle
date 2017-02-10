@@ -22,8 +22,6 @@ import org.slf4j.LoggerFactory;
 
 import cn.followtry.hadoop.demo.hdfs.HDFSOper;
 import cn.followtry.hadoop.demo.util.DebugConfUtil;
-import cn.followtry.hadoop.demo.v2.mr.STjoin.STJoinMapper;
-import cn.followtry.hadoop.demo.v2.mr.STjoin.STjoinReducer;
 
 /**
  * 多表连表查询

@@ -8,11 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.followtry.hadoop.demo.v2.mr.Averager;
+import cn.followtry.hadoop.demo.v2.mr.BidirectionalCommonFriends;
 import cn.followtry.hadoop.demo.v2.mr.Dedup;
 import cn.followtry.hadoop.demo.v2.mr.InvertedIndex;
 import cn.followtry.hadoop.demo.v2.mr.MTjoin;
 import cn.followtry.hadoop.demo.v2.mr.STjoin;
 import cn.followtry.hadoop.demo.v2.mr.Sort;
+import cn.followtry.hadoop.demo.v2.mr.UnidirectionCommonFriends;
 import cn.followtry.hadoop.demo.v2.mr.WordCountV2;
 
 /**
@@ -149,6 +151,40 @@ public class MRTest {
 			res = true;
 		} catch (Exception e) {
 			LOGGER.error("倒排索引异常",e);
+			res = false;
+		}
+		Assert.assertTrue(res);
+	}
+	
+	@Test
+	//查找共同的朋友(双向好友)
+	public void test080BidirectionalCommonFriends() {
+		inputPath = basePath + "/input_cf";
+		outputPath = basePath + "/output_cf";
+		String[] args = {inputPath,outputPath};
+		boolean res = false;
+		try {
+			BidirectionalCommonFriends.main(args);
+			res = true;
+		} catch (Exception e) {
+			LOGGER.error("查找共同的朋友引异常",e);
+			res = false;
+		}
+		Assert.assertTrue(res);
+	}
+	
+	@Test
+	//查找共同的朋友（单向好友）
+	public void test090UnidirectionCommonFriends() {
+		inputPath = basePath + "/input_ucf";
+		outputPath = basePath + "/output_ucf";
+		String[] args = {inputPath,outputPath};
+		boolean res = false;
+		try {
+			UnidirectionCommonFriends.main(args);
+			res = true;
+		} catch (Exception e) {
+			LOGGER.error("查找共同的朋友引异常",e);
 			res = false;
 		}
 		Assert.assertTrue(res);
