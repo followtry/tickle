@@ -1,14 +1,6 @@
 package cn.followtry.incubate;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Map;
-
-import javax.net.ssl.SSLContext;
-
+import com.alibaba.fastjson.JSON;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -32,13 +24,17 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
+import javax.net.ssl.SSLContext;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 
 /**
  * 通讯https工具类
- * @author lizhgb
- * @date  2015-9-6 
  *
  */
 public  class HttpClientUtil {

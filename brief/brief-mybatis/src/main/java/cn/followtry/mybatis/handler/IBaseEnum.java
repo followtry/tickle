@@ -12,5 +12,5 @@ package cn.followtry.mybatis.handler;
  */
 public interface IBaseEnum {
 
-	public int getValue();
+	int getValue();
 }

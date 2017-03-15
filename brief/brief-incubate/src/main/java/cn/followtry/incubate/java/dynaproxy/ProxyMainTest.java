@@ -4,6 +4,7 @@
 package cn.followtry.incubate.java.dynaproxy;
 
 /**
+ * 实战练习JDK的接口动态代理和cglib的字节码动态代理。
  * @author jingzz
  * @time 2016年11月15日 下午3:35:29
  * @name brief-example-temp/cn.followtry.prac.java.dynaproxy.ProxyMainTest
