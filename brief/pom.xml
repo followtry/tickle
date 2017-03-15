@@ -48,7 +48,8 @@
     <module>brief-quartz</module>
     <module>brief-hadoop-demo</module>
     <module>brief-zk</module>
-  </modules>
+	   <module>brief-spring</module>
+   </modules>
    
  
 	<properties>
@@ -102,6 +103,25 @@
 		<zookeeper_version>3.4.9</zookeeper_version>
 		
 	</properties>
+
+	<dependencies>
+		<!--为每个子项目都引入日志依赖-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+	</dependencies>
 	
 	<dependencyManagement>
 	  <dependencies>
@@ -502,6 +522,11 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+	  	<dependency>
+		   	<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+	 	</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>

@@ -1,4 +1,4 @@
-package cn.followtry.incubate;
+package cn.followtry.incubate.java.util;
 
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,7 +17,7 @@ import java.util.function.ToIntFunction;
 import java.util.function.ToLongBiFunction;
 import java.util.function.ToLongFunction;
 
-public class ConCurrentHashMapTest {
+public class TestConCurrentHashMap {
 	public static <U> void main(String[] args) throws InterruptedException {
 		/**
 		 * 实现目标： 1.保持hashTable的并发读(典型方法是get，以及迭代器和其他相关方法)的同时最小化更新争夺
