@@ -18,14 +18,14 @@
     <listener-class> org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
-  <!-- spring MVC 的主控Servlet -->
+  <!-- Test MVC 的主控Servlet -->
   <servlet>
     <servlet-name>springMVC</servlet-name>
-    <servlet-class>cn.followtry.custom.CustomDispatherServlet</servlet-class>
+    <servlet-class>cn.followtry.custom.spring.CustomDispatherServlet</servlet-class>
     <!-- 指定mvc配置文件 -->
     <init-param>
     	<param-name>contextConfigLocation</param-name>
-    	<!-- spring mvc配置文件的位置 -->
+    	<!-- Test mvc配置文件的位置 -->
     	<param-value>/WEB-INF/springMVC-servlet.xml</param-value>
     </init-param>
     <!-- 启动立即加载 -->

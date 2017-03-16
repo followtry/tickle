@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.custom;
+package cn.followtry.custom.spring;
 
 import java.io.IOException;
 import java.util.Properties;

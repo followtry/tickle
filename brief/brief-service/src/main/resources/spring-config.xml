@@ -48,7 +48,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		component-scan=org.springframework.context.annotation.ComponentScanBeanDefinitionParser@5ffec78f, 
 		load-time-weaver=org.springframework.context.config.LoadTimeWeaverBeanDefinitionParser@519e1637, 
 		property-placeholder=org.springframework.context.config.PropertyPlaceholderBeanDefinitionParser@1cb1f60a, 
-		spring-configured=org.springframework.context.config.SpringConfiguredBeanDefinitionParser@1fcd9321, 
+		Test-configured=org.springframework.context.config.SpringConfiguredBeanDefinitionParser@1fcd9321,
 		mbean-export=org.springframework.context.config.MBeanExportBeanDefinitionParser@3626ede8}
 	  -->
 	
@@ -71,7 +71,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <bean class="cn.followtry.validation.base.logger.LoggingAspect" />
     <bean class="cn.followtry.validation.base.DefaultAspectServiceChain"/>
 
-    <bean class="cn.followtry.custom.MyListener"/>
+    <bean class="cn.followtry.custom.spring.MyListener"/>
     
     <!-- 引入异常处理 -->
     <!-- <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/> -->

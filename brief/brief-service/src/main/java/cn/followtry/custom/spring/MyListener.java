@@ -1,4 +1,4 @@
-package cn.followtry.custom;
+package cn.followtry.custom.spring;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

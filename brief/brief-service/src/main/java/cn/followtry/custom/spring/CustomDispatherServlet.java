@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.followtry.custom;
+package cn.followtry.custom.spring;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
