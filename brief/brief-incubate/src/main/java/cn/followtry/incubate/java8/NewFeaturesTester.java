@@ -22,19 +22,19 @@ public class NewFeaturesTester {
 		NewFeaturesTester nft = new NewFeaturesTester();
 		
 		// 带有类型声明的lambda表达式
-		MathOperation mathOperation = (int a, int b) -> a + b;
+		FuncInterfaceFeature mathOperation = (int a, int b) -> a + b;
 
 		// 没有类型声明的lambda表达式
-		MathOperation mathOperation2 = (a, b) -> a * b;
+		FuncInterfaceFeature mathOperation2 = (a, b) -> a * b;
 
 		// 带有大括号和类型声明的lambda表达式
-		MathOperation mathOperation3 = (int a, int b) -> {
+		FuncInterfaceFeature mathOperation3 = (int a, int b) -> {
 			a = a + b;
 			return a * b;
 		};
 
 		// 带有大括号，没有类型声明的lambda表达式
-		MathOperation mathOperation4 = (a, b) -> {
+		FuncInterfaceFeature mathOperation4 = (a, b) -> {
 			return a * b;
 		};
 
@@ -73,7 +73,7 @@ public class NewFeaturesTester {
 
 	}
 
-	private int operate(int a, int b, MathOperation mathOperation) {
+	private int operate(int a, int b, FuncInterfaceFeature mathOperation) {
 		return mathOperation.operation(a, b);
 	}
 
