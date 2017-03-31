@@ -4,18 +4,17 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>cn.followtry</groupId>
-    <artifactId>brief</artifactId>
+    <artifactId>brief-dubbo</artifactId>
     <version>0.0.3</version>
   </parent>
   <packaging>jar</packaging>
-  <groupId>cn.followtry</groupId>
-  <artifactId>brief-dubbo-service</artifactId>
+  <artifactId>brief-dubbo-customer</artifactId>
   <dependencies>
-	  	<dependency>
-	  		<groupId>cn.followtry</groupId>
-	  		<artifactId>brief-dubbo-api</artifactId>
-	  		<version>${project.version}</version>
-	  	</dependency>
+  	<dependency>
+  		<groupId>cn.followtry</groupId>
+  		<artifactId>brief-dubbo-api</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
   </dependencies>
   <build>
   		<!-- 指定构建的资源及构建的位置 -->

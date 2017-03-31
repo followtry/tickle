@@ -1,12 +1,11 @@
 package cn.followtry.incubate.java.dynaproxy.aop.lib;
 
-import org.aopalliance.intercept.MethodInvocation;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Before;
-import org.springframework.cglib.proxy.InvocationHandler;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -15,7 +14,7 @@ import java.lang.reflect.Method;
  * JDK产生代理所花时间少，但是执行效率低
  * Created by followtry on 2017/3/26 0026.
  */
-public abstract class AbstractDynaProxy implements InvocationHandler,MethodInvocation {
+public abstract class AbstractDynaProxy implements InvocationHandler {
 
     private Object target;
 

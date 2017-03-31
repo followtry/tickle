@@ -3,17 +3,16 @@
  */
 package cn.followtry.rabbitmq.producer;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
+import cn.followtry.comm.util.TimeUtil;
+import cn.followtry.rabbitmq.core.BaseConfig;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-import cn.followtry.comm.util.TimeUtil;
-import cn.followtry.rabbitmq.core.BaseConfig;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author jingzz
@@ -29,6 +28,9 @@ public class GeneratorProducer {
 	public static void main(String[] args) throws IOException, TimeoutException {
 		connFac.setConnectionTimeout(3000);
 		connFac.setHost(BaseConfig.HOST);
+		connFac.setUsername(BaseConfig.ADMIN);
+		connFac.setPassword(BaseConfig.ADMINPWD);
+		connFac.setPort(BaseConfig.PORT);
 		connFac.setVirtualHost(BaseConfig.VIRTUALHOST);
 		// 创建连接
 		Connection conn = connFac.newConnection();

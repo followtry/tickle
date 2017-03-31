@@ -3,19 +3,13 @@
  */
 package cn.followtry.rabbitmq.consumer;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
-
-import com.rabbitmq.client.BuiltinExchangeType;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.ConsumerCancelledException;
-import com.rabbitmq.client.QueueingConsumer;
-import com.rabbitmq.client.ShutdownSignalException;
-
 import cn.followtry.comm.util.TimeUtil;
 import cn.followtry.rabbitmq.core.BaseConfig;
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author jingzz
@@ -47,9 +41,14 @@ public class GeneratorConsumer {
 
 		QueueingConsumer consumer = new QueueingConsumer(channel);
 		channel.basicConsume(BaseConfig.QUEUE, true, consumer);
+		while (true){
+
 			// nextDelivery是一个阻塞方法（内部实现其实是阻塞队列的take方法）
 			QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 			String message = new String(delivery.getBody());
 			System.out.println(TimeUtil.formatLocalDateTime(System.currentTimeMillis()) + "=" + message + "'");
+
+			TimeUnit.SECONDS.sleep(2);
+		}
 	}
 }
