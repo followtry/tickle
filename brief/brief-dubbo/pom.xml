@@ -15,6 +15,13 @@
     <module>brief-dubbo-service</module>
     <module>brief-dubbo-customer</module>
    </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+  </dependencies>
    
  
 	
