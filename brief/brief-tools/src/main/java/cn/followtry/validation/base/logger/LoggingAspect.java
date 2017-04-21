@@ -23,7 +23,7 @@ public class LoggingAspect extends LoggingAspectBase {
 	 * @param joinPoint
 	 */
 	@Around(AspectJointPoints.SERVICE_ACTIONS)
-	private Object onServiceInvoked(ProceedingJoinPoint joinPoint) {
+	private Object onServiceInvoked(ProceedingJoinPoint joinPoint) throws Throwable {
 		return serviceLogAround(joinPoint);
 	}
 	
@@ -33,7 +33,7 @@ public class LoggingAspect extends LoggingAspectBase {
 	 * @return
 	 */
 	@Around(AspectJointPoints.CONTROLLER_ACTIONS)
-	private Object onControllerInvoked(ProceedingJoinPoint joinPoint) {
+	private Object onControllerInvoked(ProceedingJoinPoint joinPoint) throws Throwable {
 		return controllerLogAround(joinPoint);	
 	}
 	
@@ -43,7 +43,7 @@ public class LoggingAspect extends LoggingAspectBase {
 	 * @param joinPoint 切入点
 	 */
 	@Around(AspectJointPoints.DATA_ACCESS_ACTIONS)
-	private Object onRepositoryInvoked(ProceedingJoinPoint joinPoint) {
+	private Object onRepositoryInvoked(ProceedingJoinPoint joinPoint) throws Throwable {
 		return repositoryLogAround(joinPoint);
 	}
 	
@@ -52,7 +52,7 @@ public class LoggingAspect extends LoggingAspectBase {
 	 * @param joinPoint 切入点
 	 */
 	@Around(AspectJointPoints.COMPONENT_ACTIONS)
-	private Object onComponentInvoked(ProceedingJoinPoint joinPoint) {
+	private Object onComponentInvoked(ProceedingJoinPoint joinPoint) throws Throwable {
 		return componentLogAround(joinPoint);
 	}
 }

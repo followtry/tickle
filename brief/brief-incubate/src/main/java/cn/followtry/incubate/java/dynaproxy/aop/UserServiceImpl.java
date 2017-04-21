@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Before;
  * Created by followtry on 2017/3/26 0026.
  */
 public class UserServiceImpl implements UserService {
+
     @Override
     @Before("")
     public void sayHello(User user) {

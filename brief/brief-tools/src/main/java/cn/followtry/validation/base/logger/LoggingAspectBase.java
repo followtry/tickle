@@ -27,7 +27,7 @@ public abstract class LoggingAspectBase implements ILogging, Ordered {
 		return AspectOrders.LOGGING;
 	}
 
-	protected Object serviceLogAround(ProceedingJoinPoint joinPoint) {
+	protected Object serviceLogAround(ProceedingJoinPoint joinPoint) throws Throwable {
 		Object target = joinPoint.getTarget();
 		XService annotation = AnnoUtils.getAnno(target, XService.class);
 		if (annotation == null) {
@@ -55,7 +55,7 @@ public abstract class LoggingAspectBase implements ILogging, Ordered {
 		return invoke(joinPoint);
 	}
 
-	protected Object repositoryLogAround(ProceedingJoinPoint joinPoint) {
+	protected Object repositoryLogAround(ProceedingJoinPoint joinPoint) throws Throwable {
 		Object target = joinPoint.getTarget();
 		XRepository annotation = AnnoUtils.getAnno(target, XRepository.class);
 		if (annotation == null) {
@@ -83,7 +83,7 @@ public abstract class LoggingAspectBase implements ILogging, Ordered {
 		return invoke(joinPoint);
 	}
 
-	protected Object componentLogAround(ProceedingJoinPoint joinPoint) {
+	protected Object componentLogAround(ProceedingJoinPoint joinPoint) throws Throwable {
 		Object target = joinPoint.getTarget();
 		XComponent annotation = AnnoUtils.getAnno(target, XComponent.class);
 		if (annotation == null) {
@@ -111,7 +111,7 @@ public abstract class LoggingAspectBase implements ILogging, Ordered {
 		return invoke(joinPoint);
 	}
 
-	protected Object controllerLogAround(ProceedingJoinPoint joinPoint) {
+	protected Object controllerLogAround(ProceedingJoinPoint joinPoint) throws Throwable {
 		Object target = joinPoint.getTarget();
 		XController annotation = AnnoUtils.getAnno(target, XController.class);
 		if (annotation == null) {
@@ -179,15 +179,8 @@ public abstract class LoggingAspectBase implements ILogging, Ordered {
 	 * @return
 	 * @throws Throwable
 	 */
-	private Object invoke(ProceedingJoinPoint joinPoint) {
-		Object retn;
-		try {
-			retn = joinPoint.proceed();
-		} catch (Throwable e) {
-			retn = null;
-			LOGGER.error("切面调用异常：", e);
-		}
-		return retn;
+	private Object invoke(ProceedingJoinPoint joinPoint) throws Throwable {
+		return joinPoint.proceed();
 	}
 
 	/**

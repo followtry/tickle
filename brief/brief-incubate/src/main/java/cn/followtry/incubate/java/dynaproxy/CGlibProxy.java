@@ -4,17 +4,16 @@
 package cn.followtry.incubate.java.dynaproxy;
 
 
-import java.lang.reflect.Method;
-
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.Method;
 
 /**
  * 初学cglib动态代理
  * @author jingzz
  * @time 2016年11月15日 下午3:37:43
- * @name brief-example-temp/cn.followtry.prac.java.dynaproxy.CGlibProxy
  * @since 2016年11月15日 下午3:37:43
  */
 public class CGlibProxy implements MethodInterceptor {
@@ -22,10 +21,10 @@ public class CGlibProxy implements MethodInterceptor {
 	private Enhancer enhancer = new Enhancer();
 	
 	@SuppressWarnings({"rawtypes" })
-	public Object getProxy(Class clazz){
+	public <T> T getProxy(Class<T> clazz){
 		enhancer.setSuperclass(clazz);
 		enhancer.setCallback(this);
-		return enhancer.create();
+		return (T) enhancer.create();
 	}
 
 	@Override

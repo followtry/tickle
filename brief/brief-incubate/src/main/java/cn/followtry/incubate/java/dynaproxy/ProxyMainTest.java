@@ -22,7 +22,7 @@ public class ProxyMainTest {
 	 */
 	private static void cglibProxy() {
 		CGlibProxy cGlibProxy = new CGlibProxy();
-		HelloServiceImpl proxy = (HelloServiceImpl)cGlibProxy.getProxy(HelloServiceImpl.class);
+		HelloService proxy = cGlibProxy.getProxy(HelloServiceImpl.class);
 		proxy.say("hello world");
 	}
 

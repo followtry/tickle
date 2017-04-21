@@ -29,32 +29,6 @@
     <artifactId>brief</artifactId>
     <packaging>pom</packaging>
     <version>0.0.3</version>
-	<dependencies>
-		<!--为每个子项目都引入日志依赖-->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-		</dependency>
-	</dependencies>
-	
-	<dependencyManagement>
-	  <dependencies>
 
     <!-- 模块 -->
     <modules>
@@ -96,8 +70,9 @@
         <jsonlib.version>2.4</jsonlib.version>
         <junit.version>4.12</junit.version>
         <kafka.version>0.9.0.1</kafka.version>
-        <log4j.version>1.2.16</log4j.version>
+        <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.16.8</lombok.version>
+        <mail.version>1.4.7</mail.version>
         <mongo.version>3.3.0</mongo.version>
         <mysql.version>5.1.29</mysql.version>
         <mybatis.version>3.4.1</mybatis.version>
@@ -145,10 +120,29 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.amqp</groupId>

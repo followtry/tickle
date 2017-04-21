@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * JDK的动态dialing。
+ * JDK的动态代理
  * JDK产生代理所花时间少，但是执行效率低
  * Created by followtry on 2017/3/26 0026.
  */
