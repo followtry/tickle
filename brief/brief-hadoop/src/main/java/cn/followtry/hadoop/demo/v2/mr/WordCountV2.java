@@ -4,7 +4,8 @@
 package cn.followtry.hadoop.demo.v2.mr;
 
 import java.io.IOException;
-
+import cn.followtry.hadoop.demo.hdfs.HDFSOper;
+import cn.followtry.hadoop.demo.util.DebugConfUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -17,9 +18,6 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
-
-import cn.followtry.hadoop.demo.hdfs.HDFSOper;
-import cn.followtry.hadoop.demo.util.DebugConfUtil;
 
 /**
  * 

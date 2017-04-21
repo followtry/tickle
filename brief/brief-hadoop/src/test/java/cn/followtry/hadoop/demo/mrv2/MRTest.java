@@ -1,12 +1,5 @@
 package cn.followtry.hadoop.demo.mrv2;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import cn.followtry.hadoop.demo.v2.mr.Averager;
 import cn.followtry.hadoop.demo.v2.mr.BidirectionalCommonFriends;
 import cn.followtry.hadoop.demo.v2.mr.Dedup;
@@ -16,6 +9,13 @@ import cn.followtry.hadoop.demo.v2.mr.STjoin;
 import cn.followtry.hadoop.demo.v2.mr.Sort;
 import cn.followtry.hadoop.demo.v2.mr.UnidirectionCommonFriends;
 import cn.followtry.hadoop.demo.v2.mr.WordCountV2;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * mr编程模型操作的测试用例

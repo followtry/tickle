@@ -4,7 +4,6 @@
 package cn.followtry.hadoop.demo.v1.mr;
 
 import java.io.IOException;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;

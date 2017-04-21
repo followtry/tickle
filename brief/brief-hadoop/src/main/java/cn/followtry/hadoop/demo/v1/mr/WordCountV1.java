@@ -4,7 +4,7 @@
 package cn.followtry.hadoop.demo.v1.mr;
 
 import java.io.IOException;
-
+import cn.followtry.hadoop.demo.hdfs.HDFSOper;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -14,8 +14,6 @@ import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
-
-import cn.followtry.hadoop.demo.hdfs.HDFSOper;
 
 /**
  * @author jingzz

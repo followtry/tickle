@@ -1,7 +1,6 @@
 package cn.followtry.hadoop.demo.hdfs;
 
 import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

@@ -1,7 +1,8 @@
 package cn.followtry.hadoop.demo.v2.mr;
 
 import java.io.IOException;
-
+import cn.followtry.hadoop.demo.hdfs.HDFSOper;
+import cn.followtry.hadoop.demo.util.DebugConfUtil;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -14,11 +15,9 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import cn.followtry.hadoop.demo.hdfs.HDFSOper;
-import cn.followtry.hadoop.demo.util.DebugConfUtil;
 
 /**
  * 数据去重
