@@ -10,81 +10,80 @@
 	http://followtry.cn/schema/user
 	http://followtry.cn/schema/user.xsd">
 
-    <user:user age="22" userName="jingzhongzhi"></user:user>
+  <user:user age="22" userName="jingzhongzhi"></user:user>
 
-    <!--context 的处理器为org.springframework.context.config.ContextNamespaceHandler
-        在org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseCustomElement(Element)内处理的；
+  <!--context 的处理器为org.springframework.context.config.ContextNamespaceHandler
+      在org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseCustomElement(Element)内处理的；
+      http://www.springframework.org/schema/aop=org.springframework.aop.config.AopNamespaceHandler,
+      http://www.springframework.org/schema/task=org.springframework.scheduling.config.TaskNamespaceHandler,
+      http://mybatis.org/schema/mybatis-spring=org.mybatis.spring.config.NamespaceHandler,
+      http://www.springframework.org/schema/lang=org.springframework.scripting.config.LangNamespaceHandler,
+      http://www.springframework.org/schema/c=org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler,
+      http://www.springframework.org/schema/jee=org.springframework.ejb.config.JeeNamespaceHandler,
+      http://www.springframework.org/schema/cache=org.springframework.cache.config.CacheNamespaceHandler,
+      http://www.springframework.org/schema/jdbc=org.springframework.jdbc.config.JdbcNamespaceHandler,
+      http://www.springframework.org/schema/p=org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler,
+      http://www.springframework.org/schema/util=org.springframework.beans.factory.xml.UtilNamespaceHandler,
+      http://www.alibaba.com/schema/stat=com.alibaba.druid.support.spring.stat.config.DruidStatNamespaceHandler,
+      http://www.springframework.org/schema/tx=org.springframework.transaction.config.TxNamespaceHandler,
+      http://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler@67488bf2,
 
-        http://www.springframework.org/schema/aop=org.springframework.aop.config.AopNamespaceHandler,
-        http://www.springframework.org/schema/task=org.springframework.scheduling.config.TaskNamespaceHandler,
-        http://mybatis.org/schema/mybatis-spring=org.mybatis.spring.config.NamespaceHandler,
-        http://www.springframework.org/schema/lang=org.springframework.scripting.config.LangNamespaceHandler,
-        http://www.springframework.org/schema/c=org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler,
-        http://www.springframework.org/schema/jee=org.springframework.ejb.config.JeeNamespaceHandler,
-        http://www.springframework.org/schema/cache=org.springframework.cache.config.CacheNamespaceHandler,
-        http://www.springframework.org/schema/jdbc=org.springframework.jdbc.config.JdbcNamespaceHandler,
-        http://www.springframework.org/schema/p=org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler,
-        http://www.springframework.org/schema/util=org.springframework.beans.factory.xml.UtilNamespaceHandler,
-        http://www.alibaba.com/schema/stat=com.alibaba.druid.support.spring.stat.config.DruidStatNamespaceHandler,
-        http://www.springframework.org/schema/tx=org.springframework.transaction.config.TxNamespaceHandler,
-        http://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler@67488bf2,
+      http://www.springframework.org/schema/mvc=org.springframework.web.servlet.config.MvcNamespaceHandler
 
-        http://www.springframework.org/schema/mvc=org.springframework.web.servlet.config.MvcNamespaceHandler
+      context的属性
+      {property-override=org.springframework.context.config.PropertyOverrideBeanDefinitionParser@670d3c63,
+      annotation-config=org.springframework.context.annotation.AnnotationConfigBeanDefinitionParser@5c223806,
+      mbean-server=org.springframework.context.config.MBeanServerBeanDefinitionParser@32b62934,
+      component-scan=org.springframework.context.annotation.ComponentScanBeanDefinitionParser@5ffec78f,
+      load-time-weaver=org.springframework.context.config.LoadTimeWeaverBeanDefinitionParser@519e1637,
+      property-placeholder=org.springframework.context.config.PropertyPlaceholderBeanDefinitionParser@1cb1f60a,
+      Test-configured=org.springframework.context.config.SpringConfiguredBeanDefinitionParser@1fcd9321,
+      mbean-export=org.springframework.context.config.MBeanExportBeanDefinitionParser@3626ede8}
+    -->
 
-        context的属性
-        {property-override=org.springframework.context.config.PropertyOverrideBeanDefinitionParser@670d3c63,
-        annotation-config=org.springframework.context.annotation.AnnotationConfigBeanDefinitionParser@5c223806,
-        mbean-server=org.springframework.context.config.MBeanServerBeanDefinitionParser@32b62934,
-        component-scan=org.springframework.context.annotation.ComponentScanBeanDefinitionParser@5ffec78f,
-        load-time-weaver=org.springframework.context.config.LoadTimeWeaverBeanDefinitionParser@519e1637,
-        property-placeholder=org.springframework.context.config.PropertyPlaceholderBeanDefinitionParser@1cb1f60a,
-        Test-configured=org.springframework.context.config.SpringConfiguredBeanDefinitionParser@1fcd9321,
-        mbean-export=org.springframework.context.config.MBeanExportBeanDefinitionParser@3626ede8}
-      -->
+  <!-- 启动注解方式注入bean -->
+  <context:annotation-config/>
+  <!-- 分解配置 jdbc.properites -->
+  <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties"/>
 
-    <!-- 启动注解方式注入bean -->
-    <context:annotation-config/>
-    <!-- 分解配置 jdbc.properites -->
-    <context:property-placeholder location="classpath:jdbc.properties,classpath:conf.properties"/>
+  <!-- 引入datasource配置 -->
+  <!--     <import resource="data-source-config.xml" /> -->
 
-    <!-- 引入datasource配置 -->
-    <!--     <import resource="data-source-config.xml" /> -->
+  <!--     引入mybatis配置 -->
+  <!--     <import resource="mybatis-config.xml" /> -->
 
-    <!--     引入mybatis配置 -->
-    <!--     <import resource="mybatis-config.xml" /> -->
+  <!--     引入mybatis配置 -->
+  <!--     <import resource="redis-config.xml" /> -->
 
-    <!--     引入mybatis配置 -->
-    <!--     <import resource="redis-config.xml" /> -->
+  <!-- 引入注解校验 -->
+  <context:component-scan base-package="cn.followtry"/>
+  <bean class="cn.followtry.validation.base.logger.LoggingAspect"/>
+  <bean class="cn.followtry.validation.base.DefaultAspectServiceChain"/>
 
-    <!-- 引入注解校验 -->
-    <context:component-scan base-package="cn.followtry"/>
-    <bean class="cn.followtry.validation.base.logger.LoggingAspect"/>
-    <bean class="cn.followtry.validation.base.DefaultAspectServiceChain"/>
+  <bean class="cn.followtry.custom.spring.MyListener"/>
 
-    <bean class="cn.followtry.custom.spring.MyListener"/>
+  <!-- 引入异常处理 -->
+  <!-- <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/> -->
 
-    <!-- 引入异常处理 -->
-    <!-- <bean class="cn.followtry.test.exception.SimpleExceptionHandler"/> -->
+  <!-- 事务管理部分 -->
+  <!--  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource" />
+   </bean>
+   <tx:advice id="txAdvice" transaction-manager="txManager">
+       <tx:attributes>
+           <tx:method name="insert*" propagation="REQUIRED" />
+           <tx:method name="update*" propagation="REQUIRED" />
+           <tx:method name="delete*" propagation="REQUIRED" />
+           <tx:method name="find" read-only="true" />
+           <tx:method name="get" read-only="true" />
+           <tx:method name="*" propagation="REQUIRED" />
+       </tx:attributes>
+   </tx:advice> -->
 
-    <!-- 事务管理部分 -->
-    <!--  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-         <property name="dataSource" ref="dataSource" />
-     </bean>
-     <tx:advice id="txAdvice" transaction-manager="txManager">
-         <tx:attributes>
-             <tx:method name="insert*" propagation="REQUIRED" />
-             <tx:method name="update*" propagation="REQUIRED" />
-             <tx:method name="delete*" propagation="REQUIRED" />
-             <tx:method name="find" read-only="true" />
-             <tx:method name="get" read-only="true" />
-             <tx:method name="*" propagation="REQUIRED" />
-         </tx:attributes>
-     </tx:advice> -->
-
-    <!-- 切面 -->
-    <!--<aop:config>
-            <aop:pointcut expression="execution(* us.xuhang.project.service.*.*(..))"
-                id="pointCut" />
-            <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
-        </aop:config> -->
+  <!-- 切面 -->
+  <!--<aop:config>
+          <aop:pointcut expression="execution(* us.xuhang.project.service.*.*(..))"
+              id="pointCut" />
+          <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
+      </aop:config> -->
 </beans>

@@ -34,10 +34,10 @@ public class BidirectionalCommonFriends {
 
   private static Logger LOGGER = LoggerFactory.getLogger(BidirectionalCommonFriends.class);
 
-  static class CFMapper extends Mapper<LongWritable, Text, Text, Text> {
+  static class CfMapper extends Mapper<LongWritable, Text, Text, Text> {
     @Override
-    protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, Text>
-            .Context context) throws IOException, InterruptedException {
+    protected void map(LongWritable key,Text value,Mapper<LongWritable, Text, Text, Text>.Context
+            context) throws IOException, InterruptedException {
 
       StringTokenizer valueLine = new StringTokenizer(value.toString());
 
@@ -57,15 +57,14 @@ public class BidirectionalCommonFriends {
       // A的所有朋友两两相交的共同好友中肯定有A
       Object[] friends = set.toArray();
       /*
-			 * a b c d e
-			 * 
+       * a b c d e
 			 * ab ac ad ae bc bd be cd ce de
 			 */
       for (int i = 0; i < friends.length - 1; i++) {
         for (int j = i + 1; j < friends.length; j++) {
-          String twoFriend = (String) friends[i] + (String) friends[j];
+          String twoFriend = (String)friends[i] + (String)friends[j];
           // A的任意两个好友的共同好友都有A
-          context.write(new Text(twoFriend), new Text(owner));
+          context.write(new Text(twoFriend),new Text(owner));
         }
       }
     }
@@ -73,21 +72,21 @@ public class BidirectionalCommonFriends {
 
   static class CFReducer extends Reducer<Text, Text, Text, Text> {
     @Override
-    protected void reduce(Text key, Iterable<Text> values, Reducer<Text, Text, Text, Text>
-            .Context context) throws IOException, InterruptedException {
+    protected void reduce(Text key,Iterable<Text> values,Reducer<Text, Text, Text, Text>.Context
+            context) throws IOException, InterruptedException {
       StringBuilder cf = new StringBuilder();
       for (Text friend : values) {
         cf.append(friend.toString());
         cf.append(":");
       }
-      context.write(key, new Text(cf.toString()));
+      context.write(key,new Text(cf.toString()));
     }
   }
 
   public static void main(String[] args) throws IOException, ClassNotFoundException,
           InterruptedException {
     Configuration conf = new Configuration();
-    String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+    String[] otherArgs = new GenericOptionsParser(conf,args).getRemainingArgs();
     if (otherArgs == null || otherArgs.length < 2) {
       LOGGER.error("用法：参数最少为两个，最后一个为输出目录，其他为输入路径");
       System.exit(-1);
@@ -108,17 +107,17 @@ public class BidirectionalCommonFriends {
 
     DebugConfUtil.confByOS(conf);
 
-    Job job = Job.getInstance(conf, "Bidirectional Common Friend num " + RandomUtils.nextInt());
+    Job job = Job.getInstance(conf,"Bidirectional Common Friend num " + RandomUtils.nextInt());
     job.setJarByClass(BidirectionalCommonFriends.class);
 
-    job.setMapperClass(CFMapper.class);
+    job.setMapperClass(cn.followtry.hadoop.demo.v2.mr.BidirectionalCommonFriends.CfMapper.class);
     job.setReducerClass(CFReducer.class);
 
     job.setOutputValueClass(Text.class);
     job.setOutputKeyClass(Text.class);
 
-    FileInputFormat.setInputPaths(job, inputPaths.toString());
-    FileOutputFormat.setOutputPath(job, new Path(outputPath));
+    FileInputFormat.setInputPaths(job,inputPaths.toString());
+    FileOutputFormat.setOutputPath(job,new Path(outputPath));
 
     System.exit(job.waitForCompletion(true) ? 0 : 1);
 

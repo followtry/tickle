@@ -1,11 +1,10 @@
-/**
- *
- */
+
 package cn.jingzztech.prac.java.util.test;
 
 import java.math.BigDecimal;
 
 /**
+ * .
  * @author jingzz
  */
 public class BigDecimalTest {

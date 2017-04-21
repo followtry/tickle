@@ -15,7 +15,10 @@ public class CGlibProxy implements MethodInterceptor {
 
   private Enhancer enhancer = new Enhancer();
 
-  @SuppressWarnings({ "rawtypes" })
+  /**
+   *.
+   */
+  @SuppressWarnings({ "rawtypes","unchecked" })
   public <T> T getProxy(Class<T> clazz) {
     enhancer.setSuperclass(clazz);
     enhancer.setCallback(this);

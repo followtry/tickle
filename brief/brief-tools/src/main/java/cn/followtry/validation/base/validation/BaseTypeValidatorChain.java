@@ -14,7 +14,9 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * ConstraintChainValidator 约束链校验器. <p> ConstraintChainValidator 对指定的一系列约束按照特定次序排列；
+ * ConstraintChainValidator 约束链校验器.
+ *
+ * <p>ConstraintChainValidator 对指定的一系列约束按照特定次序排列；
  *
  * @author haiq
  * @author followtry
@@ -22,19 +24,23 @@ import java.util.Map;
 public class BaseTypeValidatorChain implements ConstraintValidator {
 
   /**
-   * 约束次序表； <p> key:约束类型； <p> value：约束类型对应的次序值；
+   * 约束次序表.
+   *
+   * <p>key:约束类型；
+   *
+   * <p>value：约束类型对应的次序值；
    */
   private static Map<Class<?>, Integer> contraintOrders = new HashMap<Class<?>, Integer>();
 
   static {
-    contraintOrders.put(NotEmpty.class, 1);
+    contraintOrders.put(NotEmpty.class,1);
 
     // 数值约束和字符约束针对的是不同的数据类型；
-    contraintOrders.put(NumericCheck.class, 10);
-    contraintOrders.put(StringCheck.class, 20);
+    contraintOrders.put(NumericCheck.class,10);
+    contraintOrders.put(StringCheck.class,20);
 
     // 自定义约束总是在最后；
-    contraintOrders.put(CustomCheck.class, 100);
+    contraintOrders.put(CustomCheck.class,100);
   }
 
   @SuppressWarnings("unused")
@@ -42,7 +48,7 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
 
   private ConstraintValidator[] validatorChain;
 
-  private BaseTypeValidatorChain(Class<?> targetType, ConstraintValidator[] validatorChain) {
+  private BaseTypeValidatorChain(Class<?> targetType,ConstraintValidator[] validatorChain) {
     this.targetType = targetType;
     this.validatorChain = validatorChain;
   }
@@ -55,13 +61,13 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
   }
 
   /**
-   * 创建针对基本类型的校验链；
+   * 创建针对基本类型的校验链.
    *
    * @param targetType  要校验的目标类型；
    * @param constraints 对目标类型的约束标注列表；如果列表中的标注不适用于此类型，则忽略该标注；
    * @return 当指定的约束标注列表中存在匹配目标类型的有效的标注，则创建并返回校验链；如果没有有效的标注，则返回 null；
    */
-  public static BaseTypeValidatorChain create(Class<?> targetType, Annotation[] constraints) {
+  public static BaseTypeValidatorChain create(Class<?> targetType,Annotation[] constraints) {
     NotEmpty notEmptyCheck = null;
     LinkedList<NumericCheck> numericChecks = new LinkedList<NumericCheck>();
     LinkedList<StringCheck> stringChecks = new LinkedList<StringCheck>();
@@ -78,22 +84,21 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
         if (notEmptyCheck != null) {
           throw new IllegalArgumentException("Cann't set the NotNull constraint twice!");
         }
-        notEmptyCheck = (NotEmpty) anno;
+        notEmptyCheck = (NotEmpty)anno;
       }
 
       if (anno instanceof NumericCheck || anno instanceof NumericChecks) {
         NumericCheck[] numChecks;
         if (anno instanceof NumericCheck) {
-          numChecks = new NumericCheck[]{ (NumericCheck) anno };
+          numChecks = new NumericCheck[] { (NumericCheck)anno };
         } else {
-          numChecks = ( (NumericChecks) anno ).value();
+          numChecks = ((NumericChecks)anno).value();
         }
         for (NumericCheck numericCheck : numChecks) {
 
           // 只能针对基本数值类型进行数值约束校验；
           if (!isNumericType) {
-            throw new IllegalArgumentException("The target type[" + targetType.getName() + "] " +
-                    "doesn't support the NumericCheck!");
+            throw new IllegalArgumentException("The target type[" + targetType.getName() + "] doesn't support the NumericCheck!");
           }
           numericChecks.add(numericCheck);
         }
@@ -102,28 +107,27 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
       if (anno instanceof StringCheck || anno instanceof StringChecks) {
         StringCheck[] strChecks;
         if (anno instanceof StringCheck) {
-          strChecks = new StringCheck[]{ (StringCheck) anno };
+          strChecks = new StringCheck[] { (StringCheck)anno };
         } else {
           // StringChecks;
-          strChecks = ( (StringChecks) anno ).value();
+          strChecks = ((StringChecks)anno).value();
         }
         for (StringCheck stringCheckAnno : strChecks) {
           // 当字符约束的 checkToString 设置为 false 时，不能对字符类型之外的目标类型进行约束校验；
-          if (( !isStringType ) && ( !stringCheckAnno.checkToString() )) {
+          if ((!isStringType) && (!stringCheckAnno.checkToString())) {
             throw new IllegalArgumentException("The none-string target type[" + targetType
-                    .getName() + "] doesn't support the StringCheck when the 'checkToString' " +
-                    "option of this StringCheck is set to 'false'!");
+                    .getName() + "] doesn't support the StringCheck when the 'checkToString' option of this StringCheck is set to 'false'!");
           }
           stringChecks.add(stringCheckAnno);
         }
       }
 
-      if (anno instanceof CollectionCheck && ( (CollectionCheck) anno ).value()) {
-        collectionChecks.add((CollectionCheck) anno);
+      if (anno instanceof CollectionCheck && ((CollectionCheck)anno).value()) {
+        collectionChecks.add((CollectionCheck)anno);
       }
 
       if (anno instanceof CustomCheck) {
-        customChecks.add((CustomCheck) anno);
+        customChecks.add((CustomCheck)anno);
       }
     }
 
@@ -136,17 +140,17 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
     }
     // 创建数值校验；
     for (NumericCheck numCheck : numericChecks) {
-      NumericValidator numValidator = NumericValidator.create(targetType, numCheck, notEmptyCheck);
+      NumericValidator numValidator = NumericValidator.create(targetType,numCheck,notEmptyCheck);
       validatorChain.add(numValidator);
     }
     // 创建文本校验；
     for (StringCheck strCheck : stringChecks) {
-      StringValidator strValidator = StringValidator.create(targetType, strCheck, notEmptyCheck);
+      StringValidator strValidator = StringValidator.create(targetType,strCheck,notEmptyCheck);
       validatorChain.add(strValidator);
     }
 
     for (CustomCheck customCheck : customChecks) {
-      CustomValidator customValidator = CustomValidator.create(customCheck, notEmptyCheck);
+      CustomValidator customValidator = CustomValidator.create(customCheck,notEmptyCheck);
       validatorChain.add(customValidator);
     }
 
@@ -159,7 +163,7 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
     if (validatorChain.size() == 0) {
       return null;
     }
-    return new BaseTypeValidatorChain(targetType, validatorChain.toArray(new
+    return new BaseTypeValidatorChain(targetType,validatorChain.toArray(new
             ConstraintValidator[validatorChain.size()]));
   }
 

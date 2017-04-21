@@ -11,7 +11,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * 集合的流式用法 <p>Created by followtry on 2017/4/10.
+ * 集合的流式用法.
+ *
+ * <p>Created by followtry on 2017/4/10.
  */
 public class CollectionStream {
   private static List<User> users;
@@ -20,25 +22,25 @@ public class CollectionStream {
 
     users = getUserList();
 
-    //		getFirstHobby("music3");
-    //
-    //		getAllHobby("java");
-    //
-    //		getClassifyHobby();
-    //
-    //		getDissHobbies()
-    //		getOlderThan(233);
+    getFirstHobby("music3");
 
-    //		groupBySex();
+    getAllHobby("java");
 
-    //		groupBySexList();
-    //
-    //		getAgeSumGroupBySex();
+    getClassifyHobby();
 
-    //		getAverAgeGroupBySex();
+    getDissHobbies();
+
+    getOlderThan(233);
+
+    groupBySex();
+
+    groupBySexList();
+
+    getAgeSumGroupBySex();
+
+    getAverAgeGroupBySex();
 
     getAverAgeAll();
-
   }
 
   /**
@@ -65,23 +67,23 @@ public class CollectionStream {
     Map<Object, Integer> map = new HashMap<>();
     for (User user : users) {
       Integer oldAgeSum = map.get(user.getSex());
-      map.put(user.getSex(), oldAgeSum == null ? user.getAge() : oldAgeSum + user.getAge());
+      map.put(user.getSex(),oldAgeSum == null ? user.getAge() : oldAgeSum + user.getAge());
       String key = user.getSex() + "&num";
-      map.put(key, map.get(key) == null ? 1 : map.get(key) + 1);
+      map.put(key,map.get(key) == null ? 1 : map.get(key) + 1);
     }
     Map<User.SEX, Double> res = new HashMap<>();
     for (Map.Entry<Object, Integer> item : map.entrySet()) {
       Object key = item.getKey();
       if (key.equals(User.SEX.FEMALE) || key.equals(User.SEX.MALE)) {
         String key2 = key + "&num";
-        res.put((User.SEX) key, Double.valueOf(item.getValue()) / map.get(key2));
+        res.put((User.SEX)key,Double.valueOf(item.getValue()) / map.get(key2));
       }
     }
     System.out.println("按照性别求平均年龄");
     System.out.println("原方式：" + res);
     System.out.println("================================");
     Map<User.SEX, Double> collect = users.parallelStream().collect(Collectors.groupingBy(User
-            ::getSex, Collectors.averagingInt(User::getAge)));
+            ::getSex,Collectors.averagingInt(User::getAge)));
     System.out.println("新方式：" + collect);
   }
 
@@ -92,13 +94,13 @@ public class CollectionStream {
     Map<User.SEX, Integer> map = new HashMap<>();
     for (User user : users) {
       Integer oldAgeSum = map.get(user.getSex());
-      map.put(user.getSex(), oldAgeSum == null ? user.getAge() : oldAgeSum + user.getAge());
+      map.put(user.getSex(),oldAgeSum == null ? user.getAge() : oldAgeSum + user.getAge());
     }
     System.out.println("原方式：" + map);
     System.out.println("====================================");
     //map-reduce方式
     Map<User.SEX, Integer> collect = users.parallelStream().collect(Collectors.groupingBy
-				    (User::getSex, Collectors.reducing(0, User::getAge, Integer::sum)));
+            (User::getSex,Collectors.reducing(0,User::getAge,Integer::sum)));
     System.out.println("新方式：" + collect);
   }
 
@@ -113,12 +115,12 @@ public class CollectionStream {
         oldValue = new ArrayList<>();
       }
       oldValue.add(user.getName());
-      map.put(user.getSex(), oldValue);
+      map.put(user.getSex(),oldValue);
     }
     System.out.println("原方式：" + map);
     System.out.println("=======================================");
     Map<User.SEX, List<String>> collect = users.parallelStream().collect(Collectors.groupingBy
-				    (User::getSex, Collectors.mapping(User::getName, Collectors.toList())));
+            (User::getSex,Collectors.mapping(User::getName,Collectors.toList())));
     System.out.println("新方式：" + collect);
   }
 
@@ -130,16 +132,16 @@ public class CollectionStream {
     for (User user : users) {
       if (user.getSex() == User.SEX.FEMALE) {
         Integer oldValue = map.get(User.SEX.FEMALE);
-        map.put(User.SEX.FEMALE, ( oldValue == null ? 0 : oldValue ) + 1);
+        map.put(User.SEX.FEMALE,(oldValue == null ? 0 : oldValue) + 1);
       } else {
         Integer oldValue = map.get(User.SEX.MALE);
-        map.put(User.SEX.MALE, ( oldValue == null ? 0 : oldValue ) + 1);
+        map.put(User.SEX.MALE,(oldValue == null ? 0 : oldValue) + 1);
       }
     }
     System.out.println("原方式：" + map);
     System.out.println("=============================================");
     Map<User.SEX, Integer> collect = users.parallelStream().collect(Collectors.groupingBy
-				    (User::getSex, Collectors.summingInt(value -> 1)));
+            (User::getSex,Collectors.summingInt(value -> 1)));
     System.out.println("新方式：" + collect);
   }
 
@@ -157,7 +159,7 @@ public class CollectionStream {
     System.out.println("原方式：" + uList);
     System.out.println("=========================================");
     List<User> userList = users.parallelStream().filter(user -> user.getAge() > minAge).collect
-				    (Collectors.toList());
+            (Collectors.toList());
     System.out.println("新方式：" + userList);
   }
 
@@ -172,7 +174,7 @@ public class CollectionStream {
     System.out.println("原方式：" + result);
     System.out.println("==========================================");
     Set<String> res = users.stream().flatMap(user -> user.getHobbies().stream()).collect
-				    (Collectors.toSet());
+            (Collectors.toSet());
     System.out.println("新方式：" + res);
   }
 
@@ -187,7 +189,7 @@ public class CollectionStream {
       } else {
         List<User> uList = new ArrayList<>();
         uList.add(user);
-        result.put(user.getName(), uList);
+        result.put(user.getName(),uList);
       }
     }
     System.out.println(result);
@@ -210,7 +212,7 @@ public class CollectionStream {
     System.out.println("原方式：" + result);
     System.out.println("========================================================");
     List<User> res = users.stream().filter(user -> user.getHobbies().contains(key)).collect
-				    (Collectors.toList());
+            (Collectors.toList());
     System.out.println("新方式：" + res);
   }
 
@@ -227,28 +229,33 @@ public class CollectionStream {
 
     System.out.println("======================================");
     Optional<User> first = users.stream().filter(user -> user.getHobbies().contains(key))
-				    .findFirst();
+            .findFirst();
     System.out.println("新流式方式：" + first.get());
   }
 
   private static List<User> getUserList() {
     List<User> users = new ArrayList<User>() {
       {
-        add(new User(1, "jingzz2", 232, Arrays.asList("Letter writing2", "music3",
-				        "photography6", "tennis3"), User.SEX.FEMALE));
-        add(new User(2, "jingzz1", 231, Arrays.asList("Letter writing1", "music4",
-				        "photography5", "tennis4"), User.SEX.MALE));
-        add(new User(3, "jingzz3", 233, Arrays.asList("Letter writing3", "music1",
-				        "photography8", "tennis1"), User.SEX.MALE));
-        add(new User(4, "jingzz4", 234, Arrays.asList("Letter writing4", "music7",
-				        "photography2", "tennis7"), User.SEX.FEMALE));
-        add(new User(5, "jingzz0", 230, Arrays.asList("Letter writing0", "java", "photography9",
-				        "tennis0"), User.SEX.FEMALE));
-        add(new User(6, "jingzz6", 236, Arrays.asList("Letter writing6", "java", "photography7", "tennis2"), User.SEX.FEMALE));
-        add(new User(7, "jingzz7", 237, Arrays.asList("Letter writing7", "java", "photography1", "tennis8"), User.SEX.FEMALE));
-        add(new User(8, "jingzz9", 239, Arrays.asList("Letter writing9", "music6", "photography3", "tennis6"), User.SEX.MALE));
-        add(new User(9, "jingzz8", 238, Arrays.asList("Letter writing8", "music9", "photography0", "tennis9"), User.SEX.MALE));
-        add(new User(10, "jingzz5", 235, Arrays.asList("Letter writing5", "java", "photography4", "tennis5"), User.SEX.FEMALE));
+        add(new User(1,"jingzz2",232,Arrays.asList("Letter writing2","music3","photography6",
+                "tennis3"),User.SEX.FEMALE));
+        add(new User(2,"jingzz1",231,Arrays.asList("Letter writing1","music4","photography5",
+                "tennis4"),User.SEX.MALE));
+        add(new User(3,"jingzz3",233,Arrays.asList("Letter writing3","music1","photography8",
+                "tennis1"),User.SEX.MALE));
+        add(new User(4,"jingzz4",234,Arrays.asList("Letter writing4","music7","photography2",
+                "tennis7"),User.SEX.FEMALE));
+        add(new User(5,"jingzz0",230,Arrays.asList("Letter writing0","java","photography9",
+                "tennis0"),User.SEX.FEMALE));
+        add(new User(6,"jingzz6",236,Arrays.asList("Letter writing6","java","photography7",
+                "tennis2"),User.SEX.FEMALE));
+        add(new User(7,"jingzz7",237,Arrays.asList("Letter writing7","java","photography1",
+                "tennis8"),User.SEX.FEMALE));
+        add(new User(8,"jingzz9",239,Arrays.asList("Letter writing9","music6","photography3",
+                "tennis6"),User.SEX.MALE));
+        add(new User(9,"jingzz8",238,Arrays.asList("Letter writing8","music9","photography0",
+                "tennis9"),User.SEX.MALE));
+        add(new User(10,"jingzz5",235,Arrays.asList("Letter writing5","java","photography4",
+                "tennis5"),User.SEX.FEMALE));
       }
     };
     return users;

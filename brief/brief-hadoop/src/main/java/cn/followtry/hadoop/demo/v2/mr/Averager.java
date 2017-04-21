@@ -1,8 +1,8 @@
 package cn.followtry.hadoop.demo.v2.mr;
 
-import java.io.IOException;
 import cn.followtry.hadoop.demo.hdfs.HDFSOper;
 import cn.followtry.hadoop.demo.util.DebugConfUtil;
+import java.io.IOException;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 计算平均成绩 brief-hadoop-demo/cn.followtry.hadoop.demo.v2.mr.Averager
+ * 计算平均成绩.
  *
  * @author jingzz
  * @since 2016年12月15日 下午4:32:16
@@ -62,6 +62,9 @@ public class Averager {
     }
   }
 
+  /**
+   * main.
+   */
   public static void main(String[] args) throws Exception {
     Configuration conf = new Configuration();
     String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();

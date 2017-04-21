@@ -1,6 +1,5 @@
 package cn.followtry.mybatis.hive.mapper;
 
-
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -17,7 +16,7 @@ import org.mybatis.spring.annotation.MapperScan;
 public interface CodeHiveUserMapper {
 
   @Select("show databases")
-  List<String> getDBList();
+  List<String> getDbList();
 
   /**
    * .

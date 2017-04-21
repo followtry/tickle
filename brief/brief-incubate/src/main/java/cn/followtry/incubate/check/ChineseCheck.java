@@ -36,6 +36,9 @@ public class ChineseCheck {
     return count > 0;
   }
 
+  /**
+   * main.
+   */
   public static void main(String[] args) {
     String content = "我dsfd";
     int chineseCount = chineseCount(content);

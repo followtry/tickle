@@ -38,10 +38,10 @@ public class CodeHiveMyBatisTest {
     // 获取数据源
     DataSource dataSource = new UnpooledDataSource(driverName, url, username, password);
 
-    JdbcTransactionFactory jdbcTF = new JdbcTransactionFactory();
+    JdbcTransactionFactory jdbcTf = new JdbcTransactionFactory();
 
     // 获取环境
-    Environment environment = new Environment("development", jdbcTF, dataSource);
+    Environment environment = new Environment("development", jdbcTf, dataSource);
 
     // 构建配置类
     Configuration configuration = new Configuration(environment);
@@ -66,7 +66,7 @@ public class CodeHiveMyBatisTest {
 
     // 执行业务逻辑
     CodeHiveUserMapper mapper = session.getMapper(CodeHiveUserMapper.class);
-    getDBList(mapper);
+    getDbList(mapper);
 
     getTableList(mapper);
   }
@@ -74,8 +74,8 @@ public class CodeHiveMyBatisTest {
   /**
    * @author jingzz
    */
-  private static void getDBList(CodeHiveUserMapper mapper) {
-    List<String> dbList = mapper.getDBList();
+  private static void getDbList(CodeHiveUserMapper mapper) {
+    List<String> dbList = mapper.getDbList();
     LOGGER.info(dbList.toString());
   }
 

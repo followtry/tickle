@@ -12,13 +12,12 @@ import java.lang.annotation.Target;
  * @since 2016年3月18日 下午2:49:22 创建时间
  */
 @Constraint
-@Target({ ElementType.METHOD, ElementType.PARAMETER })
+@Target( { ElementType.METHOD,ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CollectionCheck {
 
   /**
-   * 目标对象的名称.
-   * <p>用于在校验失败时输出错误信息；
+   * 目标对象的名称. <p>用于在校验失败时输出错误信息；
    *
    * @return 目标对象的名称
    */
@@ -29,6 +28,6 @@ public @interface CollectionCheck {
    *
    * @return 判断集合是否为空
    */
-  boolean value() default ( false );
+  boolean value() default (false);
 
 }

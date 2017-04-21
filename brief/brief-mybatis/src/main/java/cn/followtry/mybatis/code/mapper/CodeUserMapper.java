@@ -4,7 +4,7 @@ import cn.followtry.mybatis.bean.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-/**
+/**.
  * @author jingzz
  * @since 2016年10月18日 下午3:01:35
  */

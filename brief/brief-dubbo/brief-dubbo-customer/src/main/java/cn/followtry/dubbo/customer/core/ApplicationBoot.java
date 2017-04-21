@@ -5,7 +5,7 @@ import cn.followtry.dubbo.customer.ServiceHandler;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
+/**.
  * @author jingzz
  * @since 2016年10月26日 下午4:16:03
  */

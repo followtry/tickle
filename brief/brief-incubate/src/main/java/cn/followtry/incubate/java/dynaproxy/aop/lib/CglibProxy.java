@@ -5,6 +5,6 @@ package cn.followtry.incubate.java.dynaproxy.aop.lib;
  */
 public interface CglibProxy {
 
-	<T> T getProxy(Class<T> clazz);
+  <T> T getProxy(Class<T> clazz);
 
 }

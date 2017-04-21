@@ -1,13 +1,12 @@
 package cn.jingzztech.prac.springinaction;
 
 import cn.followtry.incubate.springinaction.boot.anno.AnnotationComponent2;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.assertNotNull;
 
 /**
  * 测试{@link AnnotationComponent2}.
@@ -27,6 +26,6 @@ public class AnnotationBootSpringTest {
    */
   @Test
   public void testAnnotationComponent2() {
-    assertNotNull(component2);
+    Assert.assertNotNull(component2);
   }
 }

@@ -13,7 +13,7 @@ public class Base64Test {
   private static InputStream is;
   private static OutputStream os;
 
-  /** main */
+  /** main. */
   public static void main(String[] args) throws Exception {
     String string = "http://www.baidu.com?token=sdflejeklwew&page=1&wd=jdk";
     src = string.getBytes();

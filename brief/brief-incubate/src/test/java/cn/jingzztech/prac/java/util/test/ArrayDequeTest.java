@@ -124,8 +124,8 @@ public class ArrayDequeTest {
 
     /**
      * 与removeFirstOccurrence类似，不同点仅仅是该方法是从tail到head,而removeFirstOccurrence是从head到tail。
-     * int i = head; 				<-> 		int i = (tail - 1) & mask;
-     * i = (i + 1) & mask;     <-> 		i = (i - 1) & mask;
+     * int i = head;<->int i = (tail - 1) & mask;
+     * i = (i + 1) & mask;<->i = (i - 1) & mask;
      *  实现索引位置变化，仅仅以上两点不同而已
      *
      *  在内部删除时调用delete方法，暂时还未看懂
@@ -180,7 +180,7 @@ public class ArrayDequeTest {
      */
     deque.toArray();
 
-    Object[] a = new Object[]{};
+    Object[] a = new Object[] {};
     /**
      * 该方法底层和toArray()调用相同方法copyElements(Object[] a),只不过该方法会自己实例化新的数组对象。
      */
@@ -262,26 +262,24 @@ public class ArrayDequeTest {
      */
     deque.size();
 
-		 
-	   /**
-      * 扩容算法分析.
-      * private void doubleCapacity() {
-      assert head == tail;  //此处断言head==tail
-      int p = head;
-      int n = elements.length;
-      int r = n - p; // number of elements to the right of p //head索引右面所有的元素
-      int newCapacity = n << 1;  //右移1位，即增大2倍
-      if (newCapacity < 0)  //如果右移丢失的最前面的1，导致所有位上的数值都是0
-      throw new IllegalStateException("Sorry, deque too big");
-      Object[] a = new Object[newCapacity]; //新建newCapacity大小的Object[]数组
-      System.arraycopy(elements, p, a, 0, r); //将未读元素复制到新数组前面
-      System.arraycopy(elements, 0, a, r, p); //将已读元素复制在未读数组后面
-      elements = a;
-      head = 0;
-      tail = n;
-      }
-	    *
-	    */
+    /**
+     * 扩容算法分析.
+     * private void doubleCapacity() {
+     assert head == tail;//此处断言head==tail
+     int p = head;
+     int n = elements.length;
+     int r = n - p; // number of elements to the right of p //head索引右面所有的元素
+     int newCapacity = n << 1; //右移1位，即增大2倍
+     if (newCapacity < 0)//如果右移丢失的最前面的1，导致所有位上的数值都是0
+     throw new IllegalStateException("Sorry, deque too big");
+     Object[] a = new Object[newCapacity]; //新建newCapacity大小的Object[]数组
+     System.arraycopy(elements, p, a, 0, r); //将未读元素复制到新数组前面
+     System.arraycopy(elements, 0, a, r, p); //将已读元素复制在未读数组后面
+     elements = a;
+     head = 0;
+     tail = n;
+     }
+     */
     ArrayDeque<String> deque2 = new ArrayDeque<String>();
     for (int i = 0; i < 18; i++) {
       deque2.add("" + i);

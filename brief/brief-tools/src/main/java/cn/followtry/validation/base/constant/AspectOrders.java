@@ -1,7 +1,7 @@
 package cn.followtry.validation.base.constant;
 
 /**
- * AspectOrder 定义了各类切面的顺序的常量；
+ * AspectOrder 定义了各类切面的顺序的常量.
  *
  * @author haiq
  */

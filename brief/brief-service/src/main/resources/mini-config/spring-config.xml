@@ -7,10 +7,10 @@
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- namespace可以依据使用量自行删减 -->
+  <!-- namespace可以依据使用量自行删减 -->
 
-    <!-- 启动注解方式注入bean -->
-    <context:annotation-config/>
-    <!-- 引入springmvc配置 -->
-    <import resource="/WEB-INF/springMVC-servlet.xml"/>
+  <!-- 启动注解方式注入bean -->
+  <context:annotation-config/>
+  <!-- 引入springmvc配置 -->
+  <import resource="/WEB-INF/springMVC-servlet.xml"/>
 </beans>

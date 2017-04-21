@@ -33,7 +33,7 @@ public class BatchThroughputDataFlowJob extends
 
   private PrintContext printContext = new PrintContext(BatchThroughputDataFlowJob.class);
 
-  private Logger LOG = LoggerFactory.getLogger(BatchThroughputDataFlowJob.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(BatchThroughputDataFlowJob.class);
 
   public boolean isStreamingProcess() {
     return true;
@@ -43,10 +43,13 @@ public class BatchThroughputDataFlowJob extends
     return Executors.newFixedThreadPool(10);
   }
 
+  /**
+   * .
+   */
   public int processData(JobExecutionMultipleShardingContext shardingContext, List<ScheduleJob>
           data) {
     printContext.printProcessDataMessage(data);
-    LOG.info("成功被调用");
+    LOGGER.info("成功被调用");
     int successCount = 1;
     return successCount;
   }

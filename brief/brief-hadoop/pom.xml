@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>cn.followtry</groupId>
@@ -9,38 +11,38 @@
   </parent>
   <artifactId>brief-hadoop</artifactId>
   <properties>
-  	<hadoop.version>2.7.2</hadoop.version>
-  	<hbase.version>1.2.4</hbase.version>
+    <hadoop.version>2.7.2</hadoop.version>
+    <hbase.version>1.2.4</hbase.version>
   </properties>
   <dependencies>
     <dependency>
-        <groupId>org.apache.hadoop</groupId>
-        <artifactId>hadoop-client</artifactId>
-        <version>${hadoop.version}</version>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-client</artifactId>
+      <version>${hadoop.version}</version>
     </dependency>
-    
+
     <!-- 测试 -->
     <dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-	</dependency>
-	
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
     <!-- 日志 -->
-	 <dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
-   	</dependency>
-   	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-   	</dependency>
-   	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-   	</dependency>
+    </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
-    </dependencies>
+  </dependencies>
 </project>

@@ -31,7 +31,9 @@ public class BeanValidator implements ConstraintValidator {
           ConcurrentHashMap<Class<?>, BeanValidator>();
 
   /**
-   * 创建 BeanValidator 的实例. <p> 如果指定的类型不是一个符合 Java Bean 规范的类型，或者其没有标注了约束的属性，则返回 null；
+   * 创建 BeanValidator 的实例.
+   *
+   * <p>如果指定的类型不是一个符合 Java Bean 规范的类型，或者其没有标注了约束的属性，则返回 null；
    *
    * @param beanType Bean的类型
    * @return Bean校验器
@@ -80,8 +82,7 @@ public class BeanValidator implements ConstraintValidator {
       beanTraceMap.set(beanSet);
     }
     if (beanSet.contains(beanType)) {
-      throw new IllegalStateException("There are cycle dependencies for the constraint validation" +
-              " of bean[" + beanType.getName() + "]!");
+      throw new IllegalStateException("There are cycle dependencies for the constraint validation of bean[" + beanType.getName() + "]!");
     }
     beanSet.add(beanType);
   }

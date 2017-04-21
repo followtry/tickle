@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>cn.followtry</groupId>
@@ -9,49 +11,49 @@
   </parent>
   <artifactId>brief-hbase</artifactId>
   <properties>
-  	<hbase.version>1.2.4</hbase.version>
-  	<guava.version>16.0</guava.version>
+    <hbase.version>1.2.4</hbase.version>
+    <guava.version>16.0</guava.version>
   </properties>
   <dependencies>
-     <dependency>
-	    <groupId>org.apache.hbase</groupId>
-	    <artifactId>hbase-client</artifactId>
-	    <version>${hbase.version}</version>
-	    <exclusions>
-			<exclusion>
-				<groupId>jdk.tools</groupId>
-				<artifactId>jdk.tools</artifactId>
-			</exclusion>
-			<exclusion>
-		      <groupId>com.google.guava</groupId>
-		      <artifactId>guava</artifactId>
-		   </exclusion>
-		</exclusions>
-	</dependency>
-     <dependency>
+    <dependency>
+      <groupId>org.apache.hbase</groupId>
+      <artifactId>hbase-client</artifactId>
+      <version>${hbase.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>jdk.tools</groupId>
+          <artifactId>jdk.tools</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
     </dependency>
     <!-- 测试 -->
     <dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-	</dependency>
-	
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
     <!-- 日志 -->
-	 <dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
-   	</dependency>
-   	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-   	</dependency>
-   	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-   	</dependency>
+    </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>

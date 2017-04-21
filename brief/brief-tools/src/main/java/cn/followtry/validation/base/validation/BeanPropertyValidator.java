@@ -19,7 +19,7 @@ public class BeanPropertyValidator implements ConstraintValidator {
   /**
    * 创建指定属性的约束校验器.
    *
-   * <p> 如果指定属性未定义约束，则返回 null；
+   * <p>如果指定属性未定义约束，则返回 null；
    *
    * @param propertyDesc 属性描述
    * @return Bean属性校验器

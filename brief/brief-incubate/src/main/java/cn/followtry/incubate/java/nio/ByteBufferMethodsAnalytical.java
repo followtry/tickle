@@ -25,32 +25,32 @@ public class ByteBufferMethodsAnalytical {
     this.buffer = buffer;
   }
 
+  /**
+   * .
+   */
   @SuppressWarnings("static-access")
   public static ByteBufferMethodsAnalytical getIns() {
     if (nioDemo == null) {
-      nioDemo.buffer = nioDemo.buffer.put((byte) 'H').put((byte) 'e').put((byte) 'l').put((byte)
-              'l').put((byte) 'o');
+      nioDemo.buffer = nioDemo.buffer.put((byte)'H').put((byte)'e').put((byte)'l').put((byte)'l')
+              .put((byte)'o');
     }
     return nioDemo;
   }
 
-  /*
+  /**
    * 缓冲区使用了构建器模式串联各个方法.
    *
-   * 缓冲区产生的目的就是为了提高数据的传输效率
+   * <p>缓冲区产生的目的就是为了提高数据的传输效率
    *
-   * 缓冲区四种属性： 容量（Capacity）、上界（limit）、位置（Position）、标记（mark）
-   * 容量：缓冲区能够容纳的数据元素的最大数量，该容量在创建时设定，一旦设定，不可被修改。
-   * 上界：缓冲区第一个不可读的元素，也可以说是现存元素的计数
-   * 位置：下一个要被读或者写的元素的索引，位置会由get和put方法更新
-   * 标记：一个备忘位置,调用mark()方法设定mark = position ,调用reset() 设定 position = mark。标记在设定前是未定义的。
+   * <p>缓冲区四种属性： 容量（Capacity）、上界（limit）、位置（Position）、标记（mark）
+   * <p>容量：缓冲区能够容纳的数据元素的最大数量，该容量在创建时设定，一旦设定，不可被修改。
+   * <p>上界：缓冲区第一个不可读的元素，也可以说是现存元素的计数 位置：下一个要被读或者写的元素的索引，位置会由get和put方法更新 标记：一个备忘位置,调用mark()方法设定mark =
+   * position ,调用reset() 设定 position = mark。标记在设定前是未定义的。
    *
-   *  四个属性的大小关系为:
-   *  0 <= mark <= position <= limit <= capacity
-   *
+   * 四个属性的大小关系为: 0 <= mark <= position <= limit <= capacity
    */
   public static void main(String[] args) {
-
+    //
   }
 
   @SuppressWarnings("static-access")
@@ -80,7 +80,7 @@ public class ByteBufferMethodsAnalytical {
     buffer.allocateDirect(capacity);
 
 		/*
-		 * 将 position 置为 0;  limit 置为容器大小; mark = -1;
+     * 将 position 置为 0;  limit 置为容器大小; mark = -1;
 		 * 当然没有删除原来已经含有的数据，但确实访问不到了，在填充数据时会将原来的数据覆盖掉
 		 */
     buffer.clear();
@@ -146,10 +146,10 @@ public class ByteBufferMethodsAnalytical {
     /**
      * 获取指定长度的数据元素
      */
-    buffer.get(dst, offset, length);
-		
+    buffer.get(dst,offset,length);
+
 		/*
-		 *注意：buffer.get(dst);当传入的 一个数组没有指定长度，相当于要求整个数据被填充，而此时如果缓冲区内的元素不足以将数组填充满，
+     *注意：buffer.get(dst);当传入的 一个数组没有指定长度，相当于要求整个数据被填充，而此时如果缓冲区内的元素不足以将数组填充满，
 		 *程序就会抛出异常
 		 */
 
@@ -214,7 +214,7 @@ public class ByteBufferMethodsAnalytical {
 
     buffer.position();
 
-    buffer.put((byte) '2');
+    buffer.put((byte)'2');
 
     ByteBuffer src = null;
     /**
@@ -235,39 +235,39 @@ public class ByteBufferMethodsAnalytical {
     /**
      * 为指定位置index赋值为b
      */
-    buffer.put(index, b);
+    buffer.put(index,b);
 
-    buffer.put(null, offset, length);
+    buffer.put(null,offset,length);
 
     char value = 0;
     buffer.putChar(value);
 
-    buffer.putChar(index, value);
+    buffer.putChar(index,value);
 
     double value1 = 0;
     buffer.putDouble(value1);
 
-    buffer.putDouble(index, value1);
+    buffer.putDouble(index,value1);
 
     float value2 = 0;
     buffer.putFloat(value2);
 
-    buffer.putFloat(index, value2);
+    buffer.putFloat(index,value2);
 
     int value3 = 0;
     buffer.putInt(value3);
 
-    buffer.putInt(index, value3);
+    buffer.putInt(index,value3);
 
     long value4 = 0;
     buffer.putLong(value4);
 
-    buffer.putLong(index, value4);
+    buffer.putLong(index,value4);
 
     short value5 = 0;
     buffer.putShort(value5);
 
-    buffer.putShort(index, value5);
+    buffer.putShort(index,value5);
 
     /**
      * 不改变limit，将position置为0，将mark置为-1
@@ -293,7 +293,7 @@ public class ByteBufferMethodsAnalytical {
 
     buffer.wrap(dst);
 
-    buffer.wrap(null, offset, length);
+    buffer.wrap(null,offset,length);
 
     @SuppressWarnings("unused") ByteBuffer flipReset = flipReset();
     //在buffer使用flip翻转两次后，调用get方法会报 java.nio.BufferUnderflowException异常
@@ -307,9 +307,9 @@ public class ByteBufferMethodsAnalytical {
     ByteBufferMethodsAnalytical nioDemo = ByteBufferMethodsAnalytical.getIns();
     ByteBuffer byteBuffer = nioDemo.getBuffer();
     System.out.println(byteBuffer.toString());
-		
+
 		/*
-		 * 翻转（flip方法）一次，buffer从能够输入元素的填充状态转为释放状态
+     * 翻转（flip方法）一次，buffer从能够输入元素的填充状态转为释放状态
 		 */
     byteBuffer.flip();
     System.out.println(byteBuffer.toString());

@@ -7,6 +7,6 @@ import java.math.BigDecimal;
  */
 public class BigDecimalTest {
   public static void main(String[] args) {
-    BigDecimal.valueOf(22l);
+    BigDecimal.valueOf(22L);
   }
 }
