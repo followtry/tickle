@@ -1,17 +1,13 @@
-/**
- * 
- */
 package cn.followtry.quartz.task;
 
 /**
+ * Alarm服务.
  * @author jingzz
- * @time 2016年11月24日 上午11:09:08
- * @name brief-quartz/cn.followtry.quartz.AlarmService
  * @since 2016年11月24日 上午11:09:08
  */
 public interface AlarmService {
-	
-	void myAlarm();
-	
-	void callMe();
+
+  void myAlarm();
+
+  void callMe();
 }

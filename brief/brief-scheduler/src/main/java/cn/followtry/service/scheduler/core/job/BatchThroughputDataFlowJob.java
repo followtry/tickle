@@ -17,43 +17,42 @@
 
 package cn.followtry.service.scheduler.core.job;
 
+import cn.followtry.service.scheduler.bean.ScheduleJob;
+import cn.followtry.service.scheduler.util.PrintContext;
+import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
+import com.dangdang.ddframe.job.plugin.job.type.dataflow.AbstractBatchThroughputDataFlowElasticJob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
-import com.dangdang.ddframe.job.plugin.job.type.dataflow.AbstractBatchThroughputDataFlowElasticJob;
+public class BatchThroughputDataFlowJob extends
+        AbstractBatchThroughputDataFlowElasticJob<ScheduleJob> {
 
-import cn.followtry.service.scheduler.bean.ScheduleJob;
-import cn.followtry.service.scheduler.util.PrintContext;
+  private PrintContext printContext = new PrintContext(BatchThroughputDataFlowJob.class);
 
-public class BatchThroughputDataFlowJob extends AbstractBatchThroughputDataFlowElasticJob<ScheduleJob> {
-    
-	 private PrintContext printContext = new PrintContext(BatchThroughputDataFlowJob.class);
-	
-	 private Logger LOG = LoggerFactory.getLogger(BatchThroughputDataFlowJob.class);
-	 
-    public boolean isStreamingProcess() {
-        return true;
-    }
+  private Logger LOG = LoggerFactory.getLogger(BatchThroughputDataFlowJob.class);
 
-    public ExecutorService getExecutorService() {
-        return Executors.newFixedThreadPool(10);
-    }
+  public boolean isStreamingProcess() {
+    return true;
+  }
 
-	public int processData(JobExecutionMultipleShardingContext shardingContext, List<ScheduleJob> data) {
-		printContext.printProcessDataMessage(data);
-		LOG.info("成功被调用");
-        int successCount = 1;
-        return successCount;
-	}
+  public ExecutorService getExecutorService() {
+    return Executors.newFixedThreadPool(10);
+  }
 
-	public List<ScheduleJob> fetchData(JobExecutionMultipleShardingContext shardingContext) {
-		printContext.printFetchDataMessage(shardingContext.getShardingItems());
-        return new ArrayList<ScheduleJob>();
-	}
+  public int processData(JobExecutionMultipleShardingContext shardingContext, List<ScheduleJob>
+          data) {
+    printContext.printProcessDataMessage(data);
+    LOG.info("成功被调用");
+    int successCount = 1;
+    return successCount;
+  }
+
+  public List<ScheduleJob> fetchData(JobExecutionMultipleShardingContext shardingContext) {
+    printContext.printFetchDataMessage(shardingContext.getShardingItems());
+    return new ArrayList<ScheduleJob>();
+  }
 }

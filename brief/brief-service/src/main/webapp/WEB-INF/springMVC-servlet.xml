@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:mvc="http://www.springframework.org/schema/mvc" 
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd 
     http://www.springframework.org/schema/mvc 
     http://www.springframework.org/schema/mvc/spring-mvc.xsd 
@@ -12,58 +12,59 @@
     http://www.springframework.org/schema/context/spring-context.xsd 
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop.xsd ">
-    
+
     <!-- 扫描包base-package下的注解了@Controller，@service@,Repository,@Component的type-->
-	<context:component-scan base-package="cn.followtry"/>
-	<!-- <context:property-placeholder location="classpath:conf.properties" /> -->
-	
-	<!-- 放弃JDK的动态代理，而使用cglib  -->
-	<aop:aspectj-autoproxy proxy-target-class="true" />
-	
-	<!-- 视图解析器 -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass">
-			<value>org.springframework.web.servlet.view.JstlView</value>
-		</property>
-		<property name="prefix">
-			<value>/WEB-INF/jsp/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-	
-	<!-- rest 返回json配置,jackson解析 -->
-	<!-- <mvc:annotation-driven>
-		<mvc:message-converters register-defaults="true">
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-				<property name="prettyPrint" value="true" />
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven> -->
-	
-	<!-- rest 返回json配置,fastjson解析,使用@org.springframework.web.bind.annotation.ResponseBody必须设置json解析器 -->
-	<mvc:annotation-driven>
-		<mvc:message-converters register-defaults="true">
-			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-	            <property name="supportedMediaTypes">
-	                <list>
-	                    <value>application/json;charset=UTF-8</value>
-	                </list>
-	            </property>
-	        </bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
-	<!-- 资源映射 -->
-	<!-- <mvc:resources location="/css/" mapping="/css/**"/>
-	<mvc:resources location="/exam/" mapping="/exam/**"/> -->
-	
-	<!-- 拦截器 -->
-	<!--<mvc:interceptors>	
-		 <mvc:interceptor>
-			<mvc:mapping path="/**/*"/>
-			<bean class="com.yonyou.esn.yycollege.common.CrossInterceptor"></bean>
-		</mvc:interceptor> 
-	</mvc:interceptors>-->
+    <context:component-scan base-package="cn.followtry"/>
+    <!-- <context:property-placeholder location="classpath:conf.properties" /> -->
+
+    <!-- 放弃JDK的动态代理，而使用cglib  -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!-- 视图解析器 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.JstlView</value>
+        </property>
+        <property name="prefix">
+            <value>/WEB-INF/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <!-- rest 返回json配置,jackson解析 -->
+    <!-- <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="prettyPrint" value="true" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven> -->
+
+    <!-- rest 返回json配置,fastjson解析,使用@org.springframework.web.bind.annotation.ResponseBody必须设置json解析器 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- 资源映射 -->
+    <!-- <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/exam/" mapping="/exam/**"/> -->
+
+    <!-- 拦截器 -->
+    <!--<mvc:interceptors>
+         <mvc:interceptor>
+            <mvc:mapping path="/**/*"/>
+            <bean class="com.yonyou.esn.yycollege.common.CrossInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
 </beans>
