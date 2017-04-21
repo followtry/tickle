@@ -18,7 +18,6 @@ public class ServiceHandler {
   private UserService userService;
 
   public User getUser(String id) {
-    User userById = userService.getUserById(id);
-    return userById;
+    return userService.getUserById(id);
   }
 }
