@@ -1,6 +1,4 @@
-/**
- *
- */
+
 package cn.followtry.dubbo.bean;
 
 import java.io.Serializable;

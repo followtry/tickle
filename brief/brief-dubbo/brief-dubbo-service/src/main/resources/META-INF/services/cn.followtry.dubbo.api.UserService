@@ -1,0 +1,2 @@
+cn.followtry.dubbo.impl.DefaultUserServiceImpl
+cn.followtry.dubbo.impl.CustomUserServiceImpl

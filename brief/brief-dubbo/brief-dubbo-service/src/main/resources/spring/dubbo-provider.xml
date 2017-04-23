@@ -5,21 +5,39 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-  <dubbo:application name="dubbo-demo" owner="jingzz" organization="test"/>
+  <dubbo:application name="dubbo-provider-demo" owner="jingzz" organization="followtry" />
 
-  <!-- service provider 本地缓存的service provider列表 文件位置-->
-  <dubbo:registry address="zookeeper://192.168.100.128:2181"/>
+  <!--设置优雅停机超时时间-->
+  <!--<dubbo:parameter key="shut.down.timeout" value="60000"/>-->
+  <!-- service provider 本地缓存的service provider列表 文件位置
+  address地址为host:port,中间用逗号分隔
+  -->
+  <dubbo:registry protocol="zookeeper" address="192.168.2.203:2181,192.168.2.201:2181,192.168.2.202:2181"/>
 
   <!-- 监测协议 -->
   <!-- <dubbo:monitor protocol="registry"/> -->
 
-  <dubbo:protocol name="dubbo" port="28080" contextpath="services"/>
+  <!--
+  accepts:限制连接数最大为10,
+  accesslog:true,设置开启访问日志;http://followtry.cn/wiki/access.log,将日志写入到指定位置
+  -->
+  <dubbo:protocol name="dubbo" port="28080" contextpath="services" accesslog="true"/>
 
   <!-- 实现服务 -->
-  <!--spring已经注解扫描了基础包，即不用再次手写实例bean了(bean的实例化与dubbo:service的先后位置无关) -->
-  <!-- <bean id="etpAccountService" class="com.yonyou.iuap.sns.im.phosvr.service.imp.EtpAccountServiceImpl" /> -->
+  <!--
+  spring已经注解扫描了基础包，即不用再次手写实例bean了(bean的实例化与dubbo:service的先后位置无关)
+  如果接口实现类没有自定义service name,则使用实现类名称（首字母小写）作为ref，否则使用自定义名称。
+  如：对于UserServiceImpl implements UserService，在@Service注解中指定名称则使用指定名称，
+  否则使用userServiceImpl(这是SpringIOC容器实例化bean时的命名生成规则决定的)
+   -->
+  <!--<dubbo:service interface="cn.followtry.dubbo.api.UserService" connections="1" executes="300" ref="userService"/>-->
 
-  <dubbo:service interface="cn.followtry.dubbo.api.UserService" connections="1" executes="300"
-                 ref="userService"/>
+  <!--
+  注解方式指定要暴露的包下的服务。
+    内部实现是调用了Spring的ClassPathBeanDefinitionScanner类的scan接口，
+    可以和<context:component-scan base-package="cn.followtry.dubbo"/>注解一样自动扫描注册bean。
+    而需要暴露的服务调用的注解为@com.alibaba.dubbo.config.annotation.Service
+  -->
+  <dubbo:annotation package="cn.followtry.dubbo"/>
 
 </beans>

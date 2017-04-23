@@ -7,7 +7,7 @@
     <artifactId>brief-dubbo</artifactId>
     <version>0.0.3</version>
   </parent>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <groupId>cn.followtry</groupId>
   <artifactId>brief-dubbo-service</artifactId>
   <dependencies>
@@ -30,12 +30,9 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
-				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-				</includes>
 			</resource>
 		</resources>
   </build>
+
   
 </project>

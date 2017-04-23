@@ -15,11 +15,16 @@ import org.springframework.stereotype.Service;
  * @since 2016年10月26日 上午11:20:28
  */
 @Service("userService")
+/*
+connections:限制最大的客户端连接数为10,
+token:true-随机token令牌，使用UUID生成；"xxx123"-固定token令牌，密码为xxx123
+ */
+@com.alibaba.dubbo.config.annotation.Service(interfaceClass = UserService.class, group = "primary")
 @Slf4j
 public class UserServiceImpl implements UserService {
 
   public UserServiceImpl() {
-    log.info("开始初始化 UserServiceImpl.UserServiceImpl()");
+    log.info("cn.followtry.dubbo.impl.UserServiceImpl.UserServiceImpl()");
   }
 
   @Override

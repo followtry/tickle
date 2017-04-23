@@ -5,16 +5,31 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-  <dubbo:application name="customer" owner="jingzz" organization="test"/>
+  <!--代理生成方式 compiler可以指定为jdk-->
+  <dubbo:application name="customer" owner="jingzz" organization="followtry"/>
 
-  <dubbo:registry address="zookeeper://192.168.100.128:2181"
-                  file="D:\dev_tools\dev_libs\cache\.dubbo\consumer.62.cache"/>
+  <dubbo:registry protocol="zookeeper" address="192.168.2.203:2181,192.168.2.201:2181,192.168.2.202:2181"/>
 
   <!-- 监测协议 -->
   <!-- <dubbo:monitor protocol="registry"/> -->
 
-  <dubbo:protocol name="dubbo" port="28080" contextpath="services"/>
+  <!--
+    accepts:限制连接数最大为10
+  -->
+  <dubbo:protocol name="dubbo" port="28080" contextpath="services" accepts="10"/>
 
-  <dubbo:reference id="userService" interface="cn.followtry.dubbo.api.UserService"/>
+  <!--
+    通过指定属性group将同一接口的不同实现进行分组来在消费端区分不同实现。
+    对于有多个实现的接口，需要在接口上继承java的序列化接口java.io.Serializable，否则会报实现类没有实例化的错误.
+
+    connections:限制客户端连接数最大为10。如果服务端也设置了，那么就以服务端设置为准
+  -->
+  <dubbo:reference  id="userService"  interface="cn.followtry.dubbo.api.UserService" group="primary"/>
+  <!--使用配置文件方式调用RPC服务-->
+  <!--<dubbo:reference  id="customUserService"  interface="cn.followtry.dubbo.api.UserService" group="custom"/>-->
+
+  <!--注解方式实例化对com.alibaba.dubbo.config.annotation.Reference注解的属性-->
+  <dubbo:annotation package="cn.followtry.dubbo"/>
+
 
 </beans>
