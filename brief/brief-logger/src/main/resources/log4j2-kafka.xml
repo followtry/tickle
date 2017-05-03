@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration name="brief-logger" status="info" monitorInterval="5" strict="false">
+  <appenders>
+    <Console name="stdout" target="SYSTEM_OUT">
+      <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+    </Console>
+
+    <!--kafka的配置-->
+    <Kafka topic="test-esn-log-3" name="kafkaLog" >
+      <PatternLayout pattern="%date %message"/>
+      <!--kakfa集群的各个节点：host:port,以逗号分隔-->
+      <Property name="bootstrap.servers">h2m1:9092,h2s1:9092,h2s2:9092</Property>
+    </Kafka>
+
+  </appenders>
+  <loggers>
+
+    <Logger name="org.apache.kafka" level="INFO" />
+    <Root level="info">
+      <AppenderRef ref="stdout"/>
+      <AppenderRef ref="kafkaLog"/>
+    </Root>
+  </loggers>
+</configuration>

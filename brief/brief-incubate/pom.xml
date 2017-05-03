@@ -8,6 +8,11 @@
   </parent>
   <artifactId>brief-incubate</artifactId>
   <dependencies>
+		<dependency>
+			<groupId>cn.followtry</groupId>
+			<artifactId>brief-java</artifactId>
+			<version>0.0.3</version>
+		</dependency>
   	<dependency>
 	    <groupId>com.mashape.unirest</groupId>
 	    <artifactId>unirest-java</artifactId>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--monitorInterval:指定间隔查看配置文件是否更改，更改后自动重新配置，不需要重启服务。-->
+<configuration name="esn-palmyy-plugin" status="info" monitorInterval="5" strict="false">
+
+  <properties>
+    <property name="receipients">jingzz@yonyou.com</property>
+    <property name="from">jingzz@yonyou.com</property>
+    <property name="smtpHost">mail.yonyou.com</property>
+    <property name="smtpPort">25</property>
+    <property name="smtpProtocol">smtp</property>
+    <property name="smtpUser">jingzz@yonyou.com</property>
+    <property name="smtpPassword">jingzz@2015</property>
+    <property name="smtpSubject">用友集团数据同步报错信息</property>
+  </properties>
+
+  <appenders>
+
+    <Console name="stdout" target="SYSTEM_OUT">
+      <!--<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>-->
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+    </Console>
+
+    <RollingFile name="infoLog"
+                 fileName="${catalina.home}/logs/esn-palmyy-plugin/info.log"
+                 append="true"
+                 filePattern="${catalina.home}/logs/esn-palmyy-plugin/info.log.%d{yyyy-MM-dd}">
+      <PatternLayout
+              pattern="%d{yyyy.MM.dd 'at' HH:mm:ss.SSS z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+      <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+      </Policies>
+    </RollingFile>
+
+    <RollingFile name="errorLog"
+                 fileName="${catalina.home}/logs/esn-palmyy-plugin/error.log"
+                 append="true"
+                 filePattern="${catalina.home}/logs/esn-palmyy-plugin/error.log.%d{yyyy-MM-dd}">
+      <PatternLayout
+              pattern="%d{yyyy.MM.dd 'at' HH:mm:ss.SSS z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+      <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+      </Policies>
+    </RollingFile>
+
+    <RollingFile name="errorEsnLog"
+                 fileName="${catalina.home}/logs/esn-palmyy-plugin/error-esn.log"
+                 append="true"
+                 filePattern="${catalina.home}/logs/esn-palmyy-plugin/error-esn.log.%d{yyyy-MM-dd}">
+      <PatternLayout pattern="%d %-5p %t - %c %l - %m%n"/>
+      <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+      </Policies>
+    </RollingFile>
+
+    <!-- appender to send mails (default: error and fatal events)-->
+    <SMTP name="Mailer"
+          subject="${smtpSubject}" to="${receipients}" from="${from}"
+          smtpHost="${smtpHost}" smtpPort="${smtpPort}"
+          smtpProtocol="${smtpProtocol}" smtpUsername="${smtpUser}"
+          smtpPassword="${smtpPassword}" smtpDebug="false" bufferSize="1024">
+      <customHtmlLayout/>
+    </SMTP>
+    <!-- appender to send mails asynchronously -->
+    <Async name="AsyncMailer">
+      <appender-ref ref="Mailer"/>
+    </Async>
+    <!--&lt;!&ndash;jdbc 写库配置&ndash;&gt;-->
+    <JDBC name="databaseAppender" tableName="logger_info">
+      <ConnectionFactory class="com.yonyou.esn.palmyy.common.LoggerConnectionFactory"
+                         method="getDatabaseConnection"/>
+      <Column name="thread_name" pattern="%t"/>
+      <Column name="class_name" pattern="%C"/>
+      <Column name="method_name" pattern="%method"/>
+      <Column name="beginTime" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}"/>
+      <Column name="logger_level" pattern="%level"/>
+      <Column name="logger_name" pattern="%c"/>
+      <Column name="logger_message" pattern="%m"/>
+      <Column name="logger_throwable" pattern="%throwable{3}"/>
+      <Column name="createTime" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}"/>
+    </JDBC>
+
+    <Async name="AsyncDatabaseAppender">
+      <appender-ref ref="databaseAppender"/>
+    </Async>
+    <Async name="asyncNoSqlDbLogger">
+      <appender-ref ref="noSqlDbAppender"/>
+    </Async>
+
+    <!--日志输出到Nosql数据库-->
+      <NoSql name="noSqlDbAppender">
+      <MongoDb databaseName="esn-palmyy" collectionName="log_info" server="172.20.9.41"
+               port="27017"/>
+    </NoSql>
+  </appenders>
+  <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+  <loggers>
+
+    <logger name="AsyncMailerLogger" level="error" additivity="false">
+      <appender-ref ref="Mailer"/>
+    </logger>
+
+    <logger name="noSqlDbLogger" level="info" additivity="false">
+      <appender-ref ref="noSqlDbAppender"/>
+    </logger>
+
+    <logger name="AsyncDBLogger" level="error" additivity="false">
+      <appender-ref ref="databaseAppender"/>
+    </logger>
+
+    <Logger name="errorEsnLogger" level="error" additivity="true">
+      <AppenderRef ref="errorEsnLog"/>
+    </Logger>
+
+    <Root level="debug">
+      <AppenderRef ref="stdout"/>
+      <AppenderRef ref="errorLog"/>
+      <AppenderRef ref="infoLog"/>
+    </Root>
+  </loggers>
+
+</configuration>

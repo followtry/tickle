@@ -29,4 +29,5 @@ public class ApplicationBoot {
     User zhangsan2 = serviceHandler.getUser2("zhangsan2");
     System.out.println(zhangsan2);
   }
+
 }

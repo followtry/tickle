@@ -20,8 +20,10 @@
   <!--
   accepts:限制连接数最大为10,
   accesslog:true,设置开启访问日志;http://followtry.cn/wiki/access.log,将日志写入到指定位置
+  name:协议的名称，默认为dubbo
   -->
-  <dubbo:protocol name="dubbo" port="28080" contextpath="services" accesslog="true"/>
+  <dubbo:protocol name="dubbo" port="28080" contextpath="services" accesslog="true" />
+
 
   <!-- 实现服务 -->
   <!--

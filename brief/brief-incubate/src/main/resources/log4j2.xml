@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--monitorInterval:指定间隔查看配置文件是否更改，更改后自动重新配置，不需要重启服务。-->
+<configuration name="esn-palmyy-plugin" status="info" monitorInterval="5" strict="false">
+
+  <appenders>
+
+    <Console name="stdout" target="SYSTEM_OUT">
+      <!--<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>-->
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+    </Console>
+
+    <RollingFile name="infoLog"
+                 fileName="${catalina.home}/logs/esn-palmyy-plugin/info.log"
+                 append="true"
+                 filePattern="${catalina.home}/logs/esn-palmyy-plugin/info.log.%d{yyyy-MM-dd}">
+      <PatternLayout
+              pattern="%d{yyyy.MM.dd 'at' HH:mm:ss.SSS z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+      <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+      </Policies>
+    </RollingFile>
+  </appenders>
+  <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+  <loggers>
+
+    <Root level="debug">
+      <AppenderRef ref="stdout"/>
+      <AppenderRef ref="infoLog"/>
+    </Root>
+  </loggers>
+
+</configuration>

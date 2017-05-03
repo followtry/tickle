@@ -15,6 +15,8 @@ public class LoggerTest {
 
 	private static final Logger LOGGER=LoggerFactory.getLogger(LoggerTest.class);
 
+	private static final Logger logger_mail = LoggerFactory.getLogger("MailLogger");
+
 	public static void main(String[] args) throws MessagingException {
 
 		/**
