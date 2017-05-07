@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-  <dubbo:application name="dubbo-provider-demo" owner="jingzz" organization="followtry" />
+  <dubbo:application name="provider-demo" owner="jingzz" organization="followtry" />
 
   <!--设置优雅停机超时时间-->
   <!--<dubbo:parameter key="shut.down.timeout" value="60000"/>-->

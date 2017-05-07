@@ -6,7 +6,7 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
   <!--代理生成方式 compiler可以指定为jdk-->
-  <dubbo:application name="customer" owner="jingzz" organization="followtry"/>
+  <dubbo:application  name="customer-demo" owner="jingzz" organization="followtry" />
 
   <dubbo:registry protocol="zookeeper" address="192.168.2.203:2181,192.168.2.201:2181,192.168.2.202:2181"/>
 
@@ -24,7 +24,7 @@
 
     connections:限制客户端连接数最大为10。如果服务端也设置了，那么就以服务端设置为准
   -->
-  <dubbo:reference  id="userService"  interface="cn.followtry.dubbo.api.UserService" group="primary"/>
+  <!--<dubbo:reference  id="userService"  interface="cn.followtry.dubbo.api.UserService" group="primary"/>-->
   <!--使用配置文件方式调用RPC服务-->
   <!--<dubbo:reference  id="customUserService"  interface="cn.followtry.dubbo.api.UserService" group="custom"/>-->
 

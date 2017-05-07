@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 /**
  *
  * dubbo 服务提供者启动类（调试程序用，不需要使用tomcat等servlet容器启动）
- * Created by followtry on 2017/5/7 0007.
+ * <p>生产环境使用 linux---“java -jar dubbo-service.jar > info.log &”;
+ * windows-"javaw  -jar dubbo-service.jar > info.log  &"启动dubbo服务。
+ * <p>Created by followtry on 2017/5/7 0007.
  */
 public class DubboProvider {
 
@@ -15,8 +17,7 @@ public class DubboProvider {
 
   /** main. */
   public static void main(String[] args) {
-    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext
-            ("classpath*:**/applicationContext.xml");
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:**/applicationContext.xml");
     context.start();
 
     synchronized (DubboProvider.class) {
