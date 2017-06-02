@@ -19,7 +19,8 @@ public interface DebugConfig {
 	/** fs.defaultFS **/
 	String FS_DEFAULTFS = "fs.defaultFS";
 	
-	String FS_DEFAULTFS_DEFAULT_VALUE = "hdfs://h2m1:8220";
+	String FS_DEFAULTFS_DEFAULT_VALUE_1 = "hdfs://"+HdfsHaElection.getActiveHaNode()+":8020";
+	String FS_DEFAULTFS_DEFAULT_VALUE = "hdfs://h2m1:8020";
 
 	/**mapred.remote.os */
 	String MAPRED_REMOTE_OS = "mapred.remote.os";

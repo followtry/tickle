@@ -10,7 +10,6 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +32,7 @@ public class HDFSOper {
 
 	static {
 		try {
+			System.out.println(url);
 			fs = FileSystem.get(URI.create(url), config);
 		} catch (IOException e) {
 			LOGGER.error("fs连接异常", e);
