@@ -13,8 +13,8 @@ public class JdkAopTest {
         User user = new User();
         user.setName("jingzz");
         user.setId("ddddddddddoo");
-//        UserService proxyInstance = ProxyFactory.getProxyInstance(UserServiceImpl.class, MyDynaProxy.class);
-//        proxyInstance.sayHello(user);
+        UserService proxyInstance = ProxyFactory.getProxyInstance(UserServiceImpl.class, MyDynaProxy.class);
+        proxyInstance.sayHello(user);
 
         UserService cglibProxyInstance=ProxyFactory.getCglibProxyInstance(UserServiceImpl.class, MyCglibProxy.class);
 
