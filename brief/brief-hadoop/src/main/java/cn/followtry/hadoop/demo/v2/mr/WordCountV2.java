@@ -106,6 +106,7 @@ public class WordCountV2 {
 		FileInputFormat.setInputPaths(job, inputPaths.toString());
 		FileOutputFormat.setOutputPath(job, new Path(outpathDir));
 
+		//waitForCompletion中的参数为详细标识，设置为true会在控制台显示进度。
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
 }

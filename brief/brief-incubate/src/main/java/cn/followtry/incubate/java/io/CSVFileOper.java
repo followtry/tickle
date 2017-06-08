@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * 操作csv文件 Created by jingzz on 2017/3/13.
  */
-public class CsvFileOper {
+public class CSVFileOper {
 
   private static Random random = new Random();
 
