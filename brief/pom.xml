@@ -72,6 +72,7 @@
         <jackson.version>2.6.1</jackson.version>
         <javassist_version>3.15.0-GA</javassist_version>
         <jedis.version>2.8.1</jedis.version>
+        <jetty.version>6.1.26</jetty.version>
         <jsonlib.version>2.4</jsonlib.version>
         <junit.version>4.12</junit.version>
         <kafka.version>0.10.2.1</kafka.version>
@@ -103,7 +104,7 @@
         <spring-redis.version>1.7.1.RELEASE</spring-redis.version>
         <spring-mongo.version>1.9.2.RELEASE</spring-mongo.version>
         <validation.version>1.1.0.Final</validation.version>
-        <zkclient_version>0.1</zkclient_version>
+        <zkclient.version>0.10</zkclient.version>
         <zookeeper_version>3.4.9</zookeeper_version>
 
     </properties>
@@ -118,6 +119,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>com.lmax</groupId>
                 <artifactId>disruptor</artifactId>
@@ -618,9 +626,9 @@
                 <version>${zookeeper_version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.sgroschupf</groupId>
+                <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
-                <version>${zkclient_version}</version>
+                <version>${zkclient.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

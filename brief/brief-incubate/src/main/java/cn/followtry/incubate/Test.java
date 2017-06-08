@@ -1,18 +1,74 @@
-package cn.followtry.incubate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.alibaba.fastjson.JSON;
+import static jdk.nashorn.internal.objects.Global.print;
 
-/**
- * Created by followtry on 2017/4/26. ${END}
- */
 public class Test {
-  static String str = "{\"msg\":\"添加人员【吴梦姣】（0000073575）信息的返回结果\",\"stackInfo\":\"{\\\"code\\\":20009," +
-          "\\\"level\\\":0,\\\"msg\\\":\\\"此用户已停用\\\"," +
-          "\\\"data\\\":{\\\"memberId\\\":\\\"1355\\\"}}\"}";
 
-  /** main. */
-  public static void main(String[] args) {
-    Object parse = JSON.parse(str);
-    System.out.println(parse);
+  class Student {
+    String stuName;
+    int age;
+    String country;
+
+    public String getStuName() {
+      return stuName;
+    }
+
+    public void setStuName(String stuName) {
+      this.stuName = stuName;
+    }
+
+    public int getAge() {
+      return age;
+    }
+
+    public void setAge(int age) {
+      this.age = age;
+    }
+
+    public String getCountry() {
+      return country;
+    }
+
+    public void setCountry(String country) {
+      this.country = country;
+    }
+
   }
+
+
+  public static void main(String[] args) {
+    Test t = new Test();
+    t.test();
+  }
+
+  private void test() {
+    //补全代码
+    List<Student> students = init();
+    students.stream().forEach(student -> System.out.println(student));
+  }
+
+  private List<Student> init() {
+    List<Student> students = new ArrayList<>();
+    Student stu = new Student();
+    stu.setStuName("stu1");
+    stu.setAge(22);
+    stu.setCountry("China");
+    students.add(stu);
+    stu = new Student();
+    stu.setStuName("stu2");
+    stu.setAge(25);
+    stu.setCountry("USA");
+    students.add(stu);
+    stu = new Student();
+    stu.setStuName("stu3");
+    stu.setAge(23);
+    stu.setCountry("China");
+    students.add(stu);
+    return students;
+  }
+
 }
