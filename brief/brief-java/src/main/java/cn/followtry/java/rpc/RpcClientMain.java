@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
  * 最简单的RPC测试
  * Created by followtry on 2017/6/9 0009.
  */
-public class RpcMainTest {
+public class RpcClientMain {
   /** main. */
   public static void main(String[] args) {
     String host ="localhost";
