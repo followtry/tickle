@@ -105,7 +105,7 @@
         <spring-mongo.version>1.9.2.RELEASE</spring-mongo.version>
         <validation.version>1.1.0.Final</validation.version>
         <zookeeper_version>3.4.9</zookeeper_version>
-        <zk-client.version>3.3.0</zk-client.version>
+        <zk-client.version>2.10.0</zk-client.version>
 
     </properties>
 
