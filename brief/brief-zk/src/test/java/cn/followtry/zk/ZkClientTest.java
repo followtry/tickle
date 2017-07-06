@@ -31,7 +31,6 @@ public class ZkClientTest {
   @Before
   public void setup() {
     zkClient = new ZkClient();
-    zkClient.openSession();
     client = zkClient.getClient();
   }
   

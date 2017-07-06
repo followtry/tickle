@@ -1,12 +1,16 @@
 package cn.followtry.incubate.java.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.mail.*;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by followtry on 2017/4/18.
@@ -33,7 +37,7 @@ public class LoggerTest {
 //		sendMail();
 	}
 
-	private static void sendMail() throws MessagingException{
+	private static void sendMail() throws Exception {
 		Properties props=new Properties(){
 			{
 				put("mail.smtp.auth","true");
@@ -44,6 +48,7 @@ public class LoggerTest {
 				put("mail.transport.protocol","smtp");
 			}
 		};
+		
 
 		// 构建授权信息，用于进行SMTP进行身份验证
 		Authenticator authenticator = new Authenticator() {

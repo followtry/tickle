@@ -42,4 +42,5 @@
   -->
   <dubbo:annotation package="cn.followtry.dubbo"/>
 
+
 </beans>

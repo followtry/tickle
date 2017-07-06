@@ -34,7 +34,6 @@ public class ZkProp {
   private static final String DEFAULT_RETRY_POLICY = "oneTime";
   
   private static final String DEFAULT_CAN_BE_READONLY = "false";
-  
   public static String connectionString() {
     return prop.getProperty("connectionString",DEFAULT_ZK_NODE);
   }
