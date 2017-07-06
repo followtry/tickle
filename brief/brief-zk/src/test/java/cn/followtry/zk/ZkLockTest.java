@@ -16,7 +16,9 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
 /**
- * brief-zk/cn.followtry.zk.ZKClient
+ * <pre>
+ *   原生zookeeper操作
+ * </pre>
  *
  * @author jingzz
  * @since 2016年12月30日 下午1:15:56
