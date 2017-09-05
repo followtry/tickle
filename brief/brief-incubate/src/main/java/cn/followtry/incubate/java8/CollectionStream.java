@@ -41,12 +41,32 @@ public class CollectionStream {
     getAverAgeGroupBySex();
 
     getAverAgeAll();
+    
+    getAllUserId();
+  }
+  
+  /**
+   * 获取所有人的userId
+   */
+  private static void getAllUserId() {
+    System.out.println("获取所有人的userId");
+    List<Integer> list = new ArrayList<>(users.size());
+    for (User user : users) {
+      list.add(user.getId());
+    }
+    System.out.println("原方式：" + list);
+    System.out.println("===============================");
+    List<Integer> collect = users.stream().map(User::getId).collect(Collectors.toList());
+    List<Integer> collect2 = users.stream().map(user -> user.getId()).collect(Collectors.toList());
+    System.out.println("新方式：" + collect);
+    System.out.println("新方式：" + collect2);
   }
 
   /**
    * 对所有人计算平均年龄
    */
   private static void getAverAgeAll() {
+    System.out.println("对所有人计算平均年龄");
     int size = users.size();
     int sum = 0;
     for (User user : users) {
