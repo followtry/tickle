@@ -1,14 +1,9 @@
 package cn.followtry.design.pattern.observer;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * 观察者(订阅者)抽象类
  * Created by followtry on 2017/6/5.
  */
-@Getter
-@Setter
 public abstract class ObServer {
   
   private String name;
@@ -17,6 +12,22 @@ public abstract class ObServer {
   
   public ObServer(String name,Topic topic) {
     this.name = name;
+    this.topic = topic;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  public Topic getTopic() {
+    return topic;
+  }
+  
+  public void setTopic(Topic topic) {
     this.topic = topic;
   }
   

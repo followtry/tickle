@@ -11,9 +11,6 @@
     </parent>
     <packaging>jar</packaging>
     <artifactId>brief-mybatis</artifactId>
-    <properties>
-        <hive.version>2.1.1</hive.version>
-    </properties>
     <dependencies>
 
         <dependency>

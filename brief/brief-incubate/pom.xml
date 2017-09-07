@@ -32,6 +32,14 @@
 		<artifactId>poi</artifactId>
 	</dependency>
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
@@ -80,17 +88,7 @@
         	</exclusion>
         	<exclusion>
         		<groupId>org.slf4j</groupId>
- 				<artifactId>slf4j-log4j12</artifactId>
-        	</exclusion>
-        </exclusions>
-    </dependency>
-    <dependency>
-        <groupId>com.github.sgroschupf</groupId>
-        <artifactId>zkclient</artifactId>
-        <exclusions>
-        	<exclusion>
-        		<groupId>log4j</groupId>
-        		<artifactId>log4j</artifactId>
+ 						<artifactId>slf4j-log4j12</artifactId>
         	</exclusion>
         </exclusions>
     </dependency>
