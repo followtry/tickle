@@ -6,7 +6,6 @@
     <version>0.0.3</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.followtry</groupId>
   <artifactId>brief-dubbo-service</artifactId>
   <build>
     <resources>

@@ -9,7 +9,6 @@
     <version>0.0.3</version>
   </parent>
   <packaging>jar</packaging>
-  <groupId>cn.followtry</groupId>
   <artifactId>brief-dubbo-service</artifactId>
   <dependencies>
     <dependency>

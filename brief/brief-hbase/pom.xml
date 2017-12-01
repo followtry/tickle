@@ -11,13 +11,13 @@
   </parent>
   <artifactId>brief-hbase</artifactId>
   <properties>
-    <hbase.version>1.2.4</hbase.version>
+
   </properties>
   <dependencies>
+
     <dependency>
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase-client</artifactId>
-      <version>${hbase.version}</version>
       <exclusions>
         <exclusion>
           <groupId>jdk.tools</groupId>
@@ -29,10 +29,10 @@
         </exclusion>
       </exclusions>
     </dependency>
+    
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>${guava.version}</version>
     </dependency>
   </dependencies>
 </project>
