@@ -15,6 +15,7 @@ public class DefaultUserServiceImpl implements UserService {
     log.info("cn.followtry.dubbo.impl.DefaultUserServiceImpl.DefaultUserServiceImpl()");
   }
 
+
   @Override
   public User getUserById(String id) {
     return new User() {

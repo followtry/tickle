@@ -17,10 +17,12 @@ public class JobListener extends AbstractDistributeOnceElasticJobListener {
     super(startedTimeoutMilliseconds,completedTimeoutMilliseconds);
   }
 
+
   @Override
   public void doBeforeJobExecutedAtLastStarted(JobExecutionMultipleShardingContext shardingContext) {
     System.out.println("JobListener.doBeforeJobExecutedAtLastStarted():在任务执行前执行监听器操作");
   }
+
 
   @Override
   public void doAfterJobExecutedAtLastCompleted(JobExecutionMultipleShardingContext shardingContext) {

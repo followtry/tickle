@@ -14,6 +14,7 @@ public class PlayingGamePerson extends AbstractPerson {
     System.out.println("我是" + name + "，职位是"+loc+"，在玩" + gameName + "游戏");
   }
   
+  
   @Override
   void startWork(String msg) {
     super.startWork(msg);

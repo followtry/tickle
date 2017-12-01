@@ -34,6 +34,7 @@ public class Averager {
 
     private Text name = new Text();
 
+
     @Override
     protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text,
             IntWritable>.Context context) throws IOException, InterruptedException {
@@ -46,6 +47,7 @@ public class Averager {
   }
 
   static class AverageReduce extends Reducer<Text, IntWritable, Text, DoubleWritable> {
+
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Reducer<Text, IntWritable,
             Text, DoubleWritable>.Context context) throws IOException, InterruptedException {

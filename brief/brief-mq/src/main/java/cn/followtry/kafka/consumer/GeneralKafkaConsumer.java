@@ -44,7 +44,8 @@ public class GeneralKafkaConsumer<K, V> {
 		LOGGER.info("获取到的消息总数为{}个", records.count());
 		consumer.commitAsync(new OffsetCommitCallback() {
 
-			@Override
+
+            @Override
 			public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
 				if (MapUtils.isNotEmpty(offsets)) {
 					for (Entry<TopicPartition, OffsetAndMetadata> entry : offsets.entrySet()) {

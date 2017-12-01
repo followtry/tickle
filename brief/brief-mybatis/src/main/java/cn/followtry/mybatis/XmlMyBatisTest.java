@@ -3,12 +3,11 @@
  */
 package cn.followtry.mybatis;
 
+import cn.followtry.mybatis.bean.User;
+import cn.followtry.mybatis.xml.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import cn.followtry.mybatis.bean.User;
-import cn.followtry.mybatis.xml.mapper.UserMapper;
 
 /**
  * 单独操作mybatis持久层框架<br>
@@ -37,9 +36,12 @@ public class XmlMyBatisTest {
 	 * @author jingzz
 	 */
 	private static User get(UserMapper mapper) {
+		User user1 = new User();
+		user1.setId(12L);
+		user1.setName("jjj");
 		//获取数据库操作会话
-		User user = mapper.getUserById(1L);
-		LOGGER.info(user.toString());
+		User user = mapper.getUserById(1L,"jingzhongzhi",user1);
+		LOGGER.info(user == null ?"user为空":user.toString());
 		return user;
 	}
 }

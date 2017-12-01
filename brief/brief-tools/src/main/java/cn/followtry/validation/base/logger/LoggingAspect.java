@@ -13,7 +13,7 @@ import cn.followtry.validation.base.constant.AspectJointPoints;
  * @author followtry
  */
 @Aspect
-public class LoggingAspect extends LoggingAspectBase {
+public class LoggingAspect extends AbstractLoggingAspect {
 
   /**
    * 记录业务服务接口的调用日志；

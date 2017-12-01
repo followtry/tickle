@@ -3,23 +3,25 @@ package cn.followtry.design.pattern.adapter;
 /**
  * Created by followtry on 17/6/7.
  */
-public class Translator extends Player{
+public class Translator extends AbstractPlayer {
   
   String action;
   
-  Player foregin;
+  AbstractPlayer foregin;
   
   public Translator(String name,String position) {
     super(name,position);
   }
   
+
   @Override
   String action() {
     return action;
   }
   
+
   @Override
-  Player action(String action) {
+  AbstractPlayer action(String action) {
     if ("attack".equals(action)) {
       action = "进攻";
     } else if ("defense".equals(action)) {
@@ -27,7 +29,7 @@ public class Translator extends Player{
     } else {
       action ="";
     }
-    Player foreginPlayer = new ForeignPlayer(getName(),getPosition()).action(action);
+    AbstractPlayer foreginPlayer = new ForeignPlayer(getName(),getPosition()).action(action);
     return foreginPlayer;
   }
 }

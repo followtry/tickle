@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>     
-<!DOCTYPE configuration     
-    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"     
-    "http://mybatis.org/dtd/mybatis-3-config.dtd">  
-<configuration>  
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
 	
 	<!-- 指定类型别名 -->
 	<!-- <typeAliases>
@@ -13,6 +12,8 @@
 	<!-- <typeHandlers>
 		<typeHandler handler="cn.followtry.test.mybatis.handler.EnumValueTypeHandler"/>
 	</typeHandlers> -->
+
+
 	
 	<!-- 指定配置文件位置 -->
 	<properties resource="config.properties">
@@ -24,8 +25,16 @@
 	<!-- 设置指定的参数 -->
 	<settings>
 		<setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+    <!--将name_id转化为nameId-->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
+    <setting name="cacheEnabled" value="false"/>
+    <setting name="logImpl" value="STDOUT_LOGGING"/>
 	</settings>
+
+  <plugins>
+    <plugin interceptor="cn.followtry.mybatis.plugin.ParamsPlugin"/>
+    <plugin interceptor="cn.followtry.mybatis.plugin.LogPlugin"/>
+  </plugins>
 
 	<!-- 配置环境及数据源 -->
     <environments default="development"> 
@@ -39,10 +48,11 @@
                 <property name="password" value="${jdbc.pwd}" />  
             </dataSource> 
         </environment>  
-    </environments> 
-    
+    </environments>
+
     <!-- 配置接口映射的xml配置文件 --> 
-    <mappers>  
+    <mappers>
         <mapper resource="cn/followtry/mybatis/userMapper.xml"/>
-    </mappers>  
+    </mappers>
+
 </configuration>

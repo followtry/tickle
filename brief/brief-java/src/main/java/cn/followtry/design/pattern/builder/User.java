@@ -19,9 +19,12 @@ public class User {
   
   private Sex sex;
   
-  private String IdNo;
+  private String idNo;
   
   enum Sex{
-    Male,Female;
+    /**男*/
+    Male,
+    /**女*/
+    Female;
   }
 }

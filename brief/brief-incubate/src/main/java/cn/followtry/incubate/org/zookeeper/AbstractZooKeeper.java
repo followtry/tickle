@@ -30,6 +30,7 @@ public class AbstractZooKeeper implements Watcher {
     return zooKeeper;
   }
 
+
   @Override
   public void process(WatchedEvent event) {
     if (event.getState() == KeeperState.SyncConnected) {

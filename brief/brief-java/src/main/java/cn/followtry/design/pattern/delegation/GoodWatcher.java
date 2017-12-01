@@ -12,11 +12,13 @@ public class GoodWatcher extends AbstractNotifier {
     this.name = name;
   }
   
+  
   @Override
   public Event addListenter(String targetName,Object target,String methodName,Object... params) {
     sendResponse(targetName);
     return this.getEventHandler().addEvent(target,methodName,params);
   }
+  
   
   @Override
   public void sendNotify() {

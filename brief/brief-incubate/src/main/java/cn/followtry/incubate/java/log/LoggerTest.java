@@ -52,7 +52,8 @@ public class LoggerTest {
 
 		// 构建授权信息，用于进行SMTP进行身份验证
 		Authenticator authenticator = new Authenticator() {
-			@Override
+
+            @Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				// 用户名、密码
 				String userName = props.getProperty("mail.user");

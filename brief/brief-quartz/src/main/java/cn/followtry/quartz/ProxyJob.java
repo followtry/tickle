@@ -1,8 +1,6 @@
 package cn.followtry.quartz;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
+import com.alibaba.fastjson.JSON;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -10,30 +8,31 @@ import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class ProxyJob implements Job {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProxyJob.class);
 	
-	public static final String DATA_TARGET_KEY = "target_key";
+	public static final String DATA_TARGET_KEY = "targetKey";
 	
-	public static final String DATA_TRIGGER_KEY = "trigger_key";
+	public static final String DATA_TRIGGER_KEY = "triggerKey";
 	
-	public static final String DATA_TRIGGER_PARAMS_KEY = "trigger_params_key";
+	public static final String DATA_TRIGGER_PARAMS_KEY = "triggerParamsKey";
 	
-	public static final String DATA_TASK_KEY = "task_key";
+	public static final String DATA_TASK_KEY = "taskKey";
 	
 	//注入的属性，与设置JobDataMap是的key同名
-	private Object  target_key;
+	private Object targetKey;
 	
-	private ScheduleTask  task_key;
+	private ScheduleTask taskKey;
 	
-	private Method  trigger_key;
+	private Method triggerKey;
 	
-	private Object[]  trigger_params_key;
+	private Object[] triggerParamsKey;
 	
-	@Override
+    @Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		//原始方式获取jobDataMap中的数据
 		executeViaRawType(context);
@@ -69,12 +68,12 @@ public class ProxyJob implements Job {
 	 * @author jingzz
 	 */
 	private void executeViaInjecting() {
-		String taskJson = JSON.toJSONString(task_key);
+		String taskJson = JSON.toJSONString(taskKey);
 		LOGGER.info("通过注入方式获取到执行的任务:{}",taskJson);
 		System.out.println(taskJson);
-		System.out.println(JSON.toJSONString(task_key));
+		System.out.println(JSON.toJSONString(taskKey));
 		try {
-			trigger_key.invoke(target_key, trigger_params_key);
+			triggerKey.invoke(targetKey, triggerParamsKey);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
@@ -84,20 +83,20 @@ public class ProxyJob implements Job {
 		}
 	}
 
-	public void setTarget_key(Object target_key) {
-		this.target_key = target_key;
+	public void setTargetKey(Object targetKey) {
+		this.targetKey = targetKey;
 	}
 
-	public void setTask_key(ScheduleTask task_key) {
-		this.task_key = task_key;
+	public void setTaskKey(ScheduleTask taskKey) {
+		this.taskKey = taskKey;
 	}
 
-	public void setTrigger_key(Method trigger_key) {
-		this.trigger_key = trigger_key;
+	public void setTriggerKey(Method triggerKey) {
+		this.triggerKey = triggerKey;
 	}
 
-	public void setTrigger_params_key(Object[] trigger_params_key) {
-		this.trigger_params_key = trigger_params_key;
+	public void setTriggerParamsKey(Object[] triggerParamsKey) {
+		this.triggerParamsKey = triggerParamsKey;
 	}
 
 }

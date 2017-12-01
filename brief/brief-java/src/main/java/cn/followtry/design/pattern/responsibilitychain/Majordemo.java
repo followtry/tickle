@@ -4,9 +4,9 @@ package cn.followtry.design.pattern.responsibilitychain;
  * 总监
  * Created by followtry on 17/6/8.
  */
-public class Majordemo extends Manager{
+public class Majordemo extends AbstractManager {
   
-  public Majordemo(String name,Manager superior) {
+  public Majordemo(String name,AbstractManager superior) {
     super(name,superior);
   }
   

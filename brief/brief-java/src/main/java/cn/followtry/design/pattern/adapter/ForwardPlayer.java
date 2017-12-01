@@ -4,7 +4,7 @@ package cn.followtry.design.pattern.adapter;
  * 前锋
  * Created by followtry on 17/6/7.
  */
-public class ForwardPlayer extends Player{
+public class ForwardPlayer extends AbstractPlayer {
   
   String action;
   
@@ -12,11 +12,15 @@ public class ForwardPlayer extends Player{
     super(name,position);
   }
   
+
+  @Override
   String action() {
     return action;
   }
   
-  public Player action(String action) {
+
+  @Override
+  public AbstractPlayer action(String action) {
     this.action = action;
     return this;
   }

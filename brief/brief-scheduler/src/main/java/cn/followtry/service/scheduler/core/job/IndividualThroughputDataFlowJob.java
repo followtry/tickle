@@ -14,17 +14,20 @@ import java.util.List;
  */
 public class IndividualThroughputDataFlowJob extends AbstractIndividualThroughputDataFlowElasticJob<ScheduleJob> {
 
+
   @Override
   public boolean processData(JobExecutionMultipleShardingContext shardingContext,ScheduleJob data) {
     // TODO Auto-generated method stub
     return false;
   }
 
+
   @Override
   public List<ScheduleJob> fetchData(JobExecutionMultipleShardingContext shardingContext) {
     // TODO Auto-generated method stub
     return null;
   }
+
 
   @Override
   public boolean isStreamingProcess() {

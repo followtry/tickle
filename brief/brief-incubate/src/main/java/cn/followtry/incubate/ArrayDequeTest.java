@@ -263,23 +263,24 @@ public class ArrayDequeTest {
     deque.size();
 
 
-	   /* *
-      * 扩容算法分析
-	    * private void doubleCapacity() {
-        assert head == tail;  //此处断言head==tail
-        int p = head;
-        int n = elements.length;
-        int r = n - p; // number of elements to the right of p //head索引右面所有的元素
-        int newCapacity = n << 1;  //右移1位，即增大2倍
-        if (newCapacity < 0)  //如果右移丢失的最前面的1，导致所有位上的数值都是0
-            throw new IllegalStateException("Sorry, deque too big");
-        Object[] a = new Object[newCapacity]; //新建newCapacity大小的Object[]数组
-        System.arraycopy(elements, p, a, 0, r); //将未读元素复制到新数组前面
-        System.arraycopy(elements, 0, a, r, p); //将已读元素复制在未读数组后面
-        elements = a;
-        head = 0;
-        tail = n;
-	    }*/
+    /**
+     * 扩容算法分析
+     * private void doubleCapacity() {
+     assert head == tail;  //此处断言head==tail
+     int p = head;
+     int n = elements.length;
+     int r = n - p; // number of elements to the right of p //head索引右面所有的元素
+     int newCapacity = n << 1;  //右移1位，即增大2倍
+     if (newCapacity < 0)  //如果右移丢失的最前面的1，导致所有位上的数值都是0
+     throw new IllegalStateException("Sorry, deque too big");
+     Object[] a = new Object[newCapacity]; //新建newCapacity大小的Object[]数组
+     System.arraycopy(elements, p, a, 0, r); //将未读元素复制到新数组前面
+     System.arraycopy(elements, 0, a, r, p); //将已读元素复制在未读数组后面
+     elements = a;
+     head = 0;
+     tail = n;
+     }
+     */
     ArrayDeque<String> deque2 = new ArrayDeque<String>();
     for (int i = 0; i < 18; i++) {
       deque2.add("" + i);

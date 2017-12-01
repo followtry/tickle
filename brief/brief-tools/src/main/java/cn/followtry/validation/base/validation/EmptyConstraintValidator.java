@@ -16,7 +16,8 @@ public class EmptyConstraintValidator implements ConstraintValidator{
 	private EmptyConstraintValidator() {
 	}
 
-	@Override
+
+    @Override
 	public void check(Object arg) throws ValidationException {
 		//do nothing;
 	}

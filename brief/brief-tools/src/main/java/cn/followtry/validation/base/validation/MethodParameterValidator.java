@@ -58,7 +58,8 @@ public class MethodParameterValidator implements ConstraintValidator {
 		return new MethodParameterValidator(param, validators.toArray(new ConstraintValidator[validators.size()]));
 	}
 
-	@Override
+
+    @Override
 	public void check(Object arg) throws ValidationException {
 		for (ConstraintValidator validator : validators) {
 			validator.check(arg);

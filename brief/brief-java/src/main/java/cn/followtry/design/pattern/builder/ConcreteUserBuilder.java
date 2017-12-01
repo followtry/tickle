@@ -3,38 +3,38 @@ package cn.followtry.design.pattern.builder;
 /**
  * Created by followtry on 2017/6/6.
  */
-public class ConcreteUserBuilder extends UserBuilder {
+public class ConcreteUserBuilder extends AbstractUserBuilder {
   
   User user = new User();
   
   
   @Override
-  UserBuilder id(String id) {
+  AbstractUserBuilder id(String id) {
     user.setId(id);
     return this;
   }
   
   @Override
-  UserBuilder name(String name) {
+  AbstractUserBuilder name(String name) {
     user.setName(name);
     return this;
   }
   
   @Override
-  UserBuilder pwd(String pwd) {
+  AbstractUserBuilder pwd(String pwd) {
     user.setPwd(pwd);
     return this;
   }
   
   @Override
-  UserBuilder sex(User.Sex sex) {
+  AbstractUserBuilder sex(User.Sex sex) {
     user.setSex(sex);
     return this;
   }
   
   @Override
-  UserBuilder IdNo(String IdNo) {
-    user.setIdNo(IdNo);
+  AbstractUserBuilder idNo(String idNo) {
+    user.setIdNo(idNo);
     return this;
   }
   

@@ -9,15 +9,18 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 public class BriefWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+
   @Override
   protected Class<?>[] getRootConfigClasses() {
     return new Class<?>[]{ RootConfig.class };
   }
 
+
   @Override
   protected Class<?>[] getServletConfigClasses() {
     return new Class<?>[]{ WebConfig.class };
   }
+
 
   @Override
   protected String[] getServletMappings() {

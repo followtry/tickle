@@ -17,7 +17,8 @@ import cn.followtry.validation.base.stereotype.XRepository;
 @XRepository
 public class HelloDaoImpl implements IHelloDao {
 
-	@Override
+
+    @Override
 	public String sayHello(String content) {
 
 		return "hello " + content;

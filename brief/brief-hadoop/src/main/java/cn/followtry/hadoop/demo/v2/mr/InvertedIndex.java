@@ -43,7 +43,8 @@ public class InvertedIndex {
 
 		private FileSplit split;
 
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			split = (FileSplit) context.getInputSplit();
@@ -58,7 +59,8 @@ public class InvertedIndex {
 	}
 
 	static class Combine extends Reducer<Text, Text, Text, Text> {
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<Text> values, Reducer<Text, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			String k = key.toString();
@@ -72,7 +74,8 @@ public class InvertedIndex {
 	}
 	
 	static class InvertedIndexReducer extends Reducer<Text, Text, Text, Text>{
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<Text> values, Reducer<Text, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			StringBuilder sb = new StringBuilder();

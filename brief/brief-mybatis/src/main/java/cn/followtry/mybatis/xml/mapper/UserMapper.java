@@ -4,6 +4,7 @@
 package cn.followtry.mybatis.xml.mapper;
 
 import cn.followtry.mybatis.bean.User;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author jingzz
@@ -13,5 +14,11 @@ import cn.followtry.mybatis.bean.User;
  */
 public interface UserMapper {
 	
-	User getUserById(Long id);
+	/**
+	 * 获取用户信息
+	 * @param id id
+	 * @param name 名称
+	 * @return
+	 */
+	User getUserById(@Param("id") Long id,@Param("name") String name,@Param("user")User user);
 }

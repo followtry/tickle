@@ -50,7 +50,8 @@ public class STjoin {
 
 		String relationType;// 关联类型
 
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			if (key.get() > 0) {
@@ -71,7 +72,8 @@ public class STjoin {
 	}
 
 	static class STjoinReducer extends Reducer<Text, Text, Text, Text> {
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<Text> value, Reducer<Text, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			if (time == 0) {

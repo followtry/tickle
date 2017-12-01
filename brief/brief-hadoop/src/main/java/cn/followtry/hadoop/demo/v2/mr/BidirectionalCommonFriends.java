@@ -36,6 +36,7 @@ public class BidirectionalCommonFriends {
   private static Logger LOGGER = LoggerFactory.getLogger(BidirectionalCommonFriends.class);
 
   static class CfMapper extends Mapper<LongWritable, Text, Text, Text> {
+
     @Override
     protected void map(LongWritable key,Text value,Mapper<LongWritable, Text, Text, Text>.Context
             context) throws IOException, InterruptedException {
@@ -72,6 +73,7 @@ public class BidirectionalCommonFriends {
   }
 
   static class CFReducer extends Reducer<Text, Text, Text, Text> {
+
     @Override
     protected void reduce(Text key,Iterable<Text> values,Reducer<Text, Text, Text, Text>.Context
             context) throws IOException, InterruptedException {

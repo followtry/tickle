@@ -6,7 +6,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * Created by followtry on 2017/3/15.
  */
 public class SimpleDateFormatNameSpaceHander extends NamespaceHandlerSupport{
-	@Override
+    @Override
 	public void init() {
 		//此处可以注册多个Bean的解析器，在需要解析命名空间中的元素时将会代理的解析器
 		/*

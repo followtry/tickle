@@ -23,7 +23,8 @@ public class QuartzServiceImpl implements Job{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(QuartzServiceImpl.class);
 
-	@Override
+
+    @Override
 	
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		

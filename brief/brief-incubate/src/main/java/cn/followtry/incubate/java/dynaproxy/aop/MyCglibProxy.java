@@ -10,12 +10,14 @@ import java.lang.reflect.Method;
  */
 public class MyCglibProxy extends AbstractCglibProxy{
 
-	@Override
+
+    @Override
 	protected void beforeAdvice(Object object, Method method, Object[] params, MethodProxy proxy) {
 		System.out.println("cglib动态代理前置w");
 	}
 
-	@Override
+
+    @Override
 	protected void afterAdvice(Object object, Method method, Object[] params, MethodProxy proxy) {
 		System.out.println("cglib动态代理后置c");
 	}

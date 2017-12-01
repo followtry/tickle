@@ -28,6 +28,7 @@ public abstract class AbstractValidator implements ConstraintValidator {
     this.nullable = nullable;
   }
 
+
   @Override
   public void check(Object value) throws ValidationException {
     if (!ignoreNullableCheck) {

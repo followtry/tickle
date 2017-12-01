@@ -20,7 +20,7 @@ public class RpcClientMain {
       e.printStackTrace();
     }
     RpcImporter rpcImporter = new RpcImporter();
-    EchoService importer = rpcImporter.importer(EchoServiceImpl.class,new InetSocketAddress
+    EchoService importer = RpcImporter.importer(EchoServiceImpl.class,new InetSocketAddress
             (host,port));
     for (int i = 0; i <10 ; i++) {
 

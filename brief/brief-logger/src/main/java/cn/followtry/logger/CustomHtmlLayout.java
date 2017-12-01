@@ -2,6 +2,18 @@ package cn.followtry.logger;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.LogEvent;
+import org.apache.logging.log4j.core.config.plugins.Plugin;
+import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
+import org.apache.logging.log4j.core.config.plugins.PluginBuilderAttribute;
+import org.apache.logging.log4j.core.config.plugins.PluginBuilderFactory;
+import org.apache.logging.log4j.core.config.plugins.PluginFactory;
+import org.apache.logging.log4j.core.layout.AbstractStringLayout;
+import org.apache.logging.log4j.core.layout.HtmlLayout;
+import org.apache.logging.log4j.core.util.Transform;
+import org.apache.logging.log4j.util.Strings;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.io.LineNumberReader;
@@ -15,17 +27,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.core.LogEvent;
-import org.apache.logging.log4j.core.config.plugins.Plugin;
-import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
-import org.apache.logging.log4j.core.config.plugins.PluginBuilderAttribute;
-import org.apache.logging.log4j.core.config.plugins.PluginBuilderFactory;
-import org.apache.logging.log4j.core.config.plugins.PluginFactory;
-import org.apache.logging.log4j.core.layout.AbstractStringLayout;
-import org.apache.logging.log4j.core.layout.HtmlLayout;
-import org.apache.logging.log4j.core.util.Transform;
-import org.apache.logging.log4j.util.Strings;
 
 @Plugin(
 
@@ -75,6 +76,7 @@ public class CustomHtmlLayout extends AbstractStringLayout {
             .contains("charset") ? contentType : contentType + "; charset=" + this.getCharset());
   }
 
+  @Override
   public String toSerializable(LogEvent event) {
     StringBuilder sbuf = getStringBuilder();
 
@@ -252,6 +254,7 @@ public class CustomHtmlLayout extends AbstractStringLayout {
     return jsonObjects == null ? Collections.emptyList() : jsonObjects;
   }
 
+  @Override
   public String getContentType() {
     return this.contentType;
   }
@@ -283,10 +286,10 @@ public class CustomHtmlLayout extends AbstractStringLayout {
     }
 
     boolean first1 = true;
-    Iterator i$ = lines.iterator();
+    Iterator iter = lines.iterator();
 
-    while (i$.hasNext()) {
-      String line = (String)i$.next();
+    while (iter.hasNext()) {
+      String line = (String)iter.next();
       if (!first1) {
         sbuf.append("<br />&nbsp;&nbsp;&nbsp;&nbsp;");
       } else {
@@ -309,6 +312,7 @@ public class CustomHtmlLayout extends AbstractStringLayout {
     return sbuilder;
   }
 
+  @Override
   public byte[] getHeader() {
     StringBuilder sbuf = new StringBuilder();
     this.append(sbuf,"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" ");
@@ -352,6 +356,7 @@ public class CustomHtmlLayout extends AbstractStringLayout {
     return sbuf.toString().getBytes(this.getCharset());
   }
 
+  @Override
   public byte[] getFooter() {
     StringBuilder sbuf = new StringBuilder();
     this.appendLs(sbuf,"</table>");
@@ -391,7 +396,7 @@ public class CustomHtmlLayout extends AbstractStringLayout {
   }
 
   static {
-    REGEXP = Strings.LINE_SEPARATOR.equals("\n") ? "\n" : Strings.LINE_SEPARATOR + "|\n";
+    REGEXP = "\n".equals(Strings.LINE_SEPARATOR) ? "\n" : Strings.LINE_SEPARATOR + "|\n";
   }
 
   public static class Builder implements org.apache.logging.log4j.core.util
@@ -448,6 +453,7 @@ public class CustomHtmlLayout extends AbstractStringLayout {
       return this;
     }
 
+    @Override
     public CustomHtmlLayout build() {
       if (this.contentType == null) {
         this.contentType = "text/html; charset=" + this.charset;
@@ -458,20 +464,29 @@ public class CustomHtmlLayout extends AbstractStringLayout {
     }
   }
 
-  public static enum FontSize {
+  public enum FontSize {
+    /**smaller*/
     SMALLER("smaller"),
+    /**xx-small*/
     XXSMALL("xx-small"),
+    /**x-small*/
     XSMALL("x-small"),
+    /**small*/
     SMALL("small"),
+    /**medium*/
     MEDIUM("medium"),
+    /***/
     LARGE("large"),
+    /**large*/
     XLARGE("x-large"),
+    /**xx-large*/
     XXLARGE("xx-large"),
+    /**larger*/
     LARGER("larger");
 
     private final String size;
 
-    private FontSize(String size) {
+    FontSize(String size) {
       this.size = size;
     }
 
@@ -480,11 +495,11 @@ public class CustomHtmlLayout extends AbstractStringLayout {
     }
 
     public static CustomHtmlLayout.FontSize getFontSize(String size) {
-      CustomHtmlLayout.FontSize[] arr$ = values();
-      int len$ = arr$.length;
+      CustomHtmlLayout.FontSize[] arr = values();
+      int len = arr.length;
 
-      for (int i$ = 0; i$ < len$; ++i$) {
-        CustomHtmlLayout.FontSize fontSize = arr$[i$];
+      for (int i = 0; i < len; ++i) {
+        CustomHtmlLayout.FontSize fontSize = arr[i];
         if (fontSize.size.equals(size)) {
           return fontSize;
         }

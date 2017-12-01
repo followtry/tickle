@@ -22,7 +22,7 @@ public class ByteBufferMethodsAnalytical {
 
   @SuppressWarnings("static-access")
   public void setBuffer(ByteBuffer buffer) {
-    this.buffer = buffer;
+    ByteBufferMethodsAnalytical.buffer = buffer;
   }
 
   /**
@@ -31,7 +31,7 @@ public class ByteBufferMethodsAnalytical {
   @SuppressWarnings("static-access")
   public static ByteBufferMethodsAnalytical getIns() {
     if (nioDemo == null) {
-      nioDemo.buffer = nioDemo.buffer.put((byte)'H').put((byte)'e').put((byte)'l').put((byte)'l')
+      buffer = buffer.put((byte)'H').put((byte)'e').put((byte)'l').put((byte)'l')
               .put((byte)'o');
     }
     return nioDemo;
@@ -75,9 +75,9 @@ public class ByteBufferMethodsAnalytical {
     buffer.asShortBuffer();
 
     int capacity = 100;
-    buffer.allocate(capacity);
+    ByteBuffer.allocate(capacity);
 
-    buffer.allocateDirect(capacity);
+    ByteBuffer.allocateDirect(capacity);
 
 		/*
      * 将 position 置为 0;  limit 置为容器大小; mark = -1;
@@ -291,9 +291,9 @@ public class ByteBufferMethodsAnalytical {
 
     buffer.toString();
 
-    buffer.wrap(dst);
+    ByteBuffer.wrap(dst);
 
-    buffer.wrap(null,offset,length);
+    ByteBuffer.wrap(null,offset,length);
 
     @SuppressWarnings("unused") ByteBuffer flipReset = flipReset();
     //在buffer使用flip翻转两次后，调用get方法会报 java.nio.BufferUnderflowException异常

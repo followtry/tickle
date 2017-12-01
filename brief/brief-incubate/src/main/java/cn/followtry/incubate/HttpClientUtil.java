@@ -92,11 +92,15 @@ public  class HttpClientUtil {
 	public static String httpsPost(String action, Map<String, String> headerParam, Object bodyParam, String contentType, String charSet) throws Exception{
 		
 		
-		String content_type = contentType;
-		if (content_type == null || "".equals(content_type)) content_type = DEFAULT_CONTENT_TYPE_JSON;
+		String contentType1 = contentType;
+		if (contentType1 == null || "".equals(contentType1)) {
+            contentType1 = DEFAULT_CONTENT_TYPE_JSON;
+        }
 		
-		String char_set = charSet;
-		if (char_set == null || "".equals(char_set)) char_set = DEFAULT_CHARSET_UTF8;		
+		String charSet1 = charSet;
+		if (charSet1 == null || "".equals(charSet1)) {
+            charSet1 = DEFAULT_CHARSET_UTF8;
+        }
 		
 		String url = action;
 		LOGGER.info("Post请求地址：" + url);
@@ -114,9 +118,9 @@ public  class HttpClientUtil {
 		//entity数据
 		if (bodyParam != null ) {
 			LOGGER.info("Post请求Body：" + JSON.toJSONString(bodyParam));
-			StringEntity entity = new StringEntity(JSON.toJSONString(bodyParam),char_set);	
-			entity.setContentEncoding(char_set);
-			entity.setContentType(content_type);
+			StringEntity entity = new StringEntity(JSON.toJSONString(bodyParam),charSet1);
+			entity.setContentEncoding(charSet1);
+			entity.setContentType(contentType1);
 			httpPost.setEntity(entity);		
 		}
 		
@@ -215,7 +219,8 @@ public  class HttpClientUtil {
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, 
 					new TrustStrategy() {
-						public boolean isTrusted(
+                        @Override
+                        public boolean isTrusted(
 								java.security.cert.X509Certificate[] chain,
 								String authType)
 								throws java.security.cert.CertificateException {							

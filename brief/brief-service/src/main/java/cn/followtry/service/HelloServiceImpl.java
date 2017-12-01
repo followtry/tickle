@@ -22,7 +22,8 @@ public class HelloServiceImpl implements IHello {
 	@Autowired
 	private IHelloDao helloDao;
 	
-	@Override
+
+    @Override
 	public String sayHello(String content) {
 		String sayHello = helloDao.sayHello(content);
 		return sayHello;

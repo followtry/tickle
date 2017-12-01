@@ -16,25 +16,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class Audience {
 
-  private static final String pointCutPoint = "execution(** cn.followtry.springboot"
+  private static final String POINT_CUT_POINT = "execution(** cn.followtry.springboot"
           + ".springinaction.aop.Performance.perform(..))";
 
-  @Before(pointCutPoint)
+  @Before(POINT_CUT_POINT)
   public void before() {
     System.out.println("Audience.Before()");
   }
 
-  @Before(pointCutPoint)
+  @Before(POINT_CUT_POINT)
   public void before2() {
     System.out.println("Audience.Before()2");
   }
 
-  @AfterReturning(pointCutPoint)
+  @AfterReturning(POINT_CUT_POINT)
   public void afterReturning() {
     System.out.println("Audience.AfterReturning()");
   }
 
-  @AfterThrowing(pointCutPoint)
+  @AfterThrowing(POINT_CUT_POINT)
   public void afterThrowing() {
     System.out.println("Audience.AfterThrowing()");
   }

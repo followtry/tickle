@@ -3,7 +3,11 @@
  */
 package cn.followtry.mybatis.bean;
 
+import com.google.common.collect.Lists;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -21,7 +25,10 @@ public class User{
 	private Integer age;
 	
 	private Date date;
-
+	
+	public User() {
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +64,20 @@ public class User{
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", age=" + age + ", date=" + date + "]";
+	}
+	
+	public static Integer haha = 3;
+	public static String[] arr = {"123","456","789"};
+	public static List list = Lists.newArrayList("a","b","c");
+	
+	public static Map map = new HashMap(){{
+		put("123","followtry");
+		put("4567","jing1");
+		put("1239","jing2");
+	}};
+	
+	public static String name(){
+		return "jingzhongzhi";
 	}
 	
 }

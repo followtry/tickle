@@ -18,18 +18,21 @@ public class GenericHttpServlet extends HttpServlet {
 	/**  */
 	private static final long serialVersionUID = -8582002525279015681L;
 	
-	@Override
+
+    @Override
 	public void init() throws ServletException {
 		super.init();
 	}
 	
-	@Override
+
+    @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("GenericHttpServlet.doGet()");
 		doPost(req, resp);
 	}
 	
-	@Override
+
+    @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("GenericHttpServlet.doPost()2");
 		resp.setCharacterEncoding("UTF-8");

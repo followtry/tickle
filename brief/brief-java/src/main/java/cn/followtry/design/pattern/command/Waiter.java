@@ -7,7 +7,7 @@ import java.util.List;
  * Created by followtry on 17/6/7.
  */
 public class Waiter {
-  private List<Command> commandList = new ArrayList<>();
+  private List<AbstractCommand> commandList = new ArrayList<>();
   
   public String acceptOrder(BarBecueKind barBecueKind,Integer num){
     BakeCommand bakeCommand;

@@ -83,7 +83,7 @@ public class SystemProperties {
 
 	private static String PATH_SEPARATOR = "path.separator";
 
-	private static final Properties properties = System.getProperties();
+	private static final Properties PROPERTIES = System.getProperties();
 
 	private static String SUN_ARCH_DATA_MODEL = "sun.arch.data.model";
 
@@ -126,7 +126,7 @@ public class SystemProperties {
 	private static String USER_VARIANT = "user.variant";
 	
 	private static String getEnvValue(String key){
-		return properties.getProperty(key);
+		return PROPERTIES.getProperty(key);
 	}
 	
 	/**

@@ -40,7 +40,7 @@ public class BeanPropertyValidator implements ConstraintValidator {
       validators.add(propValidatorChain);
     }
 
-    if (!TypeUtils.isBaseType(propType)) {
+    if (!AbstractTypeUtils.isBaseType(propType)) {
       BeanValidator propBeanValidator = BeanValidator.create(propType);
       if (propBeanValidator != null) {
         validators.add(propBeanValidator);
@@ -66,6 +66,7 @@ public class BeanPropertyValidator implements ConstraintValidator {
     this.propertyDescriptor = propertyDescriptor;
     this.validatorChain = validatorChain;
   }
+
 
   @Override
   public void check(Object value) throws ValidationException {

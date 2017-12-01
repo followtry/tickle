@@ -1,11 +1,11 @@
 package cn.followtry.kafka.util;
 
-import java.util.Properties;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+
+import java.util.Properties;
 
 /**
  *  brief-kafka/cn.followtry.kafka.util.KafkaProperties
@@ -80,10 +80,13 @@ public class KafkaProperties {
 	}
 	
 	enum OffsetType{
-		LATEST("latest"),
+		/**latest*/
 		EARLIEST("earliest"),
-		NONE("none");
-		
+        /**none*/
+        NONE("none"),
+        /**latest*/
+        LATEST("latest");
+
 		private String name;
 		
 		private OffsetType(String name) {

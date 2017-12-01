@@ -12,7 +12,7 @@ package cn.followtry.incubate.java.dynaproxy;
  */
 public class ProxyMainTest {
 	public static void main(String[] args) {
-		JDKProxy();
+		jdkproxy();
 		cglibProxy();
 	}
 
@@ -30,7 +30,7 @@ public class ProxyMainTest {
 	 * 测试使用JDK动态生成的代理类
 	 * @author jingzz
 	 */
-	private static void JDKProxy() {
+	private static void jdkproxy() {
 		HelloService m = new HelloServiceImpl();
 		JdkProxyFactoryBean proxyFactoryBean = new JdkProxyFactoryBean();
 		HelloService newInstan = proxyFactoryBean.getNewInstan(m);

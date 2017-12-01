@@ -47,25 +47,29 @@ public class TaskServiceImpl implements TaskService, ApplicationContextAware {
 		}
 	}
 
-	@Override
+
+    @Override
 	public Map<String, ScheduleTask> getAllTask() {
 		return new HashMap<String, ScheduleTask>(allTaskCache);
 	}
 
-	@Override
+
+    @Override
 	public List<String> getAllCron() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
+    @Override
 	public ScheduleTask getTaskById(String taskId) {
 		ScheduleTask scheduleTask = new ScheduleTask();
 		scheduleTask.setId("12323");
 		return scheduleTask;
 	}
 
-	@Override
+
+    @Override
 	public ScheduleTask addTask(ScheduleTask task) throws Exception {
 		
 		JobKey jobKey = new JobKey(task.getId(), task.getGroup());
@@ -74,8 +78,10 @@ public class TaskServiceImpl implements TaskService, ApplicationContextAware {
 					+ "] has been created,can not created new Task with duplicate key[" + jobKey + "]");
 		}
 		JobDetail jobDetail = JobBuilder.newJob(ProxyJob.class).withIdentity(task.getId(), task.getGroup()).build();
-		@SuppressWarnings("deprecation")
-		CronTriggerImpl trigger = new CronTriggerImpl(task.getId(), task.getGroup(), task.getCron());
+		CronTriggerImpl trigger = new CronTriggerImpl();
+		trigger.setName(task.getId());
+		trigger.setGroup(task.getGroup());
+		trigger.setCronExpression(task.getCron());
 		trigger.setCronExpression(task.getCron());
 		Object target = Class.forName(task.getGroup()).newInstance();
 		Method method = target.getClass().getMethod(task.getTrigger());
@@ -114,7 +120,8 @@ public class TaskServiceImpl implements TaskService, ApplicationContextAware {
 		return task;
 	}
 
-	@Override
+
+    @Override
 	public ScheduleTask addTask(String taskName, String taskClassName, String triggerName, String cron)
 			throws Exception {
 		ScheduleTask task = new ScheduleTask();
@@ -128,19 +135,22 @@ public class TaskServiceImpl implements TaskService, ApplicationContextAware {
 		return newTask;
 	}
 
-	@Override
+
+    @Override
 	public ScheduleTask removeTaskbyId(String taskId) {
 		return null;
 	}
 
-	@Override
+
+    @Override
 	public void stopScheduler() throws SchedulerException {
 		if (scheduler.isStarted()) {
 			scheduler.shutdown();
 		}
 	}
 
-	@Override
+
+    @Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		this.ac = context;
 		for (String beanDefinitionName : ac.getBeanDefinitionNames()) {
@@ -158,7 +168,8 @@ public class TaskServiceImpl implements TaskService, ApplicationContextAware {
 		}
 	}
 
-	@Override
+
+    @Override
 	public ScheduleTask addTask(Method m) throws Exception {
 		ScheduleTask task = createSchedulerTask(m);
 		return addTask(task);

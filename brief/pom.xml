@@ -77,18 +77,18 @@
         <junit.version>4.12</junit.version>
         <kafka.version>0.10.2.1</kafka.version>
         <log4j2.version>2.8</log4j2.version>
-        <lombok.version>1.16.8</lombok.version>
+        <lombok.version>1.16.18</lombok.version>
         <mail.version>1.4.7</mail.version>
         <mongo.version>3.3.0</mongo.version>
         <mysql.version>5.1.29</mysql.version>
-        <mybatis.version>3.4.1</mybatis.version>
+        <mybatis.version>3.4.5</mybatis.version>
         <mybatis-plugin.version>1.3.5</mybatis-plugin.version>
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <mybatis-typehandler.version>1.0.1</mybatis-typehandler.version>
         <mybatis-redis.version>1.0.0-beta2</mybatis-redis.version>
         <mybatis-spring-boot.version>1.0.0</mybatis-spring-boot.version>
         <okhttp.version>3.5.0</okhttp.version>
-        <poi.version>3.14-beta1</poi.version>
+        <poi.version>3.15</poi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quartz.version>2.2.2</quartz.version>
         <quartz-jobs.version>2.2.2</quartz-jobs.version>
@@ -112,8 +112,8 @@
     <dependencies>
         <!-- 测试 -->
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -143,10 +143,22 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty</artifactId>
@@ -309,6 +321,11 @@
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
             </dependency>
             <!-- aspectjweaver -->
@@ -652,6 +669,16 @@
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
                 <version>${zookeeper_version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.curator</groupId>

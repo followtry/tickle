@@ -38,7 +38,8 @@ public class UnidirectionCommonFriends {
 	private static Logger LOGGER = LoggerFactory.getLogger(UnidirectionCommonFriends.class);
 	
 	static class UCFMapper extends Mapper<LongWritable, Text, Text, Text> {
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 
@@ -58,7 +59,9 @@ public class UnidirectionCommonFriends {
 	}
 	
 	static class UCFComBine extends Reducer<Text, Text, Text, Text>{
-		protected void reduce(Text key, Iterable<Text> values, Reducer<Text, Text, Text, Text>.Context context)
+
+        @Override
+        protected void reduce(Text key,Iterable<Text> values,Reducer<Text, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			//翻转，计算任意两个人共同认同的朋友
 			Iterator<Text> ite = values.iterator();
@@ -83,7 +86,8 @@ public class UnidirectionCommonFriends {
 	}
 	
 	static class UCFReducer extends Reducer<Text, Text, Text, Text>{
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<Text> values, Reducer<Text, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			StringBuilder cf = new StringBuilder();

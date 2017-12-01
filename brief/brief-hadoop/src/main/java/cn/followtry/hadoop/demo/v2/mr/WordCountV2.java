@@ -32,7 +32,8 @@ public class WordCountV2 {
 	
 	static class WordCountMapV2 extends Mapper<LongWritable, Text, Text, IntWritable>{
 		
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			String line = value.toString();
@@ -46,7 +47,8 @@ public class WordCountV2 {
 	}
 	
 	static class WordCountReduceV2 extends Reducer<Text, IntWritable, Text, IntWritable> {
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<IntWritable> values,
 				Reducer<Text, IntWritable, Text, IntWritable>.Context context) throws IOException, InterruptedException {
 			int count = 0;

@@ -11,6 +11,8 @@ public class Test {
 		calendar.setTime(new Date());
 //		long key = Calendar;
 		System.out.println();
+		
+		System.out.println(1+2+"abc"+3+4);
 	}
 
 	/**

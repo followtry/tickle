@@ -7,8 +7,12 @@ package cn.followtry.incubate.springinaction;
  */
 public enum BootType {
 
-  ANNOTATION,//注解方式
-  CONFIG,//配置方式
-  XML_FS,//xml文件，文件系统方式
-  XML_CLASSPATH;//xml文件，类路径方式
+  /**注解方式*/
+  ANNOTATION,
+  /**配置方式*/
+  CONFIG,
+  /**xml文件，文件系统方式*/
+  XML_FS,
+  /**xml文件，类路径方式*/
+  XML_CLASSPATH;
 }

@@ -36,6 +36,7 @@ public class CollectionValidator implements ConstraintValidator {
     this.check = value;
   }
 
+
   @Override
   public void check(Object value) throws ValidationException {
     checkCollection(name,check,value);

@@ -32,7 +32,8 @@ public class Dedup {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Dedup.class);
 	
 	static class DedupMapper extends Mapper<LongWritable, Text, Text, NullWritable>{
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, NullWritable>.Context context)
 				throws IOException, InterruptedException {
 			context.write(value, NullWritable.get());
@@ -40,7 +41,8 @@ public class Dedup {
 	}
 	
 	static class DedupReducer extends Reducer<Text, NullWritable, Text, NullWritable>{
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<NullWritable> values,Reducer<Text, NullWritable, Text, NullWritable>.Context context) throws IOException, InterruptedException {
 			context.write(key, NullWritable.get());
 		}

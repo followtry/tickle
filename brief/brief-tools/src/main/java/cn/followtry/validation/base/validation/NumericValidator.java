@@ -67,7 +67,8 @@ public class NumericValidator extends AbstractValidator {
 		this.operand2 = comparator.getOperand2();
 	}
 
-	@Override
+
+    @Override
 	protected void doCheckValue(Object arg) throws ValidationException {
 		if (!comparator.check(arg)) {
 			fail(arg, operand1, operand2);
@@ -478,17 +479,20 @@ public class NumericValidator extends AbstractValidator {
 	// -------------------------------- char ----------------------------------
 	private static NumericComparator createByteGTComparator(byte operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (byte) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -497,17 +501,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteGEComparator(byte operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (byte) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -516,17 +523,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteLTComparator(byte operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (byte) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -535,17 +545,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteLEComparator(byte operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (byte) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -554,17 +567,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteEQComparator(byte operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (byte) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -573,17 +589,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteNEComparator(byte operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (byte) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -592,18 +611,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteIntervalOpenComparator(byte operand1, byte operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				byte value = (byte) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -612,18 +634,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteIntervalCloseComparator(byte operand1, byte operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				byte value = (byte) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -632,18 +657,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteIntervalLOpenRCloseComparator(byte operand1, byte operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				byte value = (byte) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -652,18 +680,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createByteIntervalLCloseROpenComparator(byte operand1, byte operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				byte value = (byte) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -673,17 +704,20 @@ public class NumericValidator extends AbstractValidator {
 	// -------------------------------- char ----------------------------------
 	private static NumericComparator createCharGTComparator(char operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (char) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -692,17 +726,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharGEComparator(char operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (char) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -711,17 +748,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharLTComparator(char operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (char) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -730,17 +770,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharLEComparator(char operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (char) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -749,17 +792,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharEQComparator(char operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (char) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -768,17 +814,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharNEComparator(char operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (char) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -787,18 +836,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharIntervalOpenComparator(char operand1, char operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				char value = (char) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -807,18 +859,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharIntervalCloseComparator(char operand1, char operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				char value = (char) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -827,18 +882,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharIntervalLOpenRCloseComparator(char operand1, char operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				char value = (char) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -847,18 +905,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createCharIntervalLCloseROpenComparator(char operand1, char operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				char value = (char) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -868,17 +929,20 @@ public class NumericValidator extends AbstractValidator {
 	// -------------------------------- short ----------------------------------
 	private static NumericComparator createShortGTComparator(short operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (short) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -887,17 +951,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortGEComparator(short operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (short) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -906,17 +973,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortLTComparator(short operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (short) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -925,17 +995,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortLEComparator(short operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (short) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -944,17 +1017,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortEQComparator(short operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (short) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -963,17 +1039,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortNEComparator(short operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (short) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -982,18 +1061,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortIntervalOpenComparator(short operand1, short operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				short value = (short) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1002,18 +1084,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortIntervalCloseComparator(short operand1, short operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				short value = (short) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1022,18 +1107,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortIntervalLOpenRCloseComparator(short operand1, short operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				short value = (short) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1042,18 +1130,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createShortIntervalLCloseROpenComparator(short operand1, short operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				short value = (short) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1063,17 +1154,20 @@ public class NumericValidator extends AbstractValidator {
 	// -------------------------------- int ----------------------------------
 	private static NumericComparator createIntegerGTComparator(int operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (int) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1082,17 +1176,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerGEComparator(int operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (int) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1101,17 +1198,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerLTComparator(int operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (int) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1120,17 +1220,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerLEComparator(int operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (int) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1139,17 +1242,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerEQComparator(int operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (int) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1158,17 +1264,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerNEComparator(int operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (int) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1177,18 +1286,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerIntervalOpenComparator(int operand1, int operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				int value = (int) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1197,18 +1309,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerIntervalCloseComparator(int operand1, int operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				int value = (int) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1217,18 +1332,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerIntervalLOpenRCloseComparator(int operand1, int operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				int value = (int) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1237,18 +1355,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createIntegerIntervalLCloseROpenComparator(int operand1, int operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				int value = (int) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1258,17 +1379,20 @@ public class NumericValidator extends AbstractValidator {
 	// -------------------------------- long ----------------------------------
 	private static NumericComparator createLongGTComparator(long operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (long) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1277,17 +1401,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongGEComparator(long operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (long) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1296,17 +1423,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongLTComparator(long operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (long) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1315,17 +1445,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongLEComparator(long operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (long) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1334,17 +1467,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongEQComparator(long operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (long) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1353,17 +1489,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongNEComparator(long operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (long) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1372,18 +1511,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongIntervalOpenComparator(long operand1, long operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				long value = (long) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1392,18 +1534,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongIntervalCloseComparator(long operand1, long operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				long value = (long) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1412,18 +1557,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongIntervalLOpenRCloseComparator(long operand1, long operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				long value = (long) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1432,18 +1580,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createLongIntervalLCloseROpenComparator(long operand1, long operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				long value = (long) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1453,17 +1604,20 @@ public class NumericValidator extends AbstractValidator {
 	// -------------------------------- float ----------------------------------
 	private static NumericComparator createFloatGTComparator(float operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (float) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1472,17 +1626,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatGEComparator(float operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (float) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1491,17 +1648,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatLTComparator(float operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (float) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1510,17 +1670,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatLEComparator(float operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (float) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1529,17 +1692,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatEQComparator(float operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (float) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1548,17 +1714,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatNEComparator(float operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (float) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1567,18 +1736,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatIntervalOpenComparator(float operand1, float operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				float value = (float) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1587,18 +1759,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatIntervalCloseComparator(float operand1, float operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				float value = (float) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1607,18 +1782,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatIntervalLOpenRCloseComparator(float operand1, float operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				float value = (float) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1627,18 +1805,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createFloatIntervalLCloseROpenComparator(float operand1, float operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				float value = (float) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1649,17 +1830,20 @@ public class NumericValidator extends AbstractValidator {
 	// ----------------------------------
 	private static NumericComparator createDoubleGTComparator(double operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (double) arg > operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1668,17 +1852,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleGEComparator(double operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (double) arg >= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1687,17 +1874,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleLTComparator(double operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (double) arg < operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1706,17 +1896,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleLEComparator(double operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (double) arg <= operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1725,17 +1918,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleEQComparator(double operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (double) arg == operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1744,17 +1940,20 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleNEComparator(double operand) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				return (double) arg != operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return null;
 			}
@@ -1763,18 +1962,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleIntervalOpenComparator(double operand1, double operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				double value = (double) arg;
 				return operand1 < value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1783,18 +1985,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleIntervalCloseComparator(double operand1, double operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				double value = (double) arg;
 				return operand1 <= value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1803,18 +2008,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleIntervalLOpenRCloseComparator(double operand1, double operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				double value = (double) arg;
 				return operand1 < value && value <= operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}
@@ -1823,18 +2031,21 @@ public class NumericValidator extends AbstractValidator {
 
 	private static NumericComparator createDoubleIntervalLCloseROpenComparator(double operand1, double operand2) {
 		return new NumericComparator() {
-			@Override
+
+            @Override
 			public boolean check(Object arg) {
 				double value = (double) arg;
 				return operand1 <= value && value < operand2;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand1() {
 				return operand1;
 			}
 
-			@Override
+
+            @Override
 			public Object getOperand2() {
 				return operand2;
 			}

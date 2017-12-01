@@ -18,7 +18,8 @@ public interface IntEnum {
 	
 	enum IntEnum2 implements IntEnum{
 		;//一定要有
-		@Override
+
+        @Override
 		public int hello() {
 			return 0;
 		}
@@ -26,7 +27,8 @@ public interface IntEnum {
 	
 	enum IntEnum3 implements IntEnum{
 		;//一定要有
-		@Override
+
+        @Override
 		public int hello() {
 			return 0;
 		}

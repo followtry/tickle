@@ -16,10 +16,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+
   @Override
   public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
     super.configureMessageConverters(converters);
   }
+
 
   @Override
   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

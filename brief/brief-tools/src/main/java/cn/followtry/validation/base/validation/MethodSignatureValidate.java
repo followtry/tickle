@@ -11,7 +11,8 @@ import cn.followtry.validation.base.common.exception.ValidationException;
 public interface MethodSignatureValidate {
 	
 	public static final MethodSignatureValidate NULL = new MethodSignatureValidate() {
-		@Override
+
+        @Override
 		public void check(Object[] args) throws ValidationException {
 			// do nothing;
 		}

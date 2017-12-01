@@ -12,6 +12,7 @@ import java.time.ZoneId;
  */
 public class SimpleJob extends AbstractSimpleElasticJob {
 
+
   @Override
   @SuppressWarnings("rawtypes")
   public void process(JobExecutionMultipleShardingContext shardingContext) {

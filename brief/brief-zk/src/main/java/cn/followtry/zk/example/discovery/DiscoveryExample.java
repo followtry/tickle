@@ -4,12 +4,6 @@ import cn.followtry.zk.utils.ZkProp;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.utils.CloseableUtils;
@@ -19,6 +13,13 @@ import org.apache.curator.x.discovery.ServiceInstance;
 import org.apache.curator.x.discovery.ServiceProvider;
 import org.apache.curator.x.discovery.details.JsonInstanceSerializer;
 import org.apache.curator.x.discovery.strategies.RandomStrategy;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 服务发现示例
@@ -77,19 +78,19 @@ public class DiscoveryExample {
           continue;
         }
         String operation = parts[0];
-        String args[] = Arrays.copyOfRange(parts,1,parts.length);
+        String[] args = Arrays.copyOfRange(parts,1,parts.length);
         
-        if (operation.equalsIgnoreCase("help") || operation.equalsIgnoreCase("?")) {
+        if ("help".equalsIgnoreCase(operation) || "?".equalsIgnoreCase(operation)) {
           printHelp();
-        } else if (operation.equalsIgnoreCase("q") || operation.equalsIgnoreCase("quit")) {
+        } else if ("q".equalsIgnoreCase(operation) || "quit".equalsIgnoreCase(operation)) {
           done = true;
-        } else if (operation.equals("add")) {
+        } else if ("add".equals(operation)) {
           addInstance(args,client,command,servers);
-        } else if (operation.equals("delete")) {
+        } else if ("delete".equals(operation)) {
           deleteInstance(args,command,servers);
-        } else if (operation.equals("random")) {
+        } else if ("random".equals(operation)) {
           listRandomInstance(args,serviceDiscovery,providers,command);
-        } else if (operation.equals("list")) {
+        } else if ("list".equals(operation)) {
           listInstances(serviceDiscovery);
         }
       }

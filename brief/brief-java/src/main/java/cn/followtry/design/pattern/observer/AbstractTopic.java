@@ -12,20 +12,23 @@ import java.util.List;
  */
 public abstract class AbstractTopic implements Topic{
   
-  private List<ObServer> obServers = Lists.newArrayList();
+  private List<AbstractObServer> obServers = Lists.newArrayList();
+
 
   @Override
-  public void attach(ObServer obServer) {
+  public void attach(AbstractObServer obServer) {
     obServers.add(obServer);
   }
   
+
   @Override
-  public void detach(ObServer obServer) {
+  public void detach(AbstractObServer obServer) {
     obServers.remove(obServer);
   }
   
   abstract String getMsg();
   
+
   @Override
   public void sendNotify() {
     obServers.parallelStream().forEach(obServer -> obServer.accepet(getMsg()));

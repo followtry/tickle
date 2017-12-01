@@ -23,7 +23,8 @@ public class WordCountMapperV1 extends MapReduceBase implements Mapper<LongWrita
 
 	private static final IntWritable ONE = new IntWritable(1);
 
-	@Override
+
+    @Override
 	public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter)
 			throws IOException {
 		String line = value.toString();

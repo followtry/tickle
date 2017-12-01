@@ -25,7 +25,7 @@ public class StringValidator extends AbstractValidator {
 	 */
 	public static StringValidator create(Class<?> targetType, StringCheck stringCheck, NotEmpty notnullCheck) {
 		// 当指明不通过 toString 方法获取要检查的目标的文本值时，目标类型必须是文本类型；
-		if ((!stringCheck.checkToString()) && (!TypeUtils.isStringType(targetType))) {
+		if ((!stringCheck.checkToString()) && (!AbstractTypeUtils.isStringType(targetType))) {
 			throw new IllegalArgumentException(
 					"Unsupport none-string type while the 'checkToString' option of the StringCheck constraint is false!");
 		}
@@ -69,7 +69,8 @@ public class StringValidator extends AbstractValidator {
 		this.regexAlias = regexAlias;
 	}
 
-	@Override
+
+    @Override
 	protected void doCheckValue(Object arg) throws ValidationException {
 		String text;
 		if (isPrimityStringTarget) {
@@ -177,12 +178,14 @@ public class StringValidator extends AbstractValidator {
 
 	private static StringMatcher createMaxLengthMatcher(int maxLength) {
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.length() <= maxLength;
 			}
 
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {maxLength};
 			}
@@ -191,11 +194,13 @@ public class StringValidator extends AbstractValidator {
 
 	private static StringMatcher createMinLengthMatcher(int minLength) {
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.length() >= minLength;
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {minLength};
 			}
@@ -212,11 +217,13 @@ public class StringValidator extends AbstractValidator {
 		int min = minLength > maxLength ? maxLength : minLength;
 		int max = minLength > maxLength ? minLength : maxLength;
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.length() >= min && text.length() <= max;
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {min, max};
 			}
@@ -225,11 +232,13 @@ public class StringValidator extends AbstractValidator {
 
 	private static StringMatcher createPrefixMatcher(String prefix) {
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.startsWith(prefix);
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {prefix};
 			}
@@ -238,11 +247,13 @@ public class StringValidator extends AbstractValidator {
 
 	private static StringMatcher createSuffixMatcher(String suffix) {
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.endsWith(suffix);
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {suffix};
 			}
@@ -251,11 +262,13 @@ public class StringValidator extends AbstractValidator {
 
 	private static StringMatcher createContainsMatcher(String section) {
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.contains(section);
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {section};
 			}
@@ -264,11 +277,13 @@ public class StringValidator extends AbstractValidator {
 	
 	private static StringMatcher createNotEmptyMatcher() {
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return text.length() > 0;
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {}; 
 			}
@@ -278,11 +293,13 @@ public class StringValidator extends AbstractValidator {
 	private static StringMatcher createRegexMatcher(String regex) {
 		Pattern pattern = Pattern.compile(regex);
 		return new StringMatcher() {
-			@Override
+
+            @Override
 			public boolean match(String text) {
 				return pattern.matcher(text).matches();
 			}
-			@Override
+
+            @Override
 			public Object[] getArgs() {
 				return new Object[] {regex};
 			}

@@ -13,16 +13,22 @@ import java.util.List;
  */
 public class IndividualSequenceDataFlowJob extends AbstractIndividualSequenceDataFlowElasticJob<ScheduleJob> {
 
+
+  @Override
   public boolean processData(JobExecutionSingleShardingContext shardingContext,ScheduleJob data) {
     // TODO Auto-generated method stub
     return false;
   }
 
+
+  @Override
   public List<ScheduleJob> fetchData(JobExecutionSingleShardingContext shardingContext) {
     // TODO Auto-generated method stub
     return null;
   }
 
+
+  @Override
   public boolean isStreamingProcess() {
     // TODO Auto-generated method stub
     return false;

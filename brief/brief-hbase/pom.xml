@@ -12,7 +12,6 @@
   <artifactId>brief-hbase</artifactId>
   <properties>
     <hbase.version>1.2.4</hbase.version>
-    <guava.version>16.0</guava.version>
   </properties>
   <dependencies>
     <dependency>

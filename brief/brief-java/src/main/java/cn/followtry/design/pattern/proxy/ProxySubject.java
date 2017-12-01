@@ -12,6 +12,7 @@ public class ProxySubject implements StaticSubject {
     this.realSubject = realSubject;
   }
   
+
   @Override
   public void request() {
     if (realSubject != null) {

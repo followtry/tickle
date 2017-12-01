@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
     log.info("cn.followtry.dubbo.impl.UserServiceImpl.UserServiceImpl()");
   }
 
+
   @Override
   public User getUserById(String id) {
     User user = new User();

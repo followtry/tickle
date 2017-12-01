@@ -34,7 +34,8 @@ public class Sort {
 	private static final IntWritable ONE = new IntWritable(1);
 	
 	static class SortMapper extends Mapper<LongWritable, Text, IntWritable, IntWritable>{
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value,
 				Mapper<LongWritable, Text, IntWritable, IntWritable>.Context context)
 						throws IOException, InterruptedException {
@@ -54,7 +55,8 @@ public class Sort {
 	static class SortReducer extends Reducer<IntWritable, IntWritable, IntWritable, IntWritable>{
 		
 		private static IntWritable lineNum  = new IntWritable(1); 
-		@Override
+
+        @Override
 		protected void reduce(IntWritable key, Iterable<IntWritable> values,
 				Reducer<IntWritable, IntWritable, IntWritable, IntWritable>.Context context)
 						throws IOException, InterruptedException {

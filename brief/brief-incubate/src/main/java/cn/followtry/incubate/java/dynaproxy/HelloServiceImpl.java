@@ -11,7 +11,9 @@ package cn.followtry.incubate.java.dynaproxy;
  */
 public class HelloServiceImpl implements HelloService{
 
-	public String say(String content) {
+
+    @Override
+    public String say(String content) {
 		System.out.println("我要说的话是：" + content);
 		return content;
 	}

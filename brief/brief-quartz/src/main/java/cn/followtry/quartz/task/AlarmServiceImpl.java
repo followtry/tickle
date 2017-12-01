@@ -15,11 +15,13 @@ public class AlarmServiceImpl implements AlarmService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AlarmServiceImpl.class);
 
+
   @Override
   @Scheduled(cron = "0/5 * * * * ?")
   public void myAlarm() {
     LOGGER.info("启动我的闹钟");
   }
+
 
   @Override
   @Scheduled(cron = "0/4 * * * * ?")

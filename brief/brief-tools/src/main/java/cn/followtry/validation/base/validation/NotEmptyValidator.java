@@ -27,7 +27,8 @@ public class NotEmptyValidator implements ConstraintValidator {
 		this.name = name;
 	}
 
-	@Override
+
+    @Override
 	public void check(Object value) throws ValidationException {
 		checkNotEmpty(name, value);
 	}

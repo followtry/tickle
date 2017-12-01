@@ -160,9 +160,9 @@ public class TestConCurrentHashMap {
 
 		map.notifyAll();
 
-		map.newKeySet();
+		ConcurrentHashMap.newKeySet();
 
-		map.newKeySet(initialCapacity);
+		ConcurrentHashMap.newKeySet(initialCapacity);
 
 		map.putIfAbsent(key, mappedValue);
 

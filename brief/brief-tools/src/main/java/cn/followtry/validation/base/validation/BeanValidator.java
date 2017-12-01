@@ -20,7 +20,7 @@ public class BeanValidator implements ConstraintValidator {
   /**
    * Bean 类型跟踪表；用于跟踪在解析过程中涉及的 Bean 类型，避免出现循环解析.
    */
-  private static ThreadLocal<Set<Class<?>>> beanTraceMap = new ThreadLocal<Set<Class<?>>>();
+  private static ThreadLocal<Set<Class<?>>> beanTraceMap = new ThreadLocal<>();
 
   //TODO: 缓存 Bean 校验器；
   /**
@@ -40,7 +40,7 @@ public class BeanValidator implements ConstraintValidator {
    */
   public static BeanValidator create(Class<?> beanType) {
     // 如果参数的类型不是基本类型及其对应的包装类，则尝试创建 Bean 校验器；
-    if (TypeUtils.isBaseType(beanType)) {
+    if (AbstractTypeUtils.isBaseType(beanType)) {
       return null;
     }
     if (beanType.getName().startsWith("java.")) {
@@ -108,6 +108,7 @@ public class BeanValidator implements ConstraintValidator {
     this.beanType = beanType;
     this.propValidators = propValidators;
   }
+
 
   @Override
   public void check(Object arg) throws ValidationException {

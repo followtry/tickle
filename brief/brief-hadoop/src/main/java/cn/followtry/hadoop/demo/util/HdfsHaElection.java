@@ -31,6 +31,7 @@ public class HdfsHaElection {
   static {
     try {
       zk = new ZooKeeper(connections,3000,new Watcher() {
+
         @Override
         public void process(WatchedEvent event) {
           if (Event.EventType.NodeDataChanged.equals(event.getType())) {

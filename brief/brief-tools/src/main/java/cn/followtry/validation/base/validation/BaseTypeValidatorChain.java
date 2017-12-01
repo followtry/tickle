@@ -53,6 +53,7 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
     this.validatorChain = validatorChain;
   }
 
+
   @Override
   public void check(Object argValue) throws ValidationException {
     for (ConstraintValidator validator : validatorChain) {
@@ -168,11 +169,11 @@ public class BaseTypeValidatorChain implements ConstraintValidator {
   }
 
   private static boolean isStringCheckSupported(Class<?> targetType) {
-    return TypeUtils.isStringType(targetType);
+    return AbstractTypeUtils.isStringType(targetType);
   }
 
   private static boolean isNumericCheckSupported(Class<?> targetType) {
-    return TypeUtils.isBaseNumericeType(targetType);
+    return AbstractTypeUtils.isBaseNumericeType(targetType);
   }
 
 }

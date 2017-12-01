@@ -19,7 +19,7 @@ public class Audience2 {
 
   private static final Logger LOG = LoggerFactory.getLogger(Audience2.class);
 
-  private static final String pointCutPoint = "execution(** cn.followtry.springboot"
+  private static final String POINT_CUT_POINT = "execution(** cn.followtry.springboot"
           + ".springinaction.aop.Performance.perform(java.lang.String)) and args(name)";
 
   /**
@@ -27,7 +27,7 @@ public class Audience2 {
    * @param joinPoint 切点
    * @param name  名字
    */
-  @Around(pointCutPoint)
+  @Around(POINT_CUT_POINT)
   public Object pointCutPoint(ProceedingJoinPoint joinPoint, String name) {
 
     Object this1 = joinPoint.getThis();

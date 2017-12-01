@@ -24,7 +24,9 @@ import com.dangdang.ddframe.job.plugin.job.type.dataflow.AbstractBatchThroughput
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,18 +37,24 @@ public class BatchThroughputDataFlowJob extends
 
   private static final Logger LOGGER = LoggerFactory.getLogger(BatchThroughputDataFlowJob.class);
 
+
+  @Override
   public boolean isStreamingProcess() {
     return true;
   }
 
+
+  @Override
   public ExecutorService getExecutorService() {
-    return Executors.newFixedThreadPool(10);
+    return new ThreadPoolExecutor(10,20,60,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>());
   }
 
   /**
    * .
    */
-  public int processData(JobExecutionMultipleShardingContext shardingContext, List<ScheduleJob>
+
+  @Override
+  public int processData(JobExecutionMultipleShardingContext shardingContext,List<ScheduleJob>
           data) {
     printContext.printProcessDataMessage(data);
     LOGGER.info("成功被调用");
@@ -54,6 +62,8 @@ public class BatchThroughputDataFlowJob extends
     return successCount;
   }
 
+
+  @Override
   public List<ScheduleJob> fetchData(JobExecutionMultipleShardingContext shardingContext) {
     printContext.printFetchDataMessage(shardingContext.getShardingItems());
     return new ArrayList<ScheduleJob>();

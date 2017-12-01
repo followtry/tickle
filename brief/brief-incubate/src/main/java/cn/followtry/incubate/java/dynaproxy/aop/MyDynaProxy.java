@@ -13,10 +13,12 @@ public class MyDynaProxy extends AbstractDynaProxy {
         super(target);
     }
 
+
     @Override
     public void beforeInvoke(Object o, Method method, Object[] objects) {
         System.out.println("before proxy");
     }
+
 
     @Override
     public void afterInvoke(Object o, Method method, Object[] objects) {

@@ -42,6 +42,8 @@ public class SchedulerServiceImpl implements SchedulerService {
   private static final Logger LOG = LoggerFactory.getLogger(SchedulerServiceImpl.class);
 
   /** . */
+
+  @Override
   public void work(JobDataMap jobData,Date triggerTime,TriggerKey triggerKey) throws ParseException,
           SchedulerException {
 /*
@@ -61,6 +63,8 @@ public class SchedulerServiceImpl implements SchedulerService {
 
   }
 
+
+  @Override
   public void work(ScheduleJob scheduleJob) throws ParseException {
     CronExpression.validateExpression(scheduleJob.getCronExpression());
     CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob
@@ -109,6 +113,8 @@ public class SchedulerServiceImpl implements SchedulerService {
   /**
    * 调度任务
    */
+
+  @Override
   public void scheduleThroughputDataFlowJob(ScheduleJob scheduleJob) {
     verifyNull(scheduleJob);
     String jobParams = JSON.toJSONString(scheduleJob);
@@ -122,6 +128,7 @@ public class SchedulerServiceImpl implements SchedulerService {
     jobScheduler.init();
 
   }
+
 
   @Override
   public void scheduleSimpleJob(ScheduleJob scheduleJob) {
@@ -146,6 +153,7 @@ public class SchedulerServiceImpl implements SchedulerService {
   /**
    * 重新调度任务
    */
+
   @Override
   public void reScheduler(JobScheduleController jobScheduler,String cronExpression) {
     System.out.println("SchedulerServiceImpl.reScheduler():任务已经被重新调度");

@@ -1,5 +1,6 @@
 package cn.followtry.incubate.java8;
 
+import cn.followtry.java8.defaultandstatic.DefaultMethodFeature;
 import org.junit.Test;
 
 /**

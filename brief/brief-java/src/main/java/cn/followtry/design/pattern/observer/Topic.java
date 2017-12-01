@@ -6,9 +6,9 @@ package cn.followtry.design.pattern.observer;
  */
 public interface Topic {
   
-  void attach(ObServer obServer);
+  void attach(AbstractObServer obServer);
   
-  void detach(ObServer obServer);
+  void detach(AbstractObServer obServer);
 
   void sendNotify();
   

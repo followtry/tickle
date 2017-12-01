@@ -1,14 +1,13 @@
 package cn.followtry.validation.base.validation;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.beans.BeanUtils;
-
 import cn.followtry.validation.annotation.CustomCheck;
 import cn.followtry.validation.annotation.NotEmpty;
 import cn.followtry.validation.base.common.exception.ValidationException;
 import cn.followtry.validation.base.stereotype.validation.CustomConstraintHandle;
+import org.springframework.beans.BeanUtils;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 
@@ -18,7 +17,7 @@ import cn.followtry.validation.base.stereotype.validation.CustomConstraintHandle
  */
 public class CustomValidator extends AbstractValidator {
 
-	private static final Object mutex = new Object();
+	private static final Object MUTEX = new Object();
 	private static Map<Class<?>, CustomConstraintHandle> customCheckers = new ConcurrentHashMap<Class<?>, CustomConstraintHandle>();
 
 	private CustomConstraintHandle customChecker;
@@ -44,7 +43,7 @@ public class CustomValidator extends AbstractValidator {
 	private static CustomConstraintHandle getCustomCheckerInstance(Class<?> checkerType) {
 		CustomConstraintHandle customerChecker = customCheckers.get(checkerType);
 		if (customerChecker == null) {
-			synchronized (mutex) {
+			synchronized (MUTEX) {
 				customerChecker = customCheckers.get(checkerType);
 				if (customerChecker == null) {
 					customerChecker = createCustomChecker(checkerType);
@@ -72,7 +71,7 @@ public class CustomValidator extends AbstractValidator {
 		this.args = args;
 	}
 
-	@Override
+    @Override
 	protected void doCheckValue(Object arg) throws ValidationException {
 		customChecker.check(name, args, arg);
 	}

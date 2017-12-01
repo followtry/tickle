@@ -26,6 +26,7 @@ public class MyJobScheduler extends JobScheduler {
     super(regCenter,jobConfig,elasticJobListeners);
   }
 
+
   @Override
   protected void prepareEnvironments(Properties props) {
     super.prepareEnvironments(props);

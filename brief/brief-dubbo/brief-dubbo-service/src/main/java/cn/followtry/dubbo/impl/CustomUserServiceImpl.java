@@ -16,6 +16,7 @@ public class CustomUserServiceImpl implements UserService {
     log.info("cn.followtry.dubbo.api.UserService.CustomUserServiceImpl.CustomUserServiceImpl()");
   }
 
+
   @Override
   public User getUserById(String id) {
     return new User() {

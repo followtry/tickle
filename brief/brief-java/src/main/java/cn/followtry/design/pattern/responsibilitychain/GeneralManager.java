@@ -4,12 +4,13 @@ package cn.followtry.design.pattern.responsibilitychain;
  * 经理
  * Created by followtry on 17/6/8.
  */
-public class GeneralManager extends Manager{
+public class GeneralManager extends AbstractManager {
   
-  public GeneralManager(String name,Manager superior) {
+  public GeneralManager(String name,AbstractManager superior) {
     super(name,superior);
   }
   
+
   @Override
   void request(Request request) {
     switch (request.getRequestType()) {

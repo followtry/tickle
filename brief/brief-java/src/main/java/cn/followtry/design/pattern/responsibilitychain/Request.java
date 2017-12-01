@@ -12,8 +12,10 @@ public class Request {
   private Integer requestNum;
   
   enum RequestType {
-    SALARY_RAISE,//加薪
-    LEAVE;//请假
+    /**加薪*/
+    SALARY_RAISE,
+      /**请假*/
+    LEAVE;
   }
   
   public RequestType getRequestType() {

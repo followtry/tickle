@@ -6,6 +6,7 @@ package cn.followtry.design.pattern.command;
  */
 public class BakeChikenWingBarbecuer implements Technician {
 
+
   @Override
   public String executeCommand(Integer newOrderNum) {
     Integer surPlus = ChickenWing.getSurPlus();

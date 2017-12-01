@@ -16,6 +16,7 @@ public class ChineseTeacher extends AbstractTopic{
     this.instruction = instruction;
   }
   
+
   @Override
   String getMsg() {
     return getInstruction();

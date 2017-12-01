@@ -14,6 +14,7 @@ public class WatchingTvPerson extends AbstractPerson {
     System.out.println("我是" + name + "，职位是"+loc+",在看" + programName + "电视");
   }
   
+
   @Override
   void startWork(String msg) {
     super.startWork(msg);

@@ -17,20 +17,25 @@ import java.lang.reflect.Method;
 public class MyListener implements BeanPostProcessor,InitializingBean {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MyListener.class);
 
-	@Override
+
+    @Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		return bean;
 	}
 
-	@Override
+
+    @Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		Method[] methods = ReflectionUtils.getAllDeclaredMethods(bean.getClass());
-		if (null != methods) for (Method method : methods) {
-			RequestMapping annotation = AnnotationUtils.findAnnotation(method, RequestMapping.class);
-			if (null != annotation){
-				LOGGER.info("自定义的控制器【{}】", bean.getClass().getCanonicalName());
-			}
-		}
+		if (null != methods) {
+            for (Method method : methods) {
+                RequestMapping annotation = AnnotationUtils.findAnnotation(method,RequestMapping
+                        .class);
+                if (null != annotation) {
+                    LOGGER.info("自定义的控制器【{}】",bean.getClass().getCanonicalName());
+                }
+            }
+        }
 		return bean;
 	}
 
@@ -39,7 +44,8 @@ public class MyListener implements BeanPostProcessor,InitializingBean {
 		System.out.println("cn.followtry.custom.MyListener.MyListener()");
 	}
 
-	@Override
+
+    @Override
 	public void afterPropertiesSet() throws Exception {
 		LOGGER.info("");
 		System.out.println("cn.followtry.custom.MyListener.afterPropertiesSet()");

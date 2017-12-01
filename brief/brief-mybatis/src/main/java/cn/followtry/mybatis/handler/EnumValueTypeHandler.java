@@ -39,13 +39,15 @@ public class EnumValueTypeHandler<E extends IBaseEnum> extends BaseTypeHandler<E
 	/**
 	 * 将参数中的枚举值转为对应的int值
 	 */
-	@Override
+
+    @Override
 	public void setNonNullParameter(PreparedStatement ps, int i, E parameter, JdbcType jdbcType) throws SQLException {
 		// 获取非空的枚举的int值并设置到statement中
 		ps.setInt(i, parameter.getValue());
 	}
 
-	@Override
+
+    @Override
 	public E getNullableResult(ResultSet rs, String columnName) throws SQLException {
 		int i = rs.getInt(columnName);
 		if (rs.wasNull()) {
@@ -75,7 +77,8 @@ public class EnumValueTypeHandler<E extends IBaseEnum> extends BaseTypeHandler<E
 		return null;
 	}
 
-	@Override
+
+    @Override
 	public E getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
 		int i = rs.getInt(columnIndex);
 		if (rs.wasNull()) {
@@ -90,7 +93,8 @@ public class EnumValueTypeHandler<E extends IBaseEnum> extends BaseTypeHandler<E
 		}
 	}
 
-	@Override
+
+    @Override
 	public E getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
 		int i = cs.getInt(columnIndex);
 		if (cs.wasNull()) {

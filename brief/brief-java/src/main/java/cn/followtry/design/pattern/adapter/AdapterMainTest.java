@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 public class AdapterMainTest {
   /** main. */
   public static void main(String[] args) {
-    Player forwardPlayer = new ForwardPlayer("Garnett","前锋");
-    Player centerPlayer = new CenterPlayer("kobe","中锋");
-    Player guardsPlayer = new GuardsPlayer("Garnett","前锋");
-    Player foreignPlayer = new Translator("姚明","前锋");
+    AbstractPlayer forwardPlayer = new ForwardPlayer("Garnett","前锋");
+    AbstractPlayer centerPlayer = new CenterPlayer("kobe","中锋");
+    AbstractPlayer guardsPlayer = new GuardsPlayer("Garnett","前锋");
+    AbstractPlayer foreignPlayer = new Translator("姚明","前锋");
   
     Stream.of(forwardPlayer,centerPlayer,guardsPlayer,foreignPlayer).forEach(player -> {
       player.action("attack").attack();

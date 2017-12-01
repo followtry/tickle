@@ -6,8 +6,8 @@ package cn.followtry.design.pattern.builder;
 public class UserCreateDirector {
   
   public static User createUser() {
-    UserBuilder userBuilder = new ConcreteUserBuilder();
-    User jingzz = userBuilder.id("123456").IdNo("371427199210265842").name("jingzz").pwd
+    AbstractUserBuilder userBuilder = new ConcreteUserBuilder();
+    User jingzz = userBuilder.id("123456").idNo("371427199210265842").name("jingzz").pwd
             ("********").sex(User.Sex.Male).create();
     return jingzz;
   }

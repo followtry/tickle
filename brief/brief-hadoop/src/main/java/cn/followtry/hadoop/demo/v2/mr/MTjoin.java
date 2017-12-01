@@ -42,7 +42,8 @@ public class MTjoin {
 	private static final String SPLIT_CHAR = "+";
 
 	static class MTjoinMapper extends Mapper<LongWritable, Text, Text, Text> {
-		@Override
+
+        @Override
 		protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			String line = value.toString().trim();
@@ -68,7 +69,8 @@ public class MTjoin {
 	}
 
 	static class MTjoinReducer extends Reducer<Text, Text, Text, Text> {
-		@Override
+
+        @Override
 		protected void reduce(Text key, Iterable<Text> values, Reducer<Text, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			Iterator<Text> ite = values.iterator();

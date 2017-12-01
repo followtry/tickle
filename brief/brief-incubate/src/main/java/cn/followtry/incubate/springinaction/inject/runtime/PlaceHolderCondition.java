@@ -16,7 +16,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  */
 public class PlaceHolderCondition implements Condition {
 
-	@Override
+
+    @Override
 	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 		PropertySourcesPlaceholderConfigurer bean = context.getBeanFactory().getBean(PropertySourcesPlaceholderConfigurer.class);
 		if (bean != null) {

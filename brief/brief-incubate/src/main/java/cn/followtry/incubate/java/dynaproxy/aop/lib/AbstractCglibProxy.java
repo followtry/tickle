@@ -12,6 +12,7 @@ public abstract class AbstractCglibProxy implements MethodInterceptor, CglibProx
 
   private Enhancer enhancer = new Enhancer();
 
+
   @SuppressWarnings({ "rawtypes" })
   @Override
   public <T> T getProxy(Class<T> clazz) {
@@ -40,6 +41,7 @@ public abstract class AbstractCglibProxy implements MethodInterceptor, CglibProx
     afterAdvice(object, method, params, proxy);
     return invokeSuper;
   }
+
 
   @Override
   public Object intercept(Object object, Method method, Object[] params, MethodProxy proxy)

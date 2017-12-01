@@ -25,7 +25,8 @@ public class WordCountReduceV1 extends MapReduceBase implements Reducer<Text, In
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WordCountReduceV1.class);
 
-	@Override
+
+    @Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output,
 			Reporter reporter) throws IOException {
 		int count = 0;

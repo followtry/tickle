@@ -206,7 +206,9 @@ public class RBTree {
 
 
 	private enum TreeColor {
+		/**red*/
 		RED,
+		/**black*/
 		BLACK;
 	}
 
