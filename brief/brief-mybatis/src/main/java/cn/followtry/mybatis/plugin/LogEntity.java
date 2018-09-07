@@ -1,7 +1,8 @@
 package cn.followtry.mybatis.plugin;
 
-import java.util.List;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 存储日志信息
@@ -15,4 +16,6 @@ public class LogEntity {
     private String sql;
     
     private String invokeMethod;
+    
+    private Integer resultSize;
 }

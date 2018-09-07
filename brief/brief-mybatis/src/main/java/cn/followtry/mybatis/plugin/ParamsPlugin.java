@@ -3,13 +3,6 @@
  */
 package cn.followtry.mybatis.plugin;
 
-import java.lang.reflect.Field;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
 import org.apache.ibatis.binding.BindingException;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
@@ -26,6 +19,14 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+
+import java.lang.reflect.Field;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * 插件的执行顺序依据其在配置文件中由上到下的顺序，如果想在最先或最后执行插件，就将插件配置在plugins标签的最前或最后
@@ -46,15 +47,14 @@ public class ParamsPlugin implements Interceptor {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 	
-
-    @Override
+	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		System.out.println(invocation.getTarget());
 		setParameters((ParameterHandler)invocation.getTarget());
 		return invocation.proceed();
 	}
 	
-	private Field getField(ParameterHandler target,String filedName) throws NoSuchFieldException {
+	private Field getField(ParameterHandler target, String filedName) throws NoSuchFieldException {
 		
 		Field declaredField = target.getClass().getDeclaredField(filedName);
 		declaredField.setAccessible(true);
@@ -107,8 +107,7 @@ public class ParamsPlugin implements Interceptor {
 	}
 	
 	
-
-    @Override
+	@Override
 	public Object plugin(Object target) {
 		return Plugin.wrap(target,this);
 	}
@@ -125,8 +124,7 @@ public class ParamsPlugin implements Interceptor {
         }
 	}
 	
-
-    @Override
+	@Override
 	public void setProperties(Properties properties) {
 		System.out.println("LogPlugin.setProperties()");
 	}

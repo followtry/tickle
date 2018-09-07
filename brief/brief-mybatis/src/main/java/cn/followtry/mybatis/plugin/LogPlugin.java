@@ -3,10 +3,6 @@
  */
 package cn.followtry.mybatis.plugin;
 
-import java.lang.reflect.Field;
-import java.sql.Statement;
-import java.util.List;
-import java.util.Properties;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
 import org.apache.ibatis.executor.statement.PreparedStatementHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
@@ -18,6 +14,11 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.lang.reflect.Field;
+import java.sql.Statement;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * 插件的执行顺序依据其在配置文件中由上到下的顺序，如果想在最先或最后执行插件，就将插件配置在plugins标签的最前或最后
@@ -38,8 +39,7 @@ public class LogPlugin implements Interceptor {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 	
-
-    @Override
+	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		Object target = invocation.getTarget();
 		if (target instanceof RoutingStatementHandler) {
@@ -64,6 +64,9 @@ public class LogPlugin implements Interceptor {
 			NoSuchFieldException, IllegalAccessException {
 		BaseStatementHandler handler = target;
 		String sqlTemplete = handler.getBoundSql().getSql();
+		//将多个空格和换行符替换为一个
+		String reg = "(?m)^\\s*$(\\n|\\r\\n)";
+		sqlTemplete = sqlTemplete.replaceAll(reg,"").replaceAll("\t"," ").trim();
 		LogEntity logEntity = LogContext.getLogEntity();
 		List paramList = logEntity.getParams();
 		String sql = injectDataInSql(sqlTemplete,paramList);
@@ -72,7 +75,8 @@ public class LogPlugin implements Interceptor {
 		System.out.println("executor method is :\n\t" + logEntity.getInvokeMethod() +"\n");
 		System.out.println("executor sql is :\n\t" + sql +"\nsql end");
 		System.out.println("======================================================");
-		
+		logEntity.setSql(sql);
+		LogContext.setLogEntity(logEntity);
 	}
 	
 	private void printField(Object object) {
@@ -83,8 +87,7 @@ public class LogPlugin implements Interceptor {
 		}
 	}
 	
-
-    @Override
+	@Override
 	public Object plugin(Object target) {
 		return Plugin.wrap(target,this);
 	}
@@ -108,8 +111,7 @@ public class LogPlugin implements Interceptor {
         return sb.toString();
 	}
 	
-
-    @Override
+	@Override
 	public void setProperties(Properties properties) {
 		System.out.println("LogPlugin.setProperties()");
 	}

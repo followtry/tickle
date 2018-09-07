@@ -28,12 +28,16 @@ public class CollectionStream {
 
     getClassifyHobby();
 
+    //所有爱好的set
     getDissHobbies();
 
+    //根据属性filter
     getOlderThan(233);
 
+    //按性别求和
     groupBySex();
 
+    // list<User> => Map<Sex,List<String>>
     groupBySexList();
 
     getAgeSumGroupBySex();

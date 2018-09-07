@@ -34,6 +34,7 @@
   <plugins>
     <plugin interceptor="cn.followtry.mybatis.plugin.ParamsPlugin"/>
     <plugin interceptor="cn.followtry.mybatis.plugin.LogPlugin"/>
+    <plugin interceptor="cn.followtry.mybatis.plugin.ResultPlugin"/>
   </plugins>
 
 	<!-- 配置环境及数据源 -->

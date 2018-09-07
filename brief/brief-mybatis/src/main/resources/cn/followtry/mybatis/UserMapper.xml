@@ -10,6 +10,9 @@
 	</resultMap>
 	<select id="getUserById" resultMap="BaseResultMap">
 	   select * from user
+
+
+
 	   <if test="id != null">
 	   <where>
 			 name = #{name}
@@ -26,6 +29,8 @@
 			 and id='${@cn.followtry.mybatis.bean.CodeTypeEnum@THREE.ordinal()}'
 		 </where>
 		 </if>
+
+
 	   limit 100
 	</select>
 	
