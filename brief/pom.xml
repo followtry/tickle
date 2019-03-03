@@ -37,7 +37,6 @@
         <module>brief-service</module>
         <module>brief-dubbo</module>
         <module>brief-layer</module>
-        <module>brief-scheduler</module>
         <module>brief-springboot</module>
         <module>brief-tools</module>
         <module>brief-hbase</module>
@@ -66,7 +65,7 @@
         <dubbo.version>2.5.7</dubbo.version>
         <druid.version>1.1.5</druid.version>
         <elastic-job.version>1.1.1</elastic-job.version>
-        <fastjson.version>1.2.41</fastjson.version>
+        <fastjson.version>1.2.56</fastjson.version>
         <fileupload.version>1.3.3</fileupload.version>
         <guava.version>23.0</guava.version>
         <hadoop.version>2.8.1</hadoop.version>
@@ -78,10 +77,12 @@
         <javassist_version>3.15.0-GA</javassist_version>
         <jedis.version>2.9.0</jedis.version>
         <jetty.version>6.1.26</jetty.version>
+        <jetty.version>9.4.14.v20181114</jetty.version>
         <jsonlib.version>2.4</jsonlib.version>
         <junit.version>4.12</junit.version>
         <kafka.version>1.0.0</kafka.version>
         <log4j2.version>2.10.0</log4j2.version>
+        <log4j2-nosql.version>2.9.1</log4j2-nosql.version>
         <lombok.version>1.16.18</lombok.version>
         <mail.version>1.4.7</mail.version>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
@@ -103,15 +104,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quartz.version>2.2.2</quartz.version>
         <quartz-jobs.version>2.3.0</quartz-jobs.version>
-        <rabbitmq.version>5.0.0</rabbitmq.version>
         <servlet.version>4.0.0</servlet.version>
         <shiro.version>1.4.0</shiro.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>4.3.2.RELEASE</spring.version>
+        <spring.version>5.0.11.RELEASE</spring.version>
         <spring-boot.version>1.4.3.RELEASE</spring-boot.version>
         <spring-hot-load.version>1.2.6.RELEASE</spring-hot-load.version>
         <spring-kafka.version>1.1.2.RELEASE</spring-kafka.version>
-        <spring-rabbitmq.version>1.6.6.RELEASE</spring-rabbitmq.version>
         <spring-redis.version>1.7.1.RELEASE</spring-redis.version>
         <spring-mongo.version>1.9.2.RELEASE</spring-mongo.version>
         <unirest-java.version>1.4.9</unirest-java.version>
@@ -276,10 +275,24 @@
                 <version>${lombok.version}</version>
             </dependency>
 
-
             <dependency>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty</artifactId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-security</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-start</artifactId>
                 <version>${jetty.version}</version>
             </dependency>
 
@@ -321,7 +334,7 @@
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-nosql</artifactId>
-                <version>${log4j2.version}</version>
+                <version>${log4j2-nosql.version}</version>
             </dependency>
 
             <dependency>
@@ -337,11 +350,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework.amqp</groupId>
-                <artifactId>spring-rabbit</artifactId>
-                <version>${spring-rabbitmq.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>cn.followtry</groupId>
                 <artifactId>brief-tools</artifactId>
                 <version>${project.version}</version>
@@ -350,11 +358,6 @@
                 <groupId>cn.followtry</groupId>
                 <artifactId>brief-comm</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rabbitmq</groupId>
-                <artifactId>amqp-client</artifactId>
-                <version>${rabbitmq.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-collections</groupId>
