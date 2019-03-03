@@ -2,7 +2,6 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
 	<!-- 指定类型别名 -->
 	<!-- <typeAliases>
 		<typeAlias alias="User" type="cn.followtry.mybatis.bean.User"/>
@@ -14,13 +13,13 @@
 	</typeHandlers> -->
 
 
-	
 	<!-- 指定配置文件位置 -->
 	<properties resource="config.properties">
 		<!-- 优先级低于properties配置文件中的配置 -->
 		<property name="jdbc.username" value="ewqe"/>
+        <property name="jdbc.username2" value="111"/>
 	</properties>
-	
+
 	
 	<!-- 设置指定的参数 -->
 	<settings>
@@ -53,7 +52,7 @@
 
     <!-- 配置接口映射的xml配置文件 --> 
     <mappers>
-        <mapper resource="cn/followtry/mybatis/userMapper.xml"/>
+        <mapper resource="cn/followtry/mybatis/UserMapper.xml"/>
     </mappers>
 
 </configuration>

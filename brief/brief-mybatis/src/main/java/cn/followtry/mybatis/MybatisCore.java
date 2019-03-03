@@ -3,15 +3,15 @@
  */
 package cn.followtry.mybatis;
 
-import java.io.IOException;
-import java.io.Reader;
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.Reader;
 
 /**
  * 构造单例的SqlSessionFactory
@@ -44,6 +44,10 @@ public class MybatisCore {
 	
 	public static SqlSession getSession() {
 		return sessionFactory.openSession();
+	}
+
+	public static SqlSession getSession(boolean autoCommit) {
+		return sessionFactory.openSession(autoCommit);
 	}
 	
 	

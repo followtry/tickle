@@ -5,9 +5,13 @@ package cn.followtry.mybatis;
 
 import cn.followtry.mybatis.bean.User;
 import cn.followtry.mybatis.xml.mapper.UserMapper;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Collection;
 
 /**
  * 单独操作mybatis持久层框架<br>
@@ -25,8 +29,19 @@ public class XmlMyBatisTest {
 	public static void main(String[] args) throws Exception {
 		SqlSession session = MybatisCore.getSession();
 		try {
+			SqlSessionFactory sessionFactory = MybatisCore.getSessionFactory();
+			Collection<MappedStatement> mappedStatements = sessionFactory.getConfiguration().getMappedStatements();
+			for (MappedStatement mappedStatement : mappedStatements) {
+				System.out.println(mappedStatement.getId());
+			}
+
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			get(mapper);
+			User user = new User();
+			user.setName("jignzhongzhi2");
+			int num = mapper.insert(user);
+			System.out.println(num);
+
+//			get(mapper);
 		}finally {
 			session.close();
 		}

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.followtry.mybatis.xml.mapper.UserMapper">
 	
-	<resultMap type="cn.followtry.mybatis.bean.User" id="BaseResultMap" >
+	<resultMap type="cn.followtry.mybatis.bean.User" id="BaseResultMap" autoMapping="true" >
 		<id column="id" property="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
 		<result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
 		<result column="age" property="age" javaType="java.lang.Integer" jdbcType="INTEGER"/>
@@ -33,5 +33,9 @@
 
 	   limit 100
 	</select>
-	
+
+	<insert id="insert" timeout="2000" keyProperty="id" useGeneratedKeys="true">
+		insert into user(name) values(#{name})
+	</insert>
+
 </mapper>
