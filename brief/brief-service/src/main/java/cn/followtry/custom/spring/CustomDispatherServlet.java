@@ -3,12 +3,13 @@
  */
 package cn.followtry.custom.spring;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author jingzz
@@ -22,6 +23,9 @@ public class CustomDispatherServlet extends DispatcherServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CustomDispatherServlet.class);
+
+	@Nullable
+	private String applicationName;
 	
 
     @Override
@@ -33,7 +37,13 @@ public class CustomDispatherServlet extends DispatcherServlet {
 		LOG.error("远程用户:"+request.getRemoteUser());
 		super.noHandlerFound(request, response);
 	}
-	
-	
-	
+
+	@Nullable
+	public String getApplicationName() {
+		return applicationName;
+	}
+
+	public void setApplicationName(@Nullable String applicationName) {
+		this.applicationName = applicationName;
+	}
 }

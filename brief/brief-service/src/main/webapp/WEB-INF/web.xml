@@ -31,6 +31,10 @@
             <!-- Test mvc配置文件的位置 -->
             <param-value>/WEB-INF/springMVC-servlet.xml</param-value>
         </init-param>
+        <init-param>
+            <param-name>applicationName</param-name>
+            <param-value>brief-service</param-value>
+        </init-param>
         <!-- 启动立即加载 -->
         <load-on-startup>1</load-on-startup>
     </servlet>
