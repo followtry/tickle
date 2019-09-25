@@ -19,22 +19,32 @@
 			 and id =${id}
 			 and id = ${user.id}
 			 and id = ${@@abs(-12345678)}
-			 and id = ${@@parseInt("654")}
+			 and id = ${@Integer@parseInt("654")}
 			 and id='${@cn.followtry.mybatis.bean.User@name()}'
+			 and id='${@org.apache.commons.lang3.math.NumberUtils@isNumber("abcd")}'
 			 and id='${new cn.followtry.mybatis.bean.User()}'
 			 and id=${@cn.followtry.mybatis.bean.User@haha}
 			 and id='${@cn.followtry.mybatis.bean.User@arr[1]}'
 			 and id='${@cn.followtry.mybatis.bean.User@list[1]}'
 			 and id='${@cn.followtry.mybatis.bean.User@map.get("123")}'
-			 and id='${@cn.followtry.mybatis.bean.CodeTypeEnum@THREE.ordinal()}'
+			and id='${@cn.followtry.mybatis.bean.CodeTypeEnum@THREE.ordinal()}'
 		 </where>
 		 </if>
 
 
 	   limit 100
 	</select>
+    <select id="getUserList" resultType="cn.followtry.mybatis.bean.User">
+		select *
+		from user
+		where
+		id in
+		<foreach collection="param.user.ids" open="(" close=")" separator="," item="ida">
+		#{ida}
+</foreach>
+	</select>
 
-	<insert id="insert" timeout="2000" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" timeout="2000" keyProperty="id" useGeneratedKeys="true">
 		insert into user(name) values(#{name})
 	</insert>
 

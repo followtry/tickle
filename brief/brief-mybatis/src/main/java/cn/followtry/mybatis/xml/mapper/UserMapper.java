@@ -3,8 +3,11 @@
  */
 package cn.followtry.mybatis.xml.mapper;
 
+import cn.followtry.mybatis.bean.ParamDO;
 import cn.followtry.mybatis.bean.User;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author jingzz
@@ -23,4 +26,6 @@ public interface UserMapper {
 	User getUserById(@Param("id") Long id,@Param("name") String name,@Param("user")User user);
 
 	int insert(User user);
+
+	List<User> getUserList(@Param("param")ParamDO param);
 }

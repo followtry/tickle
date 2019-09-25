@@ -57,7 +57,7 @@
 
     <properties>
         <aspectjweaver.version>1.8.13</aspectjweaver.version>
-        <beam.version>2.11.0</beam.version>
+        <beam.version>2.10.0</beam.version>
         <beam.kafka.version>2.11.0</beam.kafka.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.2.1</c3p0.version>

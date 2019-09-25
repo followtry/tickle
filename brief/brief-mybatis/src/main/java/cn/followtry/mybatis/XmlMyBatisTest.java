@@ -3,8 +3,11 @@
  */
 package cn.followtry.mybatis;
 
+import cn.followtry.mybatis.bean.ParamDO;
 import cn.followtry.mybatis.bean.User;
 import cn.followtry.mybatis.xml.mapper.UserMapper;
+import com.google.common.collect.Lists;
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 单独操作mybatis持久层框架<br>
@@ -36,10 +40,9 @@ public class XmlMyBatisTest {
 			}
 
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			User user = new User();
-			user.setName("jignzhongzhi2");
-			int num = mapper.insert(user);
-			System.out.println(num);
+//			get(mapper);
+			getList(mapper);
+
 
 //			get(mapper);
 		}finally {
@@ -50,7 +53,24 @@ public class XmlMyBatisTest {
 	/**
 	 * @author jingzz
 	 */
+	private static List<User> getList(UserMapper mapper) {
+		User user1 = new User();
+		user1.setId(12L);
+		user1.setName("jjj");
+		//获取数据库操作会话
+		ParamDO paramDO = new ParamDO();
+		paramDO.setUser(user1);
+		user1.setIds(Lists.newArrayList(1,null,3));
+		List<User> userList = mapper.getUserList(paramDO);
+		LOGGER.info(userList == null ?"user为空":userList.toString());
+		return userList;
+	}
+
+	/**
+	 * @author jingzz
+	 */
 	private static User get(UserMapper mapper) {
+		new SQL()
 		User user1 = new User();
 		user1.setId(12L);
 		user1.setName("jjj");
