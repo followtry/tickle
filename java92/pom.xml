@@ -48,6 +48,8 @@
         <configuration>
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
+            <source>13</source>
+            <target>13</target>
         </configuration>
       </plugin>
       <plugin>

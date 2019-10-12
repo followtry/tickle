@@ -1,4 +1,10 @@
-module com.followtry.module2 {
+/**
+ * @Description
+ * @author jingzhongzhi
+ * @since 2019/10/12
+ */
+module java92 {
     requires cn.followtry.module;
-    requires jdk.incubator.httpclient;
+    requires java.base;
+    requires java.net.http;
 }
