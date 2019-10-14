@@ -12,5 +12,10 @@ spring:
           search-paths: followtry-cloud/src/main/resources/*
       profile: dev
       label: trunk
+      uri: ["http://localhost:8888"]
 server:
-  port: 8888
+  port: 8080
+
+followtry:
+  name: followtry-cloud
+  home: ["http://www.baidu.com"]
