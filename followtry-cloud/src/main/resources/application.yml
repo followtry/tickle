@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: followtry-cloud
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+          local:
+            pattern: local*
+            uri: file:/Users/jingzhongzhi/git-project/tickle
+          search-paths: followtry-cloud/src/main/resources/*
+      profile: dev
+      label: trunk
+server:
+  port: 8888
