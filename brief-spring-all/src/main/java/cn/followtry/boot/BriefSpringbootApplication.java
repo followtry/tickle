@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"cn.followtry"})
+@ComponentScan(basePackages = "cn.followtry.service")
 public class BriefSpringbootApplication {
 
 	public static void main(String[] args) {
