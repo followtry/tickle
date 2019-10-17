@@ -36,7 +36,6 @@
         <module>brief-comm</module>
         <module>brief-service</module>
         <module>brief-dubbo</module>
-        <module>brief-layer</module>
         <module>brief-tools</module>
         <module>brief-hbase</module>
         <module>brief-mq</module>
@@ -46,7 +45,6 @@
         <module>brief-hadoop</module>
         <module>brief-zk</module>
         <module>brief-spring</module>
-        <module>brief-mongo</module>
         <module>brief-java</module>
         <module>brief-logger</module>
         <module>brief-netty</module>

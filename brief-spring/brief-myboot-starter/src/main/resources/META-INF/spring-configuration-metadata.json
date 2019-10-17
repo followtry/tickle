@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "name": "my-boot",
+      "type": "cn.followtry.MyBootUserProperties",
+      "sourceType": "cn.followtry.MyBootUserProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "my-boot.name",
+      "type": "java.lang.String",
+      "description": "user name",
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "defaultValue": ""
+    },
+    {
+      "name": "my-boot.age",
+      "type": "java.lang.Integer",
+      "description": "user age",
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties"
+    },
+    {
+      "name": "my-boot.sex",
+      "type": "java.lang.Integer",
+      "description": "user sex",
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties"
+    },
+    {
+      "name": "my-boot.location",
+      "type": "java.lang.Integer",
+      "description": "user age",
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "sourceMethod":"getLocation()"
+    }
+  ],
+  "hints": []
+}
