@@ -37,9 +37,23 @@
       "name": "my-boot.location",
       "type": "cn.followtry.Location",
       "description": "user location",
-      "sourceType": "cn.followtry.MyBootUserProperties",
-      "sourceMethod":"getLocation()"
+      "sourceType": "cn.followtry.MyBootUserProperties"
     }
   ],
-  "hints": []
+  "hints": [
+    {
+      "name":"my-boot.sex",
+      "value":[
+        {
+          "value":"1",
+          "description":"male sex"
+        },
+
+        {
+          "value":"2",
+          "description":"female sex"
+        }
+      ]
+    }
+  ]
 }
