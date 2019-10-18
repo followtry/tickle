@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController
  * @author jingzhongzhi
  * @since  2019/10/18
  */
+//注解使用方式同 java
 @RestController
 @RequestMapping("kotlin")
 open class TestController {
