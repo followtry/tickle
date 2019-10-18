@@ -1,4 +1,4 @@
-package cn.followtry.boot.cn.followtry.service.controller;
+package cn.followtry.boot.java.controller;
 
 import cn.followtry.User;
 import com.alibaba.fastjson.JSON;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019/10/15
  */
 @RestController
+@RequestMapping("java")
 public class TestController {
 
     @Autowired

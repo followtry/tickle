@@ -11,11 +11,11 @@ import org.springframework.context.annotation.ComponentScan
  */
 
 @SpringBootApplication
-@ComponentScan("cn.followtry")
+@ComponentScan("cn.followtry.boot.kotlin")
 open class KotlinApp
 
 fun main(args: Array<String>) {
     runApplication<KotlinApp>(*args) {
-        setBannerMode(Banner.Mode.OFF)
+        setBannerMode(Banner.Mode.CONSOLE)
     }
 }
