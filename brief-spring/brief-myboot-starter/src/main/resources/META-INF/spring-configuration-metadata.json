@@ -9,7 +9,7 @@
   ],
   "properties": [
     {
-      "name": "my-scanner.test",
+      "name": "my-scanner.base-package",
       "type": "java.lang.String",
       "description": "base package path",
       "sourceType": "cn.followtry.MyBootScanProperties",
