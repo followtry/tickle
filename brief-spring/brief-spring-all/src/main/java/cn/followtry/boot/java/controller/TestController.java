@@ -1,6 +1,7 @@
 package cn.followtry.boot.java.controller;
 
-import cn.followtry.User;
+import cn.followtry.boot.java.service.ApplicationService;
+import cn.followtry.boot.java.service.MyService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,15 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private User user;
+    private ApplicationService applicationService;
+
+    @Autowired
+    private MyService myService;
 
     @RequestMapping("/")
     public Object getTest(){
         return "success";
     }
 
-    @RequestMapping(value = "/user",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String getUser(){
-        return JSON.toJSONString(user.userInfo());
+    @RequestMapping(value = "/application",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object getApplication(){
+        return JSON.toJSONString(applicationService.getBeanDefinitionNames());
+    }
+
+    @RequestMapping(value = "/service",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object getData(){
+        String hello = myService.hello();
+        return JSON.toJSONString(hello);
     }
 }

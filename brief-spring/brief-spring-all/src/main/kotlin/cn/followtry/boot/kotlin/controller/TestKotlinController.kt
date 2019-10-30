@@ -1,6 +1,6 @@
 package cn.followtry.boot.kotlin.controller
 
-import cn.followtry.User
+import cn.followtry.boot.java.service.ApplicationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController
 //注解使用方式同 java
 @RestController
 @RequestMapping("kotlin")
-open class TestController {
+open class TestKotlinController {
 
     @Autowired
-    lateinit var user : User
+    lateinit var applicationService: ApplicationService
 
-    @RequestMapping(value = ["user"],produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
-    fun getUser(): Any {
-        return user.userInfo()
+    @RequestMapping(value = ["application"],produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
+    fun getApplication(): Any {
+        return applicationService.beanDefinitionNames
     }
 }
 

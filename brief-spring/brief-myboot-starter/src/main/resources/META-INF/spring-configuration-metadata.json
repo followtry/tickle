@@ -2,58 +2,19 @@
   /** 指定属性标签的名称，类型和属性值及类型 **/
   "groups": [
     {
-      "name": "my-boot",
-      "type": "cn.followtry.MyBootUserProperties",
-      "sourceType": "cn.followtry.MyBootUserProperties"
-    },
-    {
-      "name": "my-boot.location",
-      "type": "cn.followtry.MyBootUserProperties",
-      "sourceType": "cn.followtry.MyBootUserProperties",
-      "sourceMethod":"getLocation()"
+      "name": "my-scanner",
+      "type": "cn.followtry.MyBootScanProperties",
+      "sourceType": "cn.followtry.MyBootScanProperties"
     }
   ],
   "properties": [
     {
-      "name": "my-boot.name",
+      "name": "my-scanner.test",
       "type": "java.lang.String",
-      "description": "user name",
-      "sourceType": "cn.followtry.MyBootUserProperties",
+      "description": "base package path",
+      "sourceType": "cn.followtry.MyBootScanProperties",
       "defaultValue": ""
-    },
-    {
-      "name": "my-boot.age",
-      "type": "java.lang.Integer",
-      "description": "user age",
-      "sourceType": "cn.followtry.MyBootUserProperties"
-    },
-    {
-      "name": "my-boot.sex",
-      "type": "java.lang.Integer",
-      "description": "user sex",
-      "sourceType": "cn.followtry.MyBootUserProperties"
-    },
-    {
-      "name": "my-boot.location",
-      "type": "cn.followtry.Location",
-      "description": "user location",
-      "sourceType": "cn.followtry.MyBootUserProperties"
     }
   ],
-  "hints": [
-    {
-      "name":"my-boot.sex",
-      "value":[
-        {
-          "value":"1",
-          "description":"male sex"
-        },
-
-        {
-          "value":"2",
-          "description":"female sex"
-        }
-      ]
-    }
-  ]
+  "hints": []
 }
