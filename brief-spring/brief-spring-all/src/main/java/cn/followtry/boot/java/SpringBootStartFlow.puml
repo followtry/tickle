@@ -100,12 +100,68 @@ deactivate SpringApplication
 SpringApplication -> SpringApplication: prepareContext
 activate SpringApplication
 note left
-准备上下文的设置
+1. 设置自定义的name 生成器和自定义加载器
+2. 支持ApplicationContextInitializer实现类的实例化并为 context 设置值
+3. 将springApplicationArguments，springBootBanner
+和启动类BriefSpringBootApplication都注册为单例
 end note
+
 deactivate SpringApplication
 
 SpringApplication -> SpringApplication: refreshContext
 activate SpringApplication
+    SpringApplication -> AbstractApplicationContext: refresh
+    activate AbstractApplicationContext
+        AbstractApplicationContext -> AbstractApplicationContext: prepareRefresh
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: obtainFreshBeanFactory
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: prepareBeanFactory
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: postProcessBeanFactory
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: invokeBeanFactoryPostProcessors
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: registerBeanPostProcessors
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: initMessageSource
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: initApplicationEventMulticaster
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: onRefresh
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: registerListeners
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: finishBeanFactoryInitialization
+        activate AbstractApplicationContext
+        return
+
+        AbstractApplicationContext -> AbstractApplicationContext: finishRefresh
+        activate AbstractApplicationContext
+        return
+
+    return 刷新完毕
+return 刷新 Spring 的 bean 信息
 note left
 刷新上下文内容
 end note
