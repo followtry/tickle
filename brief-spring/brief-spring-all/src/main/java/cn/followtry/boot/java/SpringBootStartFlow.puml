@@ -89,6 +89,7 @@ end note
          2. 设置默认的`beanDefinitionDefaults`为`BeanDefinitionDefaults`
          3. 设置默认的`scopeMetadataResolver`为`AnnotationScopeMetadataResolver`
          4. 设置默认支持注解配置`includeAnnotationConfig=true`
+         5. 注册默认的过滤器，注解`@Component`、`@Named`和`@ManagedBean`
     end note
     ClassPathBeanDefinitionScanner -> ClassPathBeanDefinitionScanner: registerDefaultFilters
     return 获取扫描器
@@ -104,8 +105,23 @@ note left
 2. 支持ApplicationContextInitializer实现类的实例化并为 context 设置值
 3. 将springApplicationArguments，springBootBanner
 和启动类BriefSpringBootApplication都注册为单例
+4. 默认不允许 BeanDefinition 覆盖和延迟初始化
 end note
-
+    SpringApplication -> BeanDefinitionLoader: createBeanDefinitionLoader
+    activate BeanDefinitionLoader
+        BeanDefinitionLoader -> AnnotatedBeanDefinitionReader: 创建注解配置读取器
+        activate AnnotatedBeanDefinitionReader
+        return
+        BeanDefinitionLoader -> XmlBeanDefinitionReader: 创建 xml配置读取器
+        activate XmlBeanDefinitionReader
+        return
+        BeanDefinitionLoader -> ClassPathBeanDefinitionScanner: 创建类扫描器
+        activate ClassPathBeanDefinitionScanner
+        return
+        BeanDefinitionLoader -> ClassExcludeFilter: 添加排除的过滤器
+        activate ClassExcludeFilter
+        return
+    return
 deactivate SpringApplication
 
 SpringApplication -> SpringApplication: refreshContext
@@ -185,44 +201,8 @@ BriefSpringBootApplication <- SpringApplication: 完成启动
 @enduml
 
 
-4. 创建 ApplicationContext
-   2. 在实例化`AnnotationConfigServletWebServerApplicationContext`时，会实例化`AnnotatedBeanDefinitionReader`和`ClassPathBeanDefinitionScanner`。
-      1. 实例化`AnnotatedBeanDefinitionReader`时
-      2. 实例化`ClassPathBeanDefinitionScanner`时
-         1. 设置默认的`beanNameGenerator`为`AnnotationBeanNameGenerator`
-         2. 设置默认的`beanDefinitionDefaults`为`BeanDefinitionDefaults`
-         3. 设置默认的`scopeMetadataResolver`为`AnnotationScopeMetadataResolver`
-         4. 设置默认支持注解配置`includeAnnotationConfig=true`
-         5. 注册默认的过滤器
-            1. 注解`@Component`、`@Named`和`@ManagedBean`
-         6. 设置环境
-         7. 设置资源加载器
 5. 准备 ApplicationContext 的数据
-   1. 设置环境信息
-   2. 后处理
-      1. 按需设置`beanNameGenerator`、`resourceLoader`、`conversionService`
-   3. 支持初始化器，初始化器会做一下 context 的设置操作
-      1. SharedMetadataReaderFactoryContextInitializer初始化器
-         1. 在`BeanFactoryPostProcessor`中添加`CachingMetadataReaderFactoryPostProcessor`
-      2. ContextIdApplicationContextInitializer初始化器
-         1. 为 context 设置 ContextId 及将其注册进 Spring 的容器中。可通过`spring.application.name`属性配置，默认为`application`
-      3. RestartScopeInitializer初始化器
-         1. 将`RestartScope`注册到`restart` scope
-      4. ConfigurationWarningsApplicationContextInitializer初始化器
-         1. 在`BeanFactoryPostProcessor`中添加`ConfigurationWarningsPostProcessor`。将`org.springframework`和`org`设置为有问题的扫描包
-      5. RSocketPortInfoApplicationContextInitializer 初始化器
-         1. 为`ApplicationListener`添加新的监听器`RSocketPortInfoApplicationContextInitializer.Listener`
-      6. ServerPortInfoApplicationContextInitializer 初始化器
-         1. 将当前的applicationContext添加为`ApplicationListener`的监听器
-      7. ConditionEvaluationReportLoggingListener
-         1. 将`ConditionEvaluationReportListener`加入到`ApplicationListener`监听器中
-      8.
-   4. 将参数类注册为单例。
-      1. `springApplicationArguments` -> `ApplicationArguments`
-   5. 将 banner 注册为单例
-      1. `springBootBanner` -> `Banner`
-   6. 默认不允许 BeanDefinition 覆盖
-   7. 默认不允许延迟初始化
+
    8. 创建BeanDefinitionLoader，在 SpringBoot中
       1. 实例化注解读取器 `AnnotatedBeanDefinitionReader`
          1. 在实例化时，会通过工具注册几个 BeanFactoryPostProcessor,如`ConfigurationClassPostProcessor`和`AutowiredAnnotationBeanPostProcessor`。参考`AnnotationConfigUtils.registerAnnotationConfigProcessors`
