@@ -117,7 +117,7 @@
         <spring-mongo.version>1.9.2.RELEASE</spring-mongo.version>
         <unirest-java.version>1.4.9</unirest-java.version>
         <validation.version>1.1.0.Final</validation.version>
-        <zookeeper_version>3.4.11</zookeeper_version>
+        <zookeeper_version>3.4.14</zookeeper_version>
         <zk-client.version>4.0.0</zk-client.version>
 
         <kotlin.version>1.2.31</kotlin.version>
