@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入属性配置 -->
+    <properties resource="generator/generator.properties"/>
+
+    <!--执行命令（记不住）：
+     每个数据库表一个context配置，定义唯一的context id，在生成代码时，只指定自己的context id生成代码。
+     对于多张表多个context的情况，可以用逗号分隔的方式执行生成代码。
+
+     mvn mybatis-generator:generate -Dmybatis.generator.contexts=contextId1,contextId2
+
+     自己添加自己的context标签配置表生成代码
+    -->
+
+    <!-- mvn mybatis-generator:generate -Dmybatis.generator.contexts=user_table -->
+    <context id="user_table" targetRuntime="MyBatis3Simple">
+        <property name="javaFileEncoding" value="utf-8"/>
+<!--        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+<!--        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3006/brief?characterEncoding=utf8" driverClass="com.mysql.jdbc.Driver" userId="root" password="root"/>-->
+        <jdbcConnection connectionURL="${db_url}" driverClass="${driver}" userId="${db_username}" password="${db_password}"/>
+        <javaTypeResolver/>
+
+        <javaModelGenerator targetPackage="cn.followtry.boot.java.mybatis" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <javaClientGenerator targetPackage="cn.followtry.boot.java.mybatis" targetProject="src/main/java" type="XMLMAPPER"/>
+        <table tableName="dim_hotel_bd" mapperName="BdUserMapper" domainObjectName="BdUserDO"/>
+    </context>
+
+</generatorConfiguration>

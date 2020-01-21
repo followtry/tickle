@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.followtry.boot.java.mybatis.BdUserMapper">
+  <resultMap id="BaseResultMap" type="cn.followtry.boot.java.mybatis.BdUserDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="bd_id" jdbcType="INTEGER" property="bdId" />
+    <result column="bd_name" jdbcType="VARCHAR" property="bdName" />
+    <result column="login" jdbcType="VARCHAR" property="login" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="birth_date" jdbcType="VARCHAR" property="birthDate" />
+    <result column="entry_date" jdbcType="VARCHAR" property="entryDate" />
+    <result column="left_date" jdbcType="VARCHAR" property="leftDate" />
+    <result column="position_id" jdbcType="INTEGER" property="positionId" />
+    <result column="job_id" jdbcType="INTEGER" property="jobId" />
+    <result column="job_status" jdbcType="INTEGER" property="jobStatus" />
+    <result column="mobile_phone_no" jdbcType="VARCHAR" property="mobilePhoneNo" />
+    <result column="organization_path" jdbcType="VARCHAR" property="organizationPath" />
+    <result column="auth_path" jdbcType="VARCHAR" property="authPath" />
+    <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="employee_organization" jdbcType="VARCHAR" property="employeeOrganization" />
+    <result column="organization_leader_id" jdbcType="INTEGER" property="organizationLeaderId" />
+    <result column="superior_id" jdbcType="INTEGER" property="superiorId" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="organization_name" jdbcType="VARCHAR" property="organizationName" />
+    <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="subdepartment_name" jdbcType="VARCHAR" property="subdepartmentName" />
+    <result column="subdepartment_id" jdbcType="INTEGER" property="subdepartmentId" />
+    <result column="region_name" jdbcType="VARCHAR" property="regionName" />
+    <result column="region_id" jdbcType="INTEGER" property="regionId" />
+    <result column="subregion_name" jdbcType="VARCHAR" property="subregionName" />
+    <result column="subregion_id" jdbcType="INTEGER" property="subregionId" />
+    <result column="zone_name" jdbcType="VARCHAR" property="zoneName" />
+    <result column="zone_id" jdbcType="INTEGER" property="zoneId" />
+    <result column="subzone_name" jdbcType="VARCHAR" property="subzoneName" />
+    <result column="subzone_id" jdbcType="INTEGER" property="subzoneId" />
+    <result column="team_id" jdbcType="INTEGER" property="teamId" />
+    <result column="team_name" jdbcType="VARCHAR" property="teamName" />
+    <result column="datekey" jdbcType="INTEGER" property="datekey" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dim_hotel_bd
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.followtry.boot.java.mybatis.BdUserDO">
+    insert into dim_hotel_bd (id, bd_id, bd_name, 
+      login, gender, birth_date, 
+      entry_date, left_date, position_id, 
+      job_id, job_status, mobile_phone_no, 
+      organization_path, auth_path, organization_id, 
+      employee_organization, organization_leader_id, 
+      superior_id, is_deleted, organization_name, 
+      department_id, department_name, subdepartment_name, 
+      subdepartment_id, region_name, region_id, 
+      subregion_name, subregion_id, zone_name, 
+      zone_id, subzone_name, subzone_id, 
+      team_id, team_name, datekey
+      )
+    values (#{id,jdbcType=BIGINT}, #{bdId,jdbcType=INTEGER}, #{bdName,jdbcType=VARCHAR}, 
+      #{login,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{birthDate,jdbcType=VARCHAR}, 
+      #{entryDate,jdbcType=VARCHAR}, #{leftDate,jdbcType=VARCHAR}, #{positionId,jdbcType=INTEGER}, 
+      #{jobId,jdbcType=INTEGER}, #{jobStatus,jdbcType=INTEGER}, #{mobilePhoneNo,jdbcType=VARCHAR}, 
+      #{organizationPath,jdbcType=VARCHAR}, #{authPath,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, 
+      #{employeeOrganization,jdbcType=VARCHAR}, #{organizationLeaderId,jdbcType=INTEGER}, 
+      #{superiorId,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, 
+      #{departmentId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, #{subdepartmentName,jdbcType=VARCHAR}, 
+      #{subdepartmentId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, #{regionId,jdbcType=INTEGER}, 
+      #{subregionName,jdbcType=VARCHAR}, #{subregionId,jdbcType=INTEGER}, #{zoneName,jdbcType=VARCHAR}, 
+      #{zoneId,jdbcType=INTEGER}, #{subzoneName,jdbcType=VARCHAR}, #{subzoneId,jdbcType=INTEGER}, 
+      #{teamId,jdbcType=INTEGER}, #{teamName,jdbcType=VARCHAR}, #{datekey,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.followtry.boot.java.mybatis.BdUserDO">
+    update dim_hotel_bd
+    set bd_id = #{bdId,jdbcType=INTEGER},
+      bd_name = #{bdName,jdbcType=VARCHAR},
+      login = #{login,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      birth_date = #{birthDate,jdbcType=VARCHAR},
+      entry_date = #{entryDate,jdbcType=VARCHAR},
+      left_date = #{leftDate,jdbcType=VARCHAR},
+      position_id = #{positionId,jdbcType=INTEGER},
+      job_id = #{jobId,jdbcType=INTEGER},
+      job_status = #{jobStatus,jdbcType=INTEGER},
+      mobile_phone_no = #{mobilePhoneNo,jdbcType=VARCHAR},
+      organization_path = #{organizationPath,jdbcType=VARCHAR},
+      auth_path = #{authPath,jdbcType=VARCHAR},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      employee_organization = #{employeeOrganization,jdbcType=VARCHAR},
+      organization_leader_id = #{organizationLeaderId,jdbcType=INTEGER},
+      superior_id = #{superiorId,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      organization_name = #{organizationName,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      subdepartment_name = #{subdepartmentName,jdbcType=VARCHAR},
+      subdepartment_id = #{subdepartmentId,jdbcType=INTEGER},
+      region_name = #{regionName,jdbcType=VARCHAR},
+      region_id = #{regionId,jdbcType=INTEGER},
+      subregion_name = #{subregionName,jdbcType=VARCHAR},
+      subregion_id = #{subregionId,jdbcType=INTEGER},
+      zone_name = #{zoneName,jdbcType=VARCHAR},
+      zone_id = #{zoneId,jdbcType=INTEGER},
+      subzone_name = #{subzoneName,jdbcType=VARCHAR},
+      subzone_id = #{subzoneId,jdbcType=INTEGER},
+      team_id = #{teamId,jdbcType=INTEGER},
+      team_name = #{teamName,jdbcType=VARCHAR},
+      datekey = #{datekey,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, bd_id, bd_name, login, gender, birth_date, entry_date, left_date, position_id, 
+    job_id, job_status, mobile_phone_no, organization_path, auth_path, organization_id, 
+    employee_organization, organization_leader_id, superior_id, is_deleted, organization_name, 
+    department_id, department_name, subdepartment_name, subdepartment_id, region_name, 
+    region_id, subregion_name, subregion_id, zone_name, zone_id, subzone_name, subzone_id, 
+    team_id, team_name, datekey
+    from dim_hotel_bd
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, bd_id, bd_name, login, gender, birth_date, entry_date, left_date, position_id, 
+    job_id, job_status, mobile_phone_no, organization_path, auth_path, organization_id, 
+    employee_organization, organization_leader_id, superior_id, is_deleted, organization_name, 
+    department_id, department_name, subdepartment_name, subdepartment_id, region_name, 
+    region_id, subregion_name, subregion_id, zone_name, zone_id, subzone_name, subzone_id, 
+    team_id, team_name, datekey
+    from dim_hotel_bd
+  </select>
+</mapper>

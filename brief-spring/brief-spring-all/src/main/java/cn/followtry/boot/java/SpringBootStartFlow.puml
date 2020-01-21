@@ -306,3 +306,6 @@ BriefSpringBootApplication <- SpringApplication: 完成启动
                1.  在`AbstractAutowireCapableBeanFactory#applyMergedBeanDefinitionPostProcessors`方法中完成 Bean 的后处理设置，比如解析`@autowaired`、`@Value`和`@Inject` 注解的 bean 等。
                2.  在`AbstractAutowireCapableBeanFactory#initializeBean`处完成`aware`方法的设置，调用初始化方法
    10.
+
+
+

@@ -18,9 +18,14 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+
+		<mysql.version>5.1.47</mysql.version>
+		<maven.source.version>3.2.1</maven.source.version>
+		<mybatis.version>2.1.0</mybatis.version>
 	</properties>
 
 	<dependencies>
+
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-cache</artifactId>-->
@@ -45,11 +50,41 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat.embed</groupId>
+					<artifactId>tomcat-embed-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>cn.followtry</groupId>
-			<artifactId>brief-myboot-starter</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<!--暂时先注释掉自定义的扫描器-->
+		<!--<dependency>-->
+			<!--<groupId>cn.followtry</groupId>-->
+			<!--<artifactId>brief-myboot-starter</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		<!--</dependency>-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.60</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
@@ -177,6 +212,11 @@
 			<!--<artifactId>spring-restdocs-mockmvc</artifactId>-->
 			<!--<scope>test</scope>-->
 		<!--</dependency>-->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-maven-plugin</artifactId>
+			<version>1.3.5</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -193,6 +233,24 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.5</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+					<configurationFile>src/main/resources/generator/generatorConfig.xml</configurationFile>
+				</configuration>
+				<dependencies>
+					<!-- jdbc 依赖 -->
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>${mysql.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -254,6 +312,12 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- 用于打包源代码 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven.source.version}</version>
 			</plugin>
 		</plugins>
 	</build>

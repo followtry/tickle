@@ -7,7 +7,6 @@ import cn.followtry.mybatis.bean.ParamDO;
 import cn.followtry.mybatis.bean.User;
 import cn.followtry.mybatis.xml.mapper.UserMapper;
 import com.google.common.collect.Lists;
-import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -70,7 +69,6 @@ public class XmlMyBatisTest {
 	 * @author jingzz
 	 */
 	private static User get(UserMapper mapper) {
-		new SQL()
 		User user1 = new User();
 		user1.setId(12L);
 		user1.setName("jjj");

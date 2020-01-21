@@ -1,7 +1,5 @@
-package cn.followtry.boot.java.test;
+package cn.followtry.boot.java;
 
-import cn.followtry.scanner.CustomScanner;
-import cn.followtry.scanner.MyAnno;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
@@ -22,10 +20,10 @@ public class ScannerTest {
 
         GenericApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-        CustomScanner scanner = new CustomScanner(applicationContext, MyAnno.class);
-        int scanCount = scanner.scan(BASE_PACKAGE);
-        applicationContext.refresh();
-        System.out.println("1扫描的数量"+scanCount);
+//        CustomScanner scanner = new CustomScanner(applicationContext, MyAnno.class);
+//        int scanCount = scanner.scan(BASE_PACKAGE);
+//        applicationContext.refresh();
+//        System.out.println("1扫描的数量"+scanCount);
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
             System.out.println("bean name : " + beanDefinitionName);
