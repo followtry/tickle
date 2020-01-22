@@ -20,8 +20,8 @@
         <property name="javaFileEncoding" value="utf-8"/>
 <!--        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>-->
         <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <property name="suppressAllComments" value="true"/>
+<!--            添加评论，从 generator 的源码中抠出来的-->
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
 <!--        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3006/brief?characterEncoding=utf8" driverClass="com.mysql.jdbc.Driver" userId="root" password="root"/>-->
         <jdbcConnection connectionURL="${db_url}" driverClass="${driver}" userId="${db_username}" password="${db_password}"/>
