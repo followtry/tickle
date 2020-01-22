@@ -1,5 +1,6 @@
 package cn.followtry.boot.java.service;
 
+import cn.followtry.boot.java.mybatis.BdUserMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -29,6 +30,9 @@ public class ApplicationService implements ApplicationContextAware,InitializingB
     @Autowired
     private Optional<MyService> myServiceOptional;
 
+    @Autowired
+    private BdUserMapper bdUserMapper;
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (myServiceMap != null) {
@@ -51,6 +55,10 @@ public class ApplicationService implements ApplicationContextAware,InitializingB
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         Arrays.sort(beanDefinitionNames);
         return Lists.newArrayList(beanDefinitionNames);
+    }
+
+    public Object getUser(Long id){
+        return bdUserMapper.selectByPrimaryKey(id);
     }
 
     @Override

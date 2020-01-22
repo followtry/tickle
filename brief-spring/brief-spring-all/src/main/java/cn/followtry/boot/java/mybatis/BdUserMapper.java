@@ -1,6 +1,5 @@
 package cn.followtry.boot.java.mybatis;
 
-import cn.followtry.boot.java.mybatis.BdUserDO;
 import java.util.List;
 
 public interface BdUserMapper {

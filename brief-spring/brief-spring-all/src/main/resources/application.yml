@@ -8,9 +8,10 @@ spring:
     log-request-details: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    username: brief
-    password: brief
-    url: jdbc:mysql://127.0.0.1:3006/brief?characterEncoding=utf-8
+    username: hotel_report
+    password: Umwn5PoglrVU5R
+    url: jdbc:mysql://10.24.98.22:5002/hotel_report?characterEncoding=utf8
+    type: com.alibaba.druid.pool.DruidDataSource
 
 
 
@@ -21,9 +22,10 @@ logging:
 
 mybatis:
   mapper-locations:
-    - classpath:mapper/*.xml
-  type-aliases-package: cn.followtry.boot.java.mybatis
-  type-handlers-package: cn.followtry.boot.java.mybatis
+    - classpath*:mapper/**/*.xml
+  config-location: classpath:mybatis-config.xml
+#  type-aliases-package: cn.followtry.boot.java.mybatis
+#  type-handlers-package: cn.followtry.boot.java.mybatis
 
 #my-scanner.base-package=cn.followtry.boot
 

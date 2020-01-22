@@ -40,6 +40,11 @@ public class TestController implements InitializingBean {
         return JSON.toJSONString(hello);
     }
 
+    @RequestMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object getUserInfo(Long id) {
+        return applicationService.getUser(id);
+    }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
