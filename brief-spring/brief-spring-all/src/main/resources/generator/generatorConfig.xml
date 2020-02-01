@@ -30,7 +30,7 @@
         <javaModelGenerator targetPackage="cn.followtry.boot.java.mybatis" targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
         <javaClientGenerator targetPackage="cn.followtry.boot.java.mybatis" targetProject="src/main/java" type="XMLMAPPER"/>
-        <table tableName="dim_hotel_bd" mapperName="BdUserMapper" domainObjectName="BdUserDO"/>
+        <table tableName="user" mapperName="UserMapper" domainObjectName="UserDO"/>
     </context>
 
 </generatorConfiguration>

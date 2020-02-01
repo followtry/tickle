@@ -1,6 +1,6 @@
 package cn.followtry.boot.java.service;
 
-import cn.followtry.boot.java.mybatis.BdUserMapper;
+import cn.followtry.boot.java.mybatis.UserMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,9 +31,10 @@ public class ApplicationService implements ApplicationContextAware,InitializingB
 
     @Autowired
     private Optional<MyService> myServiceOptional;
-
+    
     @Autowired
-    private BdUserMapper bdUserMapper;
+    private UserMapper userMapper;
+
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -57,8 +60,9 @@ public class ApplicationService implements ApplicationContextAware,InitializingB
         return Lists.newArrayList(beanDefinitionNames);
     }
 
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public Object getUser(Long id){
-        return bdUserMapper.selectByPrimaryKey(id);
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override
