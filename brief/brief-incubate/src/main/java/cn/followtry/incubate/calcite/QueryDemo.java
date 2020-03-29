@@ -17,21 +17,27 @@ import java.util.Properties;
  */
 public class QueryDemo {
     /**
+     *
+     * 1. calcite 的连接属性设置。 来源于{@link org.apache.calcite.config.CalciteConnectionProperty}，如 info.setProperty("lex", "JAVA");即将词法设置为 java
      * main.
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("org.apache.calcite.jdbc.Driver");
         Properties info = new Properties();
+        //连接属性设置
         info.setProperty("lex", "JAVA");
-        Connection connection = DriverManager.getConnection("jdbc:calcite:", info);
+        //连接的 url，通过判断前缀是否为jdbc:calcite: 或  jdbc:avatica:remote:来判断是否使用 calcite
+        String connUrl = "jdbc:calcite:";
+        Connection connection = DriverManager.getConnection(connUrl, info);
         CalciteConnection calciteConnection = connection.unwrap(CalciteConnection.class);
         SchemaPlus rootSchema = calciteConnection.getRootSchema();
         rootSchema.add("hr", new ReflectiveSchema(new JavaHrSchema()));
     
         Statement statement = calciteConnection.createStatement();
-        String sql = "select e.emp_id, e.name as emp_name, e.dept_no, d.name as dept_name "
-                + "from hr.employee as e "
-                + "left join hr.department as d on e.dept_no = d.dept_no";
+        String sql = "select e.empId, e.name as emp_name, e.deptNo, d.name as dept_name " +
+                "from hr.employee as e " +
+                "left join hr.department as d on e.deptNo = d.deptNo " +
+                "where d.deptNo = 1";
         ResultSet resultSet = statement.executeQuery(sql);
         /**
          * 遍历 SQL 执行结果

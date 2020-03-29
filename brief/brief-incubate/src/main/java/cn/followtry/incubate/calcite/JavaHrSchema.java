@@ -8,23 +8,23 @@ package cn.followtry.incubate.calcite;
  */
 public class JavaHrSchema {
     public static class Employee {
-        public final int emp_id;
+        public final int empId;
         public final String name;
-        public final int dept_no;
+        public final int deptNo;
         
-        public Employee(int emp_id, String name, int dept_no) {
-            this.emp_id = emp_id;
+        public Employee(int empId, String name, int deptNo) {
+            this.empId = empId;
             this.name = name;
-            this.dept_no = dept_no;
+            this.deptNo = deptNo;
         }
     }
     
     public static class Department {
         public final String name;
-        public final int dept_no;
+        public final int deptNo;
         
-        public Department(int dept_no, String name) {
-            this.dept_no = dept_no;
+        public Department(int deptNo, String name) {
+            this.deptNo = deptNo;
             this.name = name;
         }
     }
