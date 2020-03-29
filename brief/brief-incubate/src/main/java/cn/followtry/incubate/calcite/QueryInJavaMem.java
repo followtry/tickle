@@ -15,7 +15,7 @@ import java.util.Properties;
  * @author jingzhongzhi
  * @since 2020/3/29
  */
-public class QueryDemo {
+public class QueryInJavaMem {
     /**
      *
      * 1. calcite 的连接属性设置。 来源于{@link org.apache.calcite.config.CalciteConnectionProperty}，如 info.setProperty("lex", "JAVA");即将词法设置为 java
