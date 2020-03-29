@@ -44,6 +44,11 @@ public class TestController implements InitializingBean {
     public Object getUserInfo(Long id) {
         return applicationService.getUser(id);
     }
+    
+    @RequestMapping(value = "/addUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object addUserInfo(String name,Integer age) {
+        return applicationService.addUser(name,age);
+    }
 
 
     @Override

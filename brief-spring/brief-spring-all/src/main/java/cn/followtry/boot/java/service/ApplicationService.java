@@ -1,5 +1,6 @@
 package cn.followtry.boot.java.service;
 
+import cn.followtry.boot.java.mybatis.UserDO;
 import cn.followtry.boot.java.mybatis.UserMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeansException;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,9 +62,18 @@ public class ApplicationService implements ApplicationContextAware,InitializingB
         return Lists.newArrayList(beanDefinitionNames);
     }
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public Object getUser(Long id){
         return userMapper.selectByPrimaryKey(id);
+    }
+    
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public Object addUser(String name,Integer age){
+        UserDO userDO = new UserDO();
+        userDO.setName(name);
+        userDO.setAge(age);
+        userDO.setDate(new Date());
+        int insert = userMapper.insert(userDO);
+        return userDO;
     }
 
     @Override
