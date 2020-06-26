@@ -4,6 +4,8 @@ server:
 spring:
   devtools:
     add-properties: false
+  profiles:
+    active: local
   http:
     log-request-details: false
   datasource:
