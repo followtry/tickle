@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySource;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
@@ -46,13 +48,13 @@ public class Config {
         System.out.println("active profiles " + JSON.toJSONString(activeProfiles));
         Map<String, Object> systemProperties = configurableEnvironment.getSystemProperties();
         for (Map.Entry<String, Object> entry : systemProperties.entrySet()) {
-//            System.out.println(entry.getKey() + " = " + entry.getValue());
+            System.out.println(entry.getKey() + " = " + entry.getValue());
         }
 
         System.out.println("=============config hr===========");
         Map<String, Object> systemEnvironment = configurableEnvironment.getSystemEnvironment();
         for (Map.Entry<String, Object> entry : systemEnvironment.entrySet()) {
-//            System.out.println(entry.getKey() + " = " + entry.getValue());
+            System.out.println(entry.getKey() + " = " + entry.getValue());
         }
     }
 

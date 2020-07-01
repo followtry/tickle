@@ -34,23 +34,23 @@ public class ApplicationStartListener implements EnvironmentPostProcessor, Smart
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof ApplicationStartingEvent) {
-            log.info("=================应用开始启动========================");
+            log.info("=================应用开始启动=======ApplicationStartingEvent=================");
         }
         if (event instanceof ApplicationEnvironmentPreparedEvent) {
-            log.info("=================应用环境准备========================");
+            log.info("=================应用环境准备========ApplicationEnvironmentPreparedEvent================");
         }
         if (event instanceof ApplicationContextInitializedEvent) {
-            log.info("=================应用上下文初始化========================");
+            log.info("=================应用上下文初始化=======ApplicationContextInitializedEvent=================");
         }
         if (event instanceof ApplicationStartedEvent) {
-            log.info("=================应用已启动========================");
+            log.info("=================应用已启动========ApplicationStartedEvent================");
         }
         if (event instanceof ApplicationReadyEvent) {
-            log.info("=================应用正在运行========================");
+            log.info("=================应用正在运行========ApplicationReadyEvent================");
         }
 
         if (event instanceof ApplicationPreparedEvent) {
-            log.info("=================应用准备中========================");
+            log.info("=================应用准备中========ApplicationPreparedEvent================");
         }
 
     }

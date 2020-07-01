@@ -2,16 +2,19 @@ package cn.followtry.boot.java.service;
 
 import cn.followtry.boot.java.mybatis.UserDO;
 import cn.followtry.boot.java.mybatis.UserMapper;
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +39,12 @@ public class ApplicationService implements ApplicationContextAware,InitializingB
     
     @Autowired
     private UserMapper userMapper;
+
+    @PostConstruct
+    public void init(){
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        System.out.println(JSON.toJSONString(beanDefinitionNames));
+    }
 
 
     @Override

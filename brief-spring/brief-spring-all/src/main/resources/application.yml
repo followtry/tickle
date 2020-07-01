@@ -17,6 +17,8 @@ spring:
     password: brief
     url: jdbc:mysql://127.0.0.1:3306/brief?characterEncoding=utf8
     type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    json: {}
 
 
 
