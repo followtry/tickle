@@ -77,7 +77,7 @@
         <jackson.version>2.9.2</jackson.version>
         <javassist_version>3.15.0-GA</javassist_version>
         <jedis.version>2.9.0</jedis.version>
-        <jetty.version>6.1.26</jetty.version>
+        <jetty.version>9.4.35.v20201120</jetty.version>
         <jetty.version>9.4.14.v20181114</jetty.version>
         <jsonlib.version>2.4</jsonlib.version>
         <junit.version>4.12</junit.version>
