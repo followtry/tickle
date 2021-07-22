@@ -49,6 +49,7 @@
         <module>brief-logger</module>
         <module>brief-netty</module>
         <module>brief-flink</module>
+        <module>brief-kotlin-springboot</module>
     </modules>
 
 
