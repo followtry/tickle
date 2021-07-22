@@ -2,6 +2,7 @@ package cn.followtry.web
 
 import cn.followtry.HelloService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 open class TestController {
 
     @Autowired
+    @Qualifier(value = "KHelloService")
     private lateinit var helloService : HelloService
 
     @GetMapping(value = ["hello"])
