@@ -1,6 +1,8 @@
 package cn.followtry.web
 
 import cn.followtry.HelloService
+import cn.followtry.model.UserInfo
+import cn.followtry.model.UserInfo2
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,7 +23,9 @@ open class TestController {
     private lateinit var helloService : HelloService
 
     @GetMapping(value = ["hello"])
-    fun hello(name: String,content : String) : String {
-        return "$name ${helloService.say(content)}"
+    fun hello(name: String,content : String?) : String {
+        val u = UserInfo(name,29,content?:"默认的内容")
+        val u2 = UserInfo2(name,29,content?:"默认的内容")
+        return "$name ${helloService.say(content?:"")} $u $u2"
     }
 }
