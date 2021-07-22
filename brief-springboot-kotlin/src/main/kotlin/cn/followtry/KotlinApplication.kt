@@ -2,6 +2,7 @@ package cn.followtry
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.ConfigurableApplicationContext
 
 /**
  *
@@ -15,6 +16,9 @@ open class KotlinApplication {
 
 fun main(args: Array<String>) {
     println("starting springboot in kotlin")
-    SpringApplication.run(KotlinApplication::class.java, *args)
+    var ac = SpringApplication.run(KotlinApplication::class.java, *args)
+    ac.apply {
+        println("say hello")
+    }
     println("started springboot in kotlin")
 }
