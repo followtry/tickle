@@ -1,10 +1,7 @@
 package cn.followtry
 
 import org.omg.CORBA.Object
-import org.springframework.cglib.proxy.Callback
-import org.springframework.cglib.proxy.Enhancer
-import org.springframework.cglib.proxy.MethodInterceptor
-import org.springframework.cglib.proxy.MethodProxy
+import org.springframework.cglib.proxy.*
 import java.lang.reflect.Method
 
 /**
@@ -21,13 +18,22 @@ open class EnhanceHelloService : HelloService {
     }
 }
 
+class ProxyFactoryV2 : MethodInterceptor, Callback {
+    override fun intercept(proxy: Any?, method: Method?, args: Array<out Any>?, methodProxy: MethodProxy?): Any {
+        val res = methodProxy!!.invokeSuper(proxy, args)
+        println("ProxyFactoryV2 invoke")
+        return res
+    }
+}
 class ProxyFactory : MethodInterceptor, Callback {
 
     fun createProxy(target: Any): Any? {
-        var enhancer = Enhancer()
+        val enhancer = Enhancer()
         enhancer.setSuperclass(target.javaClass)
-        var callbacks = arrayOf(this)
+//        val callbacks = arrayOf(this,ProxyFactoryV2())
+        val callbacks = arrayOf(this)
         enhancer.setCallbacks(callbacks)
+//        enhancer.setCallbackFilter(HelloCallbackFilter())
 
         return enhancer.create()
     }
@@ -45,6 +51,12 @@ class ProxyFactory : MethodInterceptor, Callback {
         var res = methodProxy!!.invokeSuper(proxy, args)
         after("测试后")
         return res
+    }
+}
+
+class HelloCallbackFilter : CallbackFilter {
+    override fun accept(method: Method?): Int {
+        return 0
     }
 }
 
