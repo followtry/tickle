@@ -11,6 +11,7 @@ public class HelloServiceImpl implements HelloService{
 
     @Override
     public String say(String content) {
+        System.out.println("this say:" + content);
         return "say: " + content;
     }
 }
