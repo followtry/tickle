@@ -3,6 +3,7 @@ package cn.followtry
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.context.annotation.EnableAspectJAutoProxy
 
 /**
  *
@@ -10,6 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext
  * @since  2021/7/20 6:05 下午
  */
 @SpringBootApplication(scanBasePackages = ["cn.followtry"])
+@EnableAspectJAutoProxy
 open class KotlinApplication {
 
 }
