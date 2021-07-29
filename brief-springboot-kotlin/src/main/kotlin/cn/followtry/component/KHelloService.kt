@@ -30,7 +30,9 @@ open class KHelloService : HelloService,BeanFactoryAware,ApplicationContextAware
 
     override fun setApplicationContext(applicationContext: ApplicationContext) {
         this.ac = applicationContext
-        val say = ac.getBean("helloServiceImpl", HelloService::class.java).say("我是java的hello实现，被kotlin调用了")
+        val bean = ac.getBean("helloServiceImpl", HelloService::class.java)
+        val say = bean.say("我是java的hello实现，被kotlin调用了")
+        bean.say("==================")
         println("khello $say")
     }
 }

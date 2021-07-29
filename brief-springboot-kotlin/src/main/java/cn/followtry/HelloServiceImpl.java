@@ -1,5 +1,6 @@
 package cn.followtry;
 
+import cn.followtry.aop.MyAopLog;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloServiceImpl implements HelloService{
 
+    @MyAopLog
+//    @Transactional(rollbackFor = Exception.class)
     @Override
     public String say(String content) {
         System.out.println("this say:" + content);
