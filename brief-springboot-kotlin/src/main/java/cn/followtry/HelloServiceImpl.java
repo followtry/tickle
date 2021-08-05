@@ -1,6 +1,8 @@
 package cn.followtry;
 
 import cn.followtry.aop.MyAopLog;
+import cn.followtry.component.CountryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class HelloServiceImpl implements HelloService{
+
+    @Autowired
+    private CountryService countryService;
 
     @MyAopLog
 //    @Transactional(rollbackFor = Exception.class)

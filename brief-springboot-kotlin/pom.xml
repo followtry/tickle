@@ -119,8 +119,8 @@
             </goals>
             <configuration>
               <sourceDirs>
-                <source>src/main/java</source>
-                <source>src/main/kotlin</source>
+                <source>${project.basedir}/src/main/java</source>
+                <source>${project.basedir}/src/main/kotlin</source>
               </sourceDirs>
             </configuration>
           </execution>
@@ -132,8 +132,8 @@
             </goals>
             <configuration>
               <sourceDirs>
-                <source>src/test/java</source>
-                <source>src/test/kotlin</source>
+                <source>${project.basedir}/src/test/java</source>
+                <source>${project.basedir}/src/test/kotlin</source>
               </sourceDirs>
             </configuration>
           </execution>
@@ -171,14 +171,22 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <executions>
           <execution>
-            <id>compile</id>
+            <id>default-compile</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>java-compile</id>
             <phase>compile</phase>
             <goals>
               <goal>compile</goal>
             </goals>
           </execution>
           <execution>
-            <id>testCompile</id>
+            <id>java-test-compile</id>
             <phase>test-compile</phase>
             <goals>
               <goal>testCompile</goal>
@@ -189,6 +197,25 @@
           <source>8</source>
           <target>8</target>
         </configuration>
+      </plugin>
+
+<!--      从博客中学习到的  https://blog.csdn.net/ly199108171231/article/details/105121249 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/kotlin</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
