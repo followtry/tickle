@@ -1,0 +1,5 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.followtry.common.nacosconfig.NacosConfigAutoConfiguration,\
+  cn.followtry.common.mybatis.MybatisCustomAutoConfiguration,\
+  cn.followtry.common.monitor.MonitorLogAutoConfiguration
