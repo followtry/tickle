@@ -1,6 +1,5 @@
 package cn.followtry.common.monitor.meta;
 
-import cn.followtry.common.monitor.annotation.MonitorType;
 import cn.followtry.common.monitor.log.LoggerMonitor;
 
 /**
@@ -9,7 +8,7 @@ import cn.followtry.common.monitor.log.LoggerMonitor;
  */
 public class MonitorLogMeta {
 
-    private MonitorType typeName;
+    private String typeName;
 
     private String logName = "MONITOR_LOG";
 
@@ -18,6 +17,7 @@ public class MonitorLogMeta {
      * 返回结果对象用resp表示
      */
     private String resExpress = "";
+    private String[] reqExpress = {};
 
     /**
      * 方法简要声明，只对方法上的注解生效
@@ -44,11 +44,11 @@ public class MonitorLogMeta {
     }
 
 
-    public MonitorType getTypeName() {
+    public String getTypeName() {
         return typeName;
     }
 
-    public void setTypeName(MonitorType typeName) {
+    public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
 
@@ -66,6 +66,14 @@ public class MonitorLogMeta {
 
     public void setResExpress(String resExpress) {
         this.resExpress = resExpress;
+    }
+
+    public String[] getReqExpress() {
+        return reqExpress;
+    }
+
+    public void setReqExpress(String[] reqExpress) {
+        this.reqExpress = reqExpress;
     }
 
     public Boolean getNeedRequest() {

@@ -25,25 +25,26 @@ public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, LocalDateTime parameter, JdbcType jdbcType)
             throws SQLException {
-        ps.setObject(i, parameter);
+        ps.setTimestamp(i, Timestamp.valueOf(parameter));
     }
 
     @Override
     public LocalDateTime getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        Object value = rs.getObject(columnName);
-        if (value instanceof Timestamp) {
-            return ((Timestamp)value).toLocalDateTime();
+        Timestamp timestamp = rs.getTimestamp(columnName);
+        return getLocalDateTime(timestamp);
+    }
+
+    private static LocalDateTime getLocalDateTime(Timestamp timestamp) {
+        if (timestamp != null) {
+            return timestamp.toLocalDateTime();
         }
-        return rs.getObject(columnName, LocalDateTime.class);
+        return null;
     }
 
     @Override
     public LocalDateTime getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        Object value = rs.getObject(columnIndex);
-        if (value instanceof Timestamp) {
-            return ((Timestamp)value).toLocalDateTime();
-        }
-        return rs.getObject(columnIndex, LocalDateTime.class);
+        Timestamp timestamp = rs.getTimestamp(columnIndex);
+        return getLocalDateTime(timestamp);
     }
 
     @Override

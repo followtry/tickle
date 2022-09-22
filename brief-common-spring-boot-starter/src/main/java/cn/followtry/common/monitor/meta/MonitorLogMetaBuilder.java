@@ -1,6 +1,5 @@
 package cn.followtry.common.monitor.meta;
 
-import cn.followtry.common.monitor.annotation.MonitorType;
 import cn.followtry.common.monitor.log.LoggerMonitor;
 
 /**
@@ -8,9 +7,11 @@ import cn.followtry.common.monitor.log.LoggerMonitor;
  * @since 2021/10/25 4:10 下午
  */
 public final class MonitorLogMetaBuilder {
-    private MonitorType typeName;
+    private String typeName;
     private String logName = "MONITOR_LOG";
     private String resExpress = "";
+
+    private String[] reqExpress = {};
     private String methodSummary;
     private Boolean needRequest = false;
     private Boolean needResponse = false;
@@ -25,7 +26,7 @@ public final class MonitorLogMetaBuilder {
         return new MonitorLogMetaBuilder();
     }
 
-    public MonitorLogMetaBuilder withTypeName(MonitorType typeName) {
+    public MonitorLogMetaBuilder withTypeName(String typeName) {
         this.typeName = typeName;
         return this;
     }
@@ -37,6 +38,11 @@ public final class MonitorLogMetaBuilder {
 
     public MonitorLogMetaBuilder withResExpress(String resExpress) {
         this.resExpress = resExpress;
+        return this;
+    }
+
+    public MonitorLogMetaBuilder withReqExpress(String[] reqExpress) {
+        this.reqExpress = reqExpress;
         return this;
     }
 
@@ -75,6 +81,7 @@ public final class MonitorLogMetaBuilder {
         monitorLogMeta.setTypeName(typeName);
         monitorLogMeta.setLogName(logName);
         monitorLogMeta.setResExpress(resExpress);
+        monitorLogMeta.setReqExpress(reqExpress);
         monitorLogMeta.setMethodSummary(methodSummary);
         monitorLogMeta.setNeedRequest(needRequest);
         monitorLogMeta.setNeedResponse(needResponse);

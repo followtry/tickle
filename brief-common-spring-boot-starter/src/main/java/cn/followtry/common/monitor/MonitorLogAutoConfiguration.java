@@ -1,9 +1,10 @@
 package cn.followtry.common.monitor;
 
+import cn.followtry.common.utils.BeanDefinitionUtils;
 import cn.followtry.common.config.Constant;
 import cn.followtry.common.monitor.core.MonitorLogAdvice;
 import cn.followtry.common.monitor.core.MonitorLogAdvisor;
-import cn.followtry.common.utils.BeanDefinitionUtils;
+import cn.followtry.common.monitor.log.LogProcessorRegister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -13,9 +14,11 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.PriorityOrdered;
 
@@ -69,6 +72,12 @@ public class MonitorLogAutoConfiguration implements BeanDefinitionRegistryPostPr
             log.info("inject advice. {}", MONITOR_LOG_ADVICE_BEAN_NAME);
         }
         return bean;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(value = LogProcessorRegister.class)
+    public LogProcessorRegister logProcessorRegister() {
+        return new LogProcessorRegister();
     }
 
     @Override

@@ -17,13 +17,10 @@ import java.lang.annotation.*;
 public @interface MonitorLog {
 
     /**
-     * 支持的log类型
-     * HSF
-     * HTTP
-     *
+     * 默认使用 {@link MonitorType}
      * @return 监控类型
      */
-    MonitorType typeName();
+    String typeName();
 
     /**
      * 日志的<logger name='MONITOR_LOG'></logger> 标签的名称。
@@ -32,6 +29,14 @@ public @interface MonitorLog {
      * @return 配置的日志名称
      */
     String logName() default "MONITOR_LOG";
+
+    /**
+     * 请求表达式,spEL格式,以#开头
+     * 可以从请求参数中获取指定的值，不要轻易变更顺序，表达式的顺序决定了写入日志内的顺序
+     * 只限于作用于method上，请勿在Type上使用，避免查找不到导致请求异常
+     * @return
+     */
+    String[] reqExpress() default {};
 
     /**
      * 默认的结果Y或N的表达式，使用SpEl表达式

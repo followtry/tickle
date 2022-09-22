@@ -10,6 +10,8 @@ import org.aopalliance.intercept.MethodInvocation;
  */
 public interface LoggerMonitor {
 
+    String getMonitorType();
+
     /**
      * 自定义的日志拦截器
      * 比如可以发送到MQ

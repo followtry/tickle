@@ -1,10 +1,10 @@
 package cn.followtry.common.monitor.core;
 
 import cn.followtry.common.monitor.annotation.MonitorLog;
-import cn.followtry.common.monitor.meta.MonitorLogMeta;
-import cn.followtry.common.monitor.meta.MonitorLogMetaBuilder;
 import cn.followtry.common.monitor.log.DefaultLoggerMonitor;
 import cn.followtry.common.monitor.log.LoggerMonitor;
+import cn.followtry.common.monitor.meta.MonitorLogMeta;
+import cn.followtry.common.monitor.meta.MonitorLogMetaBuilder;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.BeansException;
@@ -107,6 +107,11 @@ public class MonitorLogAdvice implements MethodInterceptor, ApplicationContextAw
         if (StringUtils.hasText(monitorLog.resExpress())) {
             logMetaBuilder.withResExpress(monitorLog.resExpress());
         }
+
+        if (monitorLog.reqExpress() != null && monitorLog.reqExpress().length > 0) {
+            logMetaBuilder.withReqExpress(monitorLog.reqExpress());
+        }
+
         if (monitorLog.needResponse()) {
             logMetaBuilder.withNeedResponse(true);
         }
