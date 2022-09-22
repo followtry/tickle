@@ -7,7 +7,7 @@
   <properties>
 		<aspectj.version>1.8.9</aspectj.version>
 		<druid.version>1.0.15</druid.version>
-		<fastjson.version>1.2.9</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<httpclient.version>4.5.2</httpclient.version>
 		<java.version>1.8</java.version>
 		<json-path.version>2.2.0</json-path.version>
