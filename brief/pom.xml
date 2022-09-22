@@ -83,7 +83,7 @@
         <jsonlib.version>2.4</jsonlib.version>
         <junit.version>4.12</junit.version>
         <kafka.version>2.1.1</kafka.version>
-        <log4j2.version>2.10.0</log4j2.version>
+        <log4j2.version>2.13.3</log4j2.version>
         <log4j2-nosql.version>2.9.1</log4j2-nosql.version>
         <lombok.version>1.16.18</lombok.version>
         <mail.version>1.4.7</mail.version>
