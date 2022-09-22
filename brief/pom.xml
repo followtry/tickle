@@ -92,7 +92,7 @@
         <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
         <maven.sourve.plugin.version>3.0.1</maven.sourve.plugin.version>
         <mongo.version>3.5.0</mongo.version>
-        <mysql.version>6.0.6</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <mybatis.version>3.4.5</mybatis.version>
         <mybatis-plugin.version>1.3.5</mybatis-plugin.version>
         <mybatis-spring.version>1.3.1</mybatis-spring.version>
